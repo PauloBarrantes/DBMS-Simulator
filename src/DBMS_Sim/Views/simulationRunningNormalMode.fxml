@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXColorPicker?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Controller">
+    <children>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="-3.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="697.0" />
+        <JFXDatePicker layoutX="218.0" layoutY="339.0" />
+        <JFXColorPicker layoutX="252.0" layoutY="238.0" />
+        <JFXButton buttonType="RAISED" layoutX="273.0" layoutY="305.0" ripplerFill="WHITE" style="-fx-background-color: #f4ad42#f4ad42;" textFill="WHITE" />
+    </children>
+</AnchorPane>

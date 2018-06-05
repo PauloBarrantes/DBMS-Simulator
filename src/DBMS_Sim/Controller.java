@@ -1,39 +1,34 @@
 package DBMS_Sim;
 
 
-import com.jfoenix.animation.alert.JFXAlertAnimation;
 import com.jfoenix.controls.*;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
 public class Controller implements Initializable {
 
-    int nProcess;
-    Stage stage;
+
     @FXML
-    JFXRippler rippler;
-    @FXML
-    StackPane sta1;
-    @FXML
-    AnchorPane root;
+    StackPane stackPane1;
     @FXML
     JFXButton btnIniciar;
     @FXML
@@ -42,6 +37,9 @@ public class Controller implements Initializable {
     JFXToggleButton graphic;
     @FXML
     JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
+
+
+
     @FXML
     void modeSlow(ActionEvent event){
         if(mode.isSelected() == false){
@@ -51,13 +49,12 @@ public class Controller implements Initializable {
             System.out.println("GG");
             graphic.setDisable(false);
         }
-
     }
     @FXML
-    void start(ActionEvent event){
+    void start(ActionEvent event) throws IOException {
 
         JFXDialogLayout content = new JFXDialogLayout();
-        JFXDialog dialog1 = new JFXDialog(sta1,content , JFXDialog.DialogTransition.CENTER,false);
+        JFXDialog dialog1 = new JFXDialog(stackPane1,content , JFXDialog.DialogTransition.CENTER,false);
 
         Label header = new Label("Warning");
         header.setTextFill(Color.RED);
@@ -74,7 +71,7 @@ public class Controller implements Initializable {
         });
         content.setActions(button);
 
-        dialog1.show();
+       // dialog1.show();
 
 
 
@@ -97,16 +94,16 @@ public class Controller implements Initializable {
             }
         }
 
-/*
                 if(validator){
-                    StackPane rot = new StackPane();
-                    Scene scene = new Scene(rot,200, 200);
-                    stage.setScene(scene);
-                    stage.show();
+
                 }
-*/
 
-
+        Parent home_parent = FXMLLoader.load(getClass().getResource("Views/simulationRunningNormalMode.fxml"));
+        Scene inicio = new Scene(home_parent);
+        Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        appStage.hide();
+        appStage.setScene(inicio);
+        appStage.show();
     }
 
 
