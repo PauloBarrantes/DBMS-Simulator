@@ -26,7 +26,4 @@ public class UI extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-
-
 }
