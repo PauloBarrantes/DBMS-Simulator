@@ -41,6 +41,15 @@ public class Simulator {
     public void simulate(){
 
     }
+
+    public double getClock() {
+        return clock;
+    }
+
+    public void setClock(double clock) {
+        this.clock = clock;
+    }
+
 }
 
 

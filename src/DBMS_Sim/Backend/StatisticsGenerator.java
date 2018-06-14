@@ -33,4 +33,44 @@ public class StatisticsGenerator {
     public void obtainAverageConnectionTime(double time, int amountOfQueries){
 
     }
+
+    public void setAcumulatedAverageConnectionTime(int acumulatedAverageConnectionTime) {
+        this.acumulatedAverageConnectionTime = acumulatedAverageConnectionTime;
+    }
+
+    public void setAcumulatedAverageModuleQueueLength(int acumulatedAverageModuleQueueLength) {
+        this.acumulatedAverageModuleQueueLength = acumulatedAverageModuleQueueLength;
+    }
+
+    public void setAcumulatedAverageQueriesWaitTimeInModule(int acumulatedAverageQueriesWaitTimeInModule) {
+        this.acumulatedAverageQueriesWaitTimeInModule = acumulatedAverageQueriesWaitTimeInModule;
+    }
+
+    public void setAcumulatedDiscardedConections(int acumulatedDiscardedConections) {
+        this.acumulatedDiscardedConections = acumulatedDiscardedConections;
+    }
+
+    public void setAmountOfDoneSimulations(int amountOfDoneSimulations) {
+        this.amountOfDoneSimulations = amountOfDoneSimulations;
+    }
+
+    public int getAcumulatedAverageConnectionTime() {
+        return acumulatedAverageConnectionTime;
+    }
+
+    public int getAcumulatedAverageModuleQueueLength() {
+        return acumulatedAverageModuleQueueLength;
+    }
+
+    public int getAcumulatedAverageQueriesWaitTimeInModule() {
+        return acumulatedAverageQueriesWaitTimeInModule;
+    }
+
+    public int getAcumulatedDiscardedConections() {
+        return acumulatedDiscardedConections;
+    }
+
+    public int getAmountOfDoneSimulations() {
+        return amountOfDoneSimulations;
+    }
 }

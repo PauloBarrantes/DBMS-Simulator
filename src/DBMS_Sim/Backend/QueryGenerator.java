@@ -20,4 +20,12 @@ public class QueryGenerator {
         Statement st = Statement.DDL;
         return st;
     }
+
+    public void setDistribution(ExpDistributionGenerator distribution) {
+        this.distribution = distribution;
+    }
+
+    public ExpDistributionGenerator getDistribution() {
+        return distribution;
+    }
 }

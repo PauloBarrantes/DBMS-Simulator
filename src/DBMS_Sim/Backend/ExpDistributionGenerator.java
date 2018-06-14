@@ -16,3 +16,4 @@ public class ExpDistributionGenerator implements RandomVariableGenerator{
         return 0;
     }
 }
+
