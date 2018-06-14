@@ -1,10 +1,9 @@
 package DBMS_Sim.NotBeingUsed;
-<<<<<<< HEAD
 
-import DBMS_Sim.Statement;
-import DBMS_Sim.ExpDistributionGenerator;
-=======
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
+
+import DBMS_Sim.NotBeingUsed.Statement;
+import DBMS_Sim.Backend.ExpDistributionGenerator;
+
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
@@ -20,6 +19,7 @@ public class QueryGenerator {
 
 
     public Statement generate(){
-
+        Statement st = Statement.DDL;
+        return st;
     }
 }
