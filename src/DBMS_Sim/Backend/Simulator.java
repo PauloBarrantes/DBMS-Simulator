@@ -24,6 +24,11 @@ public class Simulator {
         this.clock = clock;
     }
 
+    /**
+     *
+     */
+    public Simulator(){}
+
 
     /**
      * Inserta un título en la clase descripción.
