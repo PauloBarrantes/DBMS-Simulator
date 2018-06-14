@@ -12,7 +12,7 @@ package DBMS_Sim.Backend;
  */
 public interface Module {
 
-    public void resetVariables();
-    public void processArrival(Query query);
-    public void processDeparture(Query query);
+    void resetVariables();
+    void processArrival(Query query);
+    void processDeparture(Query query);
 }
