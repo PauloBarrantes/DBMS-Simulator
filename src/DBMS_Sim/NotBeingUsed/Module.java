@@ -1,6 +1,7 @@
 package DBMS_Sim.NotBeingUsed;
 <<<<<<< HEAD
 
+import DBMS_Sim.Backend.Query;
 import DBMS_Sim.Query;
 =======
 >>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3

@@ -1,4 +1,4 @@
-package DBMS_Sim.NotBeingUsed;
+package DBMS_Sim.Backend;
 
 public enum EventType {
     QueryArrival,

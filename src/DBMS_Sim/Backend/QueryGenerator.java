@@ -1,8 +1,9 @@
-package DBMS_Sim.NotBeingUsed;
-
+package DBMS_Sim.Backend;
 
 import DBMS_Sim.NotBeingUsed.Statement;
 import DBMS_Sim.Backend.ExpDistributionGenerator;
+
+
 
 /**
  * Esta clase consiste en el cuerpo de la simulación del
