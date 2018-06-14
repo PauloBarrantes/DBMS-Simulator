@@ -9,7 +9,7 @@ public class NormalDistributionGenerator implements RandomVariableGenerator{
     }
 
     public void setVariance(double variance){
-        this.mean = variance;
+        this.variance = variance;
     }
 
     public double getMean(){
