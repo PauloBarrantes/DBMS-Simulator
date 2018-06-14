@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public class UI extends Application {
+public class UserInterface extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
