@@ -1,4 +1,7 @@
-package DBMS_Sim;
+package DBMS_Sim.NotBeingUsed;
+
+import DBMS_Sim.Statement;
+import DBMS_Sim.ExpDistributionGenerator;
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
@@ -10,4 +13,10 @@ package DBMS_Sim;
  * @author  Fabián Álvarez
  */
 public class QueryGenerator {
+    private ExpDistributionGenerator distribution;
+
+
+    public Statement generate(){
+
+    }
 }

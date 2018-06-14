@@ -1,4 +1,6 @@
-package DBMS_Sim;
+package DBMS_Sim.NotBeingUsed;
+
+import DBMS_Sim.Query;
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
