@@ -16,12 +16,40 @@ public class Query {
     private Statement statement;
     private boolean readOnly;
 
-    public double elapsedTimeInSystem(double gg){
-
-        return 0.0;
-
-    }
+    public double elapsedTimeInSystem(double gg){ return 0.0; }
     public double elapsedTimeInModule(double gg){
         return 0.0;
+    }
+
+    public void setSubmissionTime(double submissionTime) {
+        this.submissionTime = submissionTime;
+    }
+
+    public void setModuleEntryTime(double moduleEntryTime) {
+        this.moduleEntryTime = moduleEntryTime;
+    }
+
+    public void setStatement(Statement statement) {
+        this.statement = statement;
+    }
+
+    public void setReadOnly(boolean readOnly) {
+        this.readOnly = readOnly;
+    }
+
+    public double getSubmissionTime() {
+        return submissionTime;
+    }
+
+    public double getModuleEntryTime() {
+        return moduleEntryTime;
+    }
+
+    public Statement getStatement() {
+        return statement;
+    }
+
+    public boolean isReadOnly() {
+        return readOnly;
     }
 }

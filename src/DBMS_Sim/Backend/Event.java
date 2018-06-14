@@ -11,11 +11,35 @@ package DBMS_Sim.Backend;
  * @author  Fabián Álvarez
  */
 public class Event {
-    private int type;
+    private EventType type;
     private double time;
     private Query query;
     public Event(){
 
+    }
+
+    public void setType(EventType type){
+        this.type = type;
+    }
+
+    public void setTime(double time){
+        this.time = time;
+    }
+
+    public void setQuery(Query query){
+        this.query = query;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public Query getQuery() {
+        return query;
     }
 }
 
