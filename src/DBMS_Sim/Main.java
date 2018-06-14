@@ -1,4 +1,5 @@
 package DBMS_Sim;
+import DBMS_Sim.Frontend.Initializer;
 import javafx.application.Application;
 /**
  * Main Class
@@ -9,8 +10,6 @@ import javafx.application.Application;
  */
 public class Main {
     public static void main(String[] args) {
-
-
-        Application.launch(UserInterface.class,args);
+        Application.launch(Initializer.class,args);
     }
 }

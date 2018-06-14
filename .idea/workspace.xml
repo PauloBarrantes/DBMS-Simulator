@@ -1,44 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="3560b936-86c3-4af1-a684-efab36a182c4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EvenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EventType.java" afterDir="false" />
-=======
-    <list default="true" id="008cb231-0917-4ae3-a320-05e05cc94b58" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jfoenix_9_0_4.xml" beforeDir="false" />
+    <list default="true" id="6c5a0c6e-1598-4136-841e-bc3937369731" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DBMS-Simulator.iml" beforeDir="false" afterPath="$PROJECT_DIR$/DBMS-Simulator.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/EvenType.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Event.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Module.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Query.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/QueryGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/RandomVariableGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Simulator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Statement.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/StatisticsGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Controller$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/EvenType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/Event.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/Module.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/Query.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/QueryGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/RandomVariableGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/Simulator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/Statement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/NotBeingUsed/StatisticsGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/UI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/simulationRunningGraphicMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/simulationRunningGraphicMode.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/simulationRunningNormalMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/simulationRunningNormalMode.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/simulationRunningSlowMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/DBMS-Simulator/DBMS_Sim/Views/simulationRunningSlowMode.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Backend/QueryGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Backend/QueryGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Frontend/UserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EvenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EvenType.java" afterDir="false" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Query.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/QueryGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/QueryGenerator.java" afterDir="false" />
-<<<<<<< HEAD
-=======
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/RandomVariableGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Backend/RandomVariableGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Simulator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Statement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Statement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/StatisticsGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/UserInterface.java" afterDir="false" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Backend/Module.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Backend/Simulator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Statement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Backend/StatisticsGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Views/simulationRunningGraphicMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Views/simulationRunningGraphicMode.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Views/simulationRunningNormalMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Views/simulationRunningNormalMode.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Views/simulationRunningSlowMode.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Views/simulationRunningSlowMode.fxml" afterDir="false" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,154 +42,70 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-<<<<<<< HEAD
-      <file leaf-file-name="Statement.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Statement.java">
+      <file leaf-file-name="UserInterface.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/UserInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EventType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EventType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="29" selection-start-column="29" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Module.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-=======
-      <file leaf-file-name="Controller.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Controller.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="43">
-              <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+            <state relative-caret-position="201">
+              <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file leaf-file-name="Query.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Query.java">
+      <file leaf-file-name="Initializer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-=======
-      <file leaf-file-name="RandomVariableGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/RandomVariableGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
-            </state>
-          </provider>
-        </entry>
-      </file>
-<<<<<<< HEAD
-      <file leaf-file-name="QueryGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/QueryGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+            <state relative-caret-position="200">
+              <caret line="22" column="84" lean-forward="true" selection-start-line="22" selection-start-column="84" selection-end-line="22" selection-end-column="84" />
               <folding>
                 <element signature="imports" expanded="true" />
-=======
-      <file leaf-file-name="UniformDistributionGenerator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/UniformDistributionGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
-              <folding>
-                <element signature="e#196#197#0" expanded="true" />
-                <element signature="e#228#229#0" expanded="true" />
-                <element signature="e#275#276#0" expanded="true" />
-                <element signature="e#311#312#0" expanded="true" />
-                <element signature="e#341#342#0" expanded="true" />
-                <element signature="e#368#369#0" expanded="true" />
-                <element signature="e#402#403#0" expanded="true" />
-                <element signature="e#433#434#0" expanded="true" />
-                <element signature="e#317#318#0" expanded="true" />
-                <element signature="e#341#342#0" expanded="true" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file leaf-file-name="RandomVariableGenerator.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/RandomVariableGenerator.java">
+      <file leaf-file-name="home.fxml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-=======
-      <file leaf-file-name="ExpDistributionGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/ExpDistributionGenerator.java">
+            <state relative-caret-position="-349" />
+          </provider>
+          <provider editor-type-id="JavaFX-Scene-Builder" />
+        </entry>
+      </file>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+            <state relative-caret-position="240">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
               <folding>
-                <element signature="e#169#170#0" expanded="true" />
-                <element signature="e#205#206#0" expanded="true" />
-                <element signature="e#238#239#0" expanded="true" />
-                <element signature="e#267#268#0" expanded="true" />
-                <element signature="e#313#314#0" expanded="true" />
-                <element signature="e#337#338#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#327#328#0" expanded="true" />
               </folding>
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
             </state>
           </provider>
         </entry>
       </file>
-<<<<<<< HEAD
-      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java">
+      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Simulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
-=======
-      <file leaf-file-name="NormalDistributionGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/NormalDistributionGenerator.java">
+            <state relative-caret-position="148">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatisticsGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/StatisticsGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="25" selection-end-column="5" />
-              <folding>
-                <element signature="e#195#196#0" expanded="true" />
-                <element signature="e#227#228#0" expanded="true" />
-                <element signature="e#274#275#0" expanded="true" />
-                <element signature="e#310#311#0" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#367#368#0" expanded="true" />
-                <element signature="e#401#402#0" expanded="true" />
-                <element signature="e#432#433#0" expanded="true" />
-                <element signature="e#478#479#0" expanded="true" />
-                <element signature="e#502#503#0" expanded="true" />
-              </folding>
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
+            <state relative-caret-position="34">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -202,22 +113,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-<<<<<<< HEAD
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EvenType.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EventType.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Query.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/QueryGenerator.java" />
-=======
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/UI.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/Event.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/Query.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/Statement.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/QueryGenerator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/Main.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/App.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/RandomVariableGenerator.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/NormalDistributionGenerator.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/ExpDistributionGenerator.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/UniformDistributionGenerator.java" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/Backend/Module.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java" />
       </list>
     </option>
   </component>
@@ -228,10 +133,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="95" />
-    <option name="y" value="95" />
-    <option name="width" value="960" />
-    <option name="height" value="1030" />
+    <option name="x" value="55" />
+    <option name="y" value="-34" />
+    <option name="width" value="1614" />
+    <option name="height" value="878" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -262,48 +167,15 @@
               <item name="DBMS-Simulator" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="DBMS_Sim" type="462c0819:PsiDirectoryNode" />
-<<<<<<< HEAD
-=======
-              <item name="Backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DBMS-Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DBMS-Simulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="DBMS_Sim" type="462c0819:PsiDirectoryNode" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
-              <item name="NotBeingUsed" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DBMS-Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Frontend" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
       <pane id="Scope" />
-<<<<<<< HEAD
-      <pane id="PackagesPane" />
-=======
       <pane id="AndroidView" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -317,25 +189,14 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="DBMS_Sim.Main" />
       <module name="DBMS-Simulator" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DBMS_Sim.Backend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-    </configuration>
-    <configuration name="UserInterface" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="DBMS_Sim.UserInterface" />
-      <module name="DBMS-Simulator" />
-      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="DBMS_Sim.Backend.*" />
+          <option name="PATTERN" value="DBMS_Sim.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -381,14 +242,9 @@
       <properties />
       <listeners />
     </configuration>
-    <list>
-      <item itemvalue="Application.UserInterface" />
-      <item itemvalue="Application.Main" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.UserInterface" />
       </list>
     </recent_temporary>
   </component>
@@ -405,63 +261,39 @@
       <workItem from="1528501889028" duration="620000" />
       <workItem from="1528676047082" duration="3847000" />
       <workItem from="1528759813229" duration="1073000" />
-      <workItem from="1528929877071" duration="4591000" />
+      <workItem from="1528929877071" duration="7342000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-<<<<<<< HEAD
-    <option name="totallyTimeSpent" value="1328000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="9" y="23" width="1240" height="742" extended-state="0" />
-=======
-    <option name="totallyTimeSpent" value="10131000" />
+    <option name="totallyTimeSpent" value="1804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-<<<<<<< HEAD
-=======
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32905984" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
-=======
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32905984" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32905984" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19194631" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-<<<<<<< HEAD
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
-=======
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3988604" />
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.3988604" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -470,71 +302,47 @@
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DBMS_Sim/Main.java</url>
+          <line>12</line>
+          <properties />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java</url>
+          <line>22</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java</url>
+          <line>23</line>
+          <properties />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java</url>
+          <line>25</line>
+          <properties />
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java</url>
+          <line>26</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
       <option name="time" value="5" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Controller.java">
-<<<<<<< HEAD
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="48" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/UI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="28" lean-forward="true" selection-start-line="28" selection-end-line="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Query.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/QueryGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/UI.java">
-=======
->>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
           <caret line="16" column="32" lean-forward="true" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
@@ -544,7 +352,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/UserInterface.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
@@ -554,14 +362,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" selection-start-line="3" selection-end-line="112" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/UserInterface.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="17" selection-end-column="21" />
@@ -571,7 +379,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Controller.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/UserInterface.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="18" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="18" />
@@ -600,72 +408,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EvenType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Query.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/QueryGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Simulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Statement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/StatisticsGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/UserInterface.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="20" column="4" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="27" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/App.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -673,42 +415,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="45" column="28" lean-forward="true" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/RandomVariableGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
           <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/ExpDistributionGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding>
-            <element signature="e#169#170#0" expanded="true" />
-            <element signature="e#205#206#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#313#314#0" expanded="true" />
-            <element signature="e#337#338#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -733,8 +443,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/UniformDistributionGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state relative-caret-position="123">
+          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
           <folding>
             <element signature="e#196#197#0" expanded="true" />
             <element signature="e#228#229#0" expanded="true" />
@@ -742,7 +452,6 @@
             <element signature="e#311#312#0" expanded="true" />
             <element signature="e#341#342#0" expanded="true" />
             <element signature="e#368#369#0" expanded="true" />
-            <element signature="e#402#403#0" expanded="true" />
             <element signature="e#433#434#0" expanded="true" />
             <element signature="e#317#318#0" expanded="true" />
             <element signature="e#341#342#0" expanded="true" />
@@ -750,55 +459,125 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Statement.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/ExpDistributionGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="28" lean-forward="true" selection-start-line="3" selection-start-column="28" selection-end-line="3" selection-end-column="28" />
+        <state relative-caret-position="320">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding>
+            <element signature="e#169#170#0" expanded="true" />
+            <element signature="e#205#206#0" expanded="true" />
+            <element signature="e#238#239#0" expanded="true" />
+            <element signature="e#267#268#0" expanded="true" />
+            <element signature="e#313#314#0" expanded="true" />
+            <element signature="e#337#338#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EventType.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Event.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="29" selection-start-column="29" selection-end-column="29" />
+        <state relative-caret-position="141">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Event.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/EvenType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state relative-caret-position="40">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Module.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/EventType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state relative-caret-position="40">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/Query.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Query.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+        <state relative-caret-position="20">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/QueryGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/QueryGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="41" selection-start-line="3" selection-start-column="41" selection-end-line="3" selection-end-column="41" />
+        <state relative-caret-position="383">
+          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Statement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/StatisticsGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Module.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Simulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/UserInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NotBeingUsed/RandomVariableGenerator.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="240">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#327#328#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-349" />
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Frontend/Initializer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="22" column="84" lean-forward="true" selection-start-line="22" selection-start-column="84" selection-end-line="22" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -831,7 +610,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>spring-aop-5.0.5.RELEASE-javadoc</last-edited>
+          <last-edited>commons-logging-1.2</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -866,32 +645,9 @@
           </splitter-proportions>
         </settings>
       </state>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <last-edited>jfoenix-8.0.4</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ScopeChooserConfigurable.UI">
-        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>

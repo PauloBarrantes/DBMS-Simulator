@@ -1,4 +1,4 @@
-package DBMS_Sim;
+package DBMS_Sim.Frontend;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +16,11 @@ import javafx.stage.Stage;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public class UserInterface extends Application {
+public class Initializer extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Views/home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../Views/home.fxml"));
         Scene scene = new Scene(root);
 
         stage.setScene(scene);

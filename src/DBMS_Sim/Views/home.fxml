@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Frontend.UserInterface">
    <children>
       <JFXTextField fx:id="txt_ntimes" alignment="CENTER" layoutX="600.0" layoutY="29.0" prefHeight="27.0" prefWidth="66.0" />
       <JFXToggleButton fx:id="mode" layoutX="279.0" layoutY="141.0" onAction="#modeSlow" text="Modo Lento" />

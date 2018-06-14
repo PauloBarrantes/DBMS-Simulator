@@ -1,4 +1,4 @@
-package DBMS_Sim;
+package DBMS_Sim.Frontend;
 
 
 import com.jfoenix.controls.*;
@@ -34,7 +34,7 @@ import java.util.ResourceBundle;
  * @author  Fabián Álvarez
  */
 
-public class Controller implements Initializable {
+public class UserInterface implements Initializable {
 
     @FXML
     StackPane stackPane1;
