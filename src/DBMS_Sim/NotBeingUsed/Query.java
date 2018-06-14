@@ -1,6 +1,9 @@
 package DBMS_Sim.NotBeingUsed;
+<<<<<<< HEAD
 
 import DBMS_Sim.Statement;
+=======
+>>>>>>> 97937a3febe258edcdec8e55b9399018bc345ee3
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.

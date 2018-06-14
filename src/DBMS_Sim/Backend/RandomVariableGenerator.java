@@ -1,4 +1,4 @@
-package DBMS_Sim;
+package DBMS_Sim.Backend;
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
@@ -9,6 +9,6 @@ package DBMS_Sim;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public interface RandomVariableGenerator {
+public interface RandomVariableGenerator{
     double generate();
 }
