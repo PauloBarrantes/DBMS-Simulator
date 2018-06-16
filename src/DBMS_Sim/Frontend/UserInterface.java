@@ -22,6 +22,9 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Esta clase consiste en el cuerpo de la simulación del
@@ -46,6 +49,8 @@ public class UserInterface implements Initializable {
     JFXToggleButton graphic;
     @FXML
     JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
+    @FXML
+    JFXTextField number;
 
     private boolean validator;
 
@@ -74,8 +79,29 @@ public class UserInterface implements Initializable {
      * @param
      */
     @FXML
-    void start(ActionEvent event) throws IOException {
+    void start(ActionEvent event) throws IOException, InterruptedException {
+        Timer timer = new Timer();
+        int counter = 0;
 
+        TimerTask tarea = new TimerTask() {
+            int counter = 0;
+            @Override
+            public void run() {
+                if(counter > 5){
+                    timer.cancel();
+                }else {
+
+
+                    number.setText("" + counter);
+
+                    ++counter;
+                }
+            }
+        };
+
+        timer.schedule(tarea, 0, 1000);
+
+/*
         validator = true;
         validate(txt_time);
         validate(txt_ntimes);
@@ -113,7 +139,7 @@ public class UserInterface implements Initializable {
 
             dialog1.show();
         }
-
+*/
 
     }
 

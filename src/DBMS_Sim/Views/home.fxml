@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXRippler?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.scene.control.Label?>
@@ -14,14 +13,14 @@
    <children>
       <JFXTextField fx:id="txt_ntimes" alignment="CENTER" layoutX="600.0" layoutY="29.0" prefHeight="27.0" prefWidth="66.0" />
       <JFXToggleButton fx:id="mode" layoutX="279.0" layoutY="141.0" onAction="#modeSlow" text="Modo Lento" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffad1f" height="561.0" layoutX="-17.0" layoutY="-28.0" stroke="BLACK" strokeType="INSIDE" width="238.0" />
+      <Rectangle id="number" arcHeight="5.0" arcWidth="5.0" fill="#ffad1f" height="561.0" layoutX="-17.0" layoutY="-28.0" stroke="BLACK" strokeType="INSIDE" width="238.0" />
       <JFXButton fx:id="btnIniciar" defaultButton="true" layoutX="422.0" layoutY="449.0" onAction="#start" prefHeight="27.0" prefWidth="77.0" ripplerFill="WHITE" style="-fx-background-color: #ffad1f;" text="Start" textAlignment="CENTER" textFill="WHITE" />
       <Label layoutX="19.0" layoutY="23.0" text="Welcome!" textFill="WHITE">
          <font>
             <Font size="35.0" />
          </font>
       </Label>
-      <Label layoutX="31.0" layoutY="73.0" style="-fx-font-size: 20; -fx-font-family: Avenir;" text="DBMS - Simulator" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="23.0" layoutY="73.0" style="-fx-font-size: 20; -fx-font-family: Avenir;" text="DBMS - Simulator" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="21.0" />
          </font>
@@ -69,5 +68,6 @@
       <JFXTextField fx:id="m" alignment="CENTER" layoutX="605.0" layoutY="339.0" prefHeight="27.0" prefWidth="66.0" />
       <JFXTextField fx:id="t" alignment="CENTER" layoutX="604.0" layoutY="383.0" prefHeight="27.0" prefWidth="66.0" />
       <StackPane fx:id="stackPane1" layoutX="182.0" layoutY="125.0" prefHeight="76.0" prefWidth="112.0" />
+      <JFXTextField fx:id="number" alignment="CENTER" layoutX="79.0" layoutY="158.0" prefHeight="27.0" prefWidth="66.0" />
    </children>
 </AnchorPane>
