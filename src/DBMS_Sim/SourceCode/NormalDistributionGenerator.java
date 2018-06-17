@@ -1,11 +1,18 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.Random;
+
 public class NormalDistributionGenerator implements RandomVariableGenerator{
     private double mean;
     private double variance;
+    private double standardDeviation;
+    private Random rnd = new Random(System.currentTimeMillis());
 
-    public NormalDistributionGenerator(){
 
+    public NormalDistributionGenerator(double mean, double variance, double deviation){
+        this.mean = mean;
+        this.variance= variance;
+        this.standardDeviation = Math.sqrt(deviation);
     }
 
     public void setMean(double mean){
@@ -26,6 +33,14 @@ public class NormalDistributionGenerator implements RandomVariableGenerator{
 
     @Override
     public double generate() {
-        return 0;
+        double zeta= 0;
+
+        for(int i = 0; i <12 ; ++i){
+            double numRandom = rnd.nextDouble();
+            zeta += numRandom;
+        }
+        zeta = zeta - 6;
+        double time = mean + standardDeviation * zeta;
+        return time;
     }
 }
