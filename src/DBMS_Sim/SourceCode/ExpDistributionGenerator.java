@@ -1,10 +1,16 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.Random;
+
 public class ExpDistributionGenerator implements RandomVariableGenerator{
+    private double media ;
     private double lambda;
+    private Random rnd = new Random(System.currentTimeMillis());
 
-    public ExpDistributionGenerator(){
 
+    public ExpDistributionGenerator(double media){
+        this.lambda= 1/media;
+        this.media = media;
     }
 
     public void setLambda(double lambda){
@@ -17,7 +23,9 @@ public class ExpDistributionGenerator implements RandomVariableGenerator{
 
     @Override
     public double generate() {
-        return 0;
+        double numRandom = rnd.nextDouble();
+        double time = (-1/media)*Math.log(1-numRandom);
+        return time;
     }
 }
 
