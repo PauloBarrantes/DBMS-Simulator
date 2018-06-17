@@ -1,4 +1,4 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 /**
  * Esta clase consiste en el cuerpo de la simulación del
@@ -16,8 +16,12 @@ public class Query {
     private Statement statement;
     private boolean readOnly;
 
-    public double elapsedTimeInSystem(double gg){ return 0.0; }
-    public double elapsedTimeInModule(double gg){
+    public Query() {
+
+    }
+
+    public double elapsedTimeInSystem(double clock){ return 0.0; }
+    public double elapsedTimeInModule(double clock){
         return 0.0;
     }
 

@@ -1,4 +1,4 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 public class UniformDistributionGenerator implements RandomVariableGenerator{
     private double leftBoudary;

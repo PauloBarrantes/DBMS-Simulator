@@ -1,6 +1,6 @@
 package DBMS_Sim;
 
-import DBMS_Sim.ChangeThisName.Simulator;
+import DBMS_Sim.SourceCode.Simulator;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;

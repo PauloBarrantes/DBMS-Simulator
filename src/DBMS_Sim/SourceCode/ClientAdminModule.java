@@ -1,4 +1,4 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
@@ -11,6 +11,10 @@ public class ClientAdminModule implements Module{
     private double timeInTheSystem;
     private  double timeout;
     private int discardedConnections;
+
+    public ClientAdminModule(){
+
+    }
 
     @Override
     public void processArrival(Query query){

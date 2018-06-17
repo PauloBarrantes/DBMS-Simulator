@@ -1,4 +1,4 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 /**
  * Esta clase consiste en el cuerpo de la simulación del
@@ -14,6 +14,7 @@ public class Event {
     private EventType type;
     private double time;
     private Query query;
+
     public Event(){
 
     }

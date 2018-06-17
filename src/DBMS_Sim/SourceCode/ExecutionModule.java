@@ -1,4 +1,4 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
@@ -9,7 +9,9 @@ public class ExecutionModule implements Module{
     private int[] totalConnectionsByQueryType;
     private double[] timeByQueryType;
 
+    public ExecutionModule(){
 
+    }
 
     @Override
     public void processArrival(Query query){

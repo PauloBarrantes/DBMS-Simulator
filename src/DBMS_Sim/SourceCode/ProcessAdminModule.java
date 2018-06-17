@@ -1,4 +1,4 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
@@ -8,6 +8,10 @@ public class ProcessAdminModule implements Module{
     private PriorityQueue<Query> queriesInLine;
     private int[] totalConnectionsByQueryType;
     private double[] timeByQueryType;
+
+    public ProcessAdminModule() {
+
+    }
 
     @Override
     public void processArrival(Query query) {

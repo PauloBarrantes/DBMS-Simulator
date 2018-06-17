@@ -1,8 +1,12 @@
-package DBMS_Sim.ChangeThisName;
+package DBMS_Sim.SourceCode;
 
 public class NormalDistributionGenerator implements RandomVariableGenerator{
     private double mean;
     private double variance;
+
+    public NormalDistributionGenerator(){
+
+    }
 
     public void setMean(double mean){
         this.mean = mean;
