@@ -27,6 +27,9 @@ public class TransactionAndStorageModule implements Module{
 
     }
 
+    @Override
+    public void checkQueues(double clock){}
+
     public void setMaxQueries(int maxQueries) {
         this.maxQueries = maxQueries;
     }

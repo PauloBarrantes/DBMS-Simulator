@@ -49,6 +49,9 @@ public class QueryProcessingModule implements Module{
 
     }
 
+    @Override
+    public void checkQueues(double clock){}
+
     public void setMaxProcesses(int maxProcesses) {
         this.maxProcesses = maxProcesses;
     }

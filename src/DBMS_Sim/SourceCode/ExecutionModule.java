@@ -28,6 +28,9 @@ public class ExecutionModule implements Module{
 
     }
 
+    @Override
+    public void checkQueues(double clock){}
+
 
 
     public void setMaxStatements(int maxStatements) {

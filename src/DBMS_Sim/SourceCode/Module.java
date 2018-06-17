@@ -15,4 +15,5 @@ public interface Module {
     void resetVariables();
     void processArrival(Query query);
     void processDeparture(Query query);
+    void checkQueues(double clock);
 }

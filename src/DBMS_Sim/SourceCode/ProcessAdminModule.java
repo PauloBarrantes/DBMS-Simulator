@@ -28,6 +28,9 @@ public class ProcessAdminModule implements Module{
 
     }
 
+    @Override
+    public void checkQueues(double clock){}
+
     public void setDistribution(NormalDistributionGenerator distribution) {
         this.distribution = distribution;
     }

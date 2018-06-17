@@ -31,6 +31,9 @@ public class ClientAdminModule implements Module{
 
     }
 
+    @Override
+    public void checkQueues(double clock){}
+
     public void showResult(Query query) {
 
     }
