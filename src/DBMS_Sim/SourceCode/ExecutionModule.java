@@ -9,8 +9,8 @@ public class ExecutionModule implements Module{
     private int[] totalConnectionsByQueryType;
     private double[] timeByQueryType;
 
-    public ExecutionModule(){
-
+    public ExecutionModule(int maxStatements){
+        this.maxStatements = maxStatements;
     }
 
     @Override

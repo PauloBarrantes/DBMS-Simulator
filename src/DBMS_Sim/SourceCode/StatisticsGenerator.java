@@ -15,6 +15,7 @@ public class StatisticsGenerator {
     private int acumulatedAverageModuleQueueLength;
     private int acumulatedAverageQueriesWaitTimeInModule;
     private int acumulatedAverageConnectionTime;
+
     public StatisticsGenerator() { }
 
     public void addDiscardedConnection(int discardedConnections){

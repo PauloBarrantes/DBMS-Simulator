@@ -12,7 +12,9 @@ public class QueryProcessingModule implements Module{
     private UniformDistributionGenerator semanticalDistribution;
     private ExpDistributionGenerator permissionVerifyDistribution;
 
-    public QueryProcessingModule(){}
+    public QueryProcessingModule(int maxProcesses){
+        this.setMaxProcesses(maxProcesses);
+    }
 
     @Override
     public void processArrival(Query query){

@@ -1,4 +1,7 @@
 package DBMS_Sim.SourceCode;
+
+import DBMS_Sim.Controller;
+
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
@@ -12,6 +15,15 @@ package DBMS_Sim.SourceCode;
 public class Simulator {
 
     private double clock;
+    private QueryGenerator queryGenerator;
+    private ClientAdminModule clientAdminModule;
+    private ProcessAdminModule processAdminModule;
+    private QueryProcessingModule queryProcessingModule;
+    private TransactionAndStorageModule transactionAndStorageModule;
+    private ExecutionModule executionModule;
+    private StatisticsGenerator statisticsGenerator;
+    private int[] queueLengths;
+    private int queueLengthsCounted;
 
     /**
      * Inserta un título en la clase descripción.
@@ -27,8 +39,14 @@ public class Simulator {
     /**
      *
      */
-    public Simulator(){
-
+    public Simulator(int k, double t, int n, int p, int m){
+        queryGenerator = new QueryGenerator();
+        clientAdminModule = new ClientAdminModule(k);
+        processAdminModule = new ProcessAdminModule();
+        queryProcessingModule = new QueryProcessingModule(n);
+        transactionAndStorageModule = new TransactionAndStorageModule(p);
+        executionModule = new ExecutionModule(m);
+        statisticsGenerator = new StatisticsGenerator();
     }
 
 
@@ -44,12 +62,13 @@ public class Simulator {
 
     }
 
-    public double getClock() {
-        return clock;
-    }
-
     public void setClock(double clock) {
         this.clock = clock;
+    }
+
+
+    public double getClock() {
+        return clock;
     }
 
 }

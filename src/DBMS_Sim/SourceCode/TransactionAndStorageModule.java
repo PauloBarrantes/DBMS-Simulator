@@ -10,7 +10,9 @@ public class TransactionAndStorageModule implements Module{
     private int[] totalConnectionsByQueryType;
     private double[] timeByQueryType;
 
-    public TransactionAndStorageModule(){}
+    public TransactionAndStorageModule(int maxQueries){
+        this.setMaxQueries(maxQueries);
+    }
 
     @Override
     public void processArrival(Query query) {

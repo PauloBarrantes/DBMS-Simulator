@@ -12,8 +12,8 @@ public class ClientAdminModule implements Module{
     private  double timeout;
     private int discardedConnections;
 
-    public ClientAdminModule(){
-
+    public ClientAdminModule(int maxConnections){
+        this.setMaxConnections(maxConnections);
     }
 
     @Override
