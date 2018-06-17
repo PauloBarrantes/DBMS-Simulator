@@ -10,6 +10,8 @@ public class TransactionAndStorageModule implements Module{
     private int[] totalConnectionsByQueryType;
     private double[] timeByQueryType;
 
+    public TransactionAndStorageModule(){}
+
     @Override
     public void processArrival(Query query) {
 

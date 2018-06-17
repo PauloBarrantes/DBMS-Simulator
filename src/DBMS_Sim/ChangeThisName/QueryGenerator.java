@@ -16,6 +16,8 @@ public class QueryGenerator {
     private ExpDistributionGenerator distribution;
 
 
+    public QueryGenerator(){}
+
     public Statement generate(){
         Statement st = Statement.DDL;
         return st;
