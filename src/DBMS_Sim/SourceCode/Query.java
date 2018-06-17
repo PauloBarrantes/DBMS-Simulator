@@ -13,16 +13,18 @@ package DBMS_Sim.SourceCode;
 public class Query {
     private double submissionTime;
     private double moduleEntryTime;
-    private Statement statement;
+    private StatementType statementType;
     private boolean readOnly;
 
-    public Query() {
-
+    public Query(double submissionTime, StatementType statementType, boolean readOnly) {
+        this.setSubmissionTime(submissionTime);
+        this.setStatementType(statementType);
+        this.setReadOnly(readOnly);
     }
 
-    public double elapsedTimeInSystem(double clock){ return 0.0; }
+    public double elapsedTimeInSystem(double clock){ return clock - submissionTime; }
     public double elapsedTimeInModule(double clock){
-        return 0.0;
+        return clock - moduleEntryTime;
     }
 
     public void setSubmissionTime(double submissionTime) {
@@ -33,8 +35,8 @@ public class Query {
         this.moduleEntryTime = moduleEntryTime;
     }
 
-    public void setStatement(Statement statement) {
-        this.statement = statement;
+    public void setStatementType(StatementType statementType) {
+        this.statementType = statementType;
     }
 
     public void setReadOnly(boolean readOnly) {
@@ -49,8 +51,8 @@ public class Query {
         return moduleEntryTime;
     }
 
-    public Statement getStatement() {
-        return statement;
+    public StatementType getStatementType() {
+        return statementType;
     }
 
     public boolean isReadOnly() {

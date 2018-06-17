@@ -24,24 +24,30 @@ public class QueryGenerator {
     }
 
     public Query generate(double clock){
-        Statement newStatement = Statement.SELECT;
+        StatementType newStatementType = StatementType.SELECT;
         boolean readOnly = true;
+        double submissionTime = clock + distribution.generate();
 
         double acumulated = rnd.nextDouble();
 
-        if(0.3 <= acumulated <= 0.55){
-            Statement newStatement = Statement.UPDATE;
+        if(0.3 <= acumulated && acumulated <= 0.55){
+            newStatementType = StatementType.UPDATE;
+            readOnly = false;
         }else{
-            if(0.55 < acumulated <= 0.9){
-                Statement newStatement = Statement.JOIN;
+            if(0.55 < acumulated && acumulated <= 0.9){
+                newStatementType = StatementType.JOIN;
             }else{
-                if(0.9 < acumulated <= 1.0){
-                    Statement newStatement = Statement.DDL;
+                if(0.9 < acumulated && acumulated <= 1.0){
+                    newStatementType = StatementType.DDL;
+                    readOnly = true;
                 }
             }
         }
 
-        return st;
+
+        Query query = new Query(submissionTime,newStatementType,readOnly);
+
+        return query;
     }
 
     public void setDistribution(ExpDistributionGenerator distribution) {
