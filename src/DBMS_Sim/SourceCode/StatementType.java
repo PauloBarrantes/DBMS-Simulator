@@ -1,5 +1,5 @@
 package DBMS_Sim.SourceCode;
 
-public enum Statement {
+public enum StatementType {
     SELECT, UPDATE, JOIN, DDL
 }

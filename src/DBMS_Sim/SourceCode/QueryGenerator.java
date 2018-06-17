@@ -18,8 +18,8 @@ public class QueryGenerator {
 
     public QueryGenerator(){}
 
-    public Statement generate(){
-        Statement st = Statement.DDL;
+    public StatementType generate(){
+        StatementType st = StatementType.DDL;
         return st;
     }
 
