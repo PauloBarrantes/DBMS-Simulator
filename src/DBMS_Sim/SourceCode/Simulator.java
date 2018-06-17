@@ -15,6 +15,7 @@ import DBMS_Sim.Controller;
 public class Simulator {
 
     private double clock;
+    private double runningTime;
     private QueryGenerator queryGenerator;
     private ClientAdminModule clientAdminModule;
     private ProcessAdminModule processAdminModule;
