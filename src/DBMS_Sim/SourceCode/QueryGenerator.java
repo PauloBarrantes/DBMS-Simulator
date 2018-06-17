@@ -39,7 +39,7 @@ public class QueryGenerator {
             }else{
                 if(0.9 < acumulated && acumulated <= 1.0){
                     newStatementType = StatementType.DDL;
-                    readOnly = true;
+                    readOnly = false;
                 }
             }
         }
