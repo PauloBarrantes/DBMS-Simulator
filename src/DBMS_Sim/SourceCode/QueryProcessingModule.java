@@ -12,6 +12,8 @@ public class QueryProcessingModule implements Module{
     private UniformDistributionGenerator semanticalDistribution;
     private ExpDistributionGenerator permissionVerifyDistribution;
 
+    public QueryProcessingModule(){}
+
     @Override
     public void processArrival(Query query){
 

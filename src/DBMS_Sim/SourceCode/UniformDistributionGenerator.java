@@ -4,6 +4,8 @@ public class UniformDistributionGenerator implements RandomVariableGenerator{
     private double leftBoudary;
     private double rightBoudary;
 
+    public UniformDistributionGenerator(){ }
+
     public void setLeftBoudary(double leftBoudary){
         this.leftBoudary = leftBoudary;
     }

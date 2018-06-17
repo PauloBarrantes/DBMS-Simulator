@@ -15,21 +15,24 @@ public class StatisticsGenerator {
     private int acumulatedAverageModuleQueueLength;
     private int acumulatedAverageQueriesWaitTimeInModule;
     private int acumulatedAverageConnectionTime;
-    public StatisticsGenerator() {
+    public StatisticsGenerator() { }
 
-    }
     public void addDiscardedConnection(int discardedConnections){
 
     }
+
     public void increaseDoneSimulations(){
 
     }
+
     public void obtainQueueLengthAverage(int  [] queueLengths, int callsToModules){
 
     }
+
     public void obtainAverageWaitTime(int[] amountOfQueries, int[] queryTimes, int module){
 
     }
+
     public void obtainAverageConnectionTime(double time, int amountOfQueries){
 
     }
