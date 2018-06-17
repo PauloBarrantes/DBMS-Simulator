@@ -1,4 +1,4 @@
-package DBMS_Sim.Backend;
+package DBMS_Sim.ChangeThisName;
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.

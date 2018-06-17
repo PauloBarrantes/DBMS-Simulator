@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="DBMS_Sim.Frontend.UserInterface"
+            fx:controller="DBMS_Sim.Controller"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>

@@ -1,16 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXColorPicker?>
-<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Frontend.UserInterface">
+<AnchorPane prefHeight="447.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Controller">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="34.0" layoutX="-3.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="697.0" />
-        <JFXDatePicker layoutX="218.0" layoutY="339.0" />
-        <JFXColorPicker layoutX="252.0" layoutY="238.0" />
-        <JFXButton buttonType="RAISED" layoutX="273.0" layoutY="305.0" ripplerFill="WHITE" style="-fx-background-color: #f4ad42#f4ad42;" textFill="WHITE" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbc1f" height="44.0" layoutX="-3.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="588.0" />
+      <JFXProgressBar id="pbProgress" layoutX="57.0" layoutY="405.0" prefHeight="9.0" prefWidth="470.0" progress="0.0" />
+      <Label layoutX="153.0" layoutY="79.0" text="Clock" />
+      <Label id="lblClock" layoutX="232.0" layoutY="79.0" text="0" />
+      <Label layoutX="151.0" layoutY="132.0" text="Queue Lenght" />
+      <Label layoutX="152.0" layoutY="171.0" text="ClientAdminModule" />
+      <Label layoutX="152.0" layoutY="204.0" text="ProcessAdminModule" />
+      <Label layoutX="152.0" layoutY="240.0" text="QueryProcessingModule " />
+      <Label layoutX="151.0" layoutY="279.0" text="TransactionAndStorageModule" />
+      <Label layoutX="150.0" layoutY="314.0" text="ExecutionModule" />
+      <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="300.0" layoutY="121.0">
+         <image>
+            <Image url="@../Resources/tube-queue.png" />
+         </image>
+      </ImageView>
+      <Line endX="100.0" layoutX="251.0" layoutY="157.0" nodeOrientation="LEFT_TO_RIGHT" startX="-100.0">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+
+            </Lighting>
+         </effect>
+      </Line>
+      <Label layoutX="265.0" layoutY="416.0" opacity="0.53" text="Progress" />
+      <Label id="lblMac" layoutX="434.0" layoutY="172.0" text="0" />
+      <Label id="lblPAM" layoutX="434.0" layoutY="204.0" text="0" />
+      <Label id="lblQPM" layoutX="434.0" layoutY="240.0" text="0" />
+      <Label id="lblTASM" layoutX="434.0" layoutY="279.0" text="0" />
+      <Label id="lblEM" layoutX="434.0" layoutY="314.0" text="0" />
+      <ImageView fitHeight="42.0" fitWidth="41.0" layoutX="152.0" layoutY="69.0">
+         <image>
+            <Image url="@../Resources/clock1.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="18.0" layoutY="7.0" text="Normal Mode" textFill="WHITE">
+         <font>
+            <Font name="Dosis Regular" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="530.0" layoutY="7.0" text="#" textFill="WHITE">
+         <font>
+            <Font name="Dosis Regular" size="21.0" />
+         </font>
+      </Label>
+      <Label id="lblNcorrida" layoutX="552.0" layoutY="7.0" text="1" textFill="WHITE">
+         <font>
+            <Font name="Dosis Regular" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="150.0" layoutY="355.0" prefHeight="17.0" prefWidth="176.0" text="Discarded Connections" />
+      <Label id="lblEM" layoutX="435.0" layoutY="354.0" text="0" />
+      <Line endX="100.0" layoutX="254.0" layoutY="347.0" startX="-100.0" />
     </children>
 </AnchorPane>

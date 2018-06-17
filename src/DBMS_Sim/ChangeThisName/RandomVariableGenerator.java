@@ -1,5 +1,4 @@
-package DBMS_Sim.Backend;
-
+package DBMS_Sim.ChangeThisName;
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
@@ -10,9 +9,6 @@ package DBMS_Sim.Backend;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public interface Module {
-
-    void resetVariables();
-    void processArrival(Query query);
-    void processDeparture(Query query);
+public interface RandomVariableGenerator{
+    double generate();
 }

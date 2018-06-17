@@ -1,4 +1,4 @@
-package DBMS_Sim.Backend;
+package DBMS_Sim.ChangeThisName;
 
 public class NormalDistributionGenerator implements RandomVariableGenerator{
     private double mean;

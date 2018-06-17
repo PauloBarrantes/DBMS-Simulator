@@ -1,4 +1,4 @@
-package DBMS_Sim.Frontend;
+package DBMS_Sim;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

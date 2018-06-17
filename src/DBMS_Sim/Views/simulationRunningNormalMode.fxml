@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="447.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Frontend.UserInterface">
+<AnchorPane prefHeight="447.0" prefWidth="585.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.Controller">
     <children>
         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbc1f" height="44.0" layoutX="-3.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="588.0" />
       <JFXProgressBar id="pbProgress" layoutX="57.0" layoutY="405.0" prefHeight="9.0" prefWidth="470.0" progress="0.0" />

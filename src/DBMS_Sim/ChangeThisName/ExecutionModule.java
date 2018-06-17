@@ -1,16 +1,15 @@
-package DBMS_Sim.Backend;
+package DBMS_Sim.ChangeThisName;
 
 import java.util.PriorityQueue;
 
-public class ClientAdminModule implements Module{
-    private int maxConnections;
+public class ExecutionModule implements Module{
+    private int maxStatements;
     private int busyAttendants;
     private PriorityQueue<Query> queriesInLine;
     private int[] totalConnectionsByQueryType;
     private double[] timeByQueryType;
-    private double timeInTheSystem;
-    private  double timeout;
-    private int discardedConnections;
+
+
 
     @Override
     public void processArrival(Query query){
@@ -27,22 +26,10 @@ public class ClientAdminModule implements Module{
 
     }
 
-    public void showResult(Query query) {
-
-    }
-
-    public void processFinalization(Query query) {
-
-    }
-
-    public boolean isItTimeout(Query query) {
-        return true;
-    }
 
 
-
-    public void setMaxConnections(int maxConnections) {
-        this.maxConnections = maxConnections;
+    public void setMaxStatements(int maxStatements) {
+        this.maxStatements = maxStatements;
     }
 
     public void setBusyAttendants(int busyAttendants) {
@@ -61,20 +48,9 @@ public class ClientAdminModule implements Module{
         this.timeByQueryType = timeByQueryType;
     }
 
-    public void setTimeout(double timeout) {
-        this.timeout = timeout;
-    }
 
-    public void setTimeInTheSystem(double timeInTheSystem) {
-        this.timeInTheSystem = timeInTheSystem;
-    }
-
-    public void setDiscardedConnections(int discardedConnections) {
-        this.discardedConnections = discardedConnections;
-    }
-
-    public int getMaxConnections() {
-        return maxConnections;
+    public int getMaxStatements() {
+        return maxStatements;
     }
 
     public int getBusyAttendants() {
@@ -91,17 +67,5 @@ public class ClientAdminModule implements Module{
 
     public double[] getTimeByQueryType() {
         return timeByQueryType;
-    }
-
-    public double getTimeout() {
-        return timeout;
-    }
-
-    public double getTimeInTheSystem() {
-        return timeInTheSystem;
-    }
-
-    public int getDiscardedConnections() {
-        return discardedConnections;
     }
 }
