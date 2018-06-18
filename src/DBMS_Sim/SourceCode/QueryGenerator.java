@@ -20,7 +20,7 @@ public class QueryGenerator {
     public QueryGenerator(){
         //The media is 30 queries each minute, that means that in one second it recieves
         //0.5 queries.
-        distribution = new ExpDistributionGenerator(0.5);
+        distribution = new ExpDistributionGenerator(2);
     }
 
     public Query generate(double clock){
@@ -28,19 +28,18 @@ public class QueryGenerator {
         boolean readOnly = true;
         double submissionTime = clock + distribution.generate();
 
-        double acumulated = rnd.nextDouble();
+        double numRandom = rnd.nextDouble();
+        //System.out.println(numRandom);
 
-        if(0.3 <= acumulated && acumulated <= 0.55){
+        if(0.3 <= numRandom && numRandom <= 0.55){
             newStatementType = StatementType.UPDATE;
             readOnly = false;
         }else{
-            if(0.55 < acumulated && acumulated <= 0.9){
+            if(0.55 < numRandom && numRandom <= 0.9){
                 newStatementType = StatementType.JOIN;
             }else{
-                if(0.9 < acumulated && acumulated <= 1.0){
-                    newStatementType = StatementType.DDL;
-                    readOnly = false;
-                }
+                newStatementType = StatementType.DDL;
+                readOnly = false;
             }
         }
 
@@ -57,4 +56,16 @@ public class QueryGenerator {
     public ExpDistributionGenerator getDistribution() {
         return distribution;
     }
+    /*
+    public static void main(String[] args){
+        QueryGenerator generator = new QueryGenerator();
+        Query query = generator.generate(0);
+        System.out.println("Query: St -> " + query.getStatementType() + ", Sb -> " + query.getSubmissionTime() + ", R -> " + query.getReadOnly() + ", M -> " + query.getModuleEntryTime());
+        query = generator.generate(1.5);
+        System.out.println("Query: St -> " + query.getStatementType() + ", Sb -> " + query.getSubmissionTime() + ", R -> " + query.getReadOnly() + ", M -> " + query.getModuleEntryTime());
+        query = generator.generate(6);
+        System.out.println("Query: St -> " + query.getStatementType() + ", Sb -> " + query.getSubmissionTime() + ", R -> " + query.getReadOnly() + ", M -> " + query.getModuleEntryTime());
+
+    }
+    */
 }

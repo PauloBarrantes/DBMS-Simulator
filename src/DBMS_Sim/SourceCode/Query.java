@@ -17,14 +17,10 @@ public class Query {
     private boolean readOnly;
 
     public Query(double submissionTime, StatementType statementType, boolean readOnly) {
-        this.setSubmissionTime(submissionTime);
-        this.setStatementType(statementType);
-        this.setReadOnly(readOnly);
-    }
-
-    public double elapsedTimeInSystem(double clock){ return clock - submissionTime; }
-    public double elapsedTimeInModule(double clock){
-        return clock - moduleEntryTime;
+        setSubmissionTime(submissionTime);
+        setStatementType(statementType);
+        setReadOnly(readOnly);
+        setModuleEntryTime(-1);
     }
 
     public void setSubmissionTime(double submissionTime) {
@@ -55,7 +51,14 @@ public class Query {
         return statementType;
     }
 
-    public boolean isReadOnly() {
+    public boolean getReadOnly() {
         return readOnly;
+    }
+
+
+
+    public double elapsedTimeInSystem(double clock){ return clock - submissionTime; }
+    public double elapsedTimeInModule(double clock){
+        return clock - moduleEntryTime;
     }
 }
