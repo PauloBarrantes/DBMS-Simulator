@@ -26,8 +26,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class Controller implements Initializable {
+    private Simulator simulator;
+    private Initializer initializer;
+
+
+
+    @FXML NormalModeController normalModeController;
+
+
+
     // UI Variables - Home
-    
+
     @FXML StackPane stackPane1;
     @FXML JFXButton btnIniciar;
     @FXML JFXToggleButton mode;
@@ -35,29 +44,16 @@ public class Controller implements Initializable {
     @FXML JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
     @FXML JFXTextField number;
 
-    // UI Variables - Normal Mode
-    @FXML JFXProgressBar pbProgress;
-    @FXML Label lblClock;
-    //UI Variables - Slow Mode
-
-    //UI Variables -
-    //UI
     int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
 
     private boolean validator;
-
-    private Simulator simulator;
-    private Initializer initializer;
-
     public Controller(){
-        simulator = new Simulator();
+//        simulator = new Simulator();
         initializer = new Initializer();
     }
-
     public void run(String[] args){
         Application.launch(Initializer.class,args);
     }
-
     /**
      * Controlador de la
      *
@@ -71,7 +67,6 @@ public class Controller implements Initializable {
             graphic.setSelected(false);
             graphic.setDisable(true);
         }else {
-            System.out.println("GG");
             graphic.setDisable(false);
         }
     }
@@ -94,7 +89,6 @@ public class Controller implements Initializable {
         validate(p);
         validate(n);
         if(validator){
-            Parent home_parent = FXMLLoader.load(getClass().getResource("Views/simulationRunningNormalMode.fxml"));
 
             //We store in the variables the values ​​that the user placed in the text-fields
             String temporal = txt_ntimes.getText();
@@ -112,15 +106,9 @@ public class Controller implements Initializable {
             temporal = n.getText();
             nProcess = Integer.parseInt(temporal);
 
-
-            Scene inicio = new Scene(home_parent);
-            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            appStage.hide();
-            appStage.setScene(inicio);
-            appStage.show();
-            controlSimulationNormalMode();
-            lblClock.setText("GG");
-
+            normalModeScene(event);
+            normalModeController.setTimeRunning(time);
+            normalModeController.refreshScreen(21,4,6,1,5,8,10);
         }else{
             JFXDialogLayout content = new JFXDialogLayout();
             JFXDialog dialog1 = new JFXDialog(stackPane1,content , JFXDialog.DialogTransition.CENTER,false);
@@ -149,28 +137,72 @@ public class Controller implements Initializable {
     }
 
 
-    @Override
-    public void initialize(URL arg1, ResourceBundle arg2){
-    }
 
-    private boolean validate(JFXTextField textField){
+    /**
+     *  Valida todos los text fields de la ventana de inicio, se asegura que haya algo y que sean números.
+     *
+     *
+     * @param textField Recibe como parámetro el textfield ha validar.
+     */
+    private boolean validate(JFXTextField textField) {
 
-        if(textField.getText().isEmpty()){
-            textField.setUnFocusColor(Color.rgb(244,101,66));
+        if (textField.getText().isEmpty()) {
+            textField.setUnFocusColor(Color.rgb(244, 101, 66));
             validator = false;
-        }else{
-            if(!textField.getText().matches("[0-9]*")){
+        } else {
+            if (!textField.getText().matches("[0-9]*")) {
                 validator = false;
-                textField.setUnFocusColor(Color.rgb(244,101,66));
-
+                textField.setUnFocusColor(Color.rgb(244, 101, 66));
             }
         }
-
         return validator;
 
     }
-    private void controlSimulationNormalMode(){
+    /**
+     * Despliega el scene en pantalla del normal mode, además guardamos el controller de esa escena.
+     *
+     * @param event
+     */
+    private void normalModeScene(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/simulationRunningNormalMode.fxml"));
+            Parent root = (Parent) loader.load();
+            normalModeController = loader.getController();
 
-        //simulator = new Simulator(ntimes, time, kCon, timeout, nProcess, pProcess, mProcess);
+            Scene normalMode = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.hide();
+            appStage.setScene(normalMode);
+            appStage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+    /**
+     * Despliega el scene en pantalla del slow mode, además guardamos el controller de esa escena.
+     *
+     * @param event
+     */
+    private void slowModeScene(ActionEvent event){
+
+
+
+    }
+    /**
+     * Despliega el scene en pantalla del graph mode, además guardamos el controller de esa escena.
+     *
+     * @param event
+     */
+    private void graphModeScene(ActionEvent event){
+
+
+
+    }
+    @Override
+    public void initialize(URL arg1, ResourceBundle arg2){
+
+    }
+
 }
+
