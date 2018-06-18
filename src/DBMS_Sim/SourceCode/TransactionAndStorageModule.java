@@ -2,82 +2,54 @@ package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
-public class TransactionAndStorageModule implements Module{
-    private int maxQueries;
-    private int busyAttendants;
-    private PriorityQueue<Query> queriesInLine;
+public class TransactionAndStorageModule extends Module{
     private boolean ddlStatementFlag;
-    private int[] totalConnectionsByQueryType;
-    private double[] timeByQueryType;
 
-    public TransactionAndStorageModule(int maxQueries){
-        this.setMaxQueries(maxQueries);
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public TransactionAndStorageModule(int maxFields, double timeout){
+        super(maxFields,0,new PriorityQueue<Query>(),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
     }
 
-    @Override
-    public void processArrival(Query query) {
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-    }
 
-    @Override
-    public void processDeparture(Query query) {
 
-    }
-
-    @Override
-    public void resetVariables() {
-
-    }
-
-    @Override
-    public void checkQueues(double clock){}
-
-    public void setMaxQueries(int maxQueries) {
-        this.maxQueries = maxQueries;
-    }
-
-    public void setBusyAttendants(int busyAttendants) {
-        this.busyAttendants = busyAttendants;
-    }
-
-    public void setQueriesInLine(PriorityQueue<Query> queriesInLine) {
-        this.queriesInLine = queriesInLine;
-    }
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------- Beginning of the setters and getters section -----------------------
+    // ---------------------------------------------------------------------------------------------
 
     public void setDdlStatementFlag(boolean ddlStatementFlag) {
         this.ddlStatementFlag = ddlStatementFlag;
-    }
-
-    public void setTotalConnectionsByQueryType(int[] totalConnectionsByQueryType) {
-        this.totalConnectionsByQueryType = totalConnectionsByQueryType;
-    }
-
-    public void setTimeByQueryType(double[] timeByQueryType) {
-        this.timeByQueryType = timeByQueryType;
-    }
-
-    public int getMaxQueries() {
-        return maxQueries;
-    }
-
-    public int getBusyAttendants() {
-        return busyAttendants;
-    }
-
-    public PriorityQueue<Query> getQueriesInLine() {
-        return queriesInLine;
     }
 
     public boolean isDdlStatementFlag() {
         return ddlStatementFlag;
     }
 
-    public int[] getTotalConnectionsByQueryType() {
-        return totalConnectionsByQueryType;
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------- End of the setters and getters section --------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Beginning of methods section -------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public void processArrival(Query query) {
+
     }
 
-    public double[] getTimeByQueryType() {
-        return timeByQueryType;
+    public void processDeparture(Query query) {
+
     }
-    
+
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------------- End of the methods section --------------------------------
+    // ---------------------------------------------------------------------------------------------
 }

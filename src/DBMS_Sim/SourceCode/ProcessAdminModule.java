@@ -2,72 +2,55 @@ package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
-public class ProcessAdminModule implements Module{
+public class ProcessAdminModule extends Module {
     private NormalDistributionGenerator distribution;
-    private boolean busyAttendant;
-    private PriorityQueue<Query> queriesInLine;
-    private int[] totalConnectionsByQueryType;
-    private double[] timeByQueryType;
 
-    public ProcessAdminModule() {
 
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public ProcessAdminModule(int maxFields, double timeout) {
+        super(maxFields, 0, new PriorityQueue<Query>(), new double[NUMSTATEMENTS], timeout, new int[NUMSTATEMENTS]);
     }
 
-    @Override
-    public void processArrival(Query query) {
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-    }
 
-    @Override
-    public void processDeparture(Query query) {
 
-    }
-
-    @Override
-    public void resetVariables() {
-
-    }
-
-    @Override
-    public void checkQueues(double clock){}
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------- Beginning of the setters and getters section -----------------------
+    // ---------------------------------------------------------------------------------------------
 
     public void setDistribution(NormalDistributionGenerator distribution) {
         this.distribution = distribution;
-    }
-
-    public void setBusyAttendant(boolean busyAttendant) {
-        this.busyAttendant = busyAttendant;
-    }
-
-    public void setQueriesInLine(PriorityQueue<Query> queriesInLine) {
-        this.queriesInLine = queriesInLine;
-    }
-
-    public void setTimeByQueryType(double[] timeByQueryType) {
-        this.timeByQueryType = timeByQueryType;
-    }
-
-    public void setTotalConnectionsByQueryType(int[] totalConnectionsByQueryType) {
-        this.totalConnectionsByQueryType = totalConnectionsByQueryType;
     }
 
     public NormalDistributionGenerator getDistribution() {
         return distribution;
     }
 
-    public boolean isBusyAttendant() {
-        return busyAttendant;
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------- End of the setters and getters section --------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Beginning of methods section -------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public void processArrival(Query query) {
+
     }
 
-    public PriorityQueue<Query> getQueriesInLine() {
-        return queriesInLine;
+    public void processDeparture(Query query) {
+
     }
 
-    public double[] getTimeByQueryType() {
-        return timeByQueryType;
-    }
-
-    public int[] getTotalConnectionsByQueryType() {
-        return totalConnectionsByQueryType;
-    }
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------------- End of the methods section --------------------------------
+    // ---------------------------------------------------------------------------------------------
 }

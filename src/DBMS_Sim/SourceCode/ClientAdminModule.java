@@ -2,37 +2,53 @@ package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
-public class ClientAdminModule implements Module{
-    private int maxConnections;
-    private int busyAttendants;
-    private PriorityQueue<Query> queriesInLine;
-    private int[] totalConnectionsByQueryType;
-    private double[] timeByQueryType;
-    private double timeInTheSystem;
-    private  double timeout;
+public class ClientAdminModule extends Module{
     private int discardedConnections;
 
-    public ClientAdminModule(int maxConnections){
-        this.setMaxConnections(maxConnections);
+
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public ClientAdminModule(int maxFields, double timeout){
+        super(maxFields,0,new PriorityQueue<Query>(),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
     }
 
-    @Override
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------- Beginning of the setters and getters section -----------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public void setDiscardedConnections(int discardedConnections) {
+        this.discardedConnections = discardedConnections;
+    }
+
+    public int getDiscardedConnections() {
+        return discardedConnections;
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------- End of the setters and getters section --------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Beginning of methods section -------------------------------
+    // ---------------------------------------------------------------------------------------------
+
     public void processArrival(Query query){
 
     }
 
-    @Override
     public void processDeparture(Query query) {
 
     }
-
-    @Override
-    public void resetVariables() {
-
-    }
-
-    @Override
-    public void checkQueues(double clock){}
 
     public void showResult(Query query) {
 
@@ -42,73 +58,7 @@ public class ClientAdminModule implements Module{
 
     }
 
-    public boolean isItTimeout(Query query) {
-        return true;
-    }
-
-
-
-    public void setMaxConnections(int maxConnections) {
-        this.maxConnections = maxConnections;
-    }
-
-    public void setBusyAttendants(int busyAttendants) {
-        this.busyAttendants = busyAttendants;
-    }
-
-    public void setQueriesInLine(PriorityQueue<Query> queriesInLine) {
-        this.queriesInLine = queriesInLine;
-    }
-
-    public void setTotalConnectionsByQueryType(int[] totalConnectionsByQueryType) {
-        this.totalConnectionsByQueryType = totalConnectionsByQueryType;
-    }
-
-    public void setTimeByQueryType(double[] timeByQueryType) {
-        this.timeByQueryType = timeByQueryType;
-    }
-
-    public void setTimeout(double timeout) {
-        this.timeout = timeout;
-    }
-
-    public void setTimeInTheSystem(double timeInTheSystem) {
-        this.timeInTheSystem = timeInTheSystem;
-    }
-
-    public void setDiscardedConnections(int discardedConnections) {
-        this.discardedConnections = discardedConnections;
-    }
-
-    public int getMaxConnections() {
-        return maxConnections;
-    }
-
-    public int getBusyAttendants() {
-        return busyAttendants;
-    }
-
-    public PriorityQueue<Query> getQueriesInLine() {
-        return queriesInLine;
-    }
-
-    public int[] getTotalConnectionsByQueryType() {
-        return totalConnectionsByQueryType;
-    }
-
-    public double[] getTimeByQueryType() {
-        return timeByQueryType;
-    }
-
-    public double getTimeout() {
-        return timeout;
-    }
-
-    public double getTimeInTheSystem() {
-        return timeInTheSystem;
-    }
-
-    public int getDiscardedConnections() {
-        return discardedConnections;
-    }
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------------- End of the methods section --------------------------------
+    // ---------------------------------------------------------------------------------------------
 }

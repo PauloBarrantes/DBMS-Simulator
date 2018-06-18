@@ -28,29 +28,17 @@ public class Simulator {
     private double runningTime;
     private StatisticsGenerator statisticsGenerator;
     private PriorityQueue<Event> tableOfEvents;
+    private double timeInTheSystem;
     private TransactionAndStorageModule transactionAndStorageModule;
-
-
-
-
 
 
     public Simulator(double clock) {
 
     }
 
-
     public Simulator(int k, double t, int n, int p, int m){
-        queryGenerator = new QueryGenerator();
-        clientAdminModule = new ClientAdminModule(k);
-        processAdminModule = new ProcessAdminModule();
-        queryProcessingModule = new QueryProcessingModule(n);
-        transactionAndStorageModule = new TransactionAndStorageModule(p);
-        executionModule = new ExecutionModule(m);
-        statisticsGenerator = new StatisticsGenerator();
+
     }
-
-
 
     public void simulate(){
 

@@ -8,6 +8,11 @@ public class QueryProcessingModule extends Module{
     private UniformDistributionGenerator semanticalDistribution;
     private UniformDistributionGenerator sintacticalDistribution;
 
+
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
+
     public QueryProcessingModule(int maxFields, double timeout){
         super(maxFields,0,new PriorityQueue<Query>(),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
         setPermissionVerifyDistribution(new ExpDistributionGenerator(10/7));
@@ -15,6 +20,11 @@ public class QueryProcessingModule extends Module{
         setSintacticalDistribution(new UniformDistributionGenerator(0,1));
 
     }
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
+
 
 
     // ---------------------------------------------------------------------------------------------

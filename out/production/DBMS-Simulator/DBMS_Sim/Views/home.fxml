@@ -68,6 +68,5 @@
       <JFXTextField fx:id="m" alignment="CENTER" layoutX="605.0" layoutY="339.0" prefHeight="27.0" prefWidth="66.0" />
       <JFXTextField fx:id="t" alignment="CENTER" layoutX="604.0" layoutY="383.0" prefHeight="27.0" prefWidth="66.0" />
       <StackPane fx:id="stackPane1" layoutX="182.0" layoutY="125.0" prefHeight="76.0" prefWidth="112.0" />
-      <JFXTextField fx:id="number" alignment="CENTER" layoutX="79.0" layoutY="158.0" prefHeight="27.0" prefWidth="66.0" />
    </children>
 </AnchorPane>

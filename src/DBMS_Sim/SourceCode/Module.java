@@ -89,7 +89,7 @@ public class Module {
      * @param clock, current clock time.
      * @function checks if any query in the queue needs to be removed.
      */
-    void checkQueues(double clock){
+    public void checkQueues(double clock){
         Iterator<Query> iterator = queriesInLine.iterator();
         Query query;
         while(iterator.hasNext()){
@@ -105,13 +105,15 @@ public class Module {
      * @return boolean that becomes true if the query was removed successfully.
      * @function checks if the query overstayed in the System, if so it removes it.
      */
-    boolean removeQuery(double clock, Query query){
+    public boolean removeQuery(double clock, Query query){
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
             success = queriesInLine.remove(query);
         }
         return success;
     }
+
+
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
