@@ -59,7 +59,8 @@ public class QueryProcessingModule extends Module{
     /**
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
-     * @function if there is space validates the query that arrived, else it is place on hold.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function if there is space validates the query that arrived and send it to the sintactical validation, else it is place on hold.
      */
     public boolean lexicalValidation(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
@@ -84,12 +85,19 @@ public class QueryProcessingModule extends Module{
         return removedQuery;
     }
 
+    /**
+     * @param event, object that contains the information needed to execute each of the event types.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function validates the query that arrived and send it to the semantic validation.
+     */
     public boolean sintacticalValidation(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.SemanticValidation);
             event.setTime(event.getTime() + sintacticalDistribution.generate());
+            tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
         }
@@ -97,12 +105,19 @@ public class QueryProcessingModule extends Module{
         return removedQuery;
     }
 
+    /**
+     * @param event, object that contains the information needed to execute each of the event types.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function validates the query that arrived and send it to be verified.
+     */
     public boolean semanticValidation(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.PermissionVerification);
             event.setTime(event.getTime() + semanticalDistribution.generate());
+            tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
         }
@@ -110,12 +125,19 @@ public class QueryProcessingModule extends Module{
         return removedQuery;
     }
 
+    /**
+     * @param event, object that contains the information needed to execute each of the event types.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function verify the query that arrived and send it to be optimized.
+     */
     public boolean permissionVerification(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.QueryOptimization);
             event.setTime(event.getTime() + permissionVerifyDistribution.generate());
+            tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
         }
@@ -123,6 +145,12 @@ public class QueryProcessingModule extends Module{
         return removedQuery;
     }
 
+    /**
+     * @param event, object that contains the information needed to execute each of the event types.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function optimize the query nd send it to the transaction module.
+     */
     public boolean queryOptimization(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
@@ -132,7 +160,8 @@ public class QueryProcessingModule extends Module{
                 event.setTime(event.getTime() + 0.1);
             }else{
                 event.setTime(event.getTime() + (1/4));
-            } 
+            }
+            tableOfEvents.add(event);
         }
 
         countStayedTime(event.getTime(),event.getQuery());
@@ -142,4 +171,6 @@ public class QueryProcessingModule extends Module{
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
+
+
 }
