@@ -50,7 +50,7 @@ public class Controller implements Initializable {
     private Initializer initializer;
 
     public Controller(){
-        simulator = new Simulator();
+        //simulator = new Simulator();
         initializer = new Initializer();
     }
 
