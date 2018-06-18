@@ -3,6 +3,9 @@ package DBMS_Sim;
 import DBMS_Sim.SourceCode.Simulator;
 import com.jfoenix.controls.*;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,20 +20,23 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.concurrent.Task;
 
 import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class Controller implements Initializable {
     private Simulator simulator;
     private Initializer initializer;
 
 
-
+    private Random rnd = new Random(System.currentTimeMillis());
     @FXML NormalModeController normalModeController;
 
 
@@ -45,7 +51,7 @@ public class Controller implements Initializable {
     @FXML JFXTextField number;
 
     int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
-
+    private Service<Void> backgroundThread;
     private boolean validator;
     public Controller(){
 //        simulator = new Simulator();
@@ -109,8 +115,45 @@ public class Controller implements Initializable {
             nProcess = Integer.parseInt(temporal);
 
             normalModeScene(event);
-            normalModeController.setTimeRunning(time);
-            normalModeController.refreshScreen(21,4,6,1,5,8,10);
+
+            normalModeController.setTimeRunning(10000);
+            backgroundThread = new Service<Void>() {
+                @Override
+                protected Task<Void> createTask()  {
+                    return new Task<Void>() {
+                        @Override
+                        protected Void call() throws Exception {
+                            int i = 0;
+                            while(i < 10000){
+                                normalModeController.refreshScreen(i,rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800));
+                                i++;
+                            }
+                            Platform.runLater(new Runnable() {
+                                @Override public void run() {
+                                    normalModeController.refreshScreen(5,rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800));
+                                    // etc
+                                }
+                            });
+                            return null;
+                        }
+                    };
+                }
+
+
+
+
+            };
+
+            backgroundThread.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+                @Override
+                public void handle(WorkerStateEvent event) {
+                    System.out.println("gg");
+                }
+            });
+
+            backgroundThread.restart();
+
+
         }else{
             JFXDialogLayout content = new JFXDialogLayout();
             JFXDialog dialog1 = new JFXDialog(stackPane1,content , JFXDialog.DialogTransition.CENTER,false);
@@ -207,4 +250,6 @@ public class Controller implements Initializable {
     }
 
 }
+
+
 

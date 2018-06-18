@@ -19,7 +19,6 @@ public class NormalModeController  {
 
     private double timeRunning;
     public void initialize(URL arg1, ResourceBundle arg2){
-        pbProgress.setProgress(0.1);
     }
 
     public void setTimeRunning(int timeRunning){
