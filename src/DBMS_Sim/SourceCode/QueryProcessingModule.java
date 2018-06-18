@@ -1,7 +1,7 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class QueryProcessingModule extends Module{
     private ExpDistributionGenerator permissionVerifyDistribution;
@@ -82,7 +82,7 @@ public class QueryProcessingModule extends Module{
                 queriesInLine.add(query);
             }
         }else{
-            addQueryInQueue(event.getTime(),tableOfEvents);
+            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -103,7 +103,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents);
+            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -124,7 +124,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents);
+            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -145,7 +145,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents);
+            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -171,26 +171,71 @@ public class QueryProcessingModule extends Module{
             --occupiedFields;
         }
 
-        addQueryInQueue(event.getTime(),tableOfEvents);
+        addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         countStayedTime(event.getTime(),event.getQuery());
         return removedQuery;
-    }
-
-    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
-        boolean success = false;
-        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event newArrival = new Event(EventType.LexicalValidation,clock,queriesInLine.remove());
-            tableOfEvents.add(newArrival);
-            ++occupiedFields;
-            success = true;
-        }
-
-        return success;
     }
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    public static void main(String[] args){
+        PriorityQueue<Event> tableOfEvents = new PriorityQueue<>(10,new Comparator<Event>() {
+            public int compare(Event event1, Event event2) {
+                int cmp = 0;
+                if(event1.getTime() < event2.getTime()){
+                    cmp = -1;
+                }else{
+                    if(event1.getTime() > event2.getTime()){
+                        cmp = 1;
+                    }
+                }
+                return cmp;
+            }
+        });
 
+        QueryGenerator generator = new QueryGenerator();
+        Query query = generator.generate(0);
+        System.out.println(query.toString());
+        Event event = new Event(EventType.LexicalValidation,query.getSubmissionTime(),query);
+        tableOfEvents.add(event);
+        System.out.println(tableOfEvents.peek().toString());
+
+        query = generator.generate(1.5);
+        System.out.println(query.toString());
+        event = new Event(EventType.LexicalValidation,query.getSubmissionTime(),query);
+        tableOfEvents.add(event);
+        System.out.println(tableOfEvents.peek().toString());
+
+        query = generator.generate(6);
+        System.out.println(query.toString());
+        event = new Event(EventType.LexicalValidation,query.getSubmissionTime(),query);
+        tableOfEvents.add(event);
+        System.out.println(tableOfEvents.peek().toString());
+
+        while(tableOfEvents.peek().getType() != EventType.ArriveToTransactionModule){
+            if(tableOfEvents.peek().getType() == EventType.LexicalValidation){
+
+            }else{
+                if(tableOfEvents.peek().getType() == EventType.SintacticalValidation){
+
+                }else{
+                    if(tableOfEvents.peek().getType() == EventType.SemanticValidation){
+
+                    }else{
+                        if(tableOfEvents.peek().getType() == EventType.PermissionVerification){
+
+                        }else{
+                            if(tableOfEvents.peek().getType() == EventType.QueryOptimization){
+
+                            }else{
+                                System.out.println("Unknown event type.");
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

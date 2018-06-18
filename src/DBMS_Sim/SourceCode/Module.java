@@ -1,5 +1,6 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -14,7 +15,7 @@ import java.util.Queue;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public abstract class Module {
+public class Module {
     protected final static int NUMSTATEMENTS = 4;
     protected final static int SELECT = 0;
     protected final static int UPDATE = 1;
@@ -172,7 +173,17 @@ public abstract class Module {
         }
     }
 
-    abstract protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents);
+    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
+        boolean success = false;
+        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
+            Event newArrival = new Event(eventType,clock,queriesInLine.remove());
+            tableOfEvents.add(newArrival);
+            ++occupiedFields;
+            success = true;
+        }
+
+        return success;
+    }
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------

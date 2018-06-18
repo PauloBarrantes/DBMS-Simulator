@@ -57,7 +57,7 @@ public class ExecutionModule extends Module{
                 queriesInLine.add(query);
             }
         }else{
-            addQueryInQueue(event.getTime(),tableOfEvents);
+            addQueryInQueue(event.getTime(),tableOfEvents,EventType.ArriveToExecutionModule);
         }
 
         return removedQuery;
@@ -78,21 +78,9 @@ public class ExecutionModule extends Module{
             --occupiedFields;
         }
 
-        addQueryInQueue(event.getTime(),tableOfEvents);
+        addQueryInQueue(event.getTime(),tableOfEvents,EventType.ArriveToExecutionModule);
         countStayedTime(event.getTime(),event.getQuery());
         return removedQuery;
-    }
-
-    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
-        boolean success = false;
-        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event newArrival = new Event(EventType.ArriveToExecutionModule,clock,queriesInLine.remove());
-            tableOfEvents.add(newArrival);
-            ++occupiedFields;
-            success = true;
-        }
-
-        return success;
     }
 
     // ---------------------------------------------------------------------------------------------

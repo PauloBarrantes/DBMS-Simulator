@@ -17,12 +17,49 @@ public class QueryGenerator {
     private ExpDistributionGenerator distribution;
     private Random rnd = new Random(System.currentTimeMillis());
 
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
+
     public QueryGenerator(){
         //The media is 30 queries each minute, that means that in one second it recieves
         //0.5 queries.
         distribution = new ExpDistributionGenerator(2);
     }
 
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------- Beginning of the setters and getters section -----------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public void setDistribution(ExpDistributionGenerator distribution) {
+        this.distribution = distribution;
+    }
+
+    public ExpDistributionGenerator getDistribution() {
+        return distribution;
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------- End of the setters and getters section --------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Beginning of methods section -------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    /**
+     * @param clock, current clock time.
+     * @return the new query that is generated
+     * @function generates queries randomly.
+     */
     public Query generate(double clock){
         StatementType newStatementType = StatementType.SELECT;
         boolean readOnly = true;
@@ -47,23 +84,19 @@ public class QueryGenerator {
         return query;
     }
 
-    public void setDistribution(ExpDistributionGenerator distribution) {
-        this.distribution = distribution;
-    }
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------------- End of the methods section --------------------------------
+    // ---------------------------------------------------------------------------------------------
 
-    public ExpDistributionGenerator getDistribution() {
-        return distribution;
-    }
     /*
     public static void main(String[] args){
         QueryGenerator generator = new QueryGenerator();
         Query query = generator.generate(0);
-        System.out.println("Query: St -> " + query.getStatementType() + ", Sb -> " + query.getSubmissionTime() + ", R -> " + query.getReadOnly() + ", M -> " + query.getModuleEntryTime());
+        System.out.println(query.toString());
         query = generator.generate(1.5);
-        System.out.println("Query: St -> " + query.getStatementType() + ", Sb -> " + query.getSubmissionTime() + ", R -> " + query.getReadOnly() + ", M -> " + query.getModuleEntryTime());
+        System.out.println(query.toString());
         query = generator.generate(6);
-        System.out.println("Query: St -> " + query.getStatementType() + ", Sb -> " + query.getSubmissionTime() + ", R -> " + query.getReadOnly() + ", M -> " + query.getModuleEntryTime());
-
+        System.out.println(query.toString());
     }
     */
 }

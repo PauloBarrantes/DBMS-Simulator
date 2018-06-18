@@ -50,6 +50,18 @@ public class ProcessAdminModule extends Module {
 
     }
 
+    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
+        boolean success = false;
+        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
+            Event newArrival = new Event(EventType.ArriveToProcessAdminModule,clock,queriesInLine.remove());
+            tableOfEvents.add(newArrival);
+            ++occupiedFields;
+            success = true;
+        }
+
+        return success;
+    }
+
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
