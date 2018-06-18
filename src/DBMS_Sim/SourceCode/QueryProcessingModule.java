@@ -68,6 +68,7 @@ public class QueryProcessingModule extends Module{
         if(!removedQuery) {
             Query query = event.getQuery();
             query.setModuleEntryTime(event.getTime());
+            countNewQuery(query);
 
             if (occupiedFields < maxFields) {
                 ++occupiedFields;
@@ -80,6 +81,8 @@ public class QueryProcessingModule extends Module{
             } else {
                 queriesInLine.add(query);
             }
+        }else{
+            addQueryInQueue(event.getTime(),tableOfEvents);
         }
 
         return removedQuery;
@@ -100,6 +103,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
+            addQueryInQueue(event.getTime(),tableOfEvents);
         }
 
         return removedQuery;
@@ -120,6 +124,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
+            addQueryInQueue(event.getTime(),tableOfEvents);
         }
 
         return removedQuery;
@@ -140,6 +145,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             countStayedTime(event.getTime(),event.getQuery());
+            addQueryInQueue(event.getTime(),tableOfEvents);
         }
 
         return removedQuery;
@@ -162,10 +168,24 @@ public class QueryProcessingModule extends Module{
                 event.setTime(event.getTime() + (1/4));
             }
             tableOfEvents.add(event);
+            --occupiedFields;
         }
 
+        addQueryInQueue(event.getTime(),tableOfEvents);
         countStayedTime(event.getTime(),event.getQuery());
         return removedQuery;
+    }
+
+    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
+        boolean success = false;
+        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
+            Event newArrival = new Event(EventType.LexicalValidation,clock,queriesInLine.remove());
+            tableOfEvents.add(newArrival);
+            ++occupiedFields;
+            success = true;
+        }
+
+        return success;
     }
 
     // ---------------------------------------------------------------------------------------------

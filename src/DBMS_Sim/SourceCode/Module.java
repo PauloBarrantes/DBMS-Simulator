@@ -1,6 +1,7 @@
 package DBMS_Sim.SourceCode;
 
 import java.util.Iterator;
+import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Queue;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public class Module {
+public abstract class Module {
     protected final static int NUMSTATEMENTS = 4;
     protected final static int SELECT = 0;
     protected final static int UPDATE = 1;
@@ -112,6 +113,7 @@ public class Module {
     protected boolean removeQuery(double clock, Query query){
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
+            --occupiedFields;
             success = true;
         }
         return success;
@@ -122,7 +124,7 @@ public class Module {
      * @function check the type of the query, and depending on which is it, increase the amount of
      * that type of query.
      */
-    private void countNewQuery(Query query){
+    protected void countNewQuery(Query query){
         if(query.getStatementType() == StatementType.SELECT){
             ++totalConnectionsByQueryType[SELECT];
         }else{
@@ -169,6 +171,8 @@ public class Module {
             }
         }
     }
+
+    abstract protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents);
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
