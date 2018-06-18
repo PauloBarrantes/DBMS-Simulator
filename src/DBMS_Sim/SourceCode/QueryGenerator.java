@@ -43,9 +43,7 @@ public class QueryGenerator {
             }
         }
 
-
         Query query = new Query(submissionTime,newStatementType,readOnly);
-
         return query;
     }
 
