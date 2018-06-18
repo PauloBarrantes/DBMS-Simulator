@@ -88,6 +88,29 @@ public class Module {
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType){
+        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        if(!removedQuery) {
+            Query query = event.getQuery();
+            query.setModuleEntryTime(event.getTime());
+            countNewQuery(query);
+
+            if(occupiedFields < maxFields){
+                ++occupiedFields;
+                event.setType(EventType.LexicalValidation);
+
+                tableOfEvents.add(event);
+                System.out.println("Arrival event");
+                System.out.println(event.toString());
+            }else{
+                System.out.println("Adding query to queue");
+                queriesInLine.add(query);
+            }
+        }
+
+        return removedQuery;
+    }
+
     /**
      * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
      */
@@ -188,14 +211,14 @@ public class Module {
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
         boolean success = false;
         if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event newArrival = new Event(eventType,clock,queriesInLine.remove());
-            tableOfEvents.add(newArrival);
+            Event waitingQuery = new Event(eventType,clock,queriesInLine.remove());
+            tableOfEvents.add(waitingQuery);
+            countNewQuery(waitingQuery.getQuery());
             System.out.println("Creating event for query in queue");
-            System.out.println(newArrival.getQuery().toString());
-            System.out.println(newArrival.toString());
+            System.out.println(waitingQuery.getQuery().toString());
+            System.out.println(waitingQuery.toString());
             success = true;
         }
-
         return success;
     }
 

@@ -55,28 +55,7 @@ public class QueryProcessingModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
-        if(!removedQuery) {
-            Query query = event.getQuery();
-            query.setModuleEntryTime(event.getTime());
-            countNewQuery(query);
 
-            if(occupiedFields < maxFields){
-                ++occupiedFields;
-                event.setType(EventType.LexicalValidation);
-
-                tableOfEvents.add(event);
-                System.out.println("Arrival event");
-                System.out.println(event.toString());
-            }else{
-                System.out.println("Adding query to queue");
-                queriesInLine.add(query);
-            }
-        }
-
-        return removedQuery;
-    }
 
 
     /**
@@ -96,6 +75,7 @@ public class QueryProcessingModule extends Module{
             System.out.println("Lexical event");
             System.out.println(event.toString());
         }else{
+            countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -206,6 +186,7 @@ public class QueryProcessingModule extends Module{
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    /*
     public static void main(String[] args){
         QueryProcessingModule queryProcessingModule = new QueryProcessingModule(1,2);
 
@@ -242,9 +223,9 @@ public class QueryProcessingModule extends Module{
         tableOfEvents.add(event);
         System.out.println(tableOfEvents.peek().toString());
 
-        while(tableOfEvents.peek().getType() != EventType.ArriveToTransactionModule && tableOfEvents.size() > 0){
+        while(tableOfEvents.size() > 0 && tableOfEvents.peek().getType() != EventType.ArriveToTransactionModule){
             if(tableOfEvents.peek().getType() == EventType.ArriveToQueryProcessingModule){
-                queryProcessingModule.processArrival(tableOfEvents.remove(),tableOfEvents);
+                queryProcessingModule.processArrival(tableOfEvents.remove(),tableOfEvents,EventType.LexicalValidation);
             }else{
                 if(tableOfEvents.peek().getType() == EventType.LexicalValidation){
                     queryProcessingModule.lexicalValidation(tableOfEvents.remove(),tableOfEvents);
@@ -269,14 +250,13 @@ public class QueryProcessingModule extends Module{
                 }
             }
 
-
             if(tableOfEvents.size() > 0){
                 System.out.println("Top priority");
                 System.out.println(tableOfEvents.peek().toString());
             }
-
         }
 
         System.out.println(queryProcessingModule.toString());
     }
+    */
 }
