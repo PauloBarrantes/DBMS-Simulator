@@ -9,23 +9,41 @@ public class ExpDistributionGenerator implements RandomVariableGenerator{
 
 
     public ExpDistributionGenerator(double media){
-        this.lambda= 1/media;
-        this.media = media;
+        setMedia(media);
+        setLambda(1/media);
     }
 
     public void setLambda(double lambda){
         this.lambda = lambda;
     }
 
+    public void setMedia(double media) {
+        this.media = media;
+    }
+
     public  double getLambda(){
         return lambda;
     }
 
+    public double getMedia() {
+        return media;
+    }
+
+
+
     @Override
     public double generate() {
         double numRandom = rnd.nextDouble();
-        double time = (-1/media)*Math.log(1-numRandom);
-        return time;
+        //System.out.println(numRandom);
+        return (-lambda)*Math.log(1-numRandom);
     }
+    /*
+    public static void main(String[] args) {
+        ExpDistributionGenerator distribution = new ExpDistributionGenerator(1.5);
+        System.out.println(distribution.generate());
+        System.out.println(distribution.generate());
+        System.out.println(distribution.generate());
+    }
+    */
 }
 

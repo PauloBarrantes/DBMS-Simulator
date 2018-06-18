@@ -8,9 +8,14 @@ public class UniformDistributionGenerator implements RandomVariableGenerator{
     private Random rnd = new Random(System.currentTimeMillis());
 
 
-    public UniformDistributionGenerator(double leftBoundary, double rightBoundary){
-        this.leftBoundary = leftBoundary;
-        this.rightBoundary = rightBoundary;
+    public UniformDistributionGenerator(double boundary1, double boundary2){
+        if(boundary1 <= boundary2){
+            setLeftBoundary(boundary1);
+            setRightBoundary(boundary2);
+        }else{
+            setLeftBoundary(boundary2);
+            setRightBoundary(boundary1);
+        }
     }
 
     public void setLeftBoundary(double leftBoundary){
@@ -29,9 +34,20 @@ public class UniformDistributionGenerator implements RandomVariableGenerator{
         return rightBoundary;
     }
 
+
+
     @Override
     public double generate() {
-        double r = rnd.nextDouble();
-        return rightBoundary + (leftBoundary - rightBoundary) * r;
+        double numRandom = rnd.nextDouble();
+        //System.out.println(numRandom);
+        return leftBoundary + (rightBoundary - leftBoundary) * numRandom;
     }
+    /*
+    public static void main(String[] args) {
+        UniformDistributionGenerator distribution = new UniformDistributionGenerator(10,100);
+        System.out.println(distribution.generate());
+        System.out.println(distribution.generate());
+        System.out.println(distribution.generate());
+    }
+    */
 }

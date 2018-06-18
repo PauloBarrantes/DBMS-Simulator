@@ -16,29 +16,37 @@ public class Query {
     private StatementType statementType;
     private boolean readOnly;
 
+
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
+
     public Query(double submissionTime, StatementType statementType, boolean readOnly) {
-        this.setSubmissionTime(submissionTime);
-        this.setStatementType(statementType);
-        this.setReadOnly(readOnly);
+        setSubmissionTime(submissionTime);
+        setStatementType(statementType);
+        setReadOnly(readOnly);
+        setModuleEntryTime(-1);
     }
 
-    public double elapsedTimeInSystem(double clock){ return clock - submissionTime; }
-    public double elapsedTimeInModule(double clock){
-        return clock - moduleEntryTime;
-    }
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------- Beginning of the setters and getters section -----------------------
+    // ---------------------------------------------------------------------------------------------
 
     public void setSubmissionTime(double submissionTime) {
         this.submissionTime = submissionTime;
     }
-
     public void setModuleEntryTime(double moduleEntryTime) {
         this.moduleEntryTime = moduleEntryTime;
     }
-
     public void setStatementType(StatementType statementType) {
         this.statementType = statementType;
     }
-
     public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
     }
@@ -46,16 +54,32 @@ public class Query {
     public double getSubmissionTime() {
         return submissionTime;
     }
-
     public double getModuleEntryTime() {
         return moduleEntryTime;
     }
-
     public StatementType getStatementType() {
         return statementType;
     }
-
-    public boolean isReadOnly() {
+    public boolean getReadOnly() {
         return readOnly;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------- End of the setters and getters section --------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Beginning of methods section -------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+    public double elapsedTimeInSystem(double clock){ return clock - submissionTime; }
+    public double elapsedTimeInModule(double clock){
+        return clock - moduleEntryTime;
+    }
+
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------------- End of the methods section --------------------------------
+    // ---------------------------------------------------------------------------------------------
 }
