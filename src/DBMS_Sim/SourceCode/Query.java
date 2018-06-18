@@ -11,20 +11,23 @@ package DBMS_Sim.SourceCode;
  * @author  Fabián Álvarez
  */
 public class Query {
-    private double submissionTime;
+    private int loadedBlocks;
     private double moduleEntryTime;
-    private StatementType statementType;
     private boolean readOnly;
+    private StatementType statementType;
+    private double submissionTime;
+
 
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public Query(double submissionTime, StatementType statementType, boolean readOnly) {
+    public Query(boolean readOnly, StatementType statementType, double submissionTime) {
+        setLoadedBlocks(0);
+        setReadOnly(readOnly);
         setSubmissionTime(submissionTime);
         setStatementType(statementType);
-        setReadOnly(readOnly);
         setModuleEntryTime(-1);
     }
 
@@ -38,31 +41,35 @@ public class Query {
     // ----------------------- Beginning of the setters and getters section -----------------------
     // ---------------------------------------------------------------------------------------------
 
-    public void setSubmissionTime(double submissionTime) {
-        this.submissionTime = submissionTime;
-    }
+
+    public void setLoadedBlocks(int loadedBlocks) { this.loadedBlocks = loadedBlocks; }
     public void setModuleEntryTime(double moduleEntryTime) {
         this.moduleEntryTime = moduleEntryTime;
-    }
-    public void setStatementType(StatementType statementType) {
-        this.statementType = statementType;
     }
     public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
     }
-
-    public double getSubmissionTime() {
-        return submissionTime;
+    public void setStatementType(StatementType statementType) {
+        this.statementType = statementType;
     }
+    public void setSubmissionTime(double submissionTime) {
+        this.submissionTime = submissionTime;
+    }
+
+    public int getLoadedBlocks() { return loadedBlocks; }
     public double getModuleEntryTime() {
         return moduleEntryTime;
-    }
-    public StatementType getStatementType() {
-        return statementType;
     }
     public boolean getReadOnly() {
         return readOnly;
     }
+    public double getSubmissionTime() {
+        return submissionTime;
+    }
+    public StatementType getStatementType() {
+        return statementType;
+    }
+
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------
