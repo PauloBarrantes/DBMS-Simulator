@@ -1,6 +1,7 @@
 package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class QueryProcessingModule extends Module{
     private ExpDistributionGenerator permissionVerifyDistribution;
@@ -40,31 +41,37 @@ public class QueryProcessingModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
 
-    public void processArrival(Query query){
+    public void processArrival(Event event, Queue<Event> tableOfEvents){
+        if(occupiedFields < maxFields){
+            ++occupiedFields;
+            Event newEvent = new Event(EventType.LexicalValidation,event.getTime(),event.getQuery());
+            tableOfEvents.add(event);
+        }else{
+            queriesInLine.add(event.getQuery());
+        }
+    }
+
+    public void lexicalValidation(Event event, Queue<Event> tableOfEvents){
+        Event newEvent = new Event(EventType.LexicalValidation,event.getTime(),event.getQuery());
+    }
+
+    public void sintacticalValidation(Event event, Queue<Event> tableOfEvents){
 
     }
 
-    public void lexicalValidation(Query query){
+    public void semanticValidation(Event event, Queue<Event> tableOfEvents){
 
     }
 
-    public void sintacticalValidation(Query query){
+    public void permissionVerification(Event event, Queue<Event> tableOfEvents){
 
     }
 
-    public void semanticValidation(Query query){
+    public void queryOptimization(Event event, Queue<Event> tableOfEvents){
 
     }
 
-    public void permissionVerification(Query query){
-
-    }
-
-    public void queryOptimization(Query query){
-
-    }
-
-    public void processDeparture(Query query) {
+    public void processDeparture() {
 
     }
 }

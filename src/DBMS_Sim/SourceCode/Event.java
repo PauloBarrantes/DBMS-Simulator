@@ -16,9 +16,9 @@ public class Event {
     private Query query;
 
     public Event(EventType type, double time, Query query){
-        this.setType(type);
-        this.setTime(time);
-        this.setQuery(query);
+        setType(type);
+        setTime(time);
+        setQuery(query);
     }
 
     public void setType(EventType type){

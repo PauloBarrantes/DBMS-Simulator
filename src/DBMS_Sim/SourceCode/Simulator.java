@@ -2,6 +2,8 @@ package DBMS_Sim.SourceCode;
 
 import DBMS_Sim.Controller;
 
+import java.util.PriorityQueue;
+
 /**
  * Esta clase consiste en el cuerpo de la simulación del
  * DBMS, donde simulamos el paso de las consultas por todos los módulos.
@@ -13,33 +15,31 @@ import DBMS_Sim.Controller;
  * @author  Fabián Álvarez
  */
 public class Simulator {
+    public final static int NUMSTATEMENTS = 4;
 
-    private double clock;
-    private double runningTime;
-    private QueryGenerator queryGenerator;
     private ClientAdminModule clientAdminModule;
-    private ProcessAdminModule processAdminModule;
-    private QueryProcessingModule queryProcessingModule;
-    private TransactionAndStorageModule transactionAndStorageModule;
+    private double clock;
     private ExecutionModule executionModule;
-    private StatisticsGenerator statisticsGenerator;
+    private ProcessAdminModule processAdminModule;
+    private QueryGenerator queryGenerator;
+    private QueryProcessingModule queryProcessingModule;
     private int[] queueLengths;
-    private int queueLengthsCounted;
+    private int[] queueLengthsCounted;
+    private double runningTime;
+    private StatisticsGenerator statisticsGenerator;
+    private PriorityQueue<Event> tableOfEvents;
+    private TransactionAndStorageModule transactionAndStorageModule;
 
-    /**
-     * Inserta un título en la clase descripción.
-     * Al ser el título obligatorio, si es nulo o vacío se lanzará
-     * una excepción.
-     *
-     * @param
-     */
+
+
+
+
+
     public Simulator(double clock) {
-        this.clock = clock;
+
     }
 
-    /**
-     *
-     */
+
     public Simulator(int k, double t, int n, int p, int m){
         queryGenerator = new QueryGenerator();
         clientAdminModule = new ClientAdminModule(k);
@@ -51,14 +51,7 @@ public class Simulator {
     }
 
 
-    /**
-     * Inserta un título en la clase descripción.
-     * Al ser el título obligatorio, si es nulo o vacío se lanzará
-     * una excepción.
-     *
-     * @param
 
-     */
     public void simulate(){
 
     }
