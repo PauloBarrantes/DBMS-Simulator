@@ -67,6 +67,17 @@ public class Module {
     public double[] getTimeByQueryType() { return timeByQueryType; }
     public int[] getTotalConnectionsByQueryType() { return totalConnectionsByQueryType; }
 
+    public String toString(){
+        String string = "Query processing module's information:\n\t-Number of queries:\n\t\tSELECT->" +
+                totalConnectionsByQueryType[SELECT] + "\n\t\tUPDATE->" + totalConnectionsByQueryType[UPDATE] +
+                "\n\t\tJOIN->" + totalConnectionsByQueryType[JOIN] + "\n\t\tDDL->" +
+                totalConnectionsByQueryType[DDL] + "\n-Stayed time by query type:\n\t\tSELECT->" +
+                timeByQueryType[SELECT] + "\n\t\tUPDATE->" + timeByQueryType[UPDATE] +
+                "\n\t\tJOIN->" + timeByQueryType[JOIN] + "\n\t\tDDL->" +
+                timeByQueryType[DDL];
+        return string;
+    }
+
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------
     // ---------------------------------------------------------------------------------------------
@@ -115,6 +126,7 @@ public class Module {
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
             --occupiedFields;
+            System.out.println("Query exceed it's available time");
             success = true;
         }
         return success;
@@ -178,7 +190,9 @@ public class Module {
         if(queriesInLine.size() > 0  && occupiedFields < maxFields){
             Event newArrival = new Event(eventType,clock,queriesInLine.remove());
             tableOfEvents.add(newArrival);
-            ++occupiedFields;
+            System.out.println("Creating event for query in queue");
+            System.out.println(newArrival.getQuery().toString());
+            System.out.println(newArrival.toString());
             success = true;
         }
 
