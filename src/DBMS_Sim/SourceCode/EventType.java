@@ -4,7 +4,7 @@ public enum EventType {
     QueryArrival,
     ArriveClientToModule, ExitClientModule,
     ArriveToProcessAdminModule, ExitProcessAdminModule,
-    ArriveToQueryProcessingModule, LexicalValidation, SintacticalValidation, SemanticValidation, PermissionVerification, QueryOptimization, ExitQueryProcessingModule,
+    LexicalValidation, SintacticalValidation, SemanticValidation, PermissionVerification, QueryOptimization,
     ArriveToTransactionModule, ExitTransactionModule,
     ArriveToExecutionModule, ExitExecutionModule,
     ShowResult,

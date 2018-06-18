@@ -97,7 +97,9 @@ public class Module {
         Query query;
         while(iterator.hasNext()){
             query = iterator.next();
-            removeQuery(clock,query);
+            if(removeQuery(clock,query)){
+                queriesInLine.remove(query);
+            }
         }
     }
 
@@ -107,10 +109,10 @@ public class Module {
      * @return boolean that becomes true if the query was removed successfully.
      * @function checks if the query overstayed in the System, if so it removes it.
      */
-    private boolean removeQuery(double clock, Query query){
+    protected boolean removeQuery(double clock, Query query){
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
-            success = queriesInLine.remove(query);
+            success = true;
         }
         return success;
     }
@@ -146,7 +148,7 @@ public class Module {
      * @function check the type of the query, and depending on which is it, increase the amount of
      * that type of query is staying in the Module.
      */
-    private void countStayedTime(double clock, Query query){
+    protected void countStayedTime(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
 
         if(query.getStatementType() == StatementType.SELECT){
