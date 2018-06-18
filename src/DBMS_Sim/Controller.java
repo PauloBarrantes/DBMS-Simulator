@@ -49,6 +49,8 @@ public class Controller implements Initializable {
     private boolean validator;
     public Controller(){
 //        simulator = new Simulator();
+
+        //simulator = new Simulator();
         initializer = new Initializer();
     }
     public void run(String[] args){
