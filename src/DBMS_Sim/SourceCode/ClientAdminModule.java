@@ -58,6 +58,8 @@ public class ClientAdminModule extends Module{
 
     }
 
+
+
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
         return false;
     }

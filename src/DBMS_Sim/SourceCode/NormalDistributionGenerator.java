@@ -48,7 +48,6 @@ public class NormalDistributionGenerator implements RandomVariableGenerator{
 
         for(int i = 0; i <12 ; ++i){
             numRandom = rnd.nextDouble();
-            System.out.println(numRandom);
             zeta += numRandom;
         }
         //System.out.println(zeta);

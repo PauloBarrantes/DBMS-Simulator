@@ -42,6 +42,34 @@ public class Simulator {
 
     public void simulate(){
 
+        Query initialQuery = queryGenerator.generate(0);
+        Event initialArrive = new Event(EventType.ArriveClientToModule,0, initialQuery);
+        tableOfEvents.add(initialArrive);
+        Event actualEvent;
+
+        while(runningTime <= clock){
+            // Sacar el evento
+            actualEvent =  tableOfEvents.poll();
+            // Procesamos el evento
+            switch (actualEvent.getType()){
+                case ArriveClientToModule:
+                    System.out.println("GG");
+                    break;
+                case ExitClientModule:
+                    System.out.println("GG");
+                    break;
+                case QueryArrival:
+                    System.out.println("GG");
+                    break;
+
+            }
+
+
+            //Movemos el reloj
+
+            assert tableOfEvents.peek() != null;
+            clock = tableOfEvents.peek().getTime();
+        }
     }
 
     public void setClock(double clock) {
