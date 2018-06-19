@@ -42,11 +42,23 @@ public class ClientAdminModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public void processArrival(Query query){
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
+        boolean gg = true;
+        if(occupiedFields <= maxFields){
+            //Generar una llegada al Process Module
 
+        }else{
+            gg = false;
+            discardedConnections++;
+        }
+
+        //Generar una llegada
+
+        return gg ;
     }
 
     public void processDeparture(Query query) {
+        // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
 
     }
 
