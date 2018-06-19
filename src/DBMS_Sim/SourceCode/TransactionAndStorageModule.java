@@ -41,8 +41,16 @@ public class TransactionAndStorageModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public void processArrival(Query query) {
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType) {
+        boolean timedOut = removeQuery(event.getTime(),event.getQuery());
 
+        if(!timedOut){
+            if(occupiedFields == maxFields){
+                
+            }
+        }
+
+        return timedOut;
     }
 
     public void processDeparture(Query query) {
