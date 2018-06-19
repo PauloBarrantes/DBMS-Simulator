@@ -45,8 +45,20 @@ public class TransactionAndStorageModule extends Module{
         boolean timedOut = removeQuery(event.getTime(),event.getQuery());
 
         if(!timedOut){
-            if(occupiedFields == maxFields){
-                
+            if(occupiedFields == maxFields) {
+                queriesInLine.add(event.getQuery());
+            }else{
+                if(queriesInLine.peek().getStatementType() == StatementType.DDL){
+
+                }
+                    if(occupiedFields == 0){
+                        if(event.getQuery().getStatementType() == StatementType.DDL){
+                            ddlStatementFlag = true;
+                        }
+                        //process Query
+                    }else{
+
+                    }
             }
         }
 
