@@ -36,7 +36,7 @@ public class TransactionAndStorageModule extends Module{
                 }
                 return cmp;
             }
-        }),new double[statementType.NUMSTATEMENTS],timeout,new int[statementType.NUMSTATEMENTS]);
+        }),timeout);
     }
 
     // ---------------------------------------------------------------------------------------------
