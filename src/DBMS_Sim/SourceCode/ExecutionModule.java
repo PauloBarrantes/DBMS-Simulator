@@ -30,7 +30,7 @@ public class ExecutionModule extends Module{
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
      * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
-    public boolean executeQuey(Event event, PriorityQueue<Event> tableOfEvents){
+    public boolean executeQuery(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
         if(!removedQuery) {
