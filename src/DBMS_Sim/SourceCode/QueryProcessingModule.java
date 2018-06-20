@@ -14,7 +14,7 @@ public class QueryProcessingModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public QueryProcessingModule(int maxFields, double timeout){
-        super(maxFields,0,new PriorityQueue<Query>(),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
+        super(maxFields,0,new PriorityQueue<Query>(),new double[statementType.NUMSTATEMENTS],timeout,new int[statementType.NUMSTATEMENTS]);
         setPermissionVerifyDistribution(new ExpDistributionGenerator(10/7));
         setSemanticalDistribution(new UniformDistributionGenerator(0,2));
         setSintacticalDistribution(new UniformDistributionGenerator(0,1));
@@ -45,7 +45,6 @@ public class QueryProcessingModule extends Module{
         return permissionVerifyDistribution;
     }
 
-
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------
     // ---------------------------------------------------------------------------------------------
@@ -55,6 +54,9 @@ public class QueryProcessingModule extends Module{
     // ---------------------------------------------------------------------------------------------
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
+
+
+
 
     /**
      * @param event, object that contains the information needed to execute each of the event types.
@@ -66,22 +68,14 @@ public class QueryProcessingModule extends Module{
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
         if(!removedQuery) {
-            Query query = event.getQuery();
-            query.setModuleEntryTime(event.getTime());
-            countNewQuery(query);
+            event.setType(EventType.SintacticalValidation);
+            event.setTime(event.getTime() + 0.1);
 
-            if (occupiedFields < maxFields) {
-                ++occupiedFields;
-
-                event.setType(EventType.SintacticalValidation);
-                event.setQuery(query);
-                event.setTime(event.getTime() + (1 / 10));
-
-                tableOfEvents.add(event);
-            } else {
-                queriesInLine.add(query);
-            }
+            tableOfEvents.add(event);
+            System.out.println("Lexical event");
+            System.out.println(event.toString());
         }else{
+            countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -101,6 +95,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.SemanticValidation);
             event.setTime(event.getTime() + sintacticalDistribution.generate());
             tableOfEvents.add(event);
+
+            System.out.println("Syntactical event");
+            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -122,6 +119,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.PermissionVerification);
             event.setTime(event.getTime() + semanticalDistribution.generate());
             tableOfEvents.add(event);
+
+            System.out.println("Semantic event");
+            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -143,6 +143,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.QueryOptimization);
             event.setTime(event.getTime() + permissionVerifyDistribution.generate());
             tableOfEvents.add(event);
+
+            System.out.println("Permission event");
+            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -165,9 +168,12 @@ public class QueryProcessingModule extends Module{
             if(event.getQuery().getReadOnly()){
                 event.setTime(event.getTime() + 0.1);
             }else{
-                event.setTime(event.getTime() + (1/4));
+                event.setTime(event.getTime() + 0.25);
             }
             tableOfEvents.add(event);
+            System.out.println("Optimization event");
+            System.out.println(event.toString());
+
             --occupiedFields;
         }
 
@@ -180,7 +186,10 @@ public class QueryProcessingModule extends Module{
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    /*
     public static void main(String[] args){
+        QueryProcessingModule queryProcessingModule = new QueryProcessingModule(1,2);
+
         PriorityQueue<Event> tableOfEvents = new PriorityQueue<>(10,new Comparator<Event>() {
             public int compare(Event event1, Event event2) {
                 int cmp = 0;
@@ -198,44 +207,56 @@ public class QueryProcessingModule extends Module{
         QueryGenerator generator = new QueryGenerator();
         Query query = generator.generate(0);
         System.out.println(query.toString());
-        Event event = new Event(EventType.LexicalValidation,query.getSubmissionTime(),query);
+        Event event = new Event(EventType.ArriveToQueryProcessingModule,query.getSubmissionTime(),query);
         tableOfEvents.add(event);
         System.out.println(tableOfEvents.peek().toString());
 
         query = generator.generate(1.5);
         System.out.println(query.toString());
-        event = new Event(EventType.LexicalValidation,query.getSubmissionTime(),query);
+        event = new Event(EventType.ArriveToQueryProcessingModule,query.getSubmissionTime(),query);
         tableOfEvents.add(event);
         System.out.println(tableOfEvents.peek().toString());
 
         query = generator.generate(6);
         System.out.println(query.toString());
-        event = new Event(EventType.LexicalValidation,query.getSubmissionTime(),query);
+        event = new Event(EventType.ArriveToQueryProcessingModule,query.getSubmissionTime(),query);
         tableOfEvents.add(event);
         System.out.println(tableOfEvents.peek().toString());
 
-        while(tableOfEvents.peek().getType() != EventType.ArriveToTransactionModule){
-            if(tableOfEvents.peek().getType() == EventType.LexicalValidation){
-
+        while(tableOfEvents.size() > 0 && tableOfEvents.peek().getType() != EventType.ArriveToTransactionModule){
+            if(tableOfEvents.peek().getType() == EventType.ArriveToQueryProcessingModule){
+                queryProcessingModule.processArrival(tableOfEvents.remove(),tableOfEvents,EventType.LexicalValidation);
             }else{
-                if(tableOfEvents.peek().getType() == EventType.SintacticalValidation){
-
+                if(tableOfEvents.peek().getType() == EventType.LexicalValidation){
+                    queryProcessingModule.lexicalValidation(tableOfEvents.remove(),tableOfEvents);
                 }else{
-                    if(tableOfEvents.peek().getType() == EventType.SemanticValidation){
-
+                    if(tableOfEvents.peek().getType() == EventType.SintacticalValidation){
+                        queryProcessingModule.sintacticalValidation(tableOfEvents.remove(),tableOfEvents);
                     }else{
-                        if(tableOfEvents.peek().getType() == EventType.PermissionVerification){
-
+                        if(tableOfEvents.peek().getType() == EventType.SemanticValidation){
+                            queryProcessingModule.semanticValidation(tableOfEvents.remove(),tableOfEvents);
                         }else{
-                            if(tableOfEvents.peek().getType() == EventType.QueryOptimization){
-
+                            if(tableOfEvents.peek().getType() == EventType.PermissionVerification){
+                                queryProcessingModule.permissionVerification(tableOfEvents.remove(),tableOfEvents);
                             }else{
-                                System.out.println("Unknown event type.");
+                                if(tableOfEvents.peek().getType() == EventType.QueryOptimization){
+                                    queryProcessingModule.queryOptimization(tableOfEvents.remove(),tableOfEvents);
+                                }else{
+                                    System.out.println("Unknown event type.");
+                                }
                             }
                         }
                     }
                 }
             }
+
+            if(tableOfEvents.size() > 0){
+                System.out.println("Top priority");
+                System.out.println(tableOfEvents.peek().toString());
+            }
         }
+
+        System.out.println(queryProcessingModule.toString());
     }
+    */
 }

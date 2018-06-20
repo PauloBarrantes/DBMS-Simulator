@@ -14,7 +14,7 @@ public class Query {
     private int loadedBlocks;
     private double moduleEntryTime;
     private boolean readOnly;
-    private StatementType statementType;
+    private int statementType;
     private double submissionTime;
 
 
@@ -23,7 +23,7 @@ public class Query {
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public Query(boolean readOnly, StatementType statementType, double submissionTime) {
+    public Query(boolean readOnly, int statementType, double submissionTime) {
         setLoadedBlocks(0);
         setReadOnly(readOnly);
         setSubmissionTime(submissionTime);
@@ -49,7 +49,7 @@ public class Query {
     public void setReadOnly(boolean readOnly) {
         this.readOnly = readOnly;
     }
-    public void setStatementType(StatementType statementType) {
+    public void setStatementType(int statementType) {
         this.statementType = statementType;
     }
     public void setSubmissionTime(double submissionTime) {
@@ -57,16 +57,14 @@ public class Query {
     }
 
     public int getLoadedBlocks() { return loadedBlocks; }
-    public double getModuleEntryTime() {
-        return moduleEntryTime;
-    }
+    public double getModuleEntryTime() { return moduleEntryTime; }
     public boolean getReadOnly() {
         return readOnly;
     }
     public double getSubmissionTime() {
         return submissionTime;
     }
-    public StatementType getStatementType() {
+    public int getStatementType() {
         return statementType;
     }
 

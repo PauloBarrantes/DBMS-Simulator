@@ -16,15 +16,10 @@ import java.util.Queue;
  * @author  Fabián Álvarez
  */
 public class Module {
-    protected final static int NUMSTATEMENTS = 4;
-    protected final static int SELECT = 0;
-    protected final static int UPDATE = 1;
-    protected final static int JOIN = 2;
-    protected final static int DDL = 3;
-
     protected int maxFields;
     protected int occupiedFields;
-    protected Queue<Query> queriesInLine;
+    protected PriorityQueue<Query> queriesInLine;
+    protected StatementType statementType;
     protected double[] timeByQueryType;
     protected double timeout;
     protected int[] totalConnectionsByQueryType;
@@ -34,7 +29,7 @@ public class Module {
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public Module(int maxFields, int occupiedFields, Queue<Query> queriesInLine, double[] timeByQueryType, double timeout, int[] totalConnectionsByQueryType){
+    public Module(int maxFields, int occupiedFields, PriorityQueue<Query> queriesInLine, double[] timeByQueryType, double timeout, int[] totalConnectionsByQueryType){
         setMaxFields(maxFields);
         setOccupiedFields(occupiedFields);
         setQueriesInLine(queriesInLine);
@@ -55,17 +50,28 @@ public class Module {
 
     public void setMaxFields(int maxFields) { this.maxFields = maxFields; }
     public void setOccupiedFields(int occupiedFields) { this.occupiedFields = occupiedFields; }
-    public void setQueriesInLine(Queue<Query> queriesInLine) { this.queriesInLine = queriesInLine; }
+    public void setQueriesInLine(PriorityQueue<Query> queriesInLine) { this.queriesInLine = queriesInLine; }
     public void setTimeByQueryType(double[] timeByQueryType) { this.timeByQueryType = timeByQueryType; }
     public void setTimeout(double timeout) { this.timeout = timeout; }
     public void setTotalConnectionsByQueryType(int[] totalConnectionsByQueryType) { this.totalConnectionsByQueryType = totalConnectionsByQueryType; }
 
     public int getMaxFields() { return maxFields; }
     public int getOccupiedFields() { return occupiedFields; }
-    public Queue<Query> getQueriesInLine() { return queriesInLine; }
+    public PriorityQueue<Query> getQueriesInLine() { return queriesInLine; }
     public double getTimeout() { return timeout; }
     public double[] getTimeByQueryType() { return timeByQueryType; }
     public int[] getTotalConnectionsByQueryType() { return totalConnectionsByQueryType; }
+
+    public String toString(){
+        String string = "Query processing module's information:\n\t-Number of queries:\n\t\tSELECT->" +
+                totalConnectionsByQueryType[statementType.SELECT] + "\n\t\tUPDATE->" + totalConnectionsByQueryType[statementType.UPDATE] +
+                "\n\t\tJOIN->" + totalConnectionsByQueryType[statementType.JOIN] + "\n\t\tDDL->" +
+                totalConnectionsByQueryType[statementType.DDL] + "\n-Stayed time by query type:\n\t\tSELECT->" +
+                timeByQueryType[statementType.SELECT] + "\n\t\tUPDATE->" + timeByQueryType[statementType.UPDATE] +
+                "\n\t\tJOIN->" + timeByQueryType[statementType.JOIN] + "\n\t\tDDL->" +
+                timeByQueryType[statementType.DDL];
+        return string;
+    }
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------
@@ -77,6 +83,29 @@ public class Module {
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType){
+        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        if(!removedQuery) {
+            Query query = event.getQuery();
+            query.setModuleEntryTime(event.getTime());
+            countNewQuery(query);
+
+            if(occupiedFields < maxFields){
+                ++occupiedFields;
+                event.setType(nextType);
+
+                tableOfEvents.add(event);
+                System.out.println("Arrival event");
+                System.out.println(event.toString());
+            }else{
+                System.out.println("Adding query to queue");
+                queriesInLine.add(query);
+            }
+        }
+
+        return removedQuery;
+    }
+
     /**
      * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
      */
@@ -84,7 +113,7 @@ public class Module {
         setOccupiedFields(0);
         queriesInLine.clear();
 
-        for(int i = 0; i < NUMSTATEMENTS; ++i){
+        for(int i = 0; i < statementType.NUMSTATEMENTS; ++i){
             totalConnectionsByQueryType[i] = 0;
             timeByQueryType[i] = 0.0;
         }
@@ -115,6 +144,7 @@ public class Module {
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
             --occupiedFields;
+            System.out.println("Query exceed it's available time");
             success = true;
         }
         return success;
@@ -126,17 +156,17 @@ public class Module {
      * that type of query.
      */
     protected void countNewQuery(Query query){
-        if(query.getStatementType() == StatementType.SELECT){
-            ++totalConnectionsByQueryType[SELECT];
+        if(query.getStatementType() == statementType.SELECT){
+            ++totalConnectionsByQueryType[statementType.SELECT];
         }else{
-            if(query.getStatementType() == StatementType.UPDATE){
-                ++totalConnectionsByQueryType[UPDATE];
+            if(query.getStatementType() == statementType.UPDATE){
+                ++totalConnectionsByQueryType[statementType.UPDATE];
             }else{
-                if(query.getStatementType() == StatementType.JOIN){
-                    ++totalConnectionsByQueryType[JOIN];
+                if(query.getStatementType() == statementType.JOIN){
+                    ++totalConnectionsByQueryType[statementType.JOIN];
                 }else{
-                    if(query.getStatementType() == StatementType.DDL){
-                        ++totalConnectionsByQueryType[DDL];
+                    if(query.getStatementType() == statementType.DDL){
+                        ++totalConnectionsByQueryType[statementType.DDL];
                     }else{
                         System.out.println("Unknown query type");
                     }
@@ -154,17 +184,17 @@ public class Module {
     protected void countStayedTime(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
 
-        if(query.getStatementType() == StatementType.SELECT){
-            timeByQueryType[SELECT] += stayedTime;
+        if(query.getStatementType() == statementType.SELECT){
+            timeByQueryType[statementType.SELECT] += stayedTime;
         }else{
-            if(query.getStatementType() == StatementType.UPDATE){
-                timeByQueryType[UPDATE] += stayedTime;
+            if(query.getStatementType() == statementType.UPDATE){
+                timeByQueryType[statementType.UPDATE] += stayedTime;
             }else{
-                if(query.getStatementType() == StatementType.JOIN){
-                    timeByQueryType[JOIN] += stayedTime;
+                if(query.getStatementType() == statementType.JOIN){
+                    timeByQueryType[statementType.JOIN] += stayedTime;
                 }else{
-                    if(query.getStatementType() == StatementType.DDL){
-                        timeByQueryType[DDL] += stayedTime;
+                    if(query.getStatementType() == statementType.DDL){
+                        timeByQueryType[statementType.DDL] += stayedTime;
                     }else{
                         System.out.println("Unknown query type");
                     }
@@ -176,12 +206,14 @@ public class Module {
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
         boolean success = false;
         if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event newArrival = new Event(eventType,clock,queriesInLine.remove());
-            tableOfEvents.add(newArrival);
-            ++occupiedFields;
+            Event waitingQuery = new Event(eventType,clock,queriesInLine.remove());
+            tableOfEvents.add(waitingQuery);
+            countNewQuery(waitingQuery.getQuery());
+            System.out.println("Creating event for query in queue");
+            System.out.println(waitingQuery.getQuery().toString());
+            System.out.println(waitingQuery.toString());
             success = true;
         }
-
         return success;
     }
 
