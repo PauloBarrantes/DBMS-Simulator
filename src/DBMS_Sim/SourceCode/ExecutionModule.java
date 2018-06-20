@@ -10,7 +10,7 @@ public class ExecutionModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public ExecutionModule(int maxFields, double timeout){
-        super(maxFields,0,new PriorityQueue<Query>(),new double[statementType.NUMSTATEMENTS],timeout,new int[statementType.NUMSTATEMENTS]);
+        super(maxFields,0,new PriorityQueue<Query>(),timeout);
     }
 
     // ---------------------------------------------------------------------------------------------

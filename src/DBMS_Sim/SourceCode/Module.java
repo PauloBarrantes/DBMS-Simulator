@@ -29,13 +29,13 @@ public class Module {
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public Module(int maxFields, int occupiedFields, PriorityQueue<Query> queriesInLine, double[] timeByQueryType, double timeout, int[] totalConnectionsByQueryType){
+    public Module(int maxFields, int occupiedFields, PriorityQueue<Query> queriesInLine,double timeout){
         setMaxFields(maxFields);
         setOccupiedFields(occupiedFields);
         setQueriesInLine(queriesInLine);
-        setTimeByQueryType(timeByQueryType);
+        setTimeByQueryType(new double[statementType.NUMSTATEMENTS]);
         setTimeout(timeout);
-        setTotalConnectionsByQueryType(totalConnectionsByQueryType);
+        setTotalConnectionsByQueryType(new int[statementType.NUMSTATEMENTS]);
     }
 
     // ---------------------------------------------------------------------------------------------

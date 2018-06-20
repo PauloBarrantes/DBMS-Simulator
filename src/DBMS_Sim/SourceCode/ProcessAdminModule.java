@@ -11,7 +11,7 @@ public class ProcessAdminModule extends Module {
     // ---------------------------------------------------------------------------------------------
 
     public ProcessAdminModule(int maxFields, double timeout) {
-        super(maxFields, 0, new PriorityQueue<Query>(), new double[NUMSTATEMENTS], timeout, new int[NUMSTATEMENTS]);
+        super(maxFields, 0, new PriorityQueue<Query>(),timeout);
     }
 
     // ---------------------------------------------------------------------------------------------
