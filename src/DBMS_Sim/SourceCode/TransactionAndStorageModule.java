@@ -116,7 +116,7 @@ public class TransactionAndStorageModule extends Module{
 
         switch(beingProcessed.getStatementType()){
             case StatementType.JOIN:
-                duration += 1/10 * (int)(uniformDistributionGenerator.generate() + 0.5); //We add 0.5 so that we can get the value 64 hen rounded in cast
+                duration += (0.1 * (int)(uniformDistributionGenerator.generate() + 0.5)); //We add 0.5 so that we can get the value 64 hen rounded in cast
                 break;
             case StatementType.SELECT:
                 duration += 1/10;
