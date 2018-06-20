@@ -4,6 +4,7 @@ import java.util.PriorityQueue;
 
 public class ClientAdminModule extends Module{
     private int discardedConnections;
+    private QueryGenerator queryGenerator;
 
 
     // ---------------------------------------------------------------------------------------------
@@ -12,6 +13,7 @@ public class ClientAdminModule extends Module{
 
     public ClientAdminModule(int maxFields, double timeout){
         super(maxFields,0,new PriorityQueue<Query>(),timeout);
+
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -27,10 +29,13 @@ public class ClientAdminModule extends Module{
     public void setDiscardedConnections(int discardedConnections) {
         this.discardedConnections = discardedConnections;
     }
+    public void setQueryGenerator(QueryGenerator queryGenerator) { this.queryGenerator = queryGenerator;}
 
     public int getDiscardedConnections() {
         return discardedConnections;
     }
+    public QueryGenerator getQueryGenerator() { return queryGenerator;}
+
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------
@@ -42,39 +47,47 @@ public class ClientAdminModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean gg = true;
-        if(occupiedFields <= maxFields){
-            //Generar una llegada al Process Module
+    public void processArrival(Event event, PriorityQueue<Event> tableOfEvents){
 
+        if(occupiedFields < maxFields){
+            //Generar una salida hacia el Process Module
+            event.setType(EventType.ArriveToProcessAdminModule);
+            tableOfEvents.add(event);
+
+            countNewQuery(event.getQuery());
+            occupiedFields++;
         }else{
-            gg = false;
+
             discardedConnections++;
         }
 
         //Generar una llegada
-
-        return gg ;
+        Query query = queryGenerator.generate(event.getTime());
+        Event arrive = new Event(EventType.ArriveClientToModule,query.getModuleEntryTime(), query);
+        tableOfEvents.add(arrive);
     }
+
 
     public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
-
+        --occupiedFields;
     }
 
     public void showResult(Event event, PriorityQueue<Event> tableOfEvents) {
-
+        if(removeQuery(event.getTime(), event.getQuery())){
+            event.getQuery().setModuleEntryTime(event.getTime());
+            event.setTime(event.getTime() + event.getQuery().getLoadedBlocks());
+            event.setType(EventType.ExitClientModule);
+            tableOfEvents.add(event);
+        }else{
+            //++discardedConnections;
+        }
     }
 
-    public void processFinalization(Query query) {
-
-    }
 
 
 
-    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
-        return false;
-    }
+
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
