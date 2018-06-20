@@ -97,7 +97,7 @@ public class Module {
 
             if(occupiedFields < maxFields){
                 ++occupiedFields;
-                event.setType(EventType.LexicalValidation);
+                event.setType(nextType);
 
                 tableOfEvents.add(event);
                 System.out.println("Arrival event");
@@ -161,16 +161,16 @@ public class Module {
      * that type of query.
      */
     protected void countNewQuery(Query query){
-        if(query.getStatementType() == StatementType.SELECT){
+        if(query.getStatementType() == SELECT){
             ++totalConnectionsByQueryType[SELECT];
         }else{
-            if(query.getStatementType() == StatementType.UPDATE){
+            if(query.getStatementType() == UPDATE){
                 ++totalConnectionsByQueryType[UPDATE];
             }else{
-                if(query.getStatementType() == StatementType.JOIN){
+                if(query.getStatementType() == JOIN){
                     ++totalConnectionsByQueryType[JOIN];
                 }else{
-                    if(query.getStatementType() == StatementType.DDL){
+                    if(query.getStatementType() == DDL){
                         ++totalConnectionsByQueryType[DDL];
                     }else{
                         System.out.println("Unknown query type");
@@ -189,16 +189,16 @@ public class Module {
     protected void countStayedTime(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
 
-        if(query.getStatementType() == StatementType.SELECT){
+        if(query.getStatementType() == SELECT){
             timeByQueryType[SELECT] += stayedTime;
         }else{
-            if(query.getStatementType() == StatementType.UPDATE){
+            if(query.getStatementType() == UPDATE){
                 timeByQueryType[UPDATE] += stayedTime;
             }else{
-                if(query.getStatementType() == StatementType.JOIN){
+                if(query.getStatementType() == JOIN){
                     timeByQueryType[JOIN] += stayedTime;
                 }else{
-                    if(query.getStatementType() == StatementType.DDL){
+                    if(query.getStatementType() == DDL){
                         timeByQueryType[DDL] += stayedTime;
                     }else{
                         System.out.println("Unknown query type");

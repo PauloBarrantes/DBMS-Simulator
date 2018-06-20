@@ -28,36 +28,31 @@ public class ExecutionModule extends Module{
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
      * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
-    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
+    public boolean executeQuey(Event event, PriorityQueue<Event> tableOfEvents){
         boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
 
         if(!removedQuery) {
+            event.setType(EventType.ExitExecutionModule);
+
             Query query = event.getQuery();
-            query.setModuleEntryTime(event.getTime());
-            countNewQuery(query);
-
-            if (occupiedFields < maxFields) {
-                ++occupiedFields;
-
-                event.setType(EventType.ExitExecutionModule);
-                event.setQuery(query);
-
-                if(query.getStatementType() == StatementType.UPDATE){
-                    event.setTime(event.getTime() + 1.0);
+            double time = 0.0;
+            if(query.getStatementType() == DDL){
+                time = 0.5;
+            }else{
+                if(query.getStatementType() == UPDATE){
+                    time = 1.0;
                 }else{
-                    if(query.getStatementType() == StatementType.DDL){
-                        event.setTime(event.getTime() + (1/2));
-                    }else{
-                        event.setTime(event.getTime() + ((event.getQuery().getLoadedBlocks()*event.getQuery().getLoadedBlocks())/100));
-                    }
+                    time = query.getLoadedBlocks()*query.getLoadedBlocks()*0.001;
                 }
-
-                tableOfEvents.add(event);
-            } else {
-                queriesInLine.add(query);
             }
+            event.setTime(event.getTime() + time);
+
+            tableOfEvents.add(event);
+            System.out.println("Exec query");
+            System.out.println(event.toString());
         }else{
-            addQueryInQueue(event.getTime(),tableOfEvents,EventType.ArriveToExecutionModule);
+            countStayedTime(event.getTime(),event.getQuery());
+            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
