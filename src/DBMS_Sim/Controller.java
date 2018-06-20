@@ -85,6 +85,9 @@ public class Controller implements Initializable {
      *
      * @param
      */
+    private static final double EPSILON = 0.0000005;
+
+
     @FXML
     void start(ActionEvent event) throws IOException, InterruptedException {
 
@@ -115,43 +118,35 @@ public class Controller implements Initializable {
             nProcess = Integer.parseInt(temporal);
 
             normalModeScene(event);
+            normalModeController.setTimeRunning(1000);
 
-            normalModeController.setTimeRunning(10000);
-            backgroundThread = new Service<Void>() {
+            final Task<Void> task = new Task<Void>() {
+                final int N_ITERATIONS = 1000;
+
                 @Override
-                protected Task<Void> createTask()  {
-                    return new Task<Void>() {
-                        @Override
-                        protected Void call() throws Exception {
-                            int i = 0;
-                            while(i < 10000){
-                                normalModeController.refreshScreen(i,rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800));
-                                i++;
-                            }
-                            Platform.runLater(new Runnable() {
-                                @Override public void run() {
-                                    normalModeController.refreshScreen(5,rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800),rnd.nextInt(800));
-                                    // etc
-                                }
-                            });
-                            return null;
-                        }
-                    };
+                protected Void call() throws Exception {
+                    for (int i = 0; i < N_ITERATIONS; i++) {
+                        updateProgress(i + 1, N_ITERATIONS);
+                        // sleep is used to simulate doing some work which takes some time....
+                        System.out.println("GG1");
+                        normalModeController.refreshScreen(rnd.nextInt(100),rnd.nextInt(100),rnd.nextInt(100),rnd.nextInt(100), rnd.nextInt(100),rnd.nextInt(100),rnd.nextInt(100));
+
+
+                        Thread.sleep(1);
+                    }
+
+                    return null;
                 }
-
-
-
-
             };
 
-            backgroundThread.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-                @Override
-                public void handle(WorkerStateEvent event) {
-                    System.out.println("gg");
-                }
-            });
+            normalModeController.pbProgress.progressProperty().bind(
+                    task.progressProperty()
+            );
 
-            backgroundThread.restart();
+
+            final Thread thread = new Thread(task, "task-thread");
+            thread.setDaemon(true);
+            thread.start();
 
 
         }else{
