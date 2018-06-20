@@ -87,7 +87,7 @@ public class ExecutionModule extends Module{
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
-
+    /*
     public static void main(String[] args){
         ExecutionModule executionModule = new ExecutionModule(1,1);
 
@@ -147,5 +147,5 @@ public class ExecutionModule extends Module{
 
         System.out.println(executionModule.toString());
     }
-
+    */
 }
