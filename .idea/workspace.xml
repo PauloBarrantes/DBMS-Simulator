@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e34ef5e0-925c-48d1-886a-52e7461670ef" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Query.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Query.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -42,8 +40,8 @@
       <file leaf-file-name="QueryProcessingModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="192" column="82" selection-start-line="192" selection-start-column="72" selection-end-line="192" selection-end-column="82" />
+            <state relative-caret-position="-181">
+              <caret line="16" column="77" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="77" />
             </state>
           </provider>
         </entry>
@@ -51,15 +49,24 @@
       <file leaf-file-name="TransactionAndStorageModule.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="313">
-              <caret line="86" column="66" lean-forward="true" selection-start-line="86" selection-start-column="66" selection-end-line="86" selection-end-column="66" />
+            <state relative-caret-position="110">
+              <caret line="76" column="18" lean-forward="true" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1825#1826#0" expanded="true" />
-                <element signature="e#1881#1882#0" expanded="true" />
-                <element signature="e#1924#1925#0" expanded="true" />
-                <element signature="e#1963#1964#0" expanded="true" />
+                <element signature="e#2311#2312#0" expanded="true" />
+                <element signature="e#2367#2368#0" expanded="true" />
+                <element signature="e#2410#2411#0" expanded="true" />
+                <element signature="e#2449#2450#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatementType.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatementType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -248,7 +255,7 @@
       <updated>1529120912823</updated>
       <workItem from="1529120916486" duration="6311000" />
       <workItem from="1529286327590" duration="6908000" />
-      <workItem from="1529516547499" duration="3041000" />
+      <workItem from="1529516547499" duration="3783000" />
     </task>
     <task id="LOCAL-00001" summary="Change in the views (Simulation Normal Mode)">
       <created>1529126122112</created>
@@ -267,7 +274,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="13813000" />
+    <option name="totallyTimeSpent" value="14555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
@@ -288,6 +295,7 @@
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.215625" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.32859176" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
@@ -299,7 +307,6 @@
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Messages" order="7" weight="0.32936078" />
     </layout>
   </component>
@@ -320,7 +327,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/Event.java" />
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/EventType.java" />
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/UniformDistributionGenerator.java" />
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Backend/TransactionAndStorageModule.java" />
@@ -518,21 +524,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="192" column="82" selection-start-line="192" selection-start-column="72" selection-end-line="192" selection-end-column="82" />
+        <state relative-caret-position="-181">
+          <caret line="16" column="77" selection-start-line="16" selection-start-column="64" selection-end-line="16" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatementType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="313">
-          <caret line="86" column="66" lean-forward="true" selection-start-line="86" selection-start-column="66" selection-end-line="86" selection-end-column="66" />
+        <state relative-caret-position="110">
+          <caret line="76" column="18" lean-forward="true" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1825#1826#0" expanded="true" />
-            <element signature="e#1881#1882#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
-            <element signature="e#1963#1964#0" expanded="true" />
+            <element signature="e#2311#2312#0" expanded="true" />
+            <element signature="e#2367#2368#0" expanded="true" />
+            <element signature="e#2410#2411#0" expanded="true" />
+            <element signature="e#2449#2450#0" expanded="true" />
           </folding>
         </state>
       </provider>
