@@ -163,7 +163,7 @@ public class Controller implements Initializable {
             header.setFont(Font.font(20));
             content.setHeading(header);
             //NOTE FOR FLASTERSTEIN-> CHANGE THIS PLEASE
-            content.setBody(new Text("Hace falta un espacio de llenar o escribió un paramétro \n"+
+            content.setBody(new Text("Missing Hace falta un espacio de llenar o escribió un paramétro \n"+
                     "al igual que Clarita inválido" +
                     " para así poder iniciar con la simulación." ));
             JFXButton button = new JFXButton("Okay");

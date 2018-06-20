@@ -1,16 +1,42 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class TransactionAndStorageModule extends Module{
     private boolean ddlStatementFlag;
+    private Comparator<Query> comparator = new Comparator<Query>() {
+        public int compare(Query arriving, Query queueHead) {
+            int cmp = 0;
+            if(arriving.getStatementType() > queueHead.getStatementType()){
+                cmp = 1;
+            }else{
+                if(arriving.getStatementType() < queueHead.getStatementType()){
+                    cmp = -1;
+                }
+            }
+            return cmp;
+        }
+    };
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
 
     public TransactionAndStorageModule(int maxFields, double timeout){
-        super(maxFields,0,new PriorityQueue<Query>(),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
+        super(maxFields,0,new PriorityQueue<Query>(0, new Comparator<Query>() {
+            public int compare(Query arriving, Query queueHead) {
+                int cmp = 0;
+                if(arriving.getStatementType() > queueHead.getStatementType()){
+                    cmp = 1;
+                }else{
+                    if(arriving.getStatementType() < queueHead.getStatementType()){
+                        cmp = -1;
+                    }
+                }
+                return cmp;
+            }
+        }),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -50,15 +76,15 @@ public class TransactionAndStorageModule extends Module{
                 queriesInLine.add(event.getQuery());
             }else{
                 //If there's a DDL statement in line, a DDL statement being executed or the query arriving is a DDL statement, add query to queue.
-                if(queriesInLine.peek().getStatementType() == StatementType.DDL|| isDdlStatementFlag() || event.getQuery().getStatementType() == StatementType.DDL){
+                if(queriesInLine.peek().getStatementType() == DDL|| isDdlStatementFlag() || event.getQuery().getStatementType() == DDL){
                     queriesInLine.add(event.getQuery());
                 }else{
-                    if(queriesInLine.peek().getStatementType() == StatementType.UPDATE){
+                    if(queriesInLine.peek().getStatementType() == UPDATE){
 
                     }
                 }
                     if(occupiedFields == 0){
-                        if(event.getQuery().getStatementType() == StatementType.DDL){
+                        if(event.getQuery().getStatementType() == DDL){
                             ddlStatementFlag = true;
                         }
                         //process Query
