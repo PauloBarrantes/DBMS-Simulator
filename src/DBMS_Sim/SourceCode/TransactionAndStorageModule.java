@@ -5,6 +5,7 @@ import java.util.PriorityQueue;
 
 public class TransactionAndStorageModule extends Module{
     private boolean ddlStatementFlag;
+    private UniformDistributionGenerator uniformDistributionGenerator;
 /*    private Comparator<Query> comparator = new Comparator<Query>() {
         public int compare(Query arriving, Query queueHead) {
             int cmp = 0;
@@ -28,15 +29,16 @@ public class TransactionAndStorageModule extends Module{
             public int compare(Query arriving, Query queueHead) {
                 int cmp = 0;
                 if(arriving.getStatementType() > queueHead.getStatementType()){
-                    cmp = 1;
+                    cmp = -1;
                 }else{
                     if(arriving.getStatementType() < queueHead.getStatementType()){
-                        cmp = -1;
+                        cmp = 1;
                     }
                 }
                 return cmp;
             }
         }),timeout);
+        this.uniformDistributionGenerator = new UniformDistributionGenerator(1.0,64.0);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -67,37 +69,33 @@ public class TransactionAndStorageModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    @Override
-    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType) {
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = removeQuery(event.getTime(),event.getQuery());
 
         if(!timedOut){
-            if(occupiedFields == maxFields) {
-                queriesInLine.add(event.getQuery());
-            }else{
-                //If there's a DDL statement in line, a DDL statement being executed or the query arriving is a DDL statement, add query to queue.
-                if(queriesInLine.peek().getStatementType() == statementType.DDL|| isDdlStatementFlag() || event.getQuery().getStatementType() == statementType.DDL){
-                    queriesInLine.add(event.getQuery());
+            if(occupiedFields < maxFields) {
+                if(occupiedFields == 0) {
+                    calculateDuration(event.getQuery());
                 }else{
-                    if(queriesInLine.peek().getStatementType() == statementType.UPDATE){
-
+                    if (event.getQuery().getStatementType() == StatementType.DDL) {
+                        queriesInLine.add(event.getQuery());
+                    } else {
+                        if (isDdlStatementFlag()) {
+                            queriesInLine.add(event.getQuery());
+                        } else {
+                            calculateDuration(event.getQuery());
+                        }
                     }
                 }
-                    if(occupiedFields == 0){
-                        if(event.getQuery().getStatementType() == statementType.DDL){
-                            ddlStatementFlag = true;
-                        }
-                        //process Query
-                    }else{
-
-                    }
+            }else{
+                queriesInLine.add(event.getQuery());
             }
         }
 
         return timedOut;
     }
 
-    public void processDeparture(Query query) {
+    public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
 
     }
 
@@ -111,6 +109,24 @@ public class TransactionAndStorageModule extends Module{
         }
 
         return success;
+    }
+
+    private double calculateDuration(Query beingProcessed){
+        double duration = maxFields * 0.03;
+
+        switch(beingProcessed.getStatementType()){
+            case StatementType.JOIN:
+                duration += 1/10 * (int)(uniformDistributionGenerator.generate() + 0.5); //We add 0.5 so that we can get the value 64 hen rounded in cast
+                break;
+            case StatementType.SELECT:
+                duration += 1/10;
+                break;
+            default:
+                System.out.println("Unknown Statement Type");
+                break;
+        }
+
+        return duration;
     }
 
     // ---------------------------------------------------------------------------------------------
