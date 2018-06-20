@@ -1,6 +1,7 @@
 package DBMS_Sim.SourceCode;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class ExecutionModule extends Module{
@@ -10,7 +11,7 @@ public class ExecutionModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public ExecutionModule(int maxFields, double timeout){
-        super(maxFields,0,new PriorityQueue<Query>(),timeout);
+        super(maxFields,0,new LinkedList<Query>(),timeout);
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -88,7 +89,7 @@ public class ExecutionModule extends Module{
 
 
     public static void main(String[] args){
-        ExecutionModule executionModule = new ExecutionModule(10,10);
+        ExecutionModule executionModule = new ExecutionModule(1,1);
 
         PriorityQueue<Event> tableOfEvents = new PriorityQueue<>(10,new Comparator<Event>() {
             public int compare(Event event1, Event event2) {
@@ -111,13 +112,13 @@ public class ExecutionModule extends Module{
         tableOfEvents.add(event);
         System.out.println(tableOfEvents.peek().toString());
 
-        query = generator.generate(1.5);
+        query = generator.generate(0);
         System.out.println(query.toString());
         event = new Event(EventType.ArriveToExecutionModule,query.getSubmissionTime(),query);
         tableOfEvents.add(event);
         System.out.println(tableOfEvents.peek().toString());
 
-        query = generator.generate(6);
+        query = generator.generate(0);
         System.out.println(query.toString());
         event = new Event(EventType.ArriveToExecutionModule,query.getSubmissionTime(),query);
         tableOfEvents.add(event);
