@@ -14,7 +14,7 @@ public class QueryProcessingModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public QueryProcessingModule(int maxFields, double timeout){
-        super(maxFields,0,new PriorityQueue<Query>(),new double[NUMSTATEMENTS],timeout,new int[NUMSTATEMENTS]);
+        super(maxFields,0,new PriorityQueue<Query>(),new double[statementType.NUMSTATEMENTS],timeout,new int[statementType.NUMSTATEMENTS]);
         setPermissionVerifyDistribution(new ExpDistributionGenerator(10/7));
         setSemanticalDistribution(new UniformDistributionGenerator(0,2));
         setSintacticalDistribution(new UniformDistributionGenerator(0,1));

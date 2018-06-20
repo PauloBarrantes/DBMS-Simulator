@@ -16,15 +16,10 @@ import java.util.Queue;
  * @author  Fabián Álvarez
  */
 public class Module {
-    protected final static int NUMSTATEMENTS = 4;
-    protected final static int SELECT = 0;
-    protected final static int UPDATE = 1;
-    protected final static int JOIN = 2;
-    protected final static int DDL = 3;
-
     protected int maxFields;
     protected int occupiedFields;
     protected PriorityQueue<Query> queriesInLine;
+    protected StatementType statementType;
     protected double[] timeByQueryType;
     protected double timeout;
     protected int[] totalConnectionsByQueryType;
@@ -69,12 +64,12 @@ public class Module {
 
     public String toString(){
         String string = "Query processing module's information:\n\t-Number of queries:\n\t\tSELECT->" +
-                totalConnectionsByQueryType[SELECT] + "\n\t\tUPDATE->" + totalConnectionsByQueryType[UPDATE] +
-                "\n\t\tJOIN->" + totalConnectionsByQueryType[JOIN] + "\n\t\tDDL->" +
-                totalConnectionsByQueryType[DDL] + "\n-Stayed time by query type:\n\t\tSELECT->" +
-                timeByQueryType[SELECT] + "\n\t\tUPDATE->" + timeByQueryType[UPDATE] +
-                "\n\t\tJOIN->" + timeByQueryType[JOIN] + "\n\t\tDDL->" +
-                timeByQueryType[DDL];
+                totalConnectionsByQueryType[statementType.SELECT] + "\n\t\tUPDATE->" + totalConnectionsByQueryType[statementType.UPDATE] +
+                "\n\t\tJOIN->" + totalConnectionsByQueryType[statementType.JOIN] + "\n\t\tDDL->" +
+                totalConnectionsByQueryType[statementType.DDL] + "\n-Stayed time by query type:\n\t\tSELECT->" +
+                timeByQueryType[statementType.SELECT] + "\n\t\tUPDATE->" + timeByQueryType[statementType.UPDATE] +
+                "\n\t\tJOIN->" + timeByQueryType[statementType.JOIN] + "\n\t\tDDL->" +
+                timeByQueryType[statementType.DDL];
         return string;
     }
 
@@ -118,7 +113,7 @@ public class Module {
         setOccupiedFields(0);
         queriesInLine.clear();
 
-        for(int i = 0; i < NUMSTATEMENTS; ++i){
+        for(int i = 0; i < statementType.NUMSTATEMENTS; ++i){
             totalConnectionsByQueryType[i] = 0;
             timeByQueryType[i] = 0.0;
         }
@@ -161,17 +156,17 @@ public class Module {
      * that type of query.
      */
     protected void countNewQuery(Query query){
-        if(query.getStatementType() == SELECT){
-            ++totalConnectionsByQueryType[SELECT];
+        if(query.getStatementType() == statementType.SELECT){
+            ++totalConnectionsByQueryType[statementType.SELECT];
         }else{
-            if(query.getStatementType() == UPDATE){
-                ++totalConnectionsByQueryType[UPDATE];
+            if(query.getStatementType() == statementType.UPDATE){
+                ++totalConnectionsByQueryType[statementType.UPDATE];
             }else{
-                if(query.getStatementType() == JOIN){
-                    ++totalConnectionsByQueryType[JOIN];
+                if(query.getStatementType() == statementType.JOIN){
+                    ++totalConnectionsByQueryType[statementType.JOIN];
                 }else{
-                    if(query.getStatementType() == DDL){
-                        ++totalConnectionsByQueryType[DDL];
+                    if(query.getStatementType() == statementType.DDL){
+                        ++totalConnectionsByQueryType[statementType.DDL];
                     }else{
                         System.out.println("Unknown query type");
                     }
@@ -189,17 +184,17 @@ public class Module {
     protected void countStayedTime(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
 
-        if(query.getStatementType() == SELECT){
-            timeByQueryType[SELECT] += stayedTime;
+        if(query.getStatementType() == statementType.SELECT){
+            timeByQueryType[statementType.SELECT] += stayedTime;
         }else{
-            if(query.getStatementType() == UPDATE){
-                timeByQueryType[UPDATE] += stayedTime;
+            if(query.getStatementType() == statementType.UPDATE){
+                timeByQueryType[statementType.UPDATE] += stayedTime;
             }else{
-                if(query.getStatementType() == JOIN){
-                    timeByQueryType[JOIN] += stayedTime;
+                if(query.getStatementType() == statementType.JOIN){
+                    timeByQueryType[statementType.JOIN] += stayedTime;
                 }else{
-                    if(query.getStatementType() == DDL){
-                        timeByQueryType[DDL] += stayedTime;
+                    if(query.getStatementType() == statementType.DDL){
+                        timeByQueryType[statementType.DDL] += stayedTime;
                     }else{
                         System.out.println("Unknown query type");
                     }

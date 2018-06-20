@@ -14,8 +14,10 @@ import java.util.Random;
  * @author  Fabián Álvarez
  */
 public class QueryGenerator {
+
     private ExpDistributionGenerator distribution;
     private Random rnd = new Random(System.currentTimeMillis());
+    private StatementType statementType;
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
@@ -61,7 +63,7 @@ public class QueryGenerator {
      * @function generates queries randomly.
      */
     public Query generate(double clock){
-        StatementType newStatementType = StatementType.SELECT;
+        int newStatementType = statementType.SELECT;
         boolean readOnly = true;
         double submissionTime = clock + distribution.generate();
 
@@ -69,13 +71,13 @@ public class QueryGenerator {
         //System.out.println(numRandom);
 
         if(0.3 <= numRandom && numRandom <= 0.55){
-            newStatementType = StatementType.UPDATE;
+            newStatementType = statementType.UPDATE;
             readOnly = false;
         }else{
             if(0.55 < numRandom && numRandom <= 0.9){
-                newStatementType = StatementType.JOIN;
+                newStatementType = statementType.JOIN;
             }else{
-                newStatementType = StatementType.DDL;
+                newStatementType = statementType.DDL;
                 readOnly = false;
             }
         }
