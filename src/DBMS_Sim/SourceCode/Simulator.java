@@ -31,45 +31,33 @@ public class Simulator {
     private double timeInTheSystem;
     private TransactionAndStorageModule transactionAndStorageModule;
 
-
-    public Simulator(double clock) {
-
-    }
-
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------------- Beginning of constructors section -----------------------------
+    // ---------------------------------------------------------------------------------------------
     public Simulator(int k, double t, int n, int p, int m){
-
+        clientAdminModule =  new ClientAdminModule(k, t);
+        processAdminModule = new ProcessAdminModule(1,t);
+        queryProcessingModule =  new QueryProcessingModule(n,t);
+        transactionAndStorageModule = new TransactionAndStorageModule(p,t);
+        executionModule = new ExecutionModule(m,t);
     }
 
-    public void simulate(){
 
-        Query initialQuery = queryGenerator.generate(0);
-        Event initialArrive = new Event(EventType.ArriveClientToModule,0, initialQuery);
-        tableOfEvents.add(initialArrive);
-        Event actualEvent;
-
-        while(runningTime <= clock){
-            // Sacar el evento
-            actualEvent =  tableOfEvents.poll();
-            // Procesamos el evento
-            switch (actualEvent.getType()){
-                case ArriveClientToModule:
-                    System.out.println("GG");
-                    break;
-                case ExitClientModule:
-                    System.out.println("GG");
-                    break;
-                case QueryArrival:
-                    System.out.println("GG");
-                    break;
-
-            }
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
 
 
-            //Movemos el reloj
 
-            assert tableOfEvents.peek() != null;
-            clock = tableOfEvents.peek().getTime();
-        }
+    // ---------------------------------------------------------------------------------------------
+    // ----------------------- Beginning of the setters and getters section -----------------------
+    // ---------------------------------------------------------------------------------------------
+    public void setRunningTime(double runningTime) {
+        this.runningTime = runningTime;
+    }
+
+    public double getRunningTime() {
+        return runningTime;
     }
 
     public void setClock(double clock) {
@@ -80,6 +68,135 @@ public class Simulator {
     public double getClock() {
         return clock;
     }
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------ End of the constructors section ------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Beginning of methods section -------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
+
+    public Simulator(double clock) {
+
+    }
+
+
+
+//    public void simulate(){
+//
+//
+//        Event actualEvent;
+//
+//        while(runningTime <= clock){
+//            actualEvent =  tableOfEvents.poll();
+//            switch (actualEvent.getType()) {
+//                case ArriveClientToModule:
+//                    System.out.println("GG");
+//                    break;
+//                case ExitClientModule:
+//                    System.out.println("GG");
+//                    break;
+//                case QueryArrival:
+//                    System.out.println("GG");
+//                    break;
+//            }
+//            assert tableOfEvents.peek() != null;
+//            clock = tableOfEvents.peek().getTime();
+//
+//            }
+//
+//
+//            //Movemos el reloj
+//
+//            assert tableOfEvents.peek() != null;
+//            clock = tableOfEvents.peek().getTime();
+//        }
+//    }
+
+
+    public void appendInitialEvent(){
+        Query initialQuery = queryGenerator.generate(0);
+        Event initialArrive = new Event(EventType.ArriveClientToModule,0, initialQuery);
+        tableOfEvents.add(initialArrive);
+    }
+    public void iterateSimulation(){
+        Event actualEvent =  tableOfEvents.poll();
+        switch (actualEvent.getType()) {
+            case ArriveClientToModule:
+                clientAdminModule.processArrival(actualEvent,tableOfEvents);
+                System.out.println("Llego al Client Admin");
+                break;
+            case ArriveToProcessAdminModule:
+                processAdminModule.processArrival(actualEvent,tableOfEvents);
+                System.out.println("Creando Proceso");
+                break;
+            case ArriveToQueryProcessingModule:
+                queryProcessingModule.processArrival(actualEvent, tableOfEvents, EventType.LexicalValidation);
+                System.out.println("Procesando la consulta");
+
+                break;
+            case ArriveToTransactionModule:
+                System.out.println("Transaction");
+                break;
+            case ArriveToExecutionModule:
+                executionModule.processArrival(actualEvent, tableOfEvents, EventType.ExecuteQuery);
+                System.out.println("GG");
+                break;
+            case ShowResult:
+                clientAdminModule.showResult(actualEvent, tableOfEvents);
+                System.out.println("Show Result");
+                break;
+            case ExitClientModule:
+                clientAdminModule.processDeparture(actualEvent, tableOfEvents);
+                System.out.println("salida del client module");
+                break;
+            case ExitProcessAdminModule:
+                processAdminModule.processDeparture(actualEvent, tableOfEvents);
+                System.out.println("Salidita del process moduls");
+                break;
+            case ExecuteQuery:
+                executionModule.executeQuery(actualEvent,tableOfEvents);
+                System.out.println("GG");
+                break;
+            case ExitTransactionModule:
+                transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
+                System.out.println("GG");
+                break;
+            case ExitExecutionModule:
+                executionModule.processDeparture(actualEvent, tableOfEvents);
+
+                System.out.println("GG");
+                break;
+            case LexicalValidation:
+                queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
+                break;
+            case SintacticalValidation:
+                queryProcessingModule.sintacticalValidation(actualEvent, tableOfEvents);
+                break;
+            case SemanticValidation:
+                queryProcessingModule.semanticValidation(actualEvent, tableOfEvents);
+
+                break;
+            case PermissionVerification:
+                queryProcessingModule.permissionVerification(actualEvent, tableOfEvents);
+
+                break;
+            case QueryOptimization:
+                queryProcessingModule.queryOptimization(actualEvent, tableOfEvents);
+
+                break;
+        }
+        assert tableOfEvents.peek() != null;
+        clock = tableOfEvents.peek().getTime();
+
+    }
+    // ---------------------------------------------------------------------------------------------
+    // -------------------------------- End of the methods section --------------------------------
+    // ---------------------------------------------------------------------------------------------
+
 
 }
 

@@ -33,7 +33,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Controller implements Initializable {
     private Simulator simulator;
-    private Initializer initializer;
 
 
     private Random rnd = new Random(System.currentTimeMillis());
@@ -56,8 +55,7 @@ public class Controller implements Initializable {
     public Controller(){
 //        simulator = new Simulator();
 
-        //simulator = new Simulator();
-        initializer = new Initializer();
+
     }
     public void run(String[] args){
         Application.launch(Initializer.class,args);
@@ -71,7 +69,7 @@ public class Controller implements Initializable {
      */
     @FXML
     void modeSlow(ActionEvent event){
-        if(mode.isSelected() == false){
+        if(!mode.isSelected()){
             graphic.setSelected(false);
             graphic.setDisable(true);
         }else {
@@ -85,7 +83,6 @@ public class Controller implements Initializable {
      *
      * @param
      */
-    private static final double EPSILON = 0.0000005;
 
 
     @FXML
@@ -102,24 +99,22 @@ public class Controller implements Initializable {
         if(validator){
 
             //We store in the variables the values ​​that the user placed in the text-fields
-            String temporal = txt_ntimes.getText();
-            ntimes = Integer.parseInt(temporal);
-            temporal = txt_time.getText();
-            time = Integer.parseInt(temporal);
-            temporal = k.getText();
-            kCon = Integer.parseInt(temporal);
-            temporal = t.getText();
-            timeout = Integer.parseInt(temporal);
-            temporal = m.getText();
-            mProcess = Integer.parseInt(temporal);
-            temporal = p.getText();
-            pProcess = Integer.parseInt(temporal);
-            temporal = n.getText();
-            nProcess = Integer.parseInt(temporal);
-
+            ntimes = Integer.parseInt(txt_ntimes.getText());
+            time = Integer.parseInt(txt_time.getText());
+            kCon = Integer.parseInt(k.getText());
+            timeout = Integer.parseInt(t.getText());
+            mProcess = Integer.parseInt(m.getText());
+            pProcess = Integer.parseInt( p.getText());
+            nProcess = Integer.parseInt(n.getText());
+            //Cargamos la vista de normal mode
             normalModeScene(event);
-            normalModeController.setTimeRunning(1000);
+            normalModeController.setTimeRunning(time);
+            simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
+            simulator.setRunningTime((double)time);
 
+
+
+            /*
             final Task<Void> task = new Task<Void>() {
                 final int N_ITERATIONS = 1000;
 
@@ -147,7 +142,7 @@ public class Controller implements Initializable {
             final Thread thread = new Thread(task, "task-thread");
             thread.setDaemon(true);
             thread.start();
-
+            */
 
         }else{
             JFXDialogLayout content = new JFXDialogLayout();
@@ -157,7 +152,6 @@ public class Controller implements Initializable {
             header.setTextFill(Color.RED);
             header.setFont(Font.font(20));
             content.setHeading(header);
-            //NOTE FOR FLASTERSTEIN-> CHANGE THIS PLEASE
             content.setBody(new Text("Missing Hace falta un espacio de llenar o escribió un paramétro \n"+
                     "al igual que Clarita inválido" +
                     " para así poder iniciar con la simulación." ));
@@ -175,7 +169,12 @@ public class Controller implements Initializable {
 
 
     }
-
+    private void runASimulation(){
+        simulator.appendInitialEvent();
+        while(simulator.getClock() <= simulator.getRunningTime()){
+            simulator.iterateSimulation();
+        }
+    }
 
 
     /**
@@ -225,7 +224,19 @@ public class Controller implements Initializable {
      * @param event
      */
     private void slowModeScene(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/simulationRunningSlowMode.fxml"));
+            Parent root = (Parent) loader.load();
+            normalModeController = loader.getController();
 
+            Scene normalMode = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.hide();
+            appStage.setScene(normalMode);
+            appStage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }

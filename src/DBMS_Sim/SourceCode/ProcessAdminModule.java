@@ -42,11 +42,11 @@ public class ProcessAdminModule extends Module {
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public void processArrival(Query query) {
+    public void processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
 
     }
 
-    public void processDeparture(Query query) {
+    public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
 
     }
 

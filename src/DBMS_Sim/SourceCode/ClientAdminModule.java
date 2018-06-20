@@ -57,12 +57,12 @@ public class ClientAdminModule extends Module{
         return gg ;
     }
 
-    public void processDeparture(Query query) {
+    public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
 
     }
 
-    public void showResult(Query query) {
+    public void showResult(Event event, PriorityQueue<Event> tableOfEvents) {
 
     }
 
