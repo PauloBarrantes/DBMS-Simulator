@@ -41,6 +41,7 @@ public class TransactionAndStorageModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    @Override
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType) {
         boolean timedOut = removeQuery(event.getTime(),event.getQuery());
 
@@ -48,8 +49,13 @@ public class TransactionAndStorageModule extends Module{
             if(occupiedFields == maxFields) {
                 queriesInLine.add(event.getQuery());
             }else{
-                if(queriesInLine.peek().getStatementType() == StatementType.DDL){
+                //If there's a DDL statement in line, a DDL statement being executed or the query arriving is a DDL statement, add query to queue.
+                if(queriesInLine.peek().getStatementType() == StatementType.DDL|| isDdlStatementFlag() || event.getQuery().getStatementType() == StatementType.DDL){
+                    queriesInLine.add(event.getQuery());
+                }else{
+                    if(queriesInLine.peek().getStatementType() == StatementType.UPDATE){
 
+                    }
                 }
                     if(occupiedFields == 0){
                         if(event.getQuery().getStatementType() == StatementType.DDL){
