@@ -111,7 +111,7 @@ public class Controller implements Initializable {
             normalModeController.setTimeRunning(time);
             simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
             simulator.setRunningTime((double)time);
-
+            runASimulation();
 
 
             /*
@@ -171,8 +171,11 @@ public class Controller implements Initializable {
     }
     private void runASimulation(){
         simulator.appendInitialEvent();
+        System.out.println("Inicial");
         while(simulator.getClock() <= simulator.getRunningTime()){
+            System.out.println("Arriba");
             simulator.iterateSimulation();
+            System.out.println("Abajo");
         }
     }
 

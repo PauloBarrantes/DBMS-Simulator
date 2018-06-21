@@ -13,7 +13,7 @@ public class ClientAdminModule extends Module{
 
     public ClientAdminModule(int maxFields, double timeout){
         super(maxFields,0,new PriorityQueue<Query>(),timeout);
-
+        queryGenerator = new QueryGenerator();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -48,7 +48,8 @@ public class ClientAdminModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public void processArrival(Event event, PriorityQueue<Event> tableOfEvents){
-
+        System.out.println(occupiedFields);
+        System.out.println(event.toString());
         if(occupiedFields < maxFields){
             //Generar una salida hacia el Process Module
             event.setType(EventType.ArriveToProcessAdminModule);

@@ -2,6 +2,7 @@ package DBMS_Sim.SourceCode;
 
 import DBMS_Sim.Controller;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 /**
@@ -30,16 +31,32 @@ public class Simulator {
     private PriorityQueue<Event> tableOfEvents;
     private double timeInTheSystem;
     private TransactionAndStorageModule transactionAndStorageModule;
-
+    private Comparator<Event> comparator = new Comparator<Event>() {
+        @Override
+        public int compare(Event event1, Event event2) {
+            int cmp = 0;
+            if(event1.getTime() < event2.getTime()){
+                cmp = -1;
+            }else{
+                if(event1.getTime() > event2.getTime()){
+                    cmp = 1;
+                }
+            }
+            return cmp;
+        }
+    };
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
     public Simulator(int k, double t, int n, int p, int m){
+
+        tableOfEvents = new PriorityQueue<>(100, comparator);
         clientAdminModule =  new ClientAdminModule(k, t);
         processAdminModule = new ProcessAdminModule(1,t);
         queryProcessingModule =  new QueryProcessingModule(n,t);
         transactionAndStorageModule = new TransactionAndStorageModule(p,t);
         executionModule = new ExecutionModule(m,t);
+        queryGenerator = new QueryGenerator();
     }
 
 
@@ -119,6 +136,7 @@ public class Simulator {
 
     public void appendInitialEvent(){
         Query initialQuery = queryGenerator.generate(0);
+        initialQuery.setSubmissionTime(0);
         Event initialArrive = new Event(EventType.ArriveClientToModule,0, initialQuery);
         tableOfEvents.add(initialArrive);
     }
