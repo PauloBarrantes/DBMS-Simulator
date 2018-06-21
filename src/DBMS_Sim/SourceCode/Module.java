@@ -156,8 +156,8 @@ public class Module {
      * that type of query.
      */
     protected void countNewQuery(Query query){
-        System.out.println("Counting query");
-        System.out.println(query.toString());
+//        System.out.println("Counting query");
+//        System.out.println(query.toString());
         if(query.getStatementType() == statementType.SELECT){
             ++totalConnectionsByQueryType[statementType.SELECT];
         }else{
@@ -185,8 +185,8 @@ public class Module {
      */
     protected void countStayedTime(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
-        System.out.println("Counting query stayed time");
-        System.out.println(query.toString());
+//        System.out.println("Counting query stayed time");
+//        System.out.println(query.toString());
 
         if(query.getStatementType() == statementType.SELECT){
             timeByQueryType[statementType.SELECT] += stayedTime;

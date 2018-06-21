@@ -111,20 +111,24 @@ public class Controller implements Initializable {
             normalModeController.setTimeRunning(time);
             simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
             simulator.setRunningTime((double)time);
-            runASimulation();
+
+            simulator.appendInitialEvent();
+            System.out.println("Inicial");
 
 
-            /*
+
             final Task<Void> task = new Task<Void>() {
-                final int N_ITERATIONS = 1000;
+                final double runningTime = time;
 
                 @Override
                 protected Void call() throws Exception {
-                    for (int i = 0; i < N_ITERATIONS; i++) {
-                        updateProgress(i + 1, N_ITERATIONS);
-                        // sleep is used to simulate doing some work which takes some time....
-                        System.out.println("GG1");
-                        normalModeController.refreshScreen(rnd.nextInt(100),rnd.nextInt(100),rnd.nextInt(100),rnd.nextInt(100), rnd.nextInt(100),rnd.nextInt(100),rnd.nextInt(100));
+                    double data [] = new double[7];
+                    data [0] = 0;
+
+                    while(data[0] <= runningTime){
+                        data = simulator.iterateSimulation();
+                        updateProgress(data[0], runningTime);
+                        normalModeController.refreshScreen(data[0],(int)data[1],(int)data[2],(int)data[3], (int)data[4],(int)data[5],(int)data[6]);
 
 
                         Thread.sleep(1);
@@ -142,7 +146,7 @@ public class Controller implements Initializable {
             final Thread thread = new Thread(task, "task-thread");
             thread.setDaemon(true);
             thread.start();
-            */
+
 
         }else{
             JFXDialogLayout content = new JFXDialogLayout();
@@ -170,13 +174,7 @@ public class Controller implements Initializable {
 
     }
     private void runASimulation(){
-        simulator.appendInitialEvent();
-        System.out.println("Inicial");
-        while(simulator.getClock() <= simulator.getRunningTime()){
-            System.out.println("Arriba");
-            simulator.iterateSimulation();
-            System.out.println("Abajo");
-        }
+
     }
 
 

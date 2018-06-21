@@ -50,8 +50,8 @@ public class ExecutionModule extends Module{
             event.setTime(event.getTime() + time);
 
             tableOfEvents.add(event);
-            System.out.println("Exec query");
-            System.out.println(event.toString());
+//            System.out.println("Exec query");
+//            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
@@ -74,8 +74,8 @@ public class ExecutionModule extends Module{
             tableOfEvents.add(event);
             --occupiedFields;
 
-            System.out.println("Exec departure event");
-            System.out.println(event.toString());
+//            System.out.println("Exec departure event");
+//            System.out.println(event.toString());
         }
 
         addQueryInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);

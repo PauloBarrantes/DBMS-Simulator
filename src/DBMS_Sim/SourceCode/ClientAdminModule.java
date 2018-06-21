@@ -48,23 +48,23 @@ public class ClientAdminModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public void processArrival(Event event, PriorityQueue<Event> tableOfEvents){
-        System.out.println(occupiedFields);
-        System.out.println(event.toString());
+
         if(occupiedFields < maxFields){
             //Generar una salida hacia el Process Module
             event.setType(EventType.ArriveToProcessAdminModule);
+
             tableOfEvents.add(event);
 
             countNewQuery(event.getQuery());
             occupiedFields++;
         }else{
-
             discardedConnections++;
         }
 
         //Generar una llegada
+
         Query query = queryGenerator.generate(event.getTime());
-        Event arrive = new Event(EventType.ArriveClientToModule,query.getModuleEntryTime(), query);
+        Event arrive = new Event(EventType.ArriveClientToModule,query.getSubmissionTime(), query);
         tableOfEvents.add(arrive);
     }
 

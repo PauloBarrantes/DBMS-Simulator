@@ -30,11 +30,13 @@ public class NormalModeController  {
 
 
 
-    public void refreshScreen(int clock, int MAC, int PAM, int QPM, int TASM, int EM, int discardedConnections){
+    public void refreshScreen(double clock, int MAC, int PAM, int QPM, int TASM, int EM, int discardedConnections){
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
-                lblClock1.setText(""+ clock);
+                String formattedClock = String.format("%.02f", clock);
+
+                lblClock1.setText(formattedClock);
                 lblMac.setText(""+ MAC);
                 lblPAM.setText(""+ PAM);
                 lblQPM.setText(""+ QPM);
@@ -45,7 +47,6 @@ public class NormalModeController  {
             }
         });
 
-        System.out.println("GG");
     }
 
 }

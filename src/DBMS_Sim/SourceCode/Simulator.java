@@ -2,6 +2,7 @@ package DBMS_Sim.SourceCode;
 
 import DBMS_Sim.Controller;
 
+import java.lang.reflect.Array;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
@@ -140,7 +141,7 @@ public class Simulator {
         Event initialArrive = new Event(EventType.ArriveClientToModule,0, initialQuery);
         tableOfEvents.add(initialArrive);
     }
-    public void iterateSimulation(){
+    public double[] iterateSimulation(){
         Event actualEvent =  tableOfEvents.poll();
         switch (actualEvent.getType()) {
             case ArriveClientToModule:
@@ -161,7 +162,7 @@ public class Simulator {
                 break;
             case ArriveToExecutionModule:
                 executionModule.processArrival(actualEvent, tableOfEvents, EventType.ExecuteQuery);
-                System.out.println("GG");
+                System.out.println("Execution");
                 break;
             case ShowResult:
                 clientAdminModule.showResult(actualEvent, tableOfEvents);
@@ -177,39 +178,58 @@ public class Simulator {
                 break;
             case ExecuteQuery:
                 executionModule.executeQuery(actualEvent,tableOfEvents);
-                System.out.println("GG");
+                System.out.println("Ejecuta la qyuery");
                 break;
             case ExitTransactionModule:
                 transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
-                System.out.println("GG");
+                System.out.println("procesa la salida de Transaction");
                 break;
             case ExitExecutionModule:
                 executionModule.processDeparture(actualEvent, tableOfEvents);
 
-                System.out.println("GG");
+                System.out.println("Procesa la salida de execution");
                 break;
             case LexicalValidation:
                 queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
+                System.out.println("Hace un SALVAJE lexicalValidation");
+
                 break;
             case SintacticalValidation:
                 queryProcessingModule.sintacticalValidation(actualEvent, tableOfEvents);
+                System.out.println("Hace un SALVAJE sintacticalValidation");
+
                 break;
             case SemanticValidation:
                 queryProcessingModule.semanticValidation(actualEvent, tableOfEvents);
+                System.out.println("Hace un SALVAJE semanticValidation");
+
 
                 break;
             case PermissionVerification:
                 queryProcessingModule.permissionVerification(actualEvent, tableOfEvents);
+                System.out.println("Hace un SALVAJE permissionVerification");
+
 
                 break;
             case QueryOptimization:
                 queryProcessingModule.queryOptimization(actualEvent, tableOfEvents);
+                System.out.println("Hace un SALVAJE queryOptimization");
 
                 break;
         }
         assert tableOfEvents.peek() != null;
         clock = tableOfEvents.peek().getTime();
 
+        double retorno [] = new double[7];
+        retorno[0] = clock;
+        retorno[1] = clock;
+        retorno[2] = clock;
+        retorno[3] = clock;
+        retorno[4] = clock;
+        retorno[5] = clock;
+        retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
+
+        return retorno;
     }
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------

@@ -26,7 +26,7 @@ public class QueryGenerator {
     public QueryGenerator(){
         //The media is 30 queries each minute, that means that in one second it recieves
         //0.5 queries.
-        distribution = new ExpDistributionGenerator(2);
+        distribution = new ExpDistributionGenerator(0.5);
     }
 
     // ---------------------------------------------------------------------------------------------

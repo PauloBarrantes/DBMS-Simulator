@@ -72,8 +72,8 @@ public class QueryProcessingModule extends Module{
             event.setTime(event.getTime() + 0.1);
 
             tableOfEvents.add(event);
-            System.out.println("Lexical event");
-            System.out.println(event.toString());
+//            System.out.println("Lexical event");
+//            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -95,9 +95,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.SemanticValidation);
             event.setTime(event.getTime() + sintacticalDistribution.generate());
             tableOfEvents.add(event);
-
-            System.out.println("Syntactical event");
-            System.out.println(event.toString());
+//
+//            System.out.println("Syntactical event");
+//            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -119,9 +119,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.PermissionVerification);
             event.setTime(event.getTime() + semanticalDistribution.generate());
             tableOfEvents.add(event);
-
-            System.out.println("Semantic event");
-            System.out.println(event.toString());
+//
+//            System.out.println("Semantic event");
+//            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -143,9 +143,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.QueryOptimization);
             event.setTime(event.getTime() + permissionVerifyDistribution.generate());
             tableOfEvents.add(event);
-
-            System.out.println("Permission event");
-            System.out.println(event.toString());
+//
+//            System.out.println("Permission event");
+//            System.out.println(event.toString());
         }else{
             countStayedTime(event.getTime(),event.getQuery());
             addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -171,8 +171,8 @@ public class QueryProcessingModule extends Module{
                 event.setTime(event.getTime() + 0.25);
             }
             tableOfEvents.add(event);
-            System.out.println("Optimization event");
-            System.out.println(event.toString());
+//            System.out.println("Optimization event");
+//            System.out.println(event.toString());
 
             --occupiedFields;
         }

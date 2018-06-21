@@ -8,9 +8,9 @@ public class ExpDistributionGenerator implements RandomVariableGenerator{
     private Random rnd = new Random(System.currentTimeMillis());
 
 
-    public ExpDistributionGenerator(double media){
-        setMedia(media);
-        setLambda(1/media);
+    public ExpDistributionGenerator(double lambda){
+        setLambda(lambda);
+        setMedia(1/lambda);
     }
 
     public void setLambda(double lambda){
