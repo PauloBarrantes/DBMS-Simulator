@@ -64,7 +64,6 @@ public class TransactionAndStorageModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
 
-
     // ---------------------------------------------------------------------------------------------
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
@@ -75,7 +74,10 @@ public class TransactionAndStorageModule extends Module{
         if(!timedOut){
             if(occupiedFields < maxFields) {
                 if(occupiedFields == 0) {
-                    calculateDuration(event.getQuery());
+                    occupiedFields++;
+                    event.setType(EventType.ExitTransactionModule);
+                    event.setTime(event.getTime() + calculateDuration(event.getQuery()));
+                    tableOfEvents.add(event);
                 }else{
                     if (event.getQuery().getStatementType() == StatementType.DDL) {
                         queriesInLine.add(event.getQuery());
@@ -83,7 +85,10 @@ public class TransactionAndStorageModule extends Module{
                         if (isDdlStatementFlag()) {
                             queriesInLine.add(event.getQuery());
                         } else {
-                            calculateDuration(event.getQuery());
+                            occupiedFields++;
+                            event.setType(EventType.ExitTransactionModule);
+                            event.setTime(event.getTime() + calculateDuration(event.getQuery()));
+                            tableOfEvents.add(event);
                         }
                     }
                 }
@@ -91,12 +96,25 @@ public class TransactionAndStorageModule extends Module{
                 queriesInLine.add(event.getQuery());
             }
         }
-
         return timedOut;
     }
 
     public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+        Query nextQuery;
+        Event newEvent;
+        if(queriesInLine.size() > 0){
+            nextQuery = queriesInLine.poll();
+            newEvent = new Event(EventType.ExitTransactionModule,event.getTime() + calculateDuration(nextQuery), nextQuery);
+            tableOfEvents.add(newEvent);
+        }else{
+            --occupiedFields;
+        }
 
+        event.setType(EventType.ArriveToExecutionModule);
+        tableOfEvents.add(event);
+
+        //Statistics
+        countStayedTime(event.getTime(),event.getQuery());
     }
 
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
@@ -113,13 +131,17 @@ public class TransactionAndStorageModule extends Module{
 
     private double calculateDuration(Query beingProcessed){
         double duration = maxFields * 0.03;
+        int blocksLoaded = 1;
 
         switch(beingProcessed.getStatementType()){
             case StatementType.JOIN:
-                duration += (0.1 * (int)(uniformDistributionGenerator.generate() + 0.5)); //We add 0.5 so that we can get the value 64 hen rounded in cast
+                blocksLoaded = (int)(uniformDistributionGenerator.generate() + 0.5); //We add 0.5 so that we can get the value 64 when rounded in cast
+                duration += (0.1 * blocksLoaded);
+                beingProcessed.setLoadedBlocks(blocksLoaded);
                 break;
             case StatementType.SELECT:
                 duration += 1/10;
+                beingProcessed.setLoadedBlocks(blocksLoaded);
                 break;
             default:
                 System.out.println("Unknown Statement Type");
