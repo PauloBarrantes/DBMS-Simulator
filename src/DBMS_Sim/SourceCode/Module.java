@@ -1,6 +1,5 @@
 package DBMS_Sim.SourceCode;
 
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -84,7 +83,7 @@ public class Module {
     // ---------------------------------------------------------------------------------------------
 
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
         if(!removedQuery) {
             Query query = event.getQuery();
             query.setModuleEntryTime(event.getTime());
@@ -135,8 +134,8 @@ public class Module {
         Query query;
         while(iterator.hasNext()){
             query = iterator.next();
-            if(removeQuery(clock,query)){
-                clientAdminModule.consultaTimeouteada(clock, query);
+            if(timedOut (clock,query)){
+                clientAdminModule.timedOutConnection(clock, query);
                 queriesInLine.remove(query);
             }
         }
@@ -148,7 +147,7 @@ public class Module {
      * @return boolean that becomes true if the query was removed successfully.
      * @function checks if the query overstayed in the System, if so it removes it.
      */
-    protected boolean removeQuery(double clock, Query query){
+    protected boolean timedOut(double clock, Query query){
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
             --occupiedFields;
@@ -191,7 +190,7 @@ public class Module {
      * @function check the type of the query, and depending on which is it, increase the amount of
      * that type of query is staying in the Module.
      */
-    protected void countStayedTime(double clock, Query query){
+    protected void countDurationInModule(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
 //        System.out.println("Counting query stayed time");
 //        System.out.println(query.toString());
@@ -215,7 +214,7 @@ public class Module {
         }
     }
 
-    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
+    protected boolean processNextInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
         boolean success = false;
         if(queriesInLine.size() > 0  && occupiedFields < maxFields){
             Event waitingQuery = new Event(eventType,clock,queriesInLine.remove());

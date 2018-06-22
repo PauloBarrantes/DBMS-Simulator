@@ -63,7 +63,7 @@ public class QueryGenerator {
      * @function generates queries randomly.
      */
     public Query generate(double clock){
-        int newStatementType = statementType.SELECT;
+        int newStatementType = StatementType.SELECT;
         boolean readOnly = true;
         double submissionTime = clock + distribution.generate();
 
@@ -71,13 +71,13 @@ public class QueryGenerator {
         //System.out.println(numRandom);
 
         if(0.3 <= numRandom && numRandom <= 0.55){
-            newStatementType = statementType.UPDATE;
+            newStatementType = StatementType.UPDATE;
             readOnly = false;
         }else{
             if(0.55 < numRandom && numRandom <= 0.9){
-                newStatementType = statementType.JOIN;
+                newStatementType = StatementType.JOIN;
             }else{
-                newStatementType = statementType.DDL;
+                newStatementType = StatementType.DDL;
                 readOnly = false;
             }
         }

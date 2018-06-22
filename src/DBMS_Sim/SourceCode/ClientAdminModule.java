@@ -81,14 +81,14 @@ public class ClientAdminModule extends Module{
         acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
     }
 
-    public void consultaTimeouteada(double clock, Query query){
+    public void timedOutConnection(double clock, Query query){
         --occupiedFields;
         cantidadConsultasTerminadasoFinalizadas++;
         acumuladoDeTiempoDeConsultasQueSalenDelSistema += (clock - query.getSubmissionTime());
     }
 
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
         if(!removedQuery){
             event.getQuery().setModuleEntryTime(event.getTime());
             event.setTime(event.getTime() + event.getQuery().getLoadedBlocks());

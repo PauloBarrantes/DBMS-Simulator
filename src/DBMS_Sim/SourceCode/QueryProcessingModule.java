@@ -1,6 +1,6 @@
 package DBMS_Sim.SourceCode;
 
-import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class QueryProcessingModule extends Module{
@@ -14,7 +14,7 @@ public class QueryProcessingModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public QueryProcessingModule(int maxFields, double timeout){
-        super(maxFields,0,new PriorityQueue<Query>(),timeout);
+        super(maxFields,0,new LinkedList<Query>(),timeout);
         setPermissionVerifyDistribution(new ExpDistributionGenerator(10/7));
         setSemanticalDistribution(new UniformDistributionGenerator(0,2));
         setSintacticalDistribution(new UniformDistributionGenerator(0,1));
@@ -65,7 +65,7 @@ public class QueryProcessingModule extends Module{
      * @function if there is space validates the query that arrived and send it to the sintactical validation, else it is place on hold.
      */
     public boolean lexicalValidation(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery) {
             event.setType(EventType.SintacticalValidation);
@@ -75,8 +75,8 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Lexical event");
 //            System.out.println(event.toString());
         }else{
-            countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
+            countDurationInModule(event.getTime(),event.getQuery());
+            processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -89,7 +89,7 @@ public class QueryProcessingModule extends Module{
      * @function validates the query that arrived and send it to the semantic validation.
      */
     public boolean sintacticalValidation(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.SemanticValidation);
@@ -99,8 +99,8 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Syntactical event");
 //            System.out.println(event.toString());
         }else{
-            countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
+            countDurationInModule(event.getTime(),event.getQuery());
+            processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -113,7 +113,7 @@ public class QueryProcessingModule extends Module{
      * @function validates the query that arrived and send it to be verified.
      */
     public boolean semanticValidation(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.PermissionVerification);
@@ -123,8 +123,8 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Semantic event");
 //            System.out.println(event.toString());
         }else{
-            countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
+            countDurationInModule(event.getTime(),event.getQuery());
+            processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -137,7 +137,7 @@ public class QueryProcessingModule extends Module{
      * @function verify the query that arrived and send it to be optimized.
      */
     public boolean permissionVerification(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.QueryOptimization);
@@ -147,8 +147,8 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Permission event");
 //            System.out.println(event.toString());
         }else{
-            countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
+            countDurationInModule(event.getTime(),event.getQuery());
+            processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
         return removedQuery;
@@ -161,7 +161,7 @@ public class QueryProcessingModule extends Module{
      * @function optimize the query nd send it to the transaction module.
      */
     public boolean queryOptimization(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.ArriveToTransactionModule);
@@ -177,8 +177,8 @@ public class QueryProcessingModule extends Module{
             --occupiedFields;
         }
 
-        addQueryInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
-        countStayedTime(event.getTime(),event.getQuery());
+        processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
+        countDurationInModule(event.getTime(),event.getQuery());
         return removedQuery;
     }
 

@@ -69,7 +69,7 @@ public class TransactionAndStorageModule extends Module{
     // ---------------------------------------------------------------------------------------------
 
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean timedOut = removeQuery(event.getTime(),event.getQuery());
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
         if(!timedOut){
             if(occupiedFields < maxFields) {
@@ -114,7 +114,7 @@ public class TransactionAndStorageModule extends Module{
         tableOfEvents.add(event);
 
         //Statistics
-        countStayedTime(event.getTime(),event.getQuery());
+        countDurationInModule(event.getTime(),event.getQuery());
     }
 
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){

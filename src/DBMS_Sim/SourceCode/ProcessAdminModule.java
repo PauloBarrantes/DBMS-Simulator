@@ -1,6 +1,6 @@
 package DBMS_Sim.SourceCode;
 
-import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.PriorityQueue;
 
 public class ProcessAdminModule extends Module {
@@ -12,11 +12,7 @@ public class ProcessAdminModule extends Module {
     // ---------------------------------------------------------------------------------------------
 
     public ProcessAdminModule(int maxFields, double timeout) {
-        super(maxFields,0,new PriorityQueue<Query>(100, new Comparator<Query>() {
-            public int compare(Query arriving, Query queueHead) {
-                return 0;
-            }
-        }),timeout);
+        super(maxFields,0,new LinkedList<Query>(),timeout);
         distribution = new NormalDistributionGenerator(1,0.01);
     }
 
@@ -30,7 +26,7 @@ public class ProcessAdminModule extends Module {
     // ---------------------------------------------------------------------------------------------
 
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean timedOut = removeQuery(event.getTime(),event.getQuery());
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
         if(!timedOut) {
             if (occupiedFields == 0) {
@@ -45,7 +41,8 @@ public class ProcessAdminModule extends Module {
         return timedOut;
     }
 
-    public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+    public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+        boolean timedOut = timedOut(event.getTime(), event.getQuery());
         Query nextQuery;
         Event newEvent;
         if(queriesInLine.size() > 0){
@@ -55,12 +52,15 @@ public class ProcessAdminModule extends Module {
         }else{
             --occupiedFields;
         }
-
-        event.setType(EventType.ArriveToQueryProcessingModule);
-        tableOfEvents.add(event);
+        if(!timedOut) {
+            event.setType(EventType.ArriveToQueryProcessingModule);
+            tableOfEvents.add(event);
+        }
 
         //Statistics
-        countStayedTime(event.getTime(),event.getQuery());
+        countDurationInModule(event.getTime(),event.getQuery());
+
+        return timedOut;
     }
 
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){

@@ -1,6 +1,5 @@
 package DBMS_Sim.SourceCode;
 
-import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -31,7 +30,7 @@ public class ExecutionModule extends Module{
      * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
     public boolean executeQuery(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery) {
             event.setType(EventType.ExitExecutionModule);
@@ -53,8 +52,8 @@ public class ExecutionModule extends Module{
 //            System.out.println("Exec query");
 //            System.out.println(event.toString());
         }else{
-            countStayedTime(event.getTime(),event.getQuery());
-            addQueryInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
+            countDurationInModule(event.getTime(),event.getQuery());
+            processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
         }
 
         return removedQuery;
@@ -67,7 +66,7 @@ public class ExecutionModule extends Module{
      * @function send the query to the client admin module.
      */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
 
         if(!removedQuery){
             event.setType(EventType.ShowResult);
@@ -78,8 +77,8 @@ public class ExecutionModule extends Module{
 //            System.out.println(event.toString());
         }
 
-        addQueryInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
-        countStayedTime(event.getTime(),event.getQuery());
+        processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
+        countDurationInModule(event.getTime(),event.getQuery());
         return removedQuery;
     }
 
