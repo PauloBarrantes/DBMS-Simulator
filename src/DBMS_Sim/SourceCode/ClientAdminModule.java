@@ -5,7 +5,8 @@ import java.util.PriorityQueue;
 public class ClientAdminModule extends Module{
     private int discardedConnections;
     private QueryGenerator queryGenerator;
-
+    private int cantidadConsultasTerminadasoFinalizadas;
+    private double acumuladoDeTiempoDeConsultasQueSalenDelSistema;
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
@@ -50,13 +51,16 @@ public class ClientAdminModule extends Module{
     public void processArrival(Event event, PriorityQueue<Event> tableOfEvents){
 
         if(occupiedFields < maxFields){
+            System.out.println("Hay campo");
+
             //Generar una salida hacia el Process Module
             event.setType(EventType.ArriveToProcessAdminModule);
-
+            System.out.println("Agregamos un nuevo evento");
             tableOfEvents.add(event);
 
             countNewQuery(event.getQuery());
             occupiedFields++;
+            System.out.println("Aumentamos el número de conexiones usadas");
         }else{
             discardedConnections++;
         }
@@ -66,16 +70,26 @@ public class ClientAdminModule extends Module{
         Query query = queryGenerator.generate(event.getTime());
         Event arrive = new Event(EventType.ArriveClientToModule,query.getSubmissionTime(), query);
         tableOfEvents.add(arrive);
+        System.out.println("Sale del Client Admin hacia el process");
     }
 
 
     public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
         --occupiedFields;
+        cantidadConsultasTerminadasoFinalizadas++;
+        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
     }
 
-    public void showResult(Event event, PriorityQueue<Event> tableOfEvents) {
-        if(removeQuery(event.getTime(), event.getQuery())){
+    public void consultaTimeouteada(Event event){
+        --occupiedFields;
+        cantidadConsultasTerminadasoFinalizadas++;
+        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
+    }
+
+    public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {
+        boolean removedQuery = removeQuery(event.getTime(),event.getQuery());
+        if(!removedQuery){
             event.getQuery().setModuleEntryTime(event.getTime());
             event.setTime(event.getTime() + event.getQuery().getLoadedBlocks());
             event.setType(EventType.ExitClientModule);
@@ -83,6 +97,8 @@ public class ClientAdminModule extends Module{
         }else{
             //++discardedConnections;
         }
+
+        return removedQuery;
     }
 
 

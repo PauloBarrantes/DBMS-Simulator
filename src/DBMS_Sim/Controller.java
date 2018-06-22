@@ -3,9 +3,7 @@ package DBMS_Sim;
 import DBMS_Sim.SourceCode.Simulator;
 import com.jfoenix.controls.*;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.concurrent.Service;
-import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,14 +20,10 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.concurrent.Task;
 
-import javax.sound.midi.SysexMessage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class Controller implements Initializable {
     private Simulator simulator;
@@ -53,8 +47,6 @@ public class Controller implements Initializable {
     private Service<Void> backgroundThread;
     private boolean validator;
     public Controller(){
-//        simulator = new Simulator();
-
 
     }
     public void run(String[] args){
@@ -65,7 +57,7 @@ public class Controller implements Initializable {
      *
      *
      *
-     * @param
+     * @param event
      */
     @FXML
     void modeSlow(ActionEvent event){
@@ -81,7 +73,7 @@ public class Controller implements Initializable {
      * Al ser el título obligatorio, si es nulo o vacío se lanzará
      * una excepción.
      *
-     * @param
+     * @param event
      */
 
 
@@ -184,7 +176,7 @@ public class Controller implements Initializable {
      *
      * @param textField Recibe como parámetro el textfield ha validar.
      */
-    private boolean validate(JFXTextField textField) {
+    private void validate(JFXTextField textField) {
 
         if (textField.getText().isEmpty()) {
             textField.setUnFocusColor(Color.rgb(244, 101, 66));
@@ -195,7 +187,6 @@ public class Controller implements Initializable {
                 textField.setUnFocusColor(Color.rgb(244, 101, 66));
             }
         }
-        return validator;
 
     }
     /**

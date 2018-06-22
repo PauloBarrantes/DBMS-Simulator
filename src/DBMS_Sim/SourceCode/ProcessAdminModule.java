@@ -1,5 +1,6 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class ProcessAdminModule extends Module {
@@ -11,32 +12,17 @@ public class ProcessAdminModule extends Module {
     // ---------------------------------------------------------------------------------------------
 
     public ProcessAdminModule(int maxFields, double timeout) {
-        super(maxFields, 0, new PriorityQueue<Query>(),timeout);
+        super(maxFields,0,new PriorityQueue<Query>(100, new Comparator<Query>() {
+            public int compare(Query arriving, Query queueHead) {
+                return 0;
+            }
+        }),timeout);
         distribution = new NormalDistributionGenerator(1,0.01);
     }
 
     // ---------------------------------------------------------------------------------------------
     // ------------------------------ End of the constructors section ------------------------------
     // ---------------------------------------------------------------------------------------------
-
-
-
-    // ---------------------------------------------------------------------------------------------
-    // ----------------------- Beginning of the setters and getters section -----------------------
-    // ---------------------------------------------------------------------------------------------
-
-    public void setDistribution(NormalDistributionGenerator distribution) {
-        this.distribution = distribution;
-    }
-
-    public NormalDistributionGenerator getDistribution() {
-        return distribution;
-    }
-
-    // ---------------------------------------------------------------------------------------------
-    // -------------------------- End of the setters and getters section --------------------------
-    // ---------------------------------------------------------------------------------------------
-
 
 
     // ---------------------------------------------------------------------------------------------

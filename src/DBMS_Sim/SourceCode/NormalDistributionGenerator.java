@@ -27,20 +27,6 @@ public class NormalDistributionGenerator implements RandomVariableGenerator{
         this.standardDeviation = standardDeviation;
     }
 
-    public double getMean(){
-        return mean;
-    }
-
-    public double getVariance(){
-        return variance;
-    }
-
-    public double getStandardDeviation() {
-        return standardDeviation;
-    }
-
-
-
     @Override
     public double generate() {
         double zeta= 0;
