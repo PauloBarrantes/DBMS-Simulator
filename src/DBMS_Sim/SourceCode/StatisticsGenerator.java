@@ -11,10 +11,16 @@ package DBMS_Sim.SourceCode;
  */
 public class StatisticsGenerator {
     private int amountOfDoneSimulations;
-    private int acumulatedDiscardedConections;
+
+    private int acumulatedDiscardedConnections;
     private int acumulatedAverageModuleQueueLength;
     private int acumulatedAverageQueriesWaitTimeInModule;
     private int acumulatedAverageConnectionTime;
+
+    private int discardedConnections;
+    private int moduleQueueLength;
+    private int queriesWaitedTmeInModule;
+    private int connectionTime;
 
     public StatisticsGenerator() { }
 
