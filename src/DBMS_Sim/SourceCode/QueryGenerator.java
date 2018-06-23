@@ -77,10 +77,14 @@ public class QueryGenerator {
             if(0.55 < numRandom && numRandom <= 0.9){
                 newStatementType = StatementType.JOIN;
             }else{
-                newStatementType = StatementType.DDL;
-                readOnly = false;
+                if(numRandom > 0.9){
+                    newStatementType = StatementType.DDL;
+                    readOnly = false;
+                }
+
             }
         }
+
 
         Query query = new Query(readOnly,newStatementType,submissionTime);
         return query;
@@ -90,15 +94,7 @@ public class QueryGenerator {
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    /*
-    public static void main(String[] args){
-        QueryGenerator generator = new QueryGenerator();
-        Query query = generator.generate(0);
-        System.out.println(query.toString());
-        query = generator.generate(1.5);
-        System.out.println(query.toString());
-        query = generator.generate(6);
-        System.out.println(query.toString());
-    }
-    */
+
+
+
 }
