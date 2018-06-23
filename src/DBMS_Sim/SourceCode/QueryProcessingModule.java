@@ -1,6 +1,9 @@
 package DBMS_Sim.SourceCode;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class QueryProcessingModule extends Module{
@@ -188,7 +191,12 @@ public class QueryProcessingModule extends Module{
         addDurationInModule(event.getTime(),event.getQuery());
         return timedOut;
     }
-
+    /**
+     * @param event, object that contains the information needed to execute each of the event types.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function optimize the query nd send it to the transaction module.
+     */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(), event.getQuery());
         Query nextQuery;
@@ -210,13 +218,23 @@ public class QueryProcessingModule extends Module{
 
         return timedOut;
     }
-
+    /**
+     * @param clock, object that contains the information needed to execute each of the event types.
+     * @param clientAdminModule, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function optimize the query nd send it to the transaction module.
+     */
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        ArrayList<Query> queriesToRemove = new ArrayList<Query>();
         for(Query query : queriesInLine){
             if(timedOut (clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
-                queriesInLine.remove(query);
+                queriesToRemove.add(query);
             }
+        }
+
+        for (Query query: queriesToRemove){
+            queriesInLine.remove(query);
         }
     }
 
@@ -224,77 +242,4 @@ public class QueryProcessingModule extends Module{
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    /*
-    public static void main(String[] args){
-        QueryProcessingModule queryProcessingModule = new QueryProcessingModule(1,2);
-
-        PriorityQueue<Event> tableOfEvents = new PriorityQueue<>(10,new Comparator<Event>() {
-            public int compare(Event event1, Event event2) {
-                int cmp = 0;
-                if(event1.getTime() < event2.getTime()){
-                    cmp = -1;
-                }else{
-                    if(event1.getTime() > event2.getTime()){
-                        cmp = 1;
-                    }
-                }
-                return cmp;
-            }
-        });
-
-        QueryGenerator generator = new QueryGenerator();
-        Query query = generator.generate(0);
-        System.out.println(query.toString());
-        Event event = new Event(EventType.ArriveToQueryProcessingModule,query.getSubmissionTime(),query);
-        tableOfEvents.add(event);
-        System.out.println(tableOfEvents.peek().toString());
-
-        query = generator.generate(1.5);
-        System.out.println(query.toString());
-        event = new Event(EventType.ArriveToQueryProcessingModule,query.getSubmissionTime(),query);
-        tableOfEvents.add(event);
-        System.out.println(tableOfEvents.peek().toString());
-
-        query = generator.generate(6);
-        System.out.println(query.toString());
-        event = new Event(EventType.ArriveToQueryProcessingModule,query.getSubmissionTime(),query);
-        tableOfEvents.add(event);
-        System.out.println(tableOfEvents.peek().toString());
-
-        while(tableOfEvents.size() > 0 && tableOfEvents.peek().getType() != EventType.ArriveToTransactionModule){
-            if(tableOfEvents.peek().getType() == EventType.ArriveToQueryProcessingModule){
-                queryProcessingModule.processArrival(tableOfEvents.remove(),tableOfEvents,EventType.LexicalValidation);
-            }else{
-                if(tableOfEvents.peek().getType() == EventType.LexicalValidation){
-                    queryProcessingModule.lexicalValidation(tableOfEvents.remove(),tableOfEvents);
-                }else{
-                    if(tableOfEvents.peek().getType() == EventType.SintacticalValidation){
-                        queryProcessingModule.sintacticalValidation(tableOfEvents.remove(),tableOfEvents);
-                    }else{
-                        if(tableOfEvents.peek().getType() == EventType.SemanticValidation){
-                            queryProcessingModule.semanticValidation(tableOfEvents.remove(),tableOfEvents);
-                        }else{
-                            if(tableOfEvents.peek().getType() == EventType.PermissionVerification){
-                                queryProcessingModule.permissionVerification(tableOfEvents.remove(),tableOfEvents);
-                            }else{
-                                if(tableOfEvents.peek().getType() == EventType.QueryOptimization){
-                                    queryProcessingModule.queryOptimization(tableOfEvents.remove(),tableOfEvents);
-                                }else{
-                                    System.out.println("Unknown event type.");
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if(tableOfEvents.size() > 0){
-                System.out.println("Top priority");
-                System.out.println(tableOfEvents.peek().toString());
-            }
-        }
-
-        System.out.println(queryProcessingModule.toString());
-    }
-    */
 }
