@@ -148,8 +148,7 @@ public abstract class Module {
         }
     }
 
-    protected boolean processNextInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
-        boolean success = false;
+    protected void processNextInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
         Query nextQuery;
         Event newEvent;
         if(queriesInLine.size() > 0 && occupiedFields < maxFields){
@@ -159,7 +158,6 @@ public abstract class Module {
         }else{
             --occupiedFields;
         }
-        return success;
     }
 
     /**

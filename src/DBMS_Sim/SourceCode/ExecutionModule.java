@@ -73,8 +73,7 @@ public class ExecutionModule extends Module{
             event.setTime(event.getTime() + time);
 
             tableOfEvents.add(event);
-//            System.out.println("Exec query");
-//            System.out.println(event.toString());
+
         }else{
             addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
@@ -95,8 +94,6 @@ public class ExecutionModule extends Module{
         if(!timedOut){
             event.setType(EventType.ShowResult);
             tableOfEvents.add(event);
-            --occupiedFields;
-
         }
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
