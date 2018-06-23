@@ -30,9 +30,9 @@ public class ExecutionModule extends Module{
      * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
     public boolean executeQuery(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
-        if(!removedQuery) {
+        if(!timedOut) {
             event.setType(EventType.ExitExecutionModule);
 
             Query query = event.getQuery();
@@ -56,7 +56,7 @@ public class ExecutionModule extends Module{
             processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
         }
 
-        return removedQuery;
+        return timedOut;
     }
 
     /**
@@ -66,9 +66,9 @@ public class ExecutionModule extends Module{
      * @function send the query to the client admin module.
      */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
-        if(!removedQuery){
+        if(!timedOut){
             event.setType(EventType.ShowResult);
             tableOfEvents.add(event);
             --occupiedFields;
@@ -79,7 +79,7 @@ public class ExecutionModule extends Module{
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
         addDurationInModule(event.getTime(),event.getQuery());
-        return removedQuery;
+        return timedOut;
     }
 
     // ---------------------------------------------------------------------------------------------

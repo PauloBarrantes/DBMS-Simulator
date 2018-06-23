@@ -7,6 +7,7 @@ public class ClientAdminModule extends Module{
     private QueryGenerator queryGenerator;
     private int cantidadConsultasTerminadasoFinalizadas;
     private double acumuladoDeTiempoDeConsultasQueSalenDelSistema;
+    private int quantityOfArrivals;
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
@@ -15,6 +16,9 @@ public class ClientAdminModule extends Module{
     public ClientAdminModule(int maxFields, double timeout){
         super(maxFields,0,new PriorityQueue<Query>(),timeout);
         queryGenerator = new QueryGenerator();
+        cantidadConsultasTerminadasoFinalizadas = 0;
+        acumuladoDeTiempoDeConsultasQueSalenDelSistema = 0;
+        quantityOfArrivals = 0;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -36,6 +40,8 @@ public class ClientAdminModule extends Module{
         return discardedConnections;
     }
     public QueryGenerator getQueryGenerator() { return queryGenerator;}
+
+
 
 
     // ---------------------------------------------------------------------------------------------
@@ -70,11 +76,18 @@ public class ClientAdminModule extends Module{
         Query query = queryGenerator.generate(event.getTime());
         Event arrive = new Event(EventType.ArriveClientToModule,query.getSubmissionTime(), query);
         tableOfEvents.add(arrive);
+        quantityOfArrivals++;
         System.out.println("Sale del Client Admin hacia el process");
     }
 
 
     public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+        boolean timedOut = timedOut(event.getTime(), event.getQuery());
+        if (!timedOut){
+
+        }else{
+
+        }
         // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
         --occupiedFields;
         cantidadConsultasTerminadasoFinalizadas++;
@@ -83,13 +96,14 @@ public class ClientAdminModule extends Module{
 
     public void timedOutConnection(double clock, Query query){
         --occupiedFields;
+        ++discardedConnections;
         cantidadConsultasTerminadasoFinalizadas++;
         acumuladoDeTiempoDeConsultasQueSalenDelSistema += (clock - query.getSubmissionTime());
     }
 
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
-        if(!removedQuery){
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
+        if(!timedOut){
             event.getQuery().setModuleEntryTime(event.getTime());
             event.setTime(event.getTime() + event.getQuery().getLoadedBlocks());
             event.setType(EventType.ExitClientModule);
@@ -98,7 +112,7 @@ public class ClientAdminModule extends Module{
             //++discardedConnections;
         }
 
-        return removedQuery;
+        return timedOut;
     }
 
 
