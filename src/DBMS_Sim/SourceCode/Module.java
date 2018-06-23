@@ -121,7 +121,7 @@ public class Module {
     /**
      * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
      */
-    public int queueLenght(){
+    public int queueLength(){
        return queriesInLine.size();
     }
 
@@ -129,14 +129,18 @@ public class Module {
      * @param clock, current clock time.
      * @function checks if any query in the queue needs to be removed.
      */
-    public void checkQueues(double clock, ClientAdminModule clientAdminModule){
-        for(Query query : queriesInLine){
+    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        Iterator<Query> iterator = queriesInLine.iterator();
+        Query query;
+        while(iterator.hasNext()){
+            query = iterator.next();
             if(timedOut (clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
                 queriesInLine.remove(query);
             }
         }
     }
+
 
     /**
      * @param clock, current clock time.

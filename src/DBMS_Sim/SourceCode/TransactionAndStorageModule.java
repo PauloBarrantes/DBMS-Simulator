@@ -121,6 +121,16 @@ public class TransactionAndStorageModule extends Module{
         return timedOut;
     }
 
+    @Override
+    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        for(Query query : queriesInLine){
+            if(timedOut (clock,query)){
+                clientAdminModule.timedOutConnection(clock, query);
+                queriesInLine.remove(query);
+            }
+        }
+    }
+
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
         boolean success = false;
         if(queriesInLine.size() > 0  && occupiedFields < maxFields){

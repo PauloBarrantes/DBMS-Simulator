@@ -142,10 +142,10 @@ public class Simulator {
         while(clock <= runningTime){
             actualEvent = tableOfEvents.poll();
             //Revisamos todas las colas si hay consultas que ya se les paso el tiempo
-            processAdminModule.checkQueues(actualEvent.getTime(),clientAdminModule);
-            queryProcessingModule.checkQueues(actualEvent.getTime(),clientAdminModule);
-            transactionAndStorageModule.checkQueues(actualEvent.getTime(), clientAdminModule);
-            executionModule.checkQueues(actualEvent.getTime(), clientAdminModule);
+            processAdminModule.checkQueue(actualEvent.getTime(),clientAdminModule);
+            queryProcessingModule.checkQueue(actualEvent.getTime(),clientAdminModule);
+            transactionAndStorageModule.checkQueue(actualEvent.getTime(), clientAdminModule);
+            executionModule.checkQueue(actualEvent.getTime(), clientAdminModule);
 
             switch (actualEvent.getType()) {
                 case ArriveClientToModule:
@@ -255,11 +255,11 @@ public class Simulator {
             clock = tableOfEvents.peek().getTime();
             double retorno [] = new double[7];
             retorno[0] = clock;
-            retorno[1] = (double) clientAdminModule.queueLenght();
-            retorno[2] = (double) processAdminModule.queueLenght();
-            retorno[3] = (double) queryProcessingModule.queueLenght();
-            retorno[4] = (double) transactionAndStorageModule.queueLenght();
-            retorno[5] = (double) executionModule.queueLenght();
+            retorno[1] = (double) clientAdminModule.queueLength();
+            retorno[2] = (double) processAdminModule.queueLength();
+            retorno[3] = (double) queryProcessingModule.queueLength();
+            retorno[4] = (double) transactionAndStorageModule.queueLength();
+            retorno[5] = (double) executionModule.queueLength();
             retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
 
 
@@ -357,11 +357,11 @@ public class Simulator {
 
         double retorno [] = new double[7];
         retorno[0] = clock;
-        retorno[1] = (double) clientAdminModule.queueLenght();
-        retorno[2] = (double) processAdminModule.queueLenght();
-        retorno[3] = (double) queryProcessingModule.queueLenght();
-        retorno[4] = (double) transactionAndStorageModule.queueLenght();
-        retorno[5] = (double) executionModule.queueLenght();
+        retorno[1] = (double) clientAdminModule.queueLength();
+        retorno[2] = (double) processAdminModule.queueLength();
+        retorno[3] = (double) queryProcessingModule.queueLength();
+        retorno[4] = (double) transactionAndStorageModule.queueLength();
+        retorno[5] = (double) executionModule.queueLength();
         retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
 
         return retorno;
