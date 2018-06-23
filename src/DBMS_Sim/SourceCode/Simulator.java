@@ -131,8 +131,8 @@ public class Simulator {
         tableOfEvents.add(initialArrive);
     }
     public static void main(String args[]){
-        Simulator simulator = new Simulator(15,10,1,1,1);
-        simulator.setRunningTime(100);
+        Simulator simulator = new Simulator(15,25,5,1,1);
+        simulator.setRunningTime(40);
         simulator.simulate();
     }
     public void simulate(){
@@ -211,6 +211,13 @@ public class Simulator {
                         clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                     }
                     System.out.println("Procesa la salida de execution");
+                    break;
+                case ExitQueryProcessingModule:
+                    queryTimeOut = queryProcessingModule.processDeparture(actualEvent, tableOfEvents);
+                    System.out.println("Hace una SALVAJE salida del QPM");
+                    if(queryTimeOut){
+                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                    }
                     break;
                 case LexicalValidation:
                     queryTimeOut = queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
