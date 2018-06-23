@@ -130,12 +130,13 @@ public class Module {
      * @param clock, current clock time.
      * @function checks if any query in the queue needs to be removed.
      */
-    public void checkQueues(double clock){
+    public void checkQueues(double clock, ClientAdminModule clientAdminModule){
         Iterator<Query> iterator = queriesInLine.iterator();
         Query query;
         while(iterator.hasNext()){
             query = iterator.next();
             if(removeQuery(clock,query)){
+                clientAdminModule.consultaTimeouteada(clock, query);
                 queriesInLine.remove(query);
             }
         }

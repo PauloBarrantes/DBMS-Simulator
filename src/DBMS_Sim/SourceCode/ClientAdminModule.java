@@ -81,10 +81,10 @@ public class ClientAdminModule extends Module{
         acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
     }
 
-    public void consultaTimeouteada(Event event){
+    public void consultaTimeouteada(double clock, Query query){
         --occupiedFields;
         cantidadConsultasTerminadasoFinalizadas++;
-        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
+        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (clock - query.getSubmissionTime());
     }
 
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {
