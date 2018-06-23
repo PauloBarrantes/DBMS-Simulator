@@ -96,9 +96,6 @@ public class ExecutionModule extends Module{
             event.setType(EventType.ShowResult);
             tableOfEvents.add(event);
             --occupiedFields;
-
-//            System.out.println("Exec departure event");
-//            System.out.println(event.toString());
         }
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
