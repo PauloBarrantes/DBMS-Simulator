@@ -53,8 +53,7 @@ public class ClientAdminModule extends Module{
     // ---------------------------------------------------------------------------------------------
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
-
-    public void processArrival(Event event, PriorityQueue<Event> tableOfEvents){
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
 
         if(occupiedFields < maxFields){
             System.out.println("Hay campo");
@@ -78,10 +77,12 @@ public class ClientAdminModule extends Module{
         tableOfEvents.add(arrive);
 
         System.out.println("Sale del Client Admin hacia el process");
+
+        return false;
     }
 
 
-    public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+    public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(), event.getQuery());
         if (!timedOut){
 
@@ -92,6 +93,7 @@ public class ClientAdminModule extends Module{
         --occupiedFields;
         cantidadConsultasTerminadasoFinalizadas++;
         acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
+        return false;
     }
 
     public void timedOutConnection(double clock, Query query){
@@ -111,6 +113,15 @@ public class ClientAdminModule extends Module{
         }
 
         return timedOut;
+    }
+
+    @Override
+    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+
+    }
+    @Override
+    public void resetVariables(){
+
     }
 
 

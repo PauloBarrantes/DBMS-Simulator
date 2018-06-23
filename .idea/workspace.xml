@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e34ef5e0-925c-48d1-886a-52e7461670ef" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -54,12 +55,12 @@
       <file leaf-file-name="Module.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="260">
-              <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+            <state relative-caret-position="175">
+              <caret line="54" column="77" lean-forward="false" selection-start-line="54" selection-start-column="77" selection-end-line="54" selection-end-column="77" />
               <folding>
-                <element signature="e#2911#2912#0" expanded="true" />
-                <element signature="e#2953#2954#0" expanded="true" />
-                <marker date="1529745500428" expanded="true" signature="6884:6890" ph="{...}" />
+                <element signature="e#3025#3026#0" expanded="true" />
+                <element signature="e#3068#3069#0" expanded="true" />
+                <marker date="1529745984119" expanded="true" signature="6449:6455" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -134,11 +135,11 @@
       <file leaf-file-name="ClientAdminModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="109" column="37" lean-forward="true" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
+            <state relative-caret-position="141">
+              <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
               <folding>
-                <marker date="1529744232261" expanded="true" signature="2694:3559" ph="{...}" />
-                <marker date="1529744232261" expanded="true" signature="4517:4857" ph="{...}" />
+                <marker date="1529746035832" expanded="true" signature="2696:3584" ph="{...}" />
+                <marker date="1529746035832" expanded="true" signature="4567:4907" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -186,11 +187,11 @@
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/Controller.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" />
       </list>
     </option>
   </component>
@@ -462,7 +463,7 @@
       <workItem from="1529516547499" duration="3783000" />
       <workItem from="1529562364688" duration="8587000" />
       <workItem from="1529661264471" duration="63000" />
-      <workItem from="1529705887522" duration="17692000" />
+      <workItem from="1529705887522" duration="18234000" />
     </task>
     <task id="LOCAL-00001" summary="Change in the views (Simulation Normal Mode)">
       <created>1529126122112</created>
@@ -481,7 +482,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24809000" />
+    <option name="totallyTimeSpent" value="25351000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -700,17 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="109" column="37" lean-forward="true" selection-start-line="109" selection-start-column="37" selection-end-line="109" selection-end-column="37" />
-          <folding>
-            <marker date="1529744232261" expanded="true" signature="2694:3559" ph="{...}" />
-            <marker date="1529744232261" expanded="true" signature="4517:4857" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/NormalModeController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -793,14 +783,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="83" column="0" lean-forward="true" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+          <folding>
+            <marker date="1529746035832" expanded="true" signature="2696:3584" ph="{...}" />
+            <marker date="1529746035832" expanded="true" signature="4567:4907" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="62" column="13" lean-forward="false" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+        <state relative-caret-position="175">
+          <caret line="54" column="77" lean-forward="false" selection-start-line="54" selection-start-column="77" selection-end-line="54" selection-end-column="77" />
           <folding>
-            <element signature="e#2911#2912#0" expanded="true" />
-            <element signature="e#2953#2954#0" expanded="true" />
-            <marker date="1529745500428" expanded="true" signature="6884:6890" ph="{...}" />
+            <element signature="e#3025#3026#0" expanded="true" />
+            <element signature="e#3068#3069#0" expanded="true" />
+            <marker date="1529745984119" expanded="true" signature="6449:6455" ph="{...}" />
           </folding>
         </state>
       </provider>
