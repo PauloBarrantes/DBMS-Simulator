@@ -126,6 +126,8 @@ public class Controller implements Initializable {
                         Thread.sleep(1);
                     }
 
+                    System.out.println("CONEXIONES --- " + simulator.getClientAdminModule().getNumberOfArrivalToTheSystem());
+
                     return null;
                 }
             };

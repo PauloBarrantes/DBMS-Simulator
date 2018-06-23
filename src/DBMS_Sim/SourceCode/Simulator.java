@@ -77,6 +77,9 @@ public class Simulator {
         this.clock = clock;
     }
 
+    public ClientAdminModule getClientAdminModule() {
+        return clientAdminModule;
+    }
 
     public double getClock() {
         return clock;
@@ -90,38 +93,6 @@ public class Simulator {
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-
-
-//    public void simulate(){
-//
-//
-//        Event actualEvent;
-//
-//        while(runningTime <= clock){
-//            actualEvent =  tableOfEvents.poll();
-//            switch (actualEvent.getType()) {
-//                case ArriveClientToModule:
-//                    System.out.println("GG");
-//                    break;
-//                case ExitClientModule:
-//                    System.out.println("GG");
-//                    break;
-//                case QueryArrival:
-//                    System.out.println("GG");
-//                    break;
-//            }
-//            assert tableOfEvents.peek() != null;
-//            clock = tableOfEvents.peek().getTime();
-//
-//            }
-//
-//
-//            //Movemos el reloj
-//
-//            assert tableOfEvents.peek() != null;
-//            clock = tableOfEvents.peek().getTime();
-//        }
-//    }
 
 
     public void appendInitialEvent(){

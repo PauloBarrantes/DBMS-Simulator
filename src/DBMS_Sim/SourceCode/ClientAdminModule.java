@@ -25,7 +25,8 @@ public class ClientAdminModule extends Module{
     // ------------------------------ End of the constructors section ------------------------------
     // ---------------------------------------------------------------------------------------------
 
-
+    ///ELIMINAR
+    public int getNumberOfArrivalToTheSystem(){return numberOfArrivalToTheSystem;}
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------- Beginning of the setters and getters section -----------------------
