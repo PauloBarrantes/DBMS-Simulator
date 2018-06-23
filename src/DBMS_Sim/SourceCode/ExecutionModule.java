@@ -60,10 +60,10 @@ public class ExecutionModule extends Module{
 
             Query query = event.getQuery();
             double time = 0.0;
-            if(query.getStatementType() == statementType.DDL){
+            if(query.getStatementType() == StatementType.DDL){
                 time = 0.5;
             }else{
-                if(query.getStatementType() == statementType.UPDATE){
+                if(query.getStatementType() == StatementType.UPDATE){
                     time = 1.0;
                 }else{
                     time = query.getLoadedBlocks()*query.getLoadedBlocks()*0.001;
@@ -104,70 +104,22 @@ public class ExecutionModule extends Module{
         addDurationInModule(event.getTime(),event.getQuery());
         return timedOut;
     }
+    /**
+     * @param clock, current clock time.
+     * @function checks if any query in the queue needs to be removed.
+     */
 
+    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        for(Query query : queriesInLine){
+            if(timedOut (clock,query)){
+                clientAdminModule.timedOutConnection(clock, query);
+                queriesInLine.remove(query);
+            }
+        }
+    }
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    /*
-    public static void main(String[] args){
-        ExecutionModule executionModule = new ExecutionModule(1,1);
 
-        PriorityQueue<Event> tableOfEvents = new PriorityQueue<>(10,new Comparator<Event>() {
-            public int compare(Event event1, Event event2) {
-                int cmp = 0;
-                if(event1.getTime() < event2.getTime()){
-                    cmp = -1;
-                }else{
-                    if(event1.getTime() > event2.getTime()){
-                        cmp = 1;
-                    }
-                }
-                return cmp;
-            }
-        });
-
-        QueryGenerator generator = new QueryGenerator();
-        Query query = generator.generate(0);
-        System.out.println(query.toString());
-        Event event = new Event(EventType.ArriveToExecutionModule,query.getSubmissionTime(),query);
-        tableOfEvents.add(event);
-        System.out.println(tableOfEvents.peek().toString());
-
-        query = generator.generate(0);
-        System.out.println(query.toString());
-        event = new Event(EventType.ArriveToExecutionModule,query.getSubmissionTime(),query);
-        tableOfEvents.add(event);
-        System.out.println(tableOfEvents.peek().toString());
-
-        query = generator.generate(0);
-        System.out.println(query.toString());
-        event = new Event(EventType.ArriveToExecutionModule,query.getSubmissionTime(),query);
-        tableOfEvents.add(event);
-        System.out.println(tableOfEvents.peek().toString());
-
-        while(tableOfEvents.size() > 0 && tableOfEvents.peek().getType() != EventType.ShowResult){
-            if(tableOfEvents.peek().getType() == EventType.ArriveToExecutionModule){
-                executionModule.processArrival(tableOfEvents.remove(),tableOfEvents,EventType.ExecuteQuery);
-            }else{
-                if(tableOfEvents.peek().getType() == EventType.ExecuteQuery){
-                    executionModule.executeQuey(tableOfEvents.remove(),tableOfEvents);
-                }else{
-                    if(tableOfEvents.peek().getType() == EventType.ExitExecutionModule){
-                        executionModule.processDeparture(tableOfEvents.remove(),tableOfEvents);
-                    }else{
-                        System.out.println("Unknown event type.");
-                    }
-                }
-            }
-
-            if(tableOfEvents.size() > 0){
-                System.out.println("Top priority");
-                System.out.println(tableOfEvents.peek().toString());
-            }
-        }
-
-        System.out.println(executionModule.toString());
-    }
-    */
 }
