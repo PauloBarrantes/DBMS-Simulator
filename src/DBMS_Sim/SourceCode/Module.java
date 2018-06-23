@@ -120,6 +120,13 @@ public class Module {
     }
 
     /**
+     * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
+     */
+    public int queueLenght(){
+       return queriesInLine.size();
+    }
+
+    /**
      * @param clock, current clock time.
      * @function checks if any query in the queue needs to be removed.
      */
@@ -158,17 +165,17 @@ public class Module {
     protected void countNewQuery(Query query){
 //        System.out.println("Counting query");
 //        System.out.println(query.toString());
-        if(query.getStatementType() == statementType.SELECT){
-            ++totalConnectionsByQueryType[statementType.SELECT];
+        if(query.getStatementType() == StatementType.SELECT){
+            ++totalConnectionsByQueryType[StatementType.SELECT];
         }else{
-            if(query.getStatementType() == statementType.UPDATE){
-                ++totalConnectionsByQueryType[statementType.UPDATE];
+            if(query.getStatementType() == StatementType.UPDATE){
+                ++totalConnectionsByQueryType[StatementType.UPDATE];
             }else{
-                if(query.getStatementType() == statementType.JOIN){
-                    ++totalConnectionsByQueryType[statementType.JOIN];
+                if(query.getStatementType() == StatementType.JOIN){
+                    ++totalConnectionsByQueryType[StatementType.JOIN];
                 }else{
-                    if(query.getStatementType() == statementType.DDL){
-                        ++totalConnectionsByQueryType[statementType.DDL];
+                    if(query.getStatementType() == StatementType.DDL){
+                        ++totalConnectionsByQueryType[StatementType.DDL];
                     }else{
                         System.out.println("Unknown query type");
                     }
@@ -188,17 +195,17 @@ public class Module {
 //        System.out.println("Counting query stayed time");
 //        System.out.println(query.toString());
 
-        if(query.getStatementType() == statementType.SELECT){
-            timeByQueryType[statementType.SELECT] += stayedTime;
+        if(query.getStatementType() == StatementType.SELECT){
+            timeByQueryType[StatementType.SELECT] += stayedTime;
         }else{
-            if(query.getStatementType() == statementType.UPDATE){
-                timeByQueryType[statementType.UPDATE] += stayedTime;
+            if(query.getStatementType() == StatementType.UPDATE){
+                timeByQueryType[StatementType.UPDATE] += stayedTime;
             }else{
-                if(query.getStatementType() == statementType.JOIN){
-                    timeByQueryType[statementType.JOIN] += stayedTime;
+                if(query.getStatementType() == StatementType.JOIN){
+                    timeByQueryType[StatementType.JOIN] += stayedTime;
                 }else{
-                    if(query.getStatementType() == statementType.DDL){
-                        timeByQueryType[statementType.DDL] += stayedTime;
+                    if(query.getStatementType() == StatementType.DDL){
+                        timeByQueryType[StatementType.DDL] += stayedTime;
                     }else{
                         System.out.println("Unknown query type");
                     }
