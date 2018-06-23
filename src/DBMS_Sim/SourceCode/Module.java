@@ -17,10 +17,10 @@ import java.util.Queue;
 public abstract class Module {
     //Maximum number of queries that we can execute at the same time
     protected int maxFields;
-    //number of queries we are attending
+    //Number of queries we are attending
     protected int occupiedFields;
     protected Queue<Query> queriesInLine;
-    //maximum time of a connection in the system
+    //Maximum time of a connection in the system
     protected double timeout;
     //Statistical Variables
     protected double[] timeByQueryType;
