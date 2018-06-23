@@ -443,13 +443,19 @@ public class Simulator {
         statisticsGenerator.increaseDonSimulations();
         return simulationStatistics;
     }
+
+    public SimulationStatistics finalStatistics(){
+        SimulationStatistics simulationStatistics = new SimulationStatistics();
+        simulationStatistics.setAcumulatedConnectionTime(statisticsGenerator.getdAverageConnectionTime());
+        simulationStatistics.setAcumulatedQueriesWaitTimeInModule(statisticsGenerator.getAverageQueriesWaitedTimeInModule());
+        simulationStatistics.setAcumulatedModuleQueueLength(statisticsGenerator.getAverageModuleQueueLength());
+        simulationStatistics.setAcumulatedDiscardedConnections(statisticsGenerator.getAcumulatedDiscardedConnections());
+
+        return simulationStatistics;
+    }
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
 
 
 }
-
-
-
-
