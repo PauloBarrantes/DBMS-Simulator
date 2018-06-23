@@ -132,7 +132,7 @@ public class Simulator {
     }
     public static void main(String args[]){
         Simulator simulator = new Simulator(15,15,3,2,1);
-        simulator.setRunningTime(150);
+        simulator.setRunningTime(1500);
         simulator.simulate();
     }
     public void simulate(){
@@ -182,16 +182,23 @@ public class Simulator {
                     break;
                 case ShowResult:
                     queryTimeOut = clientAdminModule.showResult(actualEvent, tableOfEvents);
+                    if(queryTimeOut){
+                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                    }
                     System.out.println("Show Result");
                     break;
                 case ExitClientModule:
-                    clientAdminModule.processDeparture(actualEvent, tableOfEvents);
-
+                    queryTimeOut = clientAdminModule.processDeparture(actualEvent, tableOfEvents);
+                    if(queryTimeOut){
+                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                    }
                     System.out.println("salida del client module");
                     break;
                 case ExitProcessAdminModule:
-                     processAdminModule.processDeparture(actualEvent, tableOfEvents);
-
+                    queryTimeOut= processAdminModule.processDeparture(actualEvent, tableOfEvents);
+                    if(queryTimeOut){
+                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                    }
                     System.out.println("Salidita del process moduls");
                     break;
                 case ExecuteQuery:
@@ -202,7 +209,10 @@ public class Simulator {
                     System.out.println("Ejecuta la query");
                     break;
                 case ExitTransactionModule:
-                    transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
+                    queryTimeOut = transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
+                    if(queryTimeOut){
+                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                    }
                     System.out.println("procesa la salida de Transaction");
                     break;
                 case ExitExecutionModule:
@@ -273,7 +283,7 @@ public class Simulator {
             for (int i = 0; i < 7; i++){
                 System.out.println(retorno[i]+"  ");
             }
-            System.out.println("K conexiones disponibles: " + clientAdminModule.getOccupiedFields());
+            System.out.println("K conexiones ocupadas: " + clientAdminModule.getOccupiedFields());
             System.out.println("Occupied Fields process" + processAdminModule.getOccupiedFields());
             System.out.println("Occupied Fields query" + queryProcessingModule.getOccupiedFields());
             System.out.println("transacciont conexiones disponibles: " + transactionAndStorageModule.getOccupiedFields());
@@ -292,80 +302,126 @@ public class Simulator {
         queryProcessingModule.checkQueue(actualEvent.getTime(),clientAdminModule);
         transactionAndStorageModule.checkQueue(actualEvent.getTime(), clientAdminModule);
         executionModule.checkQueue(actualEvent.getTime(), clientAdminModule);
-        
+        boolean queryTimeOut;
+
         switch (actualEvent.getType()) {
             case ArriveClientToModule:
-                clientAdminModule.processArrival(actualEvent,tableOfEvents);
+                clientAdminModule.processArrival(actualEvent, tableOfEvents);
                 System.out.println("Llego al Client Admin");
                 break;
             case ArriveToProcessAdminModule:
-                processAdminModule.processArrival(actualEvent,tableOfEvents);
+                queryTimeOut = processAdminModule.processArrival(actualEvent, tableOfEvents);
                 System.out.println("Creando Proceso");
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 break;
             case ArriveToQueryProcessingModule:
-                queryProcessingModule.processArrival(actualEvent, tableOfEvents);
+                queryTimeOut =  queryProcessingModule.processArrival(actualEvent, tableOfEvents);
                 System.out.println("Procesando la consulta");
-
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 break;
             case ArriveToTransactionModule:
-                transactionAndStorageModule.processArrival(actualEvent, tableOfEvents);
-
+                queryTimeOut = transactionAndStorageModule.processArrival(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("Transaction");
                 break;
             case ArriveToExecutionModule:
-                executionModule.processArrival(actualEvent, tableOfEvents);
+                queryTimeOut = executionModule.processArrival(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("Execution");
                 break;
             case ShowResult:
-                clientAdminModule.showResult(actualEvent, tableOfEvents);
+                queryTimeOut = clientAdminModule.showResult(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("Show Result");
                 break;
             case ExitClientModule:
-                clientAdminModule.processDeparture(actualEvent, tableOfEvents);
+                queryTimeOut = clientAdminModule.processDeparture(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("salida del client module");
                 break;
             case ExitProcessAdminModule:
-                processAdminModule.processDeparture(actualEvent, tableOfEvents);
+                queryTimeOut= processAdminModule.processDeparture(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("Salidita del process moduls");
                 break;
             case ExecuteQuery:
-                executionModule.executeQuery(actualEvent,tableOfEvents);
+                queryTimeOut = executionModule.executeQuery(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("Ejecuta la query");
                 break;
             case ExitTransactionModule:
-                transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
+                queryTimeOut = transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("procesa la salida de Transaction");
                 break;
             case ExitExecutionModule:
-                executionModule.processDeparture(actualEvent, tableOfEvents);
-
+                queryTimeOut = executionModule.processDeparture(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 System.out.println("Procesa la salida de execution");
                 break;
+            case ExitQueryProcessingModule:
+                queryTimeOut = queryProcessingModule.processDeparture(actualEvent, tableOfEvents);
+                System.out.println("Hace una SALVAJE salida del QPM");
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
+                break;
             case LexicalValidation:
-                queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
+                queryTimeOut = queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
                 System.out.println("Hace un SALVAJE lexicalValidation");
-
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 break;
             case SintacticalValidation:
-                queryProcessingModule.sintacticalValidation(actualEvent, tableOfEvents);
+                queryTimeOut = queryProcessingModule.sintacticalValidation(actualEvent, tableOfEvents);
                 System.out.println("Hace un SALVAJE sintacticalValidation");
-
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
                 break;
             case SemanticValidation:
-                queryProcessingModule.semanticValidation(actualEvent, tableOfEvents);
+                queryTimeOut = queryProcessingModule.semanticValidation(actualEvent, tableOfEvents);
                 System.out.println("Hace un SALVAJE semanticValidation");
-
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
 
                 break;
             case PermissionVerification:
-                queryProcessingModule.permissionVerification(actualEvent, tableOfEvents);
+                queryTimeOut =queryProcessingModule.permissionVerification(actualEvent, tableOfEvents);
                 System.out.println("Hace un SALVAJE permissionVerification");
-
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
 
                 break;
             case QueryOptimization:
-                queryProcessingModule.queryOptimization(actualEvent, tableOfEvents);
-                System.out.println("Hace un SALVAJE queryOptimization");
+                queryTimeOut =queryProcessingModule.queryOptimization(actualEvent, tableOfEvents);
+                if(queryTimeOut){
+                    clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
+                }
+                System.out.println("Hace un queryOptimization");
 
                 break;
         }
