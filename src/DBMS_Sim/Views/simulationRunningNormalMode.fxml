@@ -15,7 +15,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.NormalModeController">
     <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbc1f" height="44.0" layoutX="-3.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="698.0" />
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f46542" height="44.0" layoutX="-3.0" layoutY="-1.0" stroke="#fffeff"
+                   strokeType="INSIDE" width="698.0" />
       <JFXProgressBar fx:id="pbProgress"  layoutX="108.0" layoutY="442.0" prefHeight="8.0" prefWidth="514.0" progress="0.0" />
       <Label layoutX="193.0" layoutY="79.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Clock" />
       <Label fx:id="lblClock1" layoutX="557.0" layoutY="82.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
