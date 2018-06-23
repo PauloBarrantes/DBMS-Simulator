@@ -179,12 +179,13 @@ public class QueryProcessingModule extends Module{
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
         if(!timedOut){
-            event.setType(EventType.ExitQueryProcessingModule);
             if(event.getQuery().getReadOnly()){
                 event.setTime(event.getTime() + 0.1);
             }else{
                 event.setTime(event.getTime() + 0.25);
             }
+            event.setType(EventType.ExitQueryProcessingModule);
+            tableOfEvents.add(event);
         }else{
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
