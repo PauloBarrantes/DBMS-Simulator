@@ -25,6 +25,8 @@ public abstract class Module {
     //Statistical Variables
     protected double[] timeByQueryType;
     protected int[] totalConnectionsByQueryType;
+    int acumulatedQueueLength;
+    int callsToQueueLength;
 
 
     // ---------------------------------------------------------------------------------------------
@@ -38,6 +40,8 @@ public abstract class Module {
         this.timeout = timeout;
         this.timeByQueryType = new double[StatementType.NUMSTATEMENTS];
         this.totalConnectionsByQueryType = new int[StatementType.NUMSTATEMENTS];
+        this.acumulatedQueueLength = 0;
+        this.callsToQueueLength = 0;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -56,7 +60,10 @@ public abstract class Module {
     public abstract void checkQueue(double clock, ClientAdminModule clientAdminModule);
 
     public int getOccupiedFields(){return occupiedFields;}
-
+    public int getAcumulatedQueueLength() { return acumulatedQueueLength; }
+    public int getCallsToQueueLength() { return callsToQueueLength; }
+    public double[] getTimeByQueryType() { return timeByQueryType; }
+    public int[] getTotalConnectionsByQueryType() { return totalConnectionsByQueryType; }
 
     /**
      * @param clock, current clock time.
@@ -75,8 +82,9 @@ public abstract class Module {
     /**
      * @function: get the queue Length
      */
-    public int queueLength(){
-        return queriesInLine.size();
+    public void queueLength(){
+        ++callsToQueueLength;
+        acumulatedQueueLength += queriesInLine.size();
     }
 
     /**
