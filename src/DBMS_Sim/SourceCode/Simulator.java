@@ -1,7 +1,6 @@
 package DBMS_Sim.SourceCode;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * Esta clase consiste en el cuerpo de la simulación del
@@ -109,189 +108,75 @@ public class Simulator {
     public void simulate(){
         appendInitialEvent();
         Event actualEvent;
-        boolean queryTimeOut;
+
         while(clock <= runningTime){
             actualEvent = tableOfEvents.poll();
-            //Revisamos todas las colas si hay consultas que ya se les paso el tiempo
-            processAdminModule.checkQueue(actualEvent.getTime(),clientAdminModule);
-            queryProcessingModule.checkQueue(actualEvent.getTime(),clientAdminModule);
-            transactionAndStorageModule.checkQueue(actualEvent.getTime(), clientAdminModule);
-            executionModule.checkQueue(actualEvent.getTime(), clientAdminModule);
 
-            switch (actualEvent.getType()) {
-                case ArriveClientToModule:
-                    clientAdminModule.processArrival(actualEvent, tableOfEvents);
-                    System.out.println("Llego al Client Admin");
-                    break;
-                case ArriveToProcessAdminModule:
-                    queryTimeOut = processAdminModule.processArrival(actualEvent, tableOfEvents);
-                    System.out.println("Creando Proceso");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    break;
-                case ArriveToQueryProcessingModule:
-                    queryTimeOut =  queryProcessingModule.processArrival(actualEvent, tableOfEvents);
-                    System.out.println("Procesando la consulta");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    break;
-                case ArriveToTransactionModule:
-                    queryTimeOut = transactionAndStorageModule.processArrival(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Transaction");
-                    break;
-                case ArriveToExecutionModule:
-                    queryTimeOut = executionModule.processArrival(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Execution");
-                    break;
-                case ShowResult:
-                    queryTimeOut = clientAdminModule.showResult(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Show Result");
-                    break;
-                case ExitClientModule:
-                    queryTimeOut = clientAdminModule.processDeparture(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("salida del client module");
-                    break;
-                case ExitProcessAdminModule:
-                    queryTimeOut= processAdminModule.processDeparture(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Salidita del process moduls");
-                    break;
-                case ExecuteQuery:
-                    queryTimeOut = executionModule.executeQuery(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Ejecuta la query");
-                    break;
-                case ExitTransactionModule:
-                    queryTimeOut = transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("procesa la salida de Transaction");
-                    break;
-                case ExitExecutionModule:
-                    queryTimeOut = executionModule.processDeparture(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Procesa la salida de execution");
-                    break;
-                case ExitQueryProcessingModule:
-                    queryTimeOut = queryProcessingModule.processDeparture(actualEvent, tableOfEvents);
-                    System.out.println("Hace una SALVAJE salida del QPM");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    break;
-                case LexicalValidation:
-                    queryTimeOut = queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
-                    System.out.println("Hace un SALVAJE lexicalValidation");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    break;
-                case SintacticalValidation:
-                    queryTimeOut = queryProcessingModule.sintacticalValidation(actualEvent, tableOfEvents);
-                    System.out.println("Hace un SALVAJE sintacticalValidation");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    break;
-                case SemanticValidation:
-                    queryTimeOut = queryProcessingModule.semanticValidation(actualEvent, tableOfEvents);
-                    System.out.println("Hace un SALVAJE semanticValidation");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
+            checkQueues(actualEvent.getTime());
+            whereIgo(actualEvent);
 
-                    break;
-                case PermissionVerification:
-                    queryTimeOut =queryProcessingModule.permissionVerification(actualEvent, tableOfEvents);
-                    System.out.println("Hace un SALVAJE permissionVerification");
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-
-                    break;
-                case QueryOptimization:
-                    queryTimeOut =queryProcessingModule.queryOptimization(actualEvent, tableOfEvents);
-                    if(queryTimeOut){
-                        clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
-                    }
-                    System.out.println("Hace un SALVAJE queryOptimization");
-
-                    break;
-            }
             assert tableOfEvents.peek() != null;
             clock = tableOfEvents.peek().getTime();
-            double retorno [] = new double[7];
-            retorno[0] = clock;
-
-            /* COMENTADO OJO QUE COMENTE ESTO PAR QUE NO SE ASUSTEN
-            retorno[1] = (double) clientAdminModule.queueLength();
-            retorno[2] = (double) processAdminModule.queueLength();
-            retorno[3] = (double) queryProcessingModule.queueLength();
-            retorno[4] = (double) transactionAndStorageModule.queueLength();
-            retorno[5] = (double) executionModule.queueLength();
-            retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
-            */
-
-            for (int i = 0; i < 7; i++){
-                System.out.println(retorno[i]+"  ");
-            }
-            System.out.println("K conexiones ocupadas: " + clientAdminModule.getOccupiedFields());
-            System.out.println("Occupied Fields process" + processAdminModule.getOccupiedFields());
-            System.out.println("Occupied Fields query" + queryProcessingModule.getOccupiedFields());
-            System.out.println("transacciont conexiones disponibles: " + transactionAndStorageModule.getOccupiedFields());
-            System.out.println("K execution disponibles: " + executionModule.getOccupiedFields());
-
-
 
         }
+        System.out.println("Clock: " + clock);
 
+        System.out.println("QueuLegnths: " + processAdminModule.queueSize());
+        System.out.println("QueuLegnths: " + queryProcessingModule.queueSize());
+        System.out.println("QueuLegnths: " + transactionAndStorageModule.queueSize());
+        System.out.println("QueuLegnths: " + executionModule.queueSize());
+        System.out.println("Discarded: " + clientAdminModule.getDiscardedConnections());
+        System.out.println("TimeOut: " + clientAdminModule.getTimeOutConnections());
     }
 
 
     public double[] iterateSimulation(){
-        Event actualEvent =  tableOfEvents.poll();
-        processAdminModule.checkQueue(actualEvent.getTime(),clientAdminModule);
-        queryProcessingModule.checkQueue(actualEvent.getTime(),clientAdminModule);
-        transactionAndStorageModule.checkQueue(actualEvent.getTime(), clientAdminModule);
-        executionModule.checkQueue(actualEvent.getTime(), clientAdminModule);
-        boolean queryTimeOut;
+        double data []= new double[7];
 
+        Event actualEvent =  tableOfEvents.poll();
+
+        checkQueues(actualEvent.getTime());
+        whereIgo(actualEvent);
+
+        assert tableOfEvents.peek() != null;
+        clock = tableOfEvents.peek().getTime();
+
+
+        data[0] = clock;
+        data[1] = (double) processAdminModule.queueSize();
+        data[2] = (double) queryProcessingModule.queueSize();
+        data[3] = (double) transactionAndStorageModule.queueSize();
+        data[4] = (double) executionModule.queueSize();
+        data[5] = (double) clientAdminModule.getDiscardedConnections();
+        data[6] = (double) clientAdminModule.getTimeOutConnections();
+        System.out.println("Retorno los datos");
+
+        return data;
+    }
+
+    private void checkQueues(double clock){
+        processAdminModule.checkQueue(clock,clientAdminModule);
+        queryProcessingModule.checkQueue(clock,clientAdminModule);
+        transactionAndStorageModule.checkQueue(clock, clientAdminModule);
+        executionModule.checkQueue(clock, clientAdminModule);
+    }
+
+    ///CAMBIAR NOMBRE
+    private void whereIgo(Event actualEvent){
+        boolean queryTimeOut;
         switch (actualEvent.getType()) {
             case ArriveClientToModule:
+                System.out.println("Hace una llegada");
                 clientAdminModule.processArrival(actualEvent, tableOfEvents);
-                System.out.println("Llego al Client Admin");
                 break;
             case ArriveToProcessAdminModule:
                 queryTimeOut = processAdminModule.processArrival(actualEvent, tableOfEvents);
-                System.out.println("Creando Proceso");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
                 break;
             case ArriveToQueryProcessingModule:
                 queryTimeOut =  queryProcessingModule.processArrival(actualEvent, tableOfEvents);
-                System.out.println("Procesando la consulta");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
@@ -301,81 +186,69 @@ public class Simulator {
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Transaction");
                 break;
             case ArriveToExecutionModule:
                 queryTimeOut = executionModule.processArrival(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Execution");
                 break;
             case ShowResult:
                 queryTimeOut = clientAdminModule.showResult(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Show Result");
                 break;
             case ExitClientModule:
                 queryTimeOut = clientAdminModule.processDeparture(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("salida del client module");
                 break;
             case ExitProcessAdminModule:
                 queryTimeOut= processAdminModule.processDeparture(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Salidita del process moduls");
                 break;
             case ExecuteQuery:
                 queryTimeOut = executionModule.executeQuery(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Ejecuta la query");
                 break;
             case ExitTransactionModule:
                 queryTimeOut = transactionAndStorageModule.processDeparture(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("procesa la salida de Transaction");
                 break;
             case ExitExecutionModule:
                 queryTimeOut = executionModule.processDeparture(actualEvent, tableOfEvents);
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Procesa la salida de execution");
                 break;
             case ExitQueryProcessingModule:
                 queryTimeOut = queryProcessingModule.processDeparture(actualEvent, tableOfEvents);
-                System.out.println("Hace una SALVAJE salida del QPM");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
                 break;
             case LexicalValidation:
                 queryTimeOut = queryProcessingModule.lexicalValidation(actualEvent, tableOfEvents);
-                System.out.println("Hace un SALVAJE lexicalValidation");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
                 break;
             case SintacticalValidation:
                 queryTimeOut = queryProcessingModule.sintacticalValidation(actualEvent, tableOfEvents);
-                System.out.println("Hace un SALVAJE sintacticalValidation");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
                 break;
             case SemanticValidation:
                 queryTimeOut = queryProcessingModule.semanticValidation(actualEvent, tableOfEvents);
-                System.out.println("Hace un SALVAJE semanticValidation");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
@@ -383,7 +256,6 @@ public class Simulator {
                 break;
             case PermissionVerification:
                 queryTimeOut =queryProcessingModule.permissionVerification(actualEvent, tableOfEvents);
-                System.out.println("Hace un SALVAJE permissionVerification");
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
@@ -394,27 +266,15 @@ public class Simulator {
                 if(queryTimeOut){
                     clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                 }
-                System.out.println("Hace un queryOptimization");
-
                 break;
         }
-        assert tableOfEvents.peek() != null;
-        clock = tableOfEvents.peek().getTime();
-
-        double retorno [] = new double[7];
-        retorno[0] = clock;
-
-        /* IGUAL CON ESTE LO COMOENTE PARA WUE NO DE ERROR EN LO QUE ESTOY HACIENDO NADA MAS
-        retorno[1] = (double) clientAdminModule.queueLength();
-        retorno[2] = (double) processAdminModule.queueLength();
-        retorno[3] = (double) queryProcessingModule.queueLength();
-        retorno[4] = (double) transactionAndStorageModule.queueLength();
-        retorno[5] = (double) executionModule.queueLength();
-        retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
-        */
-
-        return retorno;
     }
+
+    // ---------------------------------------------------------------------------------------------
+    // ------------------------------- Statistical--------------------------------------------------
+    // ---------------------------------------------------------------------------------------------
+
+
 
     public SimulationStatistics getSimulationStatistics(){
         SimulationStatistics simulationStatistics = new SimulationStatistics();
@@ -422,25 +282,25 @@ public class Simulator {
         simulationStatistics.setAcumulatedDiscardedConnections(clientAdminModule.getDiscardedConnections());
         statisticsGenerator.addDiscardedConnections(simulationStatistics.getAcumulatedDiscardedConnections());
 
-        double[] acumulatedModuleQueueLength = new double[moduleTypes.NUMMODULETYPES];
-        acumulatedModuleQueueLength[moduleTypes.CLIENTADMIN] = 0;
-        acumulatedModuleQueueLength[moduleTypes.PROCESSADMIN] = statisticsGenerator.queueLengthAverage(processAdminModule.getAcumulatedQueueLength(),processAdminModule.getCallsToQueueLength(),moduleTypes.PROCESSADMIN);
-        acumulatedModuleQueueLength[moduleTypes.QUERYPROCESSING] = statisticsGenerator.queueLengthAverage(queryProcessingModule.getAcumulatedQueueLength(),queryProcessingModule.getCallsToQueueLength(),moduleTypes.QUERYPROCESSING);
-        acumulatedModuleQueueLength[moduleTypes.TRANSACTIONANDSTORAGE] = statisticsGenerator.queueLengthAverage(transactionAndStorageModule.getAcumulatedQueueLength(),transactionAndStorageModule.getCallsToQueueLength(),moduleTypes.TRANSACTIONANDSTORAGE);
-        acumulatedModuleQueueLength[moduleTypes.EXECUTION] = statisticsGenerator.queueLengthAverage(executionModule.getAcumulatedQueueLength(),executionModule.getCallsToQueueLength(),moduleTypes.EXECUTION);
+        double[] acumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
+        acumulatedModuleQueueLength[ModuleType.CLIENTADMIN] = 0;
+        acumulatedModuleQueueLength[ModuleType.PROCESSADMIN] = statisticsGenerator.queueLengthAverage(processAdminModule.getAcumulatedQueueLength(),processAdminModule.getCallsToQueueLength(),ModuleType.PROCESSADMIN);
+        acumulatedModuleQueueLength[ModuleType.QUERYPROCESSING] = statisticsGenerator.queueLengthAverage(queryProcessingModule.getAcumulatedQueueLength(),queryProcessingModule.getCallsToQueueLength(),ModuleType.QUERYPROCESSING);
+        acumulatedModuleQueueLength[ModuleType.TRANSACTIONANDSTORAGE] = statisticsGenerator.queueLengthAverage(transactionAndStorageModule.getAcumulatedQueueLength(),transactionAndStorageModule.getCallsToQueueLength(),ModuleType.TRANSACTIONANDSTORAGE);
+        acumulatedModuleQueueLength[ModuleType.EXECUTION] = statisticsGenerator.queueLengthAverage(executionModule.getAcumulatedQueueLength(),executionModule.getCallsToQueueLength(),ModuleType.EXECUTION);
         simulationStatistics.setAcumulatedModuleQueueLength(acumulatedModuleQueueLength);
 
-        double[][] acumulatedQueriesWaitTimeInModule = new double[moduleTypes.NUMMODULETYPES][statementType.NUMSTATEMENTS];
-        acumulatedQueriesWaitTimeInModule[moduleTypes.CLIENTADMIN] = statisticsGenerator.averagePassedTimeByStatementInModule(clientAdminModule.getTotalConnectionsByQueryType(),clientAdminModule.getTimeByQueryType(),moduleTypes.CLIENTADMIN);
-        acumulatedQueriesWaitTimeInModule[moduleTypes.PROCESSADMIN] = statisticsGenerator.averagePassedTimeByStatementInModule(processAdminModule.getTotalConnectionsByQueryType(),processAdminModule.getTimeByQueryType(),moduleTypes.PROCESSADMIN);
-        acumulatedQueriesWaitTimeInModule[moduleTypes.QUERYPROCESSING] = statisticsGenerator.averagePassedTimeByStatementInModule(queryProcessingModule.getTotalConnectionsByQueryType(),queryProcessingModule.getTimeByQueryType(),moduleTypes.QUERYPROCESSING);
-        acumulatedQueriesWaitTimeInModule[moduleTypes.TRANSACTIONANDSTORAGE] = statisticsGenerator.averagePassedTimeByStatementInModule(transactionAndStorageModule.getTotalConnectionsByQueryType(),transactionAndStorageModule.getTimeByQueryType(),moduleTypes.TRANSACTIONANDSTORAGE);
-        acumulatedQueriesWaitTimeInModule[moduleTypes.EXECUTION] = statisticsGenerator.averagePassedTimeByStatementInModule(executionModule.getTotalConnectionsByQueryType(),executionModule.getTimeByQueryType(),moduleTypes.EXECUTION);
+        double[][] acumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
+        acumulatedQueriesWaitTimeInModule[ModuleType.CLIENTADMIN] = statisticsGenerator.averagePassedTimeByStatementInModule(clientAdminModule.getTotalConnectionsByQueryType(),clientAdminModule.getTimeByQueryType(),ModuleType.CLIENTADMIN);
+        acumulatedQueriesWaitTimeInModule[ModuleType.PROCESSADMIN] = statisticsGenerator.averagePassedTimeByStatementInModule(processAdminModule.getTotalConnectionsByQueryType(),processAdminModule.getTimeByQueryType(),ModuleType.PROCESSADMIN);
+        acumulatedQueriesWaitTimeInModule[ModuleType.QUERYPROCESSING] = statisticsGenerator.averagePassedTimeByStatementInModule(queryProcessingModule.getTotalConnectionsByQueryType(),queryProcessingModule.getTimeByQueryType(),ModuleType.QUERYPROCESSING);
+        acumulatedQueriesWaitTimeInModule[ModuleType.TRANSACTIONANDSTORAGE] = statisticsGenerator.averagePassedTimeByStatementInModule(transactionAndStorageModule.getTotalConnectionsByQueryType(),transactionAndStorageModule.getTimeByQueryType(),ModuleType.TRANSACTIONANDSTORAGE);
+        acumulatedQueriesWaitTimeInModule[ModuleType.EXECUTION] = statisticsGenerator.averagePassedTimeByStatementInModule(executionModule.getTotalConnectionsByQueryType(),executionModule.getTimeByQueryType(),ModuleType.EXECUTION);
         simulationStatistics.setAcumulatedQueriesWaitTimeInModule(acumulatedQueriesWaitTimeInModule);
 
         simulationStatistics.setAcumulatedConnectionTime(statisticsGenerator.averageConnectionTime(clientAdminModule.getFinishedQueriesCounter(),clientAdminModule.getAccumulatedFinishedQueryTimes()));
 
-        statisticsGenerator.increaseDonSimulations();
+        statisticsGenerator.increaseDoneSimulations();
         return simulationStatistics;
     }
 

@@ -50,7 +50,7 @@ public class StatisticsGenerator {
         acumulatedDiscardedConnections += discardedConnections;
     }
 
-    public void increaseDonSimulations(){
+    public void increaseDoneSimulations(){
         ++amountOfDoneSimulations;
     }
 
