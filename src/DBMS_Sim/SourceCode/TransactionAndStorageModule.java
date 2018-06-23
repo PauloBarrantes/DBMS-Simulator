@@ -96,6 +96,7 @@ public class TransactionAndStorageModule extends Module{
                 queriesInLine.add(event.getQuery());
             }
         }
+
         return timedOut;
     }
 
@@ -103,16 +104,18 @@ public class TransactionAndStorageModule extends Module{
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
         Query nextQuery;
         Event newEvent;
-        if(queriesInLine.size() > 0){
+        if(queriesInLine.size() > 0 && occupiedFields < maxFields){
             nextQuery = queriesInLine.poll();
             newEvent = new Event(EventType.ExitTransactionModule,event.getTime() + calculateDuration(nextQuery), nextQuery);
             tableOfEvents.add(newEvent);
         }else{
             --occupiedFields;
         }
-        if(timedOut) {
+        if(!timedOut) {
             event.setType(EventType.ArriveToExecutionModule);
             tableOfEvents.add(event);
+        }else{
+            --occupiedFields;
         }
 
         //Statistics

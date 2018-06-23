@@ -96,7 +96,10 @@ public class ExecutionModule extends Module{
             event.setType(EventType.ShowResult);
             tableOfEvents.add(event);
             --occupiedFields;
+<<<<<<< HEAD
 
+=======
+>>>>>>> dc924dfae2c7b4c424f796e1b43c1470a59ee7ec
         }
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);

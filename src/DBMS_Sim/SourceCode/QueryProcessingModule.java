@@ -82,19 +82,20 @@ public class QueryProcessingModule extends Module{
      * @function if there is space validates the query that arrived and send it to the sintactical validation, else it is place on hold.
      */
     public boolean lexicalValidation(Event event, PriorityQueue<Event> tableOfEvents){
-        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
-        if(!removedQuery) {
+        if(!timedOut) {
             event.setType(EventType.SintacticalValidation);
             event.setTime(event.getTime() + 0.1);
             tableOfEvents.add(event);
 
         }else{
-            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
-        return removedQuery;
+        addDurationInModule(event.getTime(),event.getQuery());
+
+        return timedOut;
     }
 
     /**
@@ -110,9 +111,6 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.SemanticValidation);
             event.setTime(event.getTime() + sintacticalDistribution.generate());
             tableOfEvents.add(event);
-//
-//            System.out.println("Syntactical event");
-//            System.out.println(event.toString());
         }else{
             addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
@@ -136,10 +134,9 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
 
         }else{
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
-
-        addDurationInModule(event.getTime(),event.getQuery());
 
         return timedOut;
     }
@@ -157,14 +154,11 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.QueryOptimization);
             event.setTime(event.getTime() + permissionVerifyDistribution.generate());
             tableOfEvents.add(event);
-//
-//            System.out.println("Permission event");
-//            System.out.println(event.toString());
+
         }else{
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
-
-        addDurationInModule(event.getTime(),event.getQuery());
 
         return timedOut;
     }
@@ -187,9 +181,9 @@ public class QueryProcessingModule extends Module{
             event.setType(EventType.ExitQueryProcessingModule);
             tableOfEvents.add(event);
         }else{
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
-        addDurationInModule(event.getTime(),event.getQuery());
         return timedOut;
     }
     /**
@@ -200,15 +194,9 @@ public class QueryProcessingModule extends Module{
      */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(), event.getQuery());
-        Query nextQuery;
-        Event newEvent;
-        if(queriesInLine.size() > 0){
-            nextQuery = queriesInLine.poll();
-            newEvent = new Event(EventType.LexicalValidation,event.getTime(), nextQuery);
-            tableOfEvents.add(newEvent);
-        }else{
-            --occupiedFields;
-        }
+
+        processNextInQueue(event.getTime(), tableOfEvents, EventType.LexicalValidation);
+
         if(!timedOut) {
             event.setType(EventType.ArriveToTransactionModule);
             tableOfEvents.add(event);
@@ -228,7 +216,7 @@ public class QueryProcessingModule extends Module{
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
         ArrayList<Query> queriesToRemove = new ArrayList<Query>();
         for(Query query : queriesInLine){
-            if(timedOut (clock,query)){
+            if(timedOut(clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
                 queriesToRemove.add(query);
             }

@@ -88,8 +88,6 @@ public abstract class Module {
     protected boolean timedOut(double clock, Query query){
         boolean success = false;
         if(query.elapsedTimeInSystem(clock) >= this.timeout){
-            --occupiedFields;
-            System.out.println("Query exceed it's available time");
             success = true;
         }
         return success;
@@ -152,13 +150,14 @@ public abstract class Module {
 
     protected boolean processNextInQueue(double clock, PriorityQueue<Event> tableOfEvents, EventType eventType){
         boolean success = false;
-        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event waitingQuery = new Event(eventType,clock,queriesInLine.remove());
-            tableOfEvents.add(waitingQuery);
-            System.out.println("Creating event for query in queue");
-            System.out.println(waitingQuery.getQuery().toString());
-            System.out.println(waitingQuery.toString());
-            success = true;
+        Query nextQuery;
+        Event newEvent;
+        if(queriesInLine.size() > 0 && occupiedFields < maxFields){
+            nextQuery = queriesInLine.poll();
+            newEvent = new Event(eventType,clock, nextQuery);
+            tableOfEvents.add(newEvent);
+        }else{
+            --occupiedFields;
         }
         return success;
     }
