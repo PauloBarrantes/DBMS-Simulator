@@ -1,8 +1,9 @@
 package DBMS_Sim.SourceCode;
 
+import java.sql.Statement;
+
 public class SimulationStatistics {
-    private ModuleType moduleTypes;
-    private StatementType statementType;
+
 
     private int acumulatedDiscardedConnections;
     private double[] acumulatedModuleQueueLength;
@@ -11,8 +12,8 @@ public class SimulationStatistics {
 
     public SimulationStatistics(){
         acumulatedDiscardedConnections = 0;
-        acumulatedModuleQueueLength = new double[moduleTypes.NUMMODULETYPES];
-        acumulatedQueriesWaitTimeInModule = new double[moduleTypes.NUMMODULETYPES][statementType.NUMSTATEMENTS];
+        acumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
+        acumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
         acumulatedConnectionTime = 0.0;
     }
 

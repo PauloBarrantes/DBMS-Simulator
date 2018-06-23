@@ -79,12 +79,20 @@ public abstract class Module {
         }
     }
     */
+
     /**
-     * @function: get the queue Length
+     * @function: ...
      */
     public void queueLength(){
         ++callsToQueueLength;
         acumulatedQueueLength += queriesInLine.size();
+    }
+
+    /**
+     * @function: get the queue size
+     */
+    public int queueSize(){
+       return queriesInLine.size();
     }
 
     /**

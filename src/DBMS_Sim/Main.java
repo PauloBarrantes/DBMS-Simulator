@@ -1,5 +1,7 @@
 package DBMS_Sim;
 
+import javafx.application.Application;
+
 /**
  * Main Class
  *
@@ -9,7 +11,7 @@ package DBMS_Sim;
  */
 public class Main {
     public static void main(String[] args) {
-        Controller controller = new Controller();
-        controller.run(args);
+        ApplicationController app = new ApplicationController();
+        app.run(args);
     }
 }

@@ -1,9 +1,11 @@
 package DBMS_Sim;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,37 +16,35 @@ import java.util.ResourceBundle;
 
 public class NormalModeController  {
     @FXML
-    JFXProgressBar pbProgress ;
-    @FXML
-    JFXTextField Clock1;
-    @FXML
-    Label lblClock1,  lblMac, lblPAM ,lblQPM,lblTASM,lblEM,lblDiscarded;
+    public JFXProgressBar pbProgress ;
 
-    private double timeRunning;
+    @FXML
+    public JFXButton stats;
+    @FXML
+    private Label lblClock1, lblPAM ,lblQPM,lblTASM,lblEM,lblDiscarded , lblTimeout;
+
     public void initialize(URL arg1, ResourceBundle arg2){
     }
 
-    public void setTimeRunning(int timeRunning){
-        this.timeRunning = (double)timeRunning;
+    @FXML
+    void statistics(ActionEvent event){
+
     }
 
 
 
-    public void refreshScreen(double clock, int MAC, int PAM, int QPM, int TASM, int EM, int discardedConnections){
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                String formattedClock = String.format("%.02f", clock);
+    public void refreshScreen(double clock, double PAM, double QPM, double TASM, double EM, double discardedConnections,double timeoutCons){
+        Platform.runLater(() -> {
+            String formattedClock = String.format("%.02f", clock);
 
-                lblClock1.setText(formattedClock);
-                lblMac.setText(""+ MAC);
-                lblPAM.setText(""+ PAM);
-                lblQPM.setText(""+ QPM);
-                lblTASM.setText(""+ TASM);
-                lblEM.setText(""+ EM);
-                lblDiscarded.setText(""+ discardedConnections);
+            lblClock1.setText(formattedClock);
+            lblPAM.setText(""+ (int)PAM);
+            lblQPM.setText(""+ (int)QPM);
+            lblTASM.setText(""+ (int)TASM);
+            lblEM.setText(""+ (int)EM);
+            lblDiscarded.setText(""+ (int)discardedConnections);
+            lblTimeout.setText(""+ (int)timeoutCons);
 
-            }
         });
 
     }

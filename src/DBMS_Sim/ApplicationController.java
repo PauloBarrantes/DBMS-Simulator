@@ -1,37 +1,39 @@
-package DBMS_Sim;
 
-import DBMS_Sim.SourceCode.Simulator;
-import com.jfoenix.controls.*;
-import javafx.application.Application;
-import javafx.concurrent.Service;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.concurrent.Task;
+    package DBMS_Sim;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Random;
-import java.util.ResourceBundle;
+    import DBMS_Sim.SourceCode.Event;
+    import DBMS_Sim.SourceCode.Simulator;
+    import com.jfoenix.controls.*;
+    import javafx.application.Application;
+    import javafx.concurrent.Service;
+    import javafx.event.ActionEvent;
+    import javafx.event.EventHandler;
+    import javafx.fxml.FXML;
+    import javafx.fxml.FXMLLoader;
+    import javafx.fxml.Initializable;
+    import javafx.scene.Node;
+    import javafx.scene.Parent;
+    import javafx.scene.Scene;
+    import javafx.scene.control.Label;
+    import javafx.scene.layout.StackPane;
+    import javafx.scene.paint.Color;
+    import javafx.scene.text.Font;
+    import javafx.scene.text.Text;
+    import javafx.stage.Stage;
+    import javafx.concurrent.Task;
 
-public class Controller implements Initializable {
+    import java.io.IOException;
+    import java.net.URL;
+    import java.util.Random;
+    import java.util.ResourceBundle;
+
+public class ApplicationController implements Initializable {
     private Simulator simulator;
 
 
     private Random rnd = new Random(System.currentTimeMillis());
     @FXML NormalModeController normalModeController;
-
+    @FXML StatisticController statisticController;
 
 
     // UI Variables - Home
@@ -39,35 +41,16 @@ public class Controller implements Initializable {
     @FXML StackPane stackPane1;
     @FXML JFXButton btnIniciar;
     @FXML JFXToggleButton mode;
-    @FXML JFXToggleButton graphic;
     @FXML JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
-    @FXML JFXTextField number;
 
-    int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
+    private int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
     private Service<Void> backgroundThread;
     private boolean validator;
-    public Controller(){
 
-    }
     public void run(String[] args){
         Application.launch(Initializer.class,args);
     }
-    /**
-     * Controlador de la
-     *
-     *
-     *
-     * @param event
-     */
-    @FXML
-    void modeSlow(ActionEvent event){
-        if(!mode.isSelected()){
-            graphic.setSelected(false);
-            graphic.setDisable(true);
-        }else {
-            graphic.setDisable(false);
-        }
-    }
+
     /**
      * Controlador del butón start, hacemos validaciones
      * Al ser el título obligatorio, si es nulo o vacío se lanzará
@@ -99,48 +82,13 @@ public class Controller implements Initializable {
             pProcess = Integer.parseInt( p.getText());
             nProcess = Integer.parseInt(n.getText());
             //Cargamos la vista de normal mode
+
             normalModeScene(event);
-            normalModeController.setTimeRunning(time);
-            simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
-            simulator.setRunningTime((double)time);
-
-            simulator.appendInitialEvent();
-            System.out.println("Inicial");
-
-
-
-            final Task<Void> task = new Task<Void>() {
-                final double runningTime = time;
-
-                @Override
-                protected Void call() throws Exception {
-                    double data [] = new double[7];
-                    data [0] = 0;
-
-                    while(data[0] <= runningTime){
-                        data = simulator.iterateSimulation();
-                        updateProgress(data[0], runningTime);
-                        normalModeController.refreshScreen(data[0],(int)data[1],(int)data[2],(int)data[3], (int)data[4],(int)data[5],(int)data[6]);
-
-
-                        Thread.sleep(1);
-                    }
-
-                    System.out.println("CONEXIONES --- " + simulator.getClientAdminModule().getNumberOfArrivalToTheSystem());
-
-                    return null;
-                }
-            };
-
-            normalModeController.pbProgress.progressProperty().bind(
-                    task.progressProperty()
-            );
-
-
-            final Thread thread = new Thread(task, "task-thread");
-            thread.setDaemon(true);
-            thread.start();
-
+            if(!mode.isSelected()){
+                runASimulations(1,event);
+            }else{
+                runASimulations(1000,event);
+            }
 
         }else{
             JFXDialogLayout content = new JFXDialogLayout();
@@ -166,6 +114,48 @@ public class Controller implements Initializable {
         }
 
 
+    }
+
+
+    private void runASimulations(long mode, ActionEvent event) throws InterruptedException {
+
+        simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
+        simulator.setRunningTime((double)time);
+        simulator.appendInitialEvent();
+
+        final Task<Void> task = new Task<Void>() {
+            final double runningTime = time;
+            double previousClock;
+            @Override
+            protected Void call() throws Exception {
+                double data [] = new double[7];
+                data [0] = 0;
+                previousClock =0;
+                while(data[0] <= runningTime){
+                    data = simulator.iterateSimulation();
+                    updateProgress(data[0], runningTime);
+                    normalModeController.refreshScreen(data[0],(int)data[1],(int)data[2],(int)data[3], (int)data[4],(int)data[5],(int)data[6]);
+
+                    if(previousClock != data[0]){
+                        Thread.sleep(mode);
+                    }
+
+                    previousClock = data[0];
+
+                }
+                normalModeController.stats.setVisible(true);
+                return null;
+            }
+        };
+
+        normalModeController.pbProgress.progressProperty().bind(
+                task.progressProperty()
+        );
+
+
+        final Thread thread = new Thread(task, "task-thread");
+        thread.setDaemon(true);
+        thread.start();
     }
 
     /**
@@ -209,15 +199,15 @@ public class Controller implements Initializable {
 
     }
     /**
-     * Despliega el scene en pantalla del slow mode, además guardamos el controller de esa escena.
+     * Despliega el scene en pantalla del normal mode, además guardamos el controller de esa escena.
      *
      * @param event
      */
-    private void slowModeScene(ActionEvent event){
+    private void statisticsScene(ActionEvent event){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/simulationRunningSlowMode.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/Stats.fxml"));
             Parent root = (Parent) loader.load();
-            normalModeController = loader.getController();
+            statisticController = loader.getController();
 
             Scene normalMode = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -228,22 +218,14 @@ public class Controller implements Initializable {
             e.printStackTrace();
         }
 
-
     }
-    /**
-     * Despliega el scene en pantalla del graph mode, además guardamos el controller de esa escena.
-     *
-     * @param event
-     */
-    private void graphModeScene(ActionEvent event){
 
 
 
-    }
+
+
     @Override
     public void initialize(URL arg1, ResourceBundle arg2){}
 
 }
-
-
 
