@@ -211,6 +211,15 @@ public class QueryProcessingModule extends Module{
         return timedOut;
     }
 
+    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        for(Query query : queriesInLine){
+            if(timedOut (clock,query)){
+                clientAdminModule.timedOutConnection(clock, query);
+                queriesInLine.remove(query);
+            }
+        }
+    }
+
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------

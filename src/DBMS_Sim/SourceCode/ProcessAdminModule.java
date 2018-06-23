@@ -64,17 +64,21 @@ public class ProcessAdminModule extends Module {
         return timedOut;
     }
 
-    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
-        boolean success = false;
-        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event newArrival = new Event(EventType.ArriveToProcessAdminModule,clock,queriesInLine.remove());
-            tableOfEvents.add(newArrival);
-            ++occupiedFields;
-            success = true;
-        }
+    /**
+     * @param clock, current clock time.
+     * @function checks if any query in the queue needs to be removed.
+     */
 
-        return success;
+    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        for(Query query : queriesInLine){
+            if(timedOut (clock,query)){
+                clientAdminModule.timedOutConnection(clock, query);
+                queriesInLine.remove(query);
+            }
+        }
     }
+
+
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
