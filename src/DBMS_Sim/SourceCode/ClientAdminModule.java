@@ -5,8 +5,8 @@ import java.util.PriorityQueue;
 public class ClientAdminModule extends Module{
     private int discardedConnections;
     private QueryGenerator queryGenerator;
-    private int cantidadConsultasTerminadasoFinalizadas;
-    private double acumuladoDeTiempoDeConsultasQueSalenDelSistema;
+    private int finishedQueriesCounter;
+    private double accumulatedFinishedQueryTimes;
     private int numberOfArrivalToTheSystem;
 
     // ---------------------------------------------------------------------------------------------
@@ -16,8 +16,8 @@ public class ClientAdminModule extends Module{
     public ClientAdminModule(int maxFields, double timeout){
         super(maxFields,0,new PriorityQueue<Query>(),timeout);
         queryGenerator = new QueryGenerator();
-        cantidadConsultasTerminadasoFinalizadas = 0;
-        acumuladoDeTiempoDeConsultasQueSalenDelSistema = 0;
+        finishedQueriesCounter = 0;
+        accumulatedFinishedQueryTimes = 0;
         numberOfArrivalToTheSystem = 0;
     }
 
@@ -80,16 +80,16 @@ public class ClientAdminModule extends Module{
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
         --occupiedFields;
-        cantidadConsultasTerminadasoFinalizadas++;
-        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (event.getTime() - event.getQuery().getSubmissionTime());
+        finishedQueriesCounter++;
+        accumulatedFinishedQueryTimes += (event.getTime() - event.getQuery().getSubmissionTime());
         return false;
     }
 
     public void timedOutConnection(double clock, Query query){
         --occupiedFields;
         ++discardedConnections;
-        cantidadConsultasTerminadasoFinalizadas++;
-        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (clock - query.getSubmissionTime());
+        finishedQueriesCounter++;
+        accumulatedFinishedQueryTimes += (clock - query.getSubmissionTime());
     }
 
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {

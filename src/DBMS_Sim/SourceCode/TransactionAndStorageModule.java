@@ -139,17 +139,6 @@ public class TransactionAndStorageModule extends Module{
         }
     }
 
-    protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){
-        boolean success = false;
-        if(queriesInLine.size() > 0  && occupiedFields < maxFields){
-            Event newArrival = new Event(EventType.ArriveToTransactionModule,clock,queriesInLine.remove());
-            tableOfEvents.add(newArrival);
-            ++occupiedFields;
-            success = true;
-        }
-
-        return success;
-    }
 
     private double calculateDuration(Query beingProcessed){
         double duration = maxFields * 0.03;
