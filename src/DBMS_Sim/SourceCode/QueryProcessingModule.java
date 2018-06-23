@@ -235,6 +235,7 @@ public class QueryProcessingModule extends Module{
         }
 
         for (Query query: queriesToRemove){
+
             queriesInLine.remove(query);
         }
     }

@@ -1,7 +1,6 @@
 package DBMS_Sim.SourceCode;
 
 import java.util.Comparator;
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 public class TransactionAndStorageModule extends Module{
@@ -124,10 +123,7 @@ public class TransactionAndStorageModule extends Module{
 
     @Override
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
-        Iterator<Query> iterator = queriesInLine.iterator();
-        Query query;
-        while(iterator.hasNext()){
-            query = iterator.next();
+        for(Query query : queriesInLine){
             if(timedOut (clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
                 queriesInLine.remove(query);

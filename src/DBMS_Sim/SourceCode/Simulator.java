@@ -131,8 +131,8 @@ public class Simulator {
         tableOfEvents.add(initialArrive);
     }
     public static void main(String args[]){
-        Simulator simulator = new Simulator(15,25,5,1,1);
-        simulator.setRunningTime(40);
+        Simulator simulator = new Simulator(15,15,3,2,1);
+        simulator.setRunningTime(150);
         simulator.simulate();
     }
     public void simulate(){
@@ -273,6 +273,14 @@ public class Simulator {
             for (int i = 0; i < 7; i++){
                 System.out.println(retorno[i]+"  ");
             }
+            System.out.println("K conexiones disponibles: " + clientAdminModule.getOccupiedFields());
+            System.out.println("Occupied Fields process" + processAdminModule.getOccupiedFields());
+            System.out.println("Occupied Fields query" + queryProcessingModule.getOccupiedFields());
+            System.out.println("transacciont conexiones disponibles: " + transactionAndStorageModule.getOccupiedFields());
+            System.out.println("K execution disponibles: " + executionModule.getOccupiedFields());
+
+
+
         }
 
     }

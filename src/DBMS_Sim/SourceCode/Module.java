@@ -55,7 +55,7 @@ public abstract class Module {
     public abstract boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents);
     public abstract void checkQueue(double clock, ClientAdminModule clientAdminModule);
 
-
+    public int getOccupiedFields(){return occupiedFields;}
 
 
     /**

@@ -56,39 +56,28 @@ public class ClientAdminModule extends Module{
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
 
         if(occupiedFields < maxFields){
-            System.out.println("Hay campo");
+            //Generate a new arrival to next module
 
-            //Generar una salida hacia el Process Module
             event.setType(EventType.ArriveToProcessAdminModule);
-            System.out.println("Agregamos un nuevo evento");
             tableOfEvents.add(event);
-
             countNewQuery(event.getQuery());
             occupiedFields++;
-            System.out.println("Aumentamos el número de conexiones usadas");
         }else{
             discardedConnections++;
         }
         numberOfArrivalToTheSystem++;
-        //Generar una llegada
+        //We generate a new arrival to the system
 
         Query query = queryGenerator.generate(event.getTime());
         Event arrive = new Event(EventType.ArriveClientToModule,query.getSubmissionTime(), query);
         tableOfEvents.add(arrive);
 
-        System.out.println("Sale del Client Admin hacia el process");
 
         return false;
     }
 
 
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
-        boolean timedOut = timedOut(event.getTime(), event.getQuery());
-        if (!timedOut){
-
-        }else{
-
-        }
         // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
         --occupiedFields;
         cantidadConsultasTerminadasoFinalizadas++;
@@ -111,7 +100,7 @@ public class ClientAdminModule extends Module{
             event.setType(EventType.ExitClientModule);
             tableOfEvents.add(event);
         }
-
+        // No hace falta porque timedOutConnection va restar el occupiedField
         return timedOut;
     }
 

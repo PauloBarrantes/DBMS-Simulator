@@ -2,8 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e34ef5e0-925c-48d1-886a-52e7461670ef" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,66 +29,22 @@
       <file leaf-file-name="QueryProcessingModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="237" column="9" lean-forward="true" selection-start-line="227" selection-start-column="8" selection-end-line="237" selection-end-column="9" />
+            <state relative-caret-position="685">
+              <caret line="230" column="23" lean-forward="false" selection-start-line="230" selection-start-column="15" selection-end-line="230" selection-end-column="23" />
               <folding>
-                <element signature="e#10377#10384#0" expanded="true" />
+                <element signature="e#10415#10422#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EventType.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/EventType.java">
+      <file leaf-file-name="TransactionAndStorageModule.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="14" lean-forward="false" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Event.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Event.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExpDistributionGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExpDistributionGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ExecutionModule.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="123" column="9" lean-forward="false" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
+            <state relative-caret-position="838">
+              <caret line="112" column="11" lean-forward="false" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
               <folding>
-                <element signature="e#4859#4866#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Module.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="102" column="46" lean-forward="true" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
-              <folding>
-                <element signature="e#3025#3026#0" expanded="true" />
-                <element signature="e#3068#3069#0" expanded="true" />
-                <marker date="1529745984119" expanded="true" signature="6449:6455" ph="{...}" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -98,11 +60,50 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NormalDistributionGenerator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ExecutionModule.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="211">
+              <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+              <folding>
+                <element signature="e#4749#4756#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="137" column="27" lean-forward="true" selection-start-line="137" selection-start-column="27" selection-end-line="137" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <marker date="1529749346610" expanded="false" signature="13115:17164" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Module.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="353">
+              <caret line="154" column="24" lean-forward="false" selection-start-line="154" selection-start-column="11" selection-end-line="154" selection-end-column="24" />
+              <folding>
+                <element signature="e#3083#3084#0" expanded="true" />
+                <element signature="e#3126#3127#0" expanded="true" />
+                <marker date="1529749091825" expanded="true" signature="6507:6513" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NormalDistributionGenerator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+            <state relative-caret-position="595">
+              <caret line="41" column="48" lean-forward="true" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -111,8 +112,8 @@
       <file leaf-file-name="ProcessAdminModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="83" column="9" lean-forward="false" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+            <state relative-caret-position="-68">
+              <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2959#2966#0" expanded="true" />
@@ -122,14 +123,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="QueryGenerator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryGenerator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="296">
+              <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="ClientAdminModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="120" column="5" lean-forward="true" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+            <state relative-caret-position="73">
+              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
               <folding>
-                <marker date="1529746035832" expanded="true" signature="2696:3584" ph="{...}" />
-                <marker date="1529746035832" expanded="true" signature="4567:4907" ph="{...}" />
+                <marker date="1529749780941" expanded="true" signature="2696:3345" ph="{...}" />
+                <marker date="1529749780941" expanded="true" signature="4205:4622" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -151,6 +162,7 @@
       <find>compar</find>
       <find>Query exceed it's available time</find>
       <find>4</find>
+      <find>time</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -173,16 +185,16 @@
         <option value="$PROJECT_DIR$/src/DBMS_Sim/NormalModeController.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryGenerator.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/Controller.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/EventType.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/EventType.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java" />
       </list>
     </option>
   </component>
@@ -429,10 +441,11 @@
       <item index="3" class="java.lang.String" itemvalue="Application.NormalDistributionGenerator" />
     </list>
     <recent_temporary>
-      <list size="3">
+      <list size="4">
         <item index="0" class="java.lang.String" itemvalue="Application.Simulator" />
-        <item index="1" class="java.lang.String" itemvalue="Application.NormalDistributionGenerator" />
-        <item index="2" class="java.lang.String" itemvalue="Application.QueryGenerator" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
+        <item index="2" class="java.lang.String" itemvalue="Application.NormalDistributionGenerator" />
+        <item index="3" class="java.lang.String" itemvalue="Application.QueryGenerator" />
       </list>
     </recent_temporary>
   </component>
@@ -454,7 +467,7 @@
       <workItem from="1529516547499" duration="3783000" />
       <workItem from="1529562364688" duration="8587000" />
       <workItem from="1529661264471" duration="63000" />
-      <workItem from="1529705887522" duration="18839000" />
+      <workItem from="1529705887522" duration="22001000" />
     </task>
     <task id="LOCAL-00001" summary="Change in the views (Simulation Normal Mode)">
       <created>1529126122112</created>
@@ -473,7 +486,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25956000" />
+    <option name="totallyTimeSpent" value="29118000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -488,7 +501,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -522,7 +535,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="16" />
+      <option name="time" value="17" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -634,24 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="135" column="5" lean-forward="false" selection-start-line="135" selection-start-column="5" selection-end-line="135" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_151/src.zip!/java/util/LinkedList.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
@@ -680,25 +675,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="269" column="0" lean-forward="false" selection-start-line="269" selection-start-column="0" selection-end-line="269" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2871#2872#0" expanded="true" />
-            <element signature="e#2917#2918#0" expanded="true" />
-            <element signature="e#2955#2956#0" expanded="true" />
-            <element signature="e#2989#2990#0" expanded="true" />
-            <element signature="e#3031#3032#0" expanded="true" />
-            <element signature="e#3065#3066#0" expanded="true" />
-            <element signature="e#3098#3099#0" expanded="true" />
-            <element signature="e#3126#3127#0" expanded="true" />
-            <element signature="method#iterateSimulation#0;class#Simulator#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/Application.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -712,34 +688,6 @@
         <state relative-caret-position="459">
           <caret line="35" column="44" lean-forward="true" selection-start-line="35" selection-start-column="44" selection-end-line="35" selection-end-column="44" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ModuleType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="30" column="30" lean-forward="true" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="102" column="46" lean-forward="true" selection-start-line="102" selection-start-column="46" selection-end-line="102" selection-end-column="46" />
-          <folding>
-            <element signature="e#3025#3026#0" expanded="true" />
-            <element signature="e#3068#3069#0" expanded="true" />
-            <marker date="1529745984119" expanded="true" signature="6449:6455" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -759,31 +707,90 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ModuleType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="154" column="24" lean-forward="false" selection-start-line="154" selection-start-column="11" selection-end-line="154" selection-end-column="24" />
+          <folding>
+            <element signature="e#3083#3084#0" expanded="true" />
+            <element signature="e#3126#3127#0" expanded="true" />
+            <marker date="1529749091825" expanded="true" signature="6507:6513" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="45" column="9" lean-forward="true" selection-start-line="45" selection-start-column="9" selection-end-line="45" selection-end-column="9" />
+          <folding>
+            <element signature="e#4749#4756#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="120" column="5" lean-forward="true" selection-start-line="120" selection-start-column="5" selection-end-line="120" selection-end-column="5" />
+        <state relative-caret-position="73">
+          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
           <folding>
-            <marker date="1529746035832" expanded="true" signature="2696:3584" ph="{...}" />
-            <marker date="1529746035832" expanded="true" signature="4567:4907" ph="{...}" />
+            <marker date="1529749780941" expanded="true" signature="2696:3345" ph="{...}" />
+            <marker date="1529749780941" expanded="true" signature="4205:4622" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/TransactionAndStorageModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="838">
+          <caret line="112" column="11" lean-forward="false" selection-start-line="112" selection-start-column="11" selection-end-line="112" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="137" column="27" lean-forward="true" selection-start-line="137" selection-start-column="27" selection-end-line="137" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <marker date="1529749346610" expanded="false" signature="13115:17164" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryProcessingModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="237" column="9" lean-forward="true" selection-start-line="227" selection-start-column="8" selection-end-line="237" selection-end-column="9" />
+        <state relative-caret-position="685">
+          <caret line="230" column="23" lean-forward="false" selection-start-line="230" selection-start-column="15" selection-end-line="230" selection-end-column="23" />
           <folding>
-            <element signature="e#10377#10384#0" expanded="true" />
+            <element signature="e#10415#10422#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="48" column="0" lean-forward="true" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ProcessAdminModule.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="83" column="9" lean-forward="false" selection-start-line="83" selection-start-column="9" selection-end-line="83" selection-end-column="9" />
+        <state relative-caret-position="-68">
+          <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2959#2966#0" expanded="true" />
@@ -792,13 +799,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExecutionModule.java">
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/NormalDistributionGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="123" column="9" lean-forward="false" selection-start-line="123" selection-start-column="9" selection-end-line="123" selection-end-column="9" />
-          <folding>
-            <element signature="e#4859#4866#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="595">
+          <caret line="41" column="48" lean-forward="true" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>
