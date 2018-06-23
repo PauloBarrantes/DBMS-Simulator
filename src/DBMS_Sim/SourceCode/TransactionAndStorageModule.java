@@ -99,7 +99,8 @@ public class TransactionAndStorageModule extends Module{
         return timedOut;
     }
 
-    public void processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+    public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
         Query nextQuery;
         Event newEvent;
         if(queriesInLine.size() > 0){
@@ -109,12 +110,15 @@ public class TransactionAndStorageModule extends Module{
         }else{
             --occupiedFields;
         }
-
-        event.setType(EventType.ArriveToExecutionModule);
-        tableOfEvents.add(event);
+        if(timedOut) {
+            event.setType(EventType.ArriveToExecutionModule);
+            tableOfEvents.add(event);
+        }
 
         //Statistics
-        countDurationInModule(event.getTime(),event.getQuery());
+        addDurationInModule(event.getTime(),event.getQuery());
+
+        return timedOut;
     }
 
     protected boolean addQueryInQueue(double clock, PriorityQueue<Event> tableOfEvents){

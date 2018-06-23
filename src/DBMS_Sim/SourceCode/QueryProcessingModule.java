@@ -70,12 +70,10 @@ public class QueryProcessingModule extends Module{
         if(!removedQuery) {
             event.setType(EventType.SintacticalValidation);
             event.setTime(event.getTime() + 0.1);
-
             tableOfEvents.add(event);
-//            System.out.println("Lexical event");
-//            System.out.println(event.toString());
+
         }else{
-            countDurationInModule(event.getTime(),event.getQuery());
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -99,7 +97,7 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Syntactical event");
 //            System.out.println(event.toString());
         }else{
-            countDurationInModule(event.getTime(),event.getQuery());
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -123,7 +121,7 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Semantic event");
 //            System.out.println(event.toString());
         }else{
-            countDurationInModule(event.getTime(),event.getQuery());
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -147,7 +145,7 @@ public class QueryProcessingModule extends Module{
 //            System.out.println("Permission event");
 //            System.out.println(event.toString());
         }else{
-            countDurationInModule(event.getTime(),event.getQuery());
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -178,7 +176,7 @@ public class QueryProcessingModule extends Module{
         }
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
-        countDurationInModule(event.getTime(),event.getQuery());
+        addDurationInModule(event.getTime(),event.getQuery());
         return removedQuery;
     }
 

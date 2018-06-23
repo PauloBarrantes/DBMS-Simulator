@@ -52,7 +52,7 @@ public class ExecutionModule extends Module{
 //            System.out.println("Exec query");
 //            System.out.println(event.toString());
         }else{
-            countDurationInModule(event.getTime(),event.getQuery());
+            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
         }
 
@@ -78,7 +78,7 @@ public class ExecutionModule extends Module{
         }
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
-        countDurationInModule(event.getTime(),event.getQuery());
+        addDurationInModule(event.getTime(),event.getQuery());
         return removedQuery;
     }
 

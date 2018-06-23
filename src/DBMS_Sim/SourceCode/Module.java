@@ -130,10 +130,7 @@ public class Module {
      * @function checks if any query in the queue needs to be removed.
      */
     public void checkQueues(double clock, ClientAdminModule clientAdminModule){
-        Iterator<Query> iterator = queriesInLine.iterator();
-        Query query;
-        while(iterator.hasNext()){
-            query = iterator.next();
+        for(Query query : queriesInLine){
             if(timedOut (clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
                 queriesInLine.remove(query);
@@ -190,7 +187,7 @@ public class Module {
      * @function check the type of the query, and depending on which is it, increase the amount of
      * that type of query is staying in the Module.
      */
-    protected void countDurationInModule(double clock, Query query){
+    protected void addDurationInModule(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
 //        System.out.println("Counting query stayed time");
 //        System.out.println(query.toString());
