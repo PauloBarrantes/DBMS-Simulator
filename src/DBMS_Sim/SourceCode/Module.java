@@ -51,30 +51,12 @@ public abstract class Module {
     // ---------------------------------------------------------------------------------------------
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
-    public abstract void resetVariables1();
-    public abstract boolean processArrival();
-    public abstract boolean processDeparture();
+    public abstract boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents);
+    public abstract boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents);
     public abstract void checkQueue(double clock, ClientAdminModule clientAdminModule);
 
-    /**
-     * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
-     */
-    public void resetVariables(){
-        this.occupiedFields= 0;
-        queriesInLine.clear();
 
-        for(int i = 0; i < StatementType.NUMSTATEMENTS; ++i){
-            totalConnectionsByQueryType[i] = 0;
-            timeByQueryType[i] = 0.0;
-        }
-    }
 
-    /**
-     * @function: get the queue Length
-     */
-    public int queueLength(){
-       return queriesInLine.size();
-    }
 
     /**
      * @param clock, current clock time.
@@ -90,6 +72,12 @@ public abstract class Module {
         }
     }
     */
+    /**
+     * @function: get the queue Length
+     */
+    public int queueLength(){
+        return queriesInLine.size();
+    }
 
     /**
      * @param clock, current clock time.
@@ -141,8 +129,7 @@ public abstract class Module {
      */
     protected void addDurationInModule(double clock, Query query){
         double stayedTime = query.elapsedTimeInModule(clock);
-//        System.out.println("Counting query stayed time");
-//        System.out.println(query.toString());
+
 
         if(query.getStatementType() == StatementType.SELECT){
             timeByQueryType[StatementType.SELECT] += stayedTime;
@@ -174,6 +161,20 @@ public abstract class Module {
             success = true;
         }
         return success;
+    }
+
+    /**
+     * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
+     */
+
+    public void resetVariables(){
+        this.occupiedFields= 0;
+        queriesInLine.clear();
+
+        for(int i = 0; i < StatementType.NUMSTATEMENTS; ++i){
+            totalConnectionsByQueryType[i] = 0;
+            timeByQueryType[i] = 0.0;
+        }
     }
 
     // ---------------------------------------------------------------------------------------------
