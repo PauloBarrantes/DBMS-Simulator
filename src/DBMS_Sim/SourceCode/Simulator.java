@@ -160,7 +160,7 @@ public class Simulator {
                     }
                     break;
                 case ArriveToQueryProcessingModule:
-                    queryTimeOut =  queryProcessingModule.processArrival(actualEvent, tableOfEvents, EventType.LexicalValidation);
+                    queryTimeOut =  queryProcessingModule.processArrival(actualEvent, tableOfEvents);
                     System.out.println("Procesando la consulta");
                     if(queryTimeOut){
                         clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());

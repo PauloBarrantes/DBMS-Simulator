@@ -82,28 +82,6 @@ public class Module {
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents,EventType nextType){
-        boolean removedQuery = timedOut(event.getTime(),event.getQuery());
-        if(!removedQuery) {
-            Query query = event.getQuery();
-            query.setModuleEntryTime(event.getTime());
-            countNewQuery(query);
-
-            if(occupiedFields < maxFields){
-                ++occupiedFields;
-                event.setType(nextType);
-
-                tableOfEvents.add(event);
-                System.out.println("Arrival event");
-                System.out.println(event.toString());
-            }else{
-                System.out.println("Adding query to queue");
-                queriesInLine.add(query);
-            }
-        }
-
-        return removedQuery;
-    }
 
     /**
      * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
