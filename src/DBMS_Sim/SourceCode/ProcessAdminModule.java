@@ -1,5 +1,6 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
@@ -70,11 +71,16 @@ public class ProcessAdminModule extends Module {
      */
 
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
+        ArrayList<Query> queriesToRemove = new ArrayList<Query>();
         for(Query query : queriesInLine){
             if(timedOut (clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
-                queriesInLine.remove(query);
+                queriesToRemove.add(query);
             }
+        }
+
+        for (Query query: queriesToRemove){
+            queriesInLine.remove(query);
         }
     }
 
