@@ -46,30 +46,6 @@ public abstract class Module {
 
 
 
-    // ---------------------------------------------------------------------------------------------
-    // ----------------------- Beginning of the setters and getters section -----------------------
-    // ---------------------------------------------------------------------------------------------
-
-    public void setMaxFields(int maxFields) { this.maxFields = maxFields; }
-    public void setOccupiedFields(int occupiedFields) { this.occupiedFields = occupiedFields; }
-    public void setQueriesInLine(Queue<Query> queriesInLine) { this.queriesInLine = queriesInLine; }
-    public void setTimeByQueryType(double[] timeByQueryType) { this.timeByQueryType = timeByQueryType; }
-    public void setTimeout(double timeout) { this.timeout = timeout; }
-    public void setTotalConnectionsByQueryType(int[] totalConnectionsByQueryType) { this.totalConnectionsByQueryType = totalConnectionsByQueryType; }
-
-    public int getMaxFields() { return maxFields; }
-    public int getOccupiedFields() { return occupiedFields; }
-    public Queue<Query> getQueriesInLine() { return queriesInLine; }
-    public double getTimeout() { return timeout; }
-    public double[] getTimeByQueryType() { return timeByQueryType; }
-    public int[] getTotalConnectionsByQueryType() { return totalConnectionsByQueryType; }
-
-
-
-    // ---------------------------------------------------------------------------------------------
-    // -------------------------- End of the setters and getters section --------------------------
-    // ---------------------------------------------------------------------------------------------
-
 
 
     // ---------------------------------------------------------------------------------------------
@@ -84,7 +60,7 @@ public abstract class Module {
      * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
      */
     public void resetVariables(){
-        setOccupiedFields(0);
+        this.occupiedFields= 0;
         queriesInLine.clear();
 
         for(int i = 0; i < StatementType.NUMSTATEMENTS; ++i){
