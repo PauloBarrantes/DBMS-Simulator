@@ -86,10 +86,12 @@ public class ClientAdminModule extends Module{
     }
 
     public void timedOutConnection(double clock, Query query){
+
+        System.out.println("CONEXION TIMEOUT");
         --occupiedFields;
-        ++discardedConnections;
-        cantidadConsultasTerminadasoFinalizadas++;
-        acumuladoDeTiempoDeConsultasQueSalenDelSistema += (clock - query.getSubmissionTime());
+
+         cantidadConsultasTerminadasoFinalizadas++;
+         acumuladoDeTiempoDeConsultasQueSalenDelSistema += (clock - query.getSubmissionTime());
     }
 
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {

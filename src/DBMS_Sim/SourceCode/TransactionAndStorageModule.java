@@ -134,7 +134,6 @@ public class TransactionAndStorageModule extends Module{
         }
 
         for (Query query: queriesToRemove){
-
             queriesInLine.remove(query);
         }
     }
