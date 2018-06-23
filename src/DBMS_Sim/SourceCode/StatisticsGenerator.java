@@ -10,40 +10,72 @@ package DBMS_Sim.SourceCode;
  * @author  Fabián Álvarez
  */
 public class StatisticsGenerator {
+    private ModuleType moduleTypes;
+    private StatementType statementType;
     private int amountOfDoneSimulations;
 
     private int acumulatedDiscardedConnections;
-    private int acumulatedAverageModuleQueueLength;
-    private int acumulatedAverageQueriesWaitTimeInModule;
-    private int acumulatedAverageConnectionTime;
+    private double[] acumulatedModuleQueueLength;
+    private double[][] acumulatedQueriesWaitTimeInModule;
+    private double acumulatedConnectionTime;
 
-    private int discardedConnections;
-    private int moduleQueueLength;
-    private int queriesWaitedTmeInModule;
-    private int connectionTime;
-
-    public StatisticsGenerator() { }
-
-    /*
-    public void addDiscardedConnection(int discardedConnections){
-
+    public StatisticsGenerator() {
+        acumulatedDiscardedConnections = 0;
+        acumulatedModuleQueueLength = new double[moduleTypes.NUMMODULETYPES];
+        acumulatedQueriesWaitTimeInModule = new double[moduleTypes.NUMMODULETYPES][statementType.NUMSTATEMENTS];
+        acumulatedConnectionTime = 0.0;
     }
 
-    public void increaseDoneSimulations(){
-
+    public double averageConnectionTime(int finishedQueriesCounter, double accumulatedFinishedQueryTimes){
+        acumulatedConnectionTime += finishedQueriesCounter/accumulatedFinishedQueryTimes;
+        return finishedQueriesCounter/accumulatedFinishedQueryTimes;
     }
 
-    public void obtainQueueLengthAverage(int  [] queueLengths, int callsToModules){
-
+    public double queueLengthAverage(int acumulatedQueueLength, int callsToQueueLength, int moduleType){
+        acumulatedModuleQueueLength[moduleType] += acumulatedQueueLength/callsToQueueLength;
+        return acumulatedQueueLength/callsToQueueLength;
     }
 
-    public void obtainAverageWaitTime(int[] amountOfQueries, int[] queryTimes, int module){
+    public double[] averagePassedTimeByStatementInModule(int[] totalConnectionsByQueryType, double[] timeByQueryType, int moduleType){
+        double[] averagePassedTime = new double[statementType.NUMSTATEMENTS];
 
+        for(int i = 0; i < statementType.NUMSTATEMENTS; ++i){
+            averagePassedTime[i] = timeByQueryType[i]/totalConnectionsByQueryType[i];
+        }
+        acumulatedQueriesWaitTimeInModule[moduleType] = averagePassedTime;
+        return averagePassedTime;
     }
 
-    public void obtainAverageConnectionTime(double time, int amountOfQueries){
-        double averageConnecctionTime = time/ (double) amountOfQueries;
+    public void addDiscardedConnections(int discardedConnections){
+        acumulatedDiscardedConnections += discardedConnections;
     }
-*/
 
+    public void increaseDonSimulations(){
+        ++amountOfDoneSimulations;
+    }
+
+    public double getdAverageConnectionTime() {
+        return acumulatedConnectionTime/amountOfDoneSimulations;
+    }
+
+    public double[] getAverageModuleQueueLength(){
+        double[] average = new double[moduleTypes.NUMMODULETYPES];
+        for(int i = 0; i < moduleTypes.NUMMODULETYPES; ++i){
+            average[i] = acumulatedModuleQueueLength[i]/amountOfDoneSimulations;
+        }
+        return average;
+    }
+
+    public double[][] getAverageQueriesWaitedTimeInModule(){
+        double[][] average = new double[moduleTypes.NUMMODULETYPES][statementType.NUMSTATEMENTS];
+        for(int f = 0; f < moduleTypes.NUMMODULETYPES; ++f){
+            for(int c = 0; c < statementType.NUMSTATEMENTS; ++c){
+                average[f][c] = acumulatedQueriesWaitTimeInModule[f][c]/amountOfDoneSimulations;
+            }
+        }
+
+        return average;
+    }
+
+    public int getAcumulatedDiscardedConnections() { return acumulatedDiscardedConnections; }
 }
