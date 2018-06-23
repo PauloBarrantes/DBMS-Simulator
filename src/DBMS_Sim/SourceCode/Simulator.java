@@ -288,7 +288,11 @@ public class Simulator {
 
     public double[] iterateSimulation(){
         Event actualEvent =  tableOfEvents.poll();
-
+        processAdminModule.checkQueue(actualEvent.getTime(),clientAdminModule);
+        queryProcessingModule.checkQueue(actualEvent.getTime(),clientAdminModule);
+        transactionAndStorageModule.checkQueue(actualEvent.getTime(), clientAdminModule);
+        executionModule.checkQueue(actualEvent.getTime(), clientAdminModule);
+        
         switch (actualEvent.getType()) {
             case ArriveClientToModule:
                 clientAdminModule.processArrival(actualEvent,tableOfEvents);
