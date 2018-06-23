@@ -7,7 +7,7 @@ public class ClientAdminModule extends Module{
     private QueryGenerator queryGenerator;
     private int cantidadConsultasTerminadasoFinalizadas;
     private double acumuladoDeTiempoDeConsultasQueSalenDelSistema;
-    private int quantityOfArrivals;
+    private int numberOfArrivalToTheSystem;
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
@@ -18,7 +18,7 @@ public class ClientAdminModule extends Module{
         queryGenerator = new QueryGenerator();
         cantidadConsultasTerminadasoFinalizadas = 0;
         acumuladoDeTiempoDeConsultasQueSalenDelSistema = 0;
-        quantityOfArrivals = 0;
+        numberOfArrivalToTheSystem = 0;
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -70,13 +70,13 @@ public class ClientAdminModule extends Module{
         }else{
             discardedConnections++;
         }
-
+        numberOfArrivalToTheSystem++;
         //Generar una llegada
 
         Query query = queryGenerator.generate(event.getTime());
         Event arrive = new Event(EventType.ArriveClientToModule,query.getSubmissionTime(), query);
         tableOfEvents.add(arrive);
-        quantityOfArrivals++;
+
         System.out.println("Sale del Client Admin hacia el process");
     }
 
@@ -108,8 +108,6 @@ public class ClientAdminModule extends Module{
             event.setTime(event.getTime() + event.getQuery().getLoadedBlocks());
             event.setType(EventType.ExitClientModule);
             tableOfEvents.add(event);
-        }else{
-            //++discardedConnections;
         }
 
         return timedOut;

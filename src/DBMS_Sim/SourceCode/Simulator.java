@@ -174,7 +174,7 @@ public class Simulator {
                     System.out.println("Transaction");
                     break;
                 case ArriveToExecutionModule:
-                    queryTimeOut = executionModule.processArrival(actualEvent, tableOfEvents, EventType.ExecuteQuery);
+                    queryTimeOut = executionModule.processArrival(actualEvent, tableOfEvents);
                     if(queryTimeOut){
                         clientAdminModule.timedOutConnection(actualEvent.getTime(), actualEvent.getQuery());
                     }
@@ -267,8 +267,6 @@ public class Simulator {
                 System.out.println(retorno[i]+"  ");
             }
         }
-        System.out.println("gg");
-        StatisticsGenerator statistics = new StatisticsGenerator();
 
     }
 
@@ -286,7 +284,7 @@ public class Simulator {
                 System.out.println("Creando Proceso");
                 break;
             case ArriveToQueryProcessingModule:
-                queryProcessingModule.processArrival(actualEvent, tableOfEvents, EventType.LexicalValidation);
+                queryProcessingModule.processArrival(actualEvent, tableOfEvents);
                 System.out.println("Procesando la consulta");
 
                 break;
@@ -296,7 +294,7 @@ public class Simulator {
                 System.out.println("Transaction");
                 break;
             case ArriveToExecutionModule:
-                executionModule.processArrival(actualEvent, tableOfEvents, EventType.ExecuteQuery);
+                executionModule.processArrival(actualEvent, tableOfEvents);
                 System.out.println("Execution");
                 break;
             case ShowResult:

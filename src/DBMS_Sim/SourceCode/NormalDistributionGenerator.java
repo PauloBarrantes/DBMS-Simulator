@@ -41,12 +41,12 @@ public class NormalDistributionGenerator implements RandomVariableGenerator{
 
         return  mean + standardDeviation * zeta;
     }
-    /*
+
     public static void main(String[] args) {
-        NormalDistributionGenerator distribution = new NormalDistributionGenerator(3,0.10);
-        System.out.println(distribution.generate());
-        System.out.println(distribution.generate());
-        System.out.println(distribution.generate());
+        NormalDistributionGenerator distribution = new NormalDistributionGenerator(1, 0.01);
+        for (int i = 0; i < 1000; i++) {
+            System.out.println(distribution.generate());
+        }
     }
-    */
+
 }

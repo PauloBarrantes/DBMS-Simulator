@@ -32,7 +32,8 @@ public class ProcessAdminModule extends Module {
             if (occupiedFields == 0) {
                 occupiedFields++;
                 event.setType(EventType.ExitProcessAdminModule);
-                event.setTime(event.getTime() + distribution.generate());
+                double gg = distribution.generate();
+                event.setTime(event.getTime() + gg);
                 tableOfEvents.add(event);
             } else {
                 queriesInLine.add(event.getQuery());

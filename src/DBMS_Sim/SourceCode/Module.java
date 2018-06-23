@@ -14,13 +14,16 @@ import java.util.Queue;
  * @author  André Flasterstein
  * @author  Fabián Álvarez
  */
-public class Module {
+public abstract class Module {
+    //Maximum number of queries that we can execute at the same time
     protected int maxFields;
+    //number of queries we are attending
     protected int occupiedFields;
     protected Queue<Query> queriesInLine;
-    protected StatementType statementType;
-    protected double[] timeByQueryType;
+    //maximum time of a connection in the system
     protected double timeout;
+    //Statistical Variables
+    protected double[] timeByQueryType;
     protected int[] totalConnectionsByQueryType;
 
 
@@ -29,12 +32,12 @@ public class Module {
     // ---------------------------------------------------------------------------------------------
 
     public Module(int maxFields, int occupiedFields, Queue<Query> queriesInLine,double timeout){
-        setMaxFields(maxFields);
-        setOccupiedFields(occupiedFields);
-        setQueriesInLine(queriesInLine);
-        setTimeByQueryType(new double[statementType.NUMSTATEMENTS]);
-        setTimeout(timeout);
-        setTotalConnectionsByQueryType(new int[statementType.NUMSTATEMENTS]);
+        this.maxFields = maxFields;
+        this.occupiedFields = occupiedFields;
+        this.queriesInLine = queriesInLine;
+        this.timeout = timeout;
+        this.timeByQueryType = new double[StatementType.NUMSTATEMENTS];
+        this.totalConnectionsByQueryType = new int[StatementType.NUMSTATEMENTS];
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -61,16 +64,7 @@ public class Module {
     public double[] getTimeByQueryType() { return timeByQueryType; }
     public int[] getTotalConnectionsByQueryType() { return totalConnectionsByQueryType; }
 
-    public String toString(){
-        String string = "Query processing module's information:\n\t-Number of queries:\n\t\tSELECT->" +
-                totalConnectionsByQueryType[statementType.SELECT] + "\n\t\tUPDATE->" + totalConnectionsByQueryType[statementType.UPDATE] +
-                "\n\t\tJOIN->" + totalConnectionsByQueryType[statementType.JOIN] + "\n\t\tDDL->" +
-                totalConnectionsByQueryType[statementType.DDL] + "\n-Stayed time by query type:\n\t\tSELECT->" +
-                timeByQueryType[statementType.SELECT] + "\n\t\tUPDATE->" + timeByQueryType[statementType.UPDATE] +
-                "\n\t\tJOIN->" + timeByQueryType[statementType.JOIN] + "\n\t\tDDL->" +
-                timeByQueryType[statementType.DDL];
-        return string;
-    }
+
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------
@@ -81,7 +75,10 @@ public class Module {
     // ---------------------------------------------------------------------------------------------
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
-
+    public abstract void resetVariables1();
+    public abstract boolean processArrival();
+    public abstract boolean processDeparture();
+    public abstract void checkQueue(double clock, ClientAdminModule clientAdminModule);
 
     /**
      * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
@@ -90,14 +87,14 @@ public class Module {
         setOccupiedFields(0);
         queriesInLine.clear();
 
-        for(int i = 0; i < statementType.NUMSTATEMENTS; ++i){
+        for(int i = 0; i < StatementType.NUMSTATEMENTS; ++i){
             totalConnectionsByQueryType[i] = 0;
             timeByQueryType[i] = 0.0;
         }
     }
 
     /**
-     * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
+     * @function: get the queue Length
      */
     public int queueLength(){
        return queriesInLine.size();
@@ -107,18 +104,16 @@ public class Module {
      * @param clock, current clock time.
      * @function checks if any query in the queue needs to be removed.
      */
+/*
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
-        Iterator<Query> iterator = queriesInLine.iterator();
-        Query query;
-        while(iterator.hasNext()){
-            query = iterator.next();
+        for(Query query : queriesInLine){
             if(timedOut (clock,query)){
                 clientAdminModule.timedOutConnection(clock, query);
                 queriesInLine.remove(query);
             }
         }
     }
-
+    */
 
     /**
      * @param clock, current clock time.
@@ -142,8 +137,7 @@ public class Module {
      * that type of query.
      */
     protected void countNewQuery(Query query){
-//        System.out.println("Counting query");
-//        System.out.println(query.toString());
+
         if(query.getStatementType() == StatementType.SELECT){
             ++totalConnectionsByQueryType[StatementType.SELECT];
         }else{

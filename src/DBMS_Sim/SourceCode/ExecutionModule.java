@@ -29,6 +29,29 @@ public class ExecutionModule extends Module{
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
      * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
+
+    public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
+        boolean timedOut = timedOut(event.getTime(),event.getQuery());
+
+        if(!timedOut) {
+            if (occupiedFields < maxFields) {
+                occupiedFields++;
+                event.setType(EventType.ExecuteQuery);
+                event.setTime(event.getTime());
+                tableOfEvents.add(event);
+            } else {
+                queriesInLine.add(event.getQuery());
+            }
+        }
+        return timedOut;
+    }
+
+    /**
+     * @param event, object that contains the information needed to execute each of the event types.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed, so other modules can also update their stats.
+     * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
+     */
     public boolean executeQuery(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 

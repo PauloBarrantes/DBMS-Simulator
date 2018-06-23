@@ -165,10 +165,6 @@ public class Controller implements Initializable {
 
 
     }
-    private void runASimulation(){
-
-    }
-
 
     /**
      *  Valida todos los text fields de la ventana de inicio, se asegura que haya algo y que sean números.
@@ -243,9 +239,7 @@ public class Controller implements Initializable {
 
     }
     @Override
-    public void initialize(URL arg1, ResourceBundle arg2){
-
-    }
+    public void initialize(URL arg1, ResourceBundle arg2){}
 
 }
 
