@@ -166,7 +166,6 @@ public class TransactionAndStorageModule extends Module{
                 beingProcessed.setLoadedBlocks(blocksLoaded);
                 break;
             default:
-                System.out.println("Unknown Statement Type");
                 break;
         }
 
