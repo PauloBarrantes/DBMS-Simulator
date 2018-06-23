@@ -41,9 +41,8 @@ public class ClientAdminModule extends Module{
         return discardedConnections;
     }
     public QueryGenerator getQueryGenerator() { return queryGenerator;}
-
-
-
+    public int getFinishedQueriesCounter() { return finishedQueriesCounter; }
+    public double getAccumulatedFinishedQueryTimes() { return accumulatedFinishedQueryTimes; }
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------- End of the setters and getters section --------------------------

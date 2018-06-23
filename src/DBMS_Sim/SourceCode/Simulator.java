@@ -14,7 +14,8 @@ import java.util.PriorityQueue;
  * @author  Fabián Álvarez
  */
 public class Simulator {
-    public final static int NUMSTATEMENTS = 4;
+    private ModuleType moduleTypes;
+    private StatementType statementType;
 
     private ClientAdminModule clientAdminModule;
     private double clock;
@@ -54,7 +55,6 @@ public class Simulator {
         executionModule = new ExecutionModule(m,t);
         queryGenerator = new QueryGenerator();
     }
-
 
     // ---------------------------------------------------------------------------------------------
     // ------------------------------ End of the constructors section ------------------------------
@@ -243,13 +243,15 @@ public class Simulator {
             clock = tableOfEvents.peek().getTime();
             double retorno [] = new double[7];
             retorno[0] = clock;
+
+            /* COMENTADO OJO QUE COMENTE ESTO PAR QUE NO SE ASUSTEN
             retorno[1] = (double) clientAdminModule.queueLength();
             retorno[2] = (double) processAdminModule.queueLength();
             retorno[3] = (double) queryProcessingModule.queueLength();
             retorno[4] = (double) transactionAndStorageModule.queueLength();
             retorno[5] = (double) executionModule.queueLength();
             retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
-
+            */
 
             for (int i = 0; i < 7; i++){
                 System.out.println(retorno[i]+"  ");
@@ -401,14 +403,45 @@ public class Simulator {
 
         double retorno [] = new double[7];
         retorno[0] = clock;
+
+        /* IGUAL CON ESTE LO COMOENTE PARA WUE NO DE ERROR EN LO QUE ESTOY HACIENDO NADA MAS
         retorno[1] = (double) clientAdminModule.queueLength();
         retorno[2] = (double) processAdminModule.queueLength();
         retorno[3] = (double) queryProcessingModule.queueLength();
         retorno[4] = (double) transactionAndStorageModule.queueLength();
         retorno[5] = (double) executionModule.queueLength();
         retorno[6] = (double) clientAdminModule.getDiscardedConnections() ;
+        */
 
         return retorno;
+    }
+
+    public SimulationStatistics getSimulationStatistics(){
+        SimulationStatistics simulationStatistics = new SimulationStatistics();
+
+        simulationStatistics.setAcumulatedDiscardedConnections(clientAdminModule.getDiscardedConnections());
+        statisticsGenerator.addDiscardedConnections(simulationStatistics.getAcumulatedDiscardedConnections());
+
+        double[] acumulatedModuleQueueLength = new double[moduleTypes.NUMMODULETYPES];
+        acumulatedModuleQueueLength[moduleTypes.CLIENTADMIN] = 0;
+        acumulatedModuleQueueLength[moduleTypes.PROCESSADMIN] = statisticsGenerator.queueLengthAverage(processAdminModule.getAcumulatedQueueLength(),processAdminModule.getCallsToQueueLength(),moduleTypes.PROCESSADMIN);
+        acumulatedModuleQueueLength[moduleTypes.QUERYPROCESSING] = statisticsGenerator.queueLengthAverage(queryProcessingModule.getAcumulatedQueueLength(),queryProcessingModule.getCallsToQueueLength(),moduleTypes.QUERYPROCESSING);
+        acumulatedModuleQueueLength[moduleTypes.TRANSACTIONANDSTORAGE] = statisticsGenerator.queueLengthAverage(transactionAndStorageModule.getAcumulatedQueueLength(),transactionAndStorageModule.getCallsToQueueLength(),moduleTypes.TRANSACTIONANDSTORAGE);
+        acumulatedModuleQueueLength[moduleTypes.EXECUTION] = statisticsGenerator.queueLengthAverage(executionModule.getAcumulatedQueueLength(),executionModule.getCallsToQueueLength(),moduleTypes.EXECUTION);
+        simulationStatistics.setAcumulatedModuleQueueLength(acumulatedModuleQueueLength);
+
+        double[][] acumulatedQueriesWaitTimeInModule = new double[moduleTypes.NUMMODULETYPES][statementType.NUMSTATEMENTS];
+        acumulatedQueriesWaitTimeInModule[moduleTypes.CLIENTADMIN] = statisticsGenerator.averagePassedTimeByStatementInModule(clientAdminModule.getTotalConnectionsByQueryType(),clientAdminModule.getTimeByQueryType(),moduleTypes.CLIENTADMIN);
+        acumulatedQueriesWaitTimeInModule[moduleTypes.PROCESSADMIN] = statisticsGenerator.averagePassedTimeByStatementInModule(processAdminModule.getTotalConnectionsByQueryType(),processAdminModule.getTimeByQueryType(),moduleTypes.PROCESSADMIN);
+        acumulatedQueriesWaitTimeInModule[moduleTypes.QUERYPROCESSING] = statisticsGenerator.averagePassedTimeByStatementInModule(queryProcessingModule.getTotalConnectionsByQueryType(),queryProcessingModule.getTimeByQueryType(),moduleTypes.QUERYPROCESSING);
+        acumulatedQueriesWaitTimeInModule[moduleTypes.TRANSACTIONANDSTORAGE] = statisticsGenerator.averagePassedTimeByStatementInModule(transactionAndStorageModule.getTotalConnectionsByQueryType(),transactionAndStorageModule.getTimeByQueryType(),moduleTypes.TRANSACTIONANDSTORAGE);
+        acumulatedQueriesWaitTimeInModule[moduleTypes.EXECUTION] = statisticsGenerator.averagePassedTimeByStatementInModule(executionModule.getTotalConnectionsByQueryType(),executionModule.getTimeByQueryType(),moduleTypes.EXECUTION);
+        simulationStatistics.setAcumulatedQueriesWaitTimeInModule(acumulatedQueriesWaitTimeInModule);
+
+        simulationStatistics.setAcumulatedConnectionTime(statisticsGenerator.averageConnectionTime(clientAdminModule.getFinishedQueriesCounter(),clientAdminModule.getAccumulatedFinishedQueryTimes()));
+
+        statisticsGenerator.increaseDonSimulations();
+        return simulationStatistics;
     }
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
