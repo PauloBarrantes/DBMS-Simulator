@@ -4,10 +4,7 @@ package DBMS_Sim.SourceCode;
 import java.util.Random;
 
 /**
- * Esta clase consiste en el cuerpo de la simulación del
- * DBMS, donde simulamos el paso de las consultas por todos los módulos.
- * Guardando los datos estadísticos para generar mejores resultados a la hora
- * de optimizar el sistema.
+ * Generate queries with the given distribution in the simulation description
  *
  * @author  Paulo Barrantes
  * @author  André Flasterstein
@@ -59,7 +56,7 @@ public class QueryGenerator {
     /**
      * @param clock, current clock time.
      * @return the new query that is generated
-     * @function generates queries randomly.
+     * Generates queries randomly.
      */
     public Query generate(double clock){
         int newStatementType = StatementType.SELECT;
@@ -84,7 +81,6 @@ public class QueryGenerator {
             }
         }
 
-
         Query query = new Query(readOnly,newStatementType,submissionTime);
         return query;
     }
@@ -92,8 +88,5 @@ public class QueryGenerator {
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
-
-
-
 
 }

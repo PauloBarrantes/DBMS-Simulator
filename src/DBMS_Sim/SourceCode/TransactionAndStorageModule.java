@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+/**
+ * This class simulates the Transaction and Storage Module, transaction executions are coordinated in this module and
+ * it's also in charge of loading data from disk.
+ *
+ * @author  Paulo Barrantes
+ * @author  André Flasterstein
+ * @author  Fabián Álvarez
+ */
 
 
 public class TransactionAndStorageModule extends Module{
@@ -63,7 +71,7 @@ public class TransactionAndStorageModule extends Module{
      * @param event, object that contains the information and the object needed to execute each of the simulation events.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
-     * @function Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
+     * Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
      */
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -112,7 +120,7 @@ public class TransactionAndStorageModule extends Module{
      * @param event, object that contains the information and the object needed to execute each of the simulation events.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
-     * @function Creates an arrival event for next module if query hasn't timed out and if there's someone in line, creates en exit event from this module.
+     * Creates an arrival event for next module if query hasn't timed out and if there's someone in line, creates en exit event from this module.
      * If not, decrements occupiedFields. Calls another method for statistic purposes.
      */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
@@ -142,7 +150,7 @@ public class TransactionAndStorageModule extends Module{
     /**
      * @param clock, current clock time.
      * @param clientAdminModule, module where timeouts will be handled.
-     * @function checks if a query in queue has timed out, if so, removes this query from queue and updates statistic variables.
+     * Checks if a query in queue has timed out, if so, removes this query from queue and updates statistic variables.
      */
     @Override
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
@@ -162,7 +170,7 @@ public class TransactionAndStorageModule extends Module{
     /**
      * @param beingProcessed, query that is currently being processed.
      * @return  The duration of the query being processed within this module.
-     * @function Defines how long will this query last being attended and how many blocks are loaded from disk.
+     * Defines how long will this query last being attended and how many blocks are loaded from disk.
      */
     private double calculateDuration(Query beingProcessed){
         double duration = maxFields * 0.03;

@@ -5,10 +5,8 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 /**
- * Esta clase consiste en el cuerpo de la simulación del
- * DBMS, donde simulamos el paso de las consultas por todos los módulos.
- * Guardando los datos estadísticos para generar mejores resultados a la hora
- * de optimizar el sistema.
+ * This class consists in a parent class that contains some abstract methods and implementations that are used in all of
+ * our modules.
  *
  * @author  Paulo Barrantes
  * @author  André Flasterstein
@@ -72,7 +70,7 @@ public abstract class Module {
 
 
     /**
-     * @function: ...
+     * Asks for queueLength and adds it to an attribute for further statistics calculations.
      */
     public void queueLength(){
         ++callsToQueueLength;
@@ -80,7 +78,7 @@ public abstract class Module {
     }
 
     /**
-     * @function: get the queue size
+     * Get the queue size
      */
     public int queueSize(){
        return queriesInLine.size();
@@ -90,7 +88,7 @@ public abstract class Module {
      * @param clock, current clock time.
      * @param query, query that we wanna try to remove.
      * @return boolean that becomes true if the query was removed successfully.
-     * @function checks if the query overstayed in the System, if so it removes it.
+     * Checks if the query overstayed in the System, if so it removes it.
      */
     protected boolean timedOut(double clock, Query query){
         boolean success = false;
@@ -102,7 +100,7 @@ public abstract class Module {
 
     /**
      * @param query, the query that arrived to the Module.
-     * @function check the type of the query, and depending on which is it, increase the amount of
+     * Check the type of the query, and depending on which is it, increase the amount of
      * that type of query.
      */
     protected void countNewQuery(Query query){
@@ -129,7 +127,7 @@ public abstract class Module {
     /**
      * @param clock, current clock time.
      * @param query, the query that is leaving the Module.
-     * @function check the type of the query, and depending on which is it, increase the amount of
+     * Check the type of the query, and depending on which is it, increase the amount of
      * that type of query is staying in the Module.
      */
     protected void addDurationInModule(double clock, Query query){
@@ -169,7 +167,7 @@ public abstract class Module {
     }
 
     /**
-     * @function: resets the attributes of the module. Necessary if  new simulation wants to be done.
+     * Resets the attributes of the module. Necessary if  new simulation wants to be done.
      */
 
     public void resetVariables(){
