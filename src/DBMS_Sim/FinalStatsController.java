@@ -1,6 +1,7 @@
 
 package DBMS_Sim;
 
+        import DBMS_Sim.SourceCode.SimulationStatistics;
         import com.jfoenix.controls.JFXButton;
         import javafx.collections.FXCollections;
         import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ package DBMS_Sim;
         import javafx.fxml.FXML;
         import javafx.fxml.Initializable;
         import javafx.scene.chart.PieChart;
+        import javafx.scene.control.Label;
         import javafx.scene.layout.Pane;
         import javafx.scene.paint.Color;
 
@@ -41,6 +43,8 @@ public class FinalStatsController implements Initializable {
     private JFXButton btnTransaction;
     @FXML
     private JFXButton btnExecution;
+
+    //------------------Statistical Variables --------------------
     @FXML
     private PieChart pcClientAdmin;
     @FXML
@@ -51,7 +55,76 @@ public class FinalStatsController implements Initializable {
     private PieChart pcQueryModule;
     @FXML
     private PieChart pcProcessAdmin;
+    //-- General
+    @FXML
+    private Label lblgenerallifetime;
+    @FXML
+    private Label lblgeneralDiscarded;
+    @FXML
+    private Label lblTimeOut;
 
+
+    //-- Client Admin
+
+    @FXML
+    private Label lbl1DDL;
+    @FXML
+    private Label lbl1SELECT;
+    @FXML
+    private Label lbl1JOIN;
+    @FXML
+    private Label lbl1UPDATE;
+
+
+    //-- Process Admin
+
+    @FXML
+    private Label lbl2DDL;
+    @FXML
+    private Label lbl2SELECT;
+    @FXML
+    private Label lbl2JOIN;
+    @FXML
+    private Label lbl2UPDATE;
+    @FXML
+    private Label lbl2QUEUE;
+
+    //-- Query Module
+    @FXML
+    private Label lbl3DDL;
+    @FXML
+    private Label lbl3SELECT;
+    @FXML
+    private Label lbl3JOIN;
+    @FXML
+    private Label lbl3UPDATE;
+    @FXML
+    private Label lbl3QUEUE;
+
+    //-- Execution Module
+    @FXML
+    private Label lbl4DDL;
+    @FXML
+    private Label lbl4SELECT;
+    @FXML
+    private Label lbl4JOIN;
+    @FXML
+    private Label lbl4UPDATE;
+    @FXML
+    private Label lbl4QUEUE;
+
+
+    //-- Transaction Module
+    @FXML
+    private Label lbl5DDL;
+    @FXML
+    private Label lbl5SELECT;
+    @FXML
+    private Label lbl5JOIN;
+    @FXML
+    private Label lbl5UPDATE;
+    @FXML
+    private Label lbl5QUEUE;
 
     @FXML
     private ApplicationController appController;
@@ -142,20 +215,138 @@ public class FinalStatsController implements Initializable {
     public void setAppController(ApplicationController applicationController){
         this.appController = applicationController;
     }
-    public void fillScreen(){
+    public void fillScreen(SimulationStatistics statistics){
         //General Pane
+        String formattedDouble = String.format("%.02f", statistics.getAcumulatedConnectionTime());
 
+        lblgenerallifetime.setText(formattedDouble);
+        lblgeneralDiscarded.setText(""+statistics.getAcumulatedDiscardedConnections());
+        lblTimeOut.setText(""+ statistics.getTimeoutConnections());
 
         //Client Admin Pane
+        double ddl, select, join, update;
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[0][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[0][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[0][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[0][3];
 
+        formattedDouble = String.format("%.02f", ddl);
+        lbl1DDL.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", select);
+        lbl1SELECT.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", join);
+        lbl1JOIN.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", update);
+        lbl1UPDATE.setText(formattedDouble);
+        ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcClientAdmin.setData(piechartData);
 
         //Process Admin Pane
 
-        //Query Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[1][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[1][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[1][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[1][3];
 
+        double queue = statistics.getAcumulatedModuleQueueLength()[1];
+        formattedDouble = String.format("%.02f", ddl);
+        lbl2DDL.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", select);
+        lbl2SELECT.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", join);
+        lbl2JOIN.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", update);
+        lbl2UPDATE.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", queue);
+
+        lbl2QUEUE.setText(formattedDouble);
+
+        piechartData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcProcessAdmin.setData(piechartData);
+
+        //Query Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[2][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[2][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[2][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[2][3];
+
+        queue = statistics.getAcumulatedModuleQueueLength()[2];
+        formattedDouble = String.format("%.02f", ddl);
+        lbl3DDL.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", select);
+        lbl3SELECT.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", join);
+        lbl3JOIN.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", update);
+        lbl3UPDATE.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", queue);
+
+        lbl3QUEUE.setText(formattedDouble);
+
+        piechartData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcQueryModule.setData(piechartData);
 
         //Transaction Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[3][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[3][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[3][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[3][3];
 
+        queue = statistics.getAcumulatedModuleQueueLength()[3];
+        formattedDouble = String.format("%.02f", ddl);
+        lbl4DDL.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", select);
+        lbl4SELECT.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", join);
+        lbl4JOIN.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", update);
+        lbl4UPDATE.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", queue);
+
+        lbl4QUEUE.setText(formattedDouble);
+
+        piechartData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcTransaction.setData(piechartData);
         //Execution Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[4][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[4][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[4][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[4][3];
+
+        queue = statistics.getAcumulatedModuleQueueLength()[4];
+        formattedDouble = String.format("%.02f", ddl);
+        lbl5DDL.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", select);
+        lbl5SELECT.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", join);
+        lbl5JOIN.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", update);
+        lbl5UPDATE.setText(formattedDouble);
+        formattedDouble = String.format("%.02f", queue);
+
+        lbl5QUEUE.setText(formattedDouble);
+
+        piechartData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcExecution.setData(piechartData);
     }
 }

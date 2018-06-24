@@ -190,7 +190,7 @@ public class StatisticController implements Initializable {
             finalStats.setAppController(appController);
 
             SimulationStatistics finalStatistics = appController.getSimulator().finalStatistics();
-            finalStats.fillScreen();
+            finalStats.fillScreen(finalStatistics);
         }
 
     }
@@ -290,7 +290,8 @@ public class StatisticController implements Initializable {
         lbl2JOIN.setText(formattedLifetime);
         formattedLifetime = String.format("%.02f", update);
         lbl2UPDATE.setText(formattedLifetime);
-        lbl2QUEUE.setText(""+ queue);
+        formattedLifetime = String.format("%.02f", queue);
+        lbl2QUEUE.setText(formattedLifetime);
 
         piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
@@ -314,7 +315,8 @@ public class StatisticController implements Initializable {
         lbl3JOIN.setText(formattedLifetime);
         formattedLifetime = String.format("%.02f", update);
         lbl3UPDATE.setText(formattedLifetime);
-        lbl3QUEUE.setText(""+ queue);
+        formattedLifetime = String.format("%.02f", queue);
+        lbl3QUEUE.setText(formattedLifetime);
 
         piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
@@ -338,7 +340,8 @@ public class StatisticController implements Initializable {
         lbl4JOIN.setText(formattedLifetime);
         formattedLifetime = String.format("%.02f", update);
         lbl4UPDATE.setText(formattedLifetime);
-        lbl4QUEUE.setText(""+ queue);
+        formattedLifetime = String.format("%.02f", queue);
+        lbl4QUEUE.setText(formattedLifetime);
 
         piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
@@ -361,7 +364,8 @@ public class StatisticController implements Initializable {
         lbl5JOIN.setText(formattedLifetime);
         formattedLifetime = String.format("%.02f", update);
         lbl5UPDATE.setText(formattedLifetime);
-        lbl5QUEUE.setText(""+ queue);
+        formattedLifetime = String.format("%.02f", queue);
+        lbl5QUEUE.setText(formattedLifetime);
 
         piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),

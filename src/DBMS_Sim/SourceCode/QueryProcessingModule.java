@@ -76,6 +76,7 @@ public class QueryProcessingModule extends Module{
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
         if(!timedOut) {
+            event.getQuery().setModuleEntryTime(event.getTime());
             if (occupiedFields < maxFields) {
                 occupiedFields++;
                 event.setType(EventType.LexicalValidation);
@@ -222,8 +223,8 @@ public class QueryProcessingModule extends Module{
         }
 
         //Statistics
-        addDurationInModule(event.getTime(),event.getQuery());
         countNewQuery(event.getQuery());
+        addDurationInModule(event.getTime(),event.getQuery());
 
         return timedOut;
     }
@@ -242,7 +243,6 @@ public class QueryProcessingModule extends Module{
         }
 
         for (Query query: queriesToRemove){
-
             queriesInLine.remove(query);
         }
     }

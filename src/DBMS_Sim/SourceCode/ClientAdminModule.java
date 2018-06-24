@@ -74,7 +74,7 @@ public class ClientAdminModule extends Module{
 
         if(occupiedFields < maxFields){
             //Generate a new arrival to next module
-
+            event.getQuery().setModuleEntryTime(event.getTime());
             event.setType(EventType.ArriveToProcessAdminModule);
             tableOfEvents.add(event);
             countNewQuery(event.getQuery());
@@ -133,7 +133,6 @@ public class ClientAdminModule extends Module{
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
         if(!timedOut){
-            event.getQuery().setModuleEntryTime(event.getTime());
             event.setTime(event.getTime() +( event.getQuery().getLoadedBlocks()));
             event.setType(EventType.ExitClientModule);
             tableOfEvents.add(event);

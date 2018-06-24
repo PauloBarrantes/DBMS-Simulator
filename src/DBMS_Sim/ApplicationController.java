@@ -91,7 +91,7 @@ public class ApplicationController implements Initializable {
 
             normalModeScene(event);
             if(!mode.isSelected()){
-                modeSim=0;
+                modeSim=1;
                 runASimulation(event);
             }else{
                 modeSim=1000;

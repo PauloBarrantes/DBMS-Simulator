@@ -44,6 +44,7 @@ public class ProcessAdminModule extends Module {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
         if(!timedOut) {
+            event.getQuery().setModuleEntryTime(event.getTime());
             if (occupiedFields == 0) {
                 occupiedFields++;
                 event.setType(EventType.ExitProcessAdminModule);

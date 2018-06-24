@@ -80,6 +80,7 @@ public class TransactionAndStorageModule extends Module{
             event.getQuery().setModuleEntryTime(event.getTime());
             //We ask if there's enough space to serve the event.
             if(occupiedFields < maxFields) {
+                event.getQuery().setModuleEntryTime(event.getTime());
                 //If no servers are occupied, proceed to be attended.
                 if(occupiedFields == 0) {
                     occupiedFields++;
