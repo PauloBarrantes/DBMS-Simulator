@@ -2,6 +2,15 @@ package DBMS_Sim.SourceCode;
 
 import java.util.PriorityQueue;
 
+/**
+ * This class simulates the Client Administration Module, simulates the arrival of new connections and manages them.
+ *
+ * @author  Paulo Barrantes
+ * @author  André Flasterstein
+ * @author  Fabián Álvarez
+ */
+
+
 public class ClientAdminModule extends Module{
     private int discardedConnections;
     private QueryGenerator queryGenerator;
@@ -54,6 +63,13 @@ public class ClientAdminModule extends Module{
     // ---------------------------------------------------------------------------------------------
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
+
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
+     */
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
 
         if(occupiedFields < maxFields){
@@ -77,7 +93,13 @@ public class ClientAdminModule extends Module{
         return false;
     }
 
-
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * Creates an arrival event for next module if query hasn't timed out and if there's someone in line, creates en exit event from this module.
+     * If not, decrements occupiedFields. Calls another method for statistic purposes.
+     */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         addDurationInModule(event.getTime(),event.getQuery());
         countNewQuery(event.getQuery());
@@ -88,6 +110,11 @@ public class ClientAdminModule extends Module{
         return false;
     }
 
+    /**
+     * @param clock, current simulation time.
+     * @param query, query that timed out.
+     * Modifies statistic variables after a connection timed out
+     */
     public void timedOutConnection(double clock, Query query){
 
         --occupiedFields;
@@ -98,6 +125,11 @@ public class ClientAdminModule extends Module{
 
     }
 
+    /**
+     * @param event, event that hold the query which results will be shown.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * Shows results before leaving module.
+     */
     public boolean showResult(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
         if(!timedOut){
@@ -108,14 +140,14 @@ public class ClientAdminModule extends Module{
         }
         countNewQuery(event.getQuery());
         addDurationInModule(event.getTime(),event.getQuery());
-        // No hace falta porque timedOutConnection va restar el occupiedField
+
         return timedOut;
     }
 
     @Override
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
-
     }
+
     @Override
     public void resetVariables(){
         super.resetVariables();
@@ -125,11 +157,6 @@ public class ClientAdminModule extends Module{
         discardedConnections = 0;
         timedOutConnections = 0;
     }
-
-
-
-
-
 
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------

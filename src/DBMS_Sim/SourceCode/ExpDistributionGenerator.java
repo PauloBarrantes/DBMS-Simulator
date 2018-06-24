@@ -34,16 +34,7 @@ public class ExpDistributionGenerator implements RandomVariableGenerator{
     @Override
     public double generate() {
         double numRandom = rnd.nextDouble();
-        //System.out.println(numRandom);
         return (-lambda)*Math.log(1-numRandom);
     }
-    /*
-    public static void main(String[] args) {
-        ExpDistributionGenerator distribution = new ExpDistributionGenerator(1.5);
-        System.out.println(distribution.generate());
-        System.out.println(distribution.generate());
-        System.out.println(distribution.generate());
-    }
-    */
 }
 

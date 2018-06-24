@@ -6,6 +6,14 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 
+/**
+ * This class simulates the Query Processing Module, where all kinds of validations are executed.
+ *
+ * @author  Paulo Barrantes
+ * @author  André Flasterstein
+ * @author  Fabián Álvarez
+ */
+
 public class QueryProcessingModule extends Module{
     private ExpDistributionGenerator permissionVerifyDistribution;
     private UniformDistributionGenerator semanticalDistribution;
@@ -58,6 +66,12 @@ public class QueryProcessingModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
+     */
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
@@ -80,7 +94,7 @@ public class QueryProcessingModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function if there is space validates the query that arrived and send it to the sintactical validation, else it is place on hold.
+     * If there is space validates the query that arrived and send it to the sintactical validation, else it is place on hold.
      */
     public boolean lexicalValidation(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -103,7 +117,7 @@ public class QueryProcessingModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function validates the query that arrived and send it to the semantic validation.
+     * Validates the query that arrived and send it to the semantic validation.
      */
     public boolean sintacticalValidation(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -125,7 +139,7 @@ public class QueryProcessingModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function validates the query that arrived and send it to be verified.
+     * Validates the query that arrived and send it to be verified.
      */
     public boolean semanticValidation(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -148,7 +162,7 @@ public class QueryProcessingModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function verify the query that arrived and send it to be optimized.
+     * Verify the query that arrived and send it to be optimized.
      */
     public boolean permissionVerification(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -171,7 +185,7 @@ public class QueryProcessingModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function optimize the query nd send it to the transaction module.
+     * Optimize the query nd send it to the transaction module.
      */
     public boolean queryOptimization(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -195,7 +209,7 @@ public class QueryProcessingModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function optimize the query nd send it to the transaction module.
+     * Optimizes the query and sends it to the transaction module.
      */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(), event.getQuery());
@@ -216,8 +230,7 @@ public class QueryProcessingModule extends Module{
     /**
      * @param clock, object that contains the information needed to execute each of the event types.
      * @param clientAdminModule, queue with a list of events to be executed.
-     * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function optimize the query nd send it to the transaction module.
+     * Checks if a query in queue need to be removed from queue due to a timeout.
      */
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
         ArrayList<Query> queriesToRemove = new ArrayList<Query>();

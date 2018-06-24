@@ -42,6 +42,4 @@ public class NormalDistributionGenerator implements RandomVariableGenerator{
         return  mean + standardDeviation * zeta;
     }
 
-
-
 }

@@ -4,6 +4,14 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 
+/**
+ * This class simulates the Execution Module, this module executes all statements to display results afterwards.
+ *
+ * @author  Paulo Barrantes
+ * @author  André Flasterstein
+ * @author  Fabián Álvarez
+ */
+
 public class ExecutionModule extends Module{
 
     // ---------------------------------------------------------------------------------------------
@@ -28,7 +36,7 @@ public class ExecutionModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
+     * If there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
 
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
@@ -51,7 +59,7 @@ public class ExecutionModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function if there is space validates the query that arrived and send it to the exit window, else it is place on hold.
+     * If there is space validates the query that arrived and send it to the exit window, else it is place on hold.
      */
     public boolean executeQuery(Event event, PriorityQueue<Event> tableOfEvents){
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -88,7 +96,7 @@ public class ExecutionModule extends Module{
      * @param event, object that contains the information needed to execute each of the event types.
      * @param tableOfEvents, queue with a list of events to be executed.
      * @return  boolean that says if a query was removed, so other modules can also update their stats.
-     * @function send the query to the client admin module.
+     * Send the query to the client admin module.
      */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
@@ -107,7 +115,7 @@ public class ExecutionModule extends Module{
     }
     /**
      * @param clock, current clock time.
-     * @function checks if any query in the queue needs to be removed.
+     * Checks if any query in the queue needs to be removed.
      */
 
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
@@ -126,6 +134,5 @@ public class ExecutionModule extends Module{
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
-
 
 }

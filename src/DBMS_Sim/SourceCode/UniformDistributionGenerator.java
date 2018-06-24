@@ -42,12 +42,5 @@ public class UniformDistributionGenerator implements RandomVariableGenerator{
         //System.out.println(numRandom);
         return leftBoundary + (rightBoundary - leftBoundary) * numRandom;
     }
-    /*
-    public static void main(String[] args) {
-        UniformDistributionGenerator distribution = new UniformDistributionGenerator(10,100);
-        System.out.println(distribution.generate());
-        System.out.println(distribution.generate());
-        System.out.println(distribution.generate());
-    }
-    */
+
 }
