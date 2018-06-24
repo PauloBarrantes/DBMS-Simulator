@@ -91,7 +91,7 @@ public class ApplicationController implements Initializable {
 
             normalModeScene(event);
             if(!mode.isSelected()){
-                modeSim=1;
+                modeSim=0;
                 runASimulation(event);
             }else{
                 modeSim=1000;
@@ -140,10 +140,12 @@ public class ApplicationController implements Initializable {
                     data = simulator.iterateSimulation();
                     updateProgress(data[0], runTime);
                     normalModeController.refreshScreen(data[0],(int)data[1],(int)data[2],(int)data[3], (int)data[4],(int)data[5],(int)data[6]);
-
-                    if(previousClock != data[0]){
-                        Thread.sleep(modeSim);
+                    if(modeSim>0){
+                        if(previousClock != data[0]){
+                            Thread.sleep(modeSim);
+                        }
                     }
+
 
                     previousClock = data[0];
 

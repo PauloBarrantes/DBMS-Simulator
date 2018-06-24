@@ -304,7 +304,7 @@ public class Simulator {
         simulationStatistics.setAcumulatedQueriesWaitTimeInModule(statisticsGenerator.getAverageQueriesWaitedTimeInModule());
         simulationStatistics.setAcumulatedModuleQueueLength(statisticsGenerator.getAverageModuleQueueLength());
         simulationStatistics.setAcumulatedDiscardedConnections(statisticsGenerator.getAcumulatedDiscardedConnections());
-
+        simulationStatistics.setTimeoutConnections(statisticsGenerator.getAcumulatedTimeoutsConnections());
         return simulationStatistics;
     }
 

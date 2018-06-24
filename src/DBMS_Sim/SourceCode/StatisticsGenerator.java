@@ -24,6 +24,7 @@ public class StatisticsGenerator {
         acumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         acumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
         acumulatedConnectionTime = 0.0;
+        acumulatedTimeoutsConnections = 0;
     }
 
     public double averageConnectionTime(int finishedQueriesCounter, double accumulatedFinishedQueryTimes){
@@ -87,5 +88,9 @@ public class StatisticsGenerator {
 
     public void setTimeoutConnections(int timeoutConnections) {
         acumulatedTimeoutsConnections += timeoutConnections;
+    }
+
+    public int getAcumulatedTimeoutsConnections() {
+        return acumulatedTimeoutsConnections;
     }
 }

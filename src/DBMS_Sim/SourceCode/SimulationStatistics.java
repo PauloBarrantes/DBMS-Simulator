@@ -25,6 +25,7 @@ public class SimulationStatistics {
 
 
 
+
     public int getAcumulatedArrivals() {
         return acumulatedArrivals;
     }

@@ -45,10 +45,10 @@
                 <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
                 <PieChart fx:id="pcProcessAdmin" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
                           prefWidth="374.0"/>
-                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
-                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
-                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
-                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: UPDATE"/>
                 <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
                 <Label fx:id="lbl2DDL" layoutX="430.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
                 <Label fx:id="lbl2SELECT" layoutX="430.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
@@ -67,10 +67,10 @@
                 <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
                 <PieChart fx:id="pcQueryModule" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
                           prefWidth="374.0"/>
-                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
-                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
-                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
-                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: UPDATE"/>
                 <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
                 <Label fx:id="lbl3DDL" layoutX="430.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
                 <Label fx:id="lbl3SELECT" layoutX="430.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
@@ -89,10 +89,10 @@
                 <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
                 <PieChart fx:id="pcTransaction" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
                           prefWidth="374.0"/>
-                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
-                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
-                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
-                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: UPDATE"/>
                 <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
                 <Label fx:id="lbl4DDL" layoutX="430.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
                 <Label fx:id="lbl4SELECT" layoutX="430.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
@@ -107,13 +107,13 @@
         <Pane fx:id="pnExecution" prefHeight="452.0" prefWidth="506.0">
             <children>
                 <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
-                       text="Transaction Module Statistics"/>
+                       text="Execution Module Statistics"/>
                 <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
                 <PieChart fx:id="pcExecution" layoutX="22.0" layoutY="217.0" prefHeight="214.0" prefWidth="374.0"/>
-                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
-                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
-                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
-                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: UPDATE"/>
                 <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
                 <Label fx:id="lbl5DDL" layoutX="430.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
                 <Label fx:id="lbl5SELECT" layoutX="430.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
@@ -128,14 +128,14 @@
         <Pane fx:id="pnClientAdmin" prefHeight="452.0" prefWidth="506.0" visible="false">
             <children>
                 <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
-                       text="Cliend Admin Module Statistics"/>
+                       text="Client Admin Module Statistics"/>
                 <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
                 <PieChart fx:id="pcClientAdmin" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
                           prefWidth="374.0"/>
-                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
-                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
-                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
-                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="Average time in module: UPDATE"/>
                 <Separator layoutX="29.0" layoutY="209.0" prefHeight="11.0" prefWidth="458.0"/>
                 <Label  fx:id="lbl1DDL" layoutX="430.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
                 <Label  fx:id="lbl1SELECT" layoutX="430.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>

@@ -220,8 +220,10 @@ public class FinalStatsController implements Initializable {
         String formattedDouble = String.format("%.02f", statistics.getAcumulatedConnectionTime());
 
         lblgenerallifetime.setText(formattedDouble);
-        lblgeneralDiscarded.setText(""+statistics.getAcumulatedDiscardedConnections());
-        lblTimeOut.setText(""+ statistics.getTimeoutConnections());
+        double avgDiscardedConnections = statistics.getAcumulatedDiscardedConnections()/(double)appController.getNumberOfIterations();
+        lblgeneralDiscarded.setText(""+avgDiscardedConnections);
+        double avgTimeOutConnection = statistics.getTimeoutConnections()/(double)appController.getNumberOfIterations();
+        lblTimeOut.setText(""+ avgTimeOutConnection);
 
         //Client Admin Pane
         double ddl, select, join, update;

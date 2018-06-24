@@ -73,7 +73,6 @@ public class ClientAdminModule extends Module{
         Event arrive = new Event(EventType.ArriveClientToModule,query.getSubmissionTime(), query);
         tableOfEvents.add(arrive);
 
-
         return false;
     }
 
@@ -81,7 +80,6 @@ public class ClientAdminModule extends Module{
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         addDurationInModule(event.getTime(),event.getQuery());
         countNewQuery(event.getQuery());
-        addDurationInModule(event.getTime(),event.getQuery());
         --occupiedFields;
         finishedQueriesCounter++;
         accumulatedFinishedQueryTimes += (event.getTime() - event.getQuery().getSubmissionTime());
@@ -92,7 +90,6 @@ public class ClientAdminModule extends Module{
 
         --occupiedFields;
         ++timedOutConnections;
-        //++discardedConnections;
         finishedQueriesCounter++;
         accumulatedFinishedQueryTimes += (clock - query.getSubmissionTime());
 
