@@ -1,7 +1,6 @@
 
     package DBMS_Sim;
 
-    import DBMS_Sim.SourceCode.Event;
     import DBMS_Sim.SourceCode.Simulator;
     import com.jfoenix.controls.*;
     import javafx.application.Application;
@@ -43,7 +42,7 @@ public class ApplicationController implements Initializable {
     @FXML JFXToggleButton mode;
     @FXML JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
 
-    private int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
+    private int nTimes, runTime, kConnections, pProcesses, nProcesses, mProcesses, timeout;
     private Service<Void> backgroundThread;
     private boolean validator;
 
@@ -74,13 +73,13 @@ public class ApplicationController implements Initializable {
         if(validator){
 
             //We store in the variables the values ​​that the user placed in the text-fields
-            ntimes = Integer.parseInt(txt_ntimes.getText());
-            time = Integer.parseInt(txt_time.getText());
-            kCon = Integer.parseInt(k.getText());
+            nTimes = Integer.parseInt(txt_ntimes.getText());
+            runTime = Integer.parseInt(txt_time.getText());
+            kConnections = Integer.parseInt(k.getText());
             timeout = Integer.parseInt(t.getText());
-            mProcess = Integer.parseInt(m.getText());
-            pProcess = Integer.parseInt( p.getText());
-            nProcess = Integer.parseInt(n.getText());
+            mProcesses = Integer.parseInt(m.getText());
+            pProcesses = Integer.parseInt( p.getText());
+            nProcesses = Integer.parseInt(n.getText());
             //Cargamos la vista de normal mode
 
             normalModeScene(event);
@@ -119,12 +118,12 @@ public class ApplicationController implements Initializable {
 
     private void runASimulations(long mode, ActionEvent event) throws InterruptedException {
 
-        simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
-        simulator.setRunningTime((double)time);
+        simulator = new Simulator(kConnections, timeout, nProcesses, pProcesses, mProcesses);
+        simulator.setRunningTime((double) runTime);
         simulator.appendInitialEvent();
 
         final Task<Void> task = new Task<Void>() {
-            final double runningTime = time;
+            final double runningTime = runTime;
             double previousClock;
             @Override
             protected Void call() throws Exception {
