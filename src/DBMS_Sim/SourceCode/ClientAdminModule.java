@@ -8,7 +8,7 @@ public class ClientAdminModule extends Module{
     private int finishedQueriesCounter;
     private double accumulatedFinishedQueryTimes;
     private int numberOfArrivalToTheSystem;
-    private int timeOutConnections;
+    private int timedOutConnections;
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
@@ -37,8 +37,8 @@ public class ClientAdminModule extends Module{
     public int getDiscardedConnections() {
         return discardedConnections;
     }
-    public int getTimeOutConnections() {
-        return timeOutConnections;
+    public int getTimedOutConnections() {
+        return timedOutConnections;
     }
 
     public QueryGenerator getQueryGenerator() { return queryGenerator;}
@@ -91,7 +91,7 @@ public class ClientAdminModule extends Module{
     public void timedOutConnection(double clock, Query query){
 
         --occupiedFields;
-        ++timeOutConnections;
+        ++timedOutConnections;
         //++discardedConnections;
         finishedQueriesCounter++;
         accumulatedFinishedQueryTimes += (clock - query.getSubmissionTime());
@@ -122,7 +122,7 @@ public class ClientAdminModule extends Module{
         accumulatedFinishedQueryTimes = 0;
         numberOfArrivalToTheSystem = 0;
         discardedConnections = 0;
-        timeOutConnections = 0;
+        timedOutConnections = 0;
     }
 
 
