@@ -146,7 +146,7 @@ public class ApplicationController implements Initializable {
                     previousClock = data[0];
 
                 }
-                simulator.getSimulationStatistics();
+                //simulator.getSimulationStatistics();
                 normalModeController.stats.setVisible(true);
                 numberOfSimulation++;
                 return null;

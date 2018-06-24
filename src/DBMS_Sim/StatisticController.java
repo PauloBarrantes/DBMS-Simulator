@@ -48,6 +48,8 @@ public class StatisticController implements Initializable {
     private JFXButton btnTransaction;
     @FXML
     private JFXButton btnExecution;
+
+    //------------------Statistical Variables --------------------
     @FXML
     private PieChart pcClientAdmin;
     @FXML
@@ -58,6 +60,78 @@ public class StatisticController implements Initializable {
     private PieChart pcQueryModule;
     @FXML
     private PieChart pcProcessAdmin;
+    //-- General
+    @FXML
+    private Label lblgenerallifetime;
+    @FXML
+    private Label lblgeneralDiscarded;
+    @FXML
+    private Label lblTimeOut;
+
+
+    //-- Client Admin
+
+    @FXML
+    private Label lbl1DDL;
+    @FXML
+    private Label lbl1SELECT;
+    @FXML
+    private Label lbl1JOIN;
+    @FXML
+    private Label lbl1UPDATE;
+
+
+    //-- Process Admin
+
+    @FXML
+    private Label lbl2DDL;
+    @FXML
+    private Label lbl2SELECT;
+    @FXML
+    private Label lbl2JOIN;
+    @FXML
+    private Label lbl2UPDATE;
+    @FXML
+    private Label lbl2QUEUE;
+
+    //-- Query Module
+    @FXML
+    private Label lbl3DDL;
+    @FXML
+    private Label lbl3SELECT;
+    @FXML
+    private Label lbl3JOIN;
+    @FXML
+    private Label lbl3UPDATE;
+    @FXML
+    private Label lbl3QUEUE;
+
+    //-- Execution Module
+    @FXML
+    private Label lbl4DDL;
+    @FXML
+    private Label lbl4SELECT;
+    @FXML
+    private Label lbl4JOIN;
+    @FXML
+    private Label lbl4UPDATE;
+    @FXML
+    private Label lbl4QUEUE;
+
+
+    //-- Transaction Module
+    @FXML
+    private Label lbl5DDL;
+    @FXML
+    private Label lbl5SELECT;
+    @FXML
+    private Label lbl5JOIN;
+    @FXML
+    private Label lbl5UPDATE;
+    @FXML
+    private Label lbl5QUEUE;
+
+    //------------------End of Statistical Variables --------------
 
     @FXML private Label iteracion;
     @FXML
@@ -174,9 +248,23 @@ public class StatisticController implements Initializable {
     public void setAppController(ApplicationController applicationController){
         this.appController = applicationController;
     }
-    public void fillScreen(){
-        //General Pane
 
+    // We know that the matrix is ​​6x5 size
+    /*
+        0                   1           2           3           4
+    0   Average lifetime    Discarded   Timeout     Total
+    1   avgDDL              avgSELECT   avgJOIN     avgUPDATE
+    2   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+    3   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+    4   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+    5   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+
+     */
+    public void fillScreen(double [][] matriz){
+        //General Pane
+        lblgenerallifetime.setText(""+ matriz[0][0]);
+        lblgeneralDiscarded.setText(""+matriz[0][1]);
+        lblTimeOut.setText(""+ matriz[0][2]);
 
         //Client Admin Pane
 

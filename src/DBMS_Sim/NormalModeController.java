@@ -51,7 +51,7 @@ public class NormalModeController  implements Initializable {
             e.printStackTrace();
         }
 
-        statisticController.fillScreen();
+        //statisticController.fillScreen();
     }
 
 

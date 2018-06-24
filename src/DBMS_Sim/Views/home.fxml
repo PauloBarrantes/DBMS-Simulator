@@ -9,63 +9,75 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.ApplicationController">
-   <children>
-      <JFXTextField fx:id="txt_ntimes" alignment="CENTER" layoutX="600.0" layoutY="29.0" prefHeight="27.0" prefWidth="66.0" />
-      <JFXToggleButton fx:id="mode" layoutX="279.0" layoutY="141.0"  text="Slow Mode" />
-      <Rectangle id="number" arcHeight="5.0" arcWidth="5.0" fill="#ff7f56" height="561.0" layoutX="-17.0" layoutY="-28.0" stroke="#ffffff00" strokeType="INSIDE" width="238.0" />
-      <JFXButton fx:id="btnIniciar" defaultButton="true" layoutX="422.0" layoutY="449.0" onAction="#start" prefHeight="27.0" prefWidth="77.0" ripplerFill="WHITE" style="-fx-background-color: #f46542;" text="Start" textAlignment="CENTER" textFill="WHITE" />
-      <Label layoutX="19.0" layoutY="23.0" text="Welcome!" textFill="WHITE">
-         <font>
-            <Font size="35.0" />
-         </font>
-      </Label>
-      <Label layoutX="23.0" layoutY="73.0" style="-fx-font-size: 20; -fx-font-family: Avenir;" text="DBMS - Simulator" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="244.0" layoutY="30.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="Times the simulation will run" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label layoutX="244.0" layoutY="90.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="Total Duration" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="txt_time" alignment="CENTER" layoutX="600.0" layoutY="88.0" prefHeight="27.0" prefWidth="66.0" />
-      <Label layoutX="244.0" layoutY="213.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="k Max Concurrent Connections" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="k" alignment="CENTER" layoutX="604.0" layoutY="203.0" prefHeight="27.0" prefWidth="66.0" />
-      <Label layoutX="239.0" layoutY="259.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text=" n Max Queries" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label layoutX="238.0" layoutY="305.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text=" p Max Transacctions" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label layoutX="241.0" layoutY="347.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="m Max Executions (Queries)" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <Label layoutX="243.0" layoutY="391.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="t Query Timeout (seconds)" textAlignment="CENTER">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Label>
-      <JFXTextField fx:id="n" alignment="CENTER" layoutX="604.0" layoutY="248.0" prefHeight="27.0" prefWidth="66.0" />
-      <JFXTextField fx:id="p" alignment="CENTER" layoutX="605.0" layoutY="298.0" prefHeight="27.0" prefWidth="66.0" />
-      <JFXTextField fx:id="m" alignment="CENTER" layoutX="605.0" layoutY="339.0" prefHeight="27.0" prefWidth="66.0" />
-      <JFXTextField fx:id="t" alignment="CENTER" layoutX="604.0" layoutY="383.0" prefHeight="27.0" prefWidth="66.0" />
-      <StackPane fx:id="stackPane1" layoutX="182.0" layoutY="125.0" prefHeight="76.0" prefWidth="112.0" />
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="499.0"
+            prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="DBMS_Sim.ApplicationController">
+   <JFXTextField fx:id="txt_ntimes" alignment="CENTER" layoutX="600.0" layoutY="29.0" prefHeight="27.0"
+                 prefWidth="66.0"/>
+   <JFXToggleButton fx:id="mode" layoutX="279.0" layoutY="141.0" text="Slow Mode"/>
+   <Rectangle id="number" arcHeight="5.0" arcWidth="5.0" fill="#ff7f56" height="561.0" layoutX="-17.0" layoutY="-28.0"
+              stroke="#ffffff00" strokeType="INSIDE" width="238.0"/>
+   <JFXButton fx:id="btnIniciar" defaultButton="true" layoutX="422.0" layoutY="449.0" onAction="#start"
+              prefHeight="27.0" prefWidth="77.0" ripplerFill="WHITE" style="-fx-background-color: #f46542;" text="Start"
+              textAlignment="CENTER" textFill="WHITE"/>
+   <Label layoutX="19.0" layoutY="23.0" text="Welcome!" textFill="WHITE">
+      <font>
+         <Font size="35.0"/>
+      </font>
+   </Label>
+   <Label layoutX="23.0" layoutY="73.0" style="-fx-font-size: 20; -fx-font-family: Avenir;" text="DBMS - Simulator"
+          textAlignment="CENTER" textFill="WHITE">
+      <font>
+         <Font size="21.0"/>
+      </font>
+   </Label>
+   <Label layoutX="244.0" layoutY="30.0" style="-fx-font-size: 16; -fx-font-family: Avenir;"
+          text="Times the simulation will run" textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <Label layoutX="244.0" layoutY="90.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="Total Duration"
+          textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <JFXTextField fx:id="txt_time" alignment="CENTER" layoutX="600.0" layoutY="88.0" prefHeight="27.0" prefWidth="66.0"/>
+   <Label layoutX="244.0" layoutY="213.0" style="-fx-font-size: 16; -fx-font-family: Avenir;"
+          text="k Max Concurrent Connections" textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <JFXTextField fx:id="k" alignment="CENTER" layoutX="604.0" layoutY="203.0" prefHeight="27.0" prefWidth="66.0"/>
+   <Label layoutX="239.0" layoutY="259.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text=" n Max Queries"
+          textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <Label layoutX="238.0" layoutY="305.0" style="-fx-font-size: 16; -fx-font-family: Avenir;"
+          text=" p Max Transacctions" textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <Label layoutX="241.0" layoutY="347.0" style="-fx-font-size: 16; -fx-font-family: Avenir;"
+          text="m Max Executions (Queries)" textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <Label layoutX="243.0" layoutY="391.0" style="-fx-font-size: 16; -fx-font-family: Avenir;"
+          text="t Query Timeout (seconds)" textAlignment="CENTER">
+      <font>
+         <Font size="10.0"/>
+      </font>
+   </Label>
+   <JFXTextField fx:id="n" alignment="CENTER" layoutX="604.0" layoutY="248.0" prefHeight="27.0" prefWidth="66.0"/>
+   <JFXTextField fx:id="p" alignment="CENTER" layoutX="605.0" layoutY="298.0" prefHeight="27.0" prefWidth="66.0"/>
+   <JFXTextField fx:id="m" alignment="CENTER" layoutX="605.0" layoutY="339.0" prefHeight="27.0" prefWidth="66.0"/>
+   <JFXTextField fx:id="t" alignment="CENTER" layoutX="604.0" layoutY="383.0" prefHeight="27.0" prefWidth="66.0"/>
+   <StackPane fx:id="stackPane1" layoutX="182.0" layoutY="125.0" prefHeight="76.0" prefWidth="112.0"/>
 </AnchorPane>
