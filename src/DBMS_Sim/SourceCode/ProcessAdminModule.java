@@ -74,6 +74,8 @@ public class ProcessAdminModule extends Module {
 
         //Statistics
         addDurationInModule(event.getTime(),event.getQuery());
+        countNewQuery(event.getQuery());
+
 
         return timedOut;
     }

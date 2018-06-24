@@ -90,10 +90,10 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
 
         }else{
+            addDurationInModule(event.getTime(),event.getQuery());
+            countNewQuery(event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
-
-        addDurationInModule(event.getTime(),event.getQuery());
 
         return timedOut;
     }
@@ -113,6 +113,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             addDurationInModule(event.getTime(),event.getQuery());
+            countNewQuery(event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -135,6 +136,7 @@ public class QueryProcessingModule extends Module{
 
         }else{
             addDurationInModule(event.getTime(),event.getQuery());
+            countNewQuery(event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -157,6 +159,7 @@ public class QueryProcessingModule extends Module{
 
         }else{
             addDurationInModule(event.getTime(),event.getQuery());
+            countNewQuery(event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
 
@@ -182,6 +185,7 @@ public class QueryProcessingModule extends Module{
             tableOfEvents.add(event);
         }else{
             addDurationInModule(event.getTime(),event.getQuery());
+            countNewQuery(event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.LexicalValidation);
         }
         return timedOut;
@@ -204,6 +208,7 @@ public class QueryProcessingModule extends Module{
 
         //Statistics
         addDurationInModule(event.getTime(),event.getQuery());
+        countNewQuery(event.getQuery());
 
         return timedOut;
     }

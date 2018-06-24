@@ -75,8 +75,10 @@ public class ExecutionModule extends Module{
             tableOfEvents.add(event);
 
         }else{
-            addDurationInModule(event.getTime(),event.getQuery());
             processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
+            //Statistics
+            addDurationInModule(event.getTime(),event.getQuery());
+            countNewQuery(event.getQuery());
         }
 
         return timedOut;
@@ -97,7 +99,10 @@ public class ExecutionModule extends Module{
         }
 
         processNextInQueue(event.getTime(),tableOfEvents,EventType.ExecuteQuery);
+        //Statistics
         addDurationInModule(event.getTime(),event.getQuery());
+        countNewQuery(event.getQuery());
+
         return timedOut;
     }
     /**
