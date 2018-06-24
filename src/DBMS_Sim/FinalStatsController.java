@@ -1,28 +1,21 @@
+
 package DBMS_Sim;
 
-import com.jfoenix.controls.JFXButton;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
+        import com.jfoenix.controls.JFXButton;
+        import javafx.collections.FXCollections;
+        import javafx.collections.ObservableList;
+        import javafx.event.ActionEvent;
+        import javafx.fxml.FXML;
+        import javafx.fxml.Initializable;
+        import javafx.scene.chart.PieChart;
+        import javafx.scene.layout.Pane;
+        import javafx.scene.paint.Color;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Observable;
-import java.util.ResourceBundle;
+        import java.net.URL;
+        import java.util.Observable;
+        import java.util.ResourceBundle;
 
-public class StatisticController implements Initializable {
+public class FinalStatsController implements Initializable {
 
     @FXML
     private Pane pnGeneral;
@@ -59,27 +52,28 @@ public class StatisticController implements Initializable {
     @FXML
     private PieChart pcProcessAdmin;
 
-    @FXML private Label iteracion;
+
     @FXML
     private ApplicationController appController;
-    @FXML
-    private FinalStatsController finalStats;
     @FXML
     void general(ActionEvent event){
         changeColorsAndPanes();
         btnGeneral.setStyle("-fx-background-color : #CC412A;");
         pnGeneral.setVisible(true);
+
     }
     @FXML
     void clientAdmin(ActionEvent event){
         changeColorsAndPanes();
+
         btnClientAdmin.setStyle("-fx-background-color : #CC412A;");
         pnClientAdmin.setVisible(true);
+
     }
     @FXML
     void processAdmin(ActionEvent event){
-
         changeColorsAndPanes();
+
         btnProcessAdmin.setStyle("-fx-background-color : #CC412A;");
         pnProcessAdmin.setVisible(true);
 
@@ -110,31 +104,7 @@ public class StatisticController implements Initializable {
     }
     @FXML
     void next(ActionEvent event) throws InterruptedException {
-        if( appController.getNumberOfSimulation() <= appController.getNumberOfIterations() ){
-            appController.normalModeScene(event);
-            appController.runASimulations(event);
-        }else{
-            finalStatsScene(event);
-            finalStats.setAppController(appController);
-
-            System.out.println("Acabaron");
-        }
-
-    }
-
-    public void finalStatsScene(ActionEvent event){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/FinalStats.fxml"));
-            Parent root = (Parent) loader.load();
-            finalStats = loader.getController();
-            Scene normalMode = new Scene(root);
-            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            appStage.hide();
-            appStage.setScene(normalMode);
-            appStage.show();
-        }catch (IOException e) {
-            e.printStackTrace();
-        }
+        appController.homeScene(event);
 
     }
 
@@ -167,9 +137,7 @@ public class StatisticController implements Initializable {
         pcClientAdmin.setData(piecharData);
     }
 
-    public void setIterationNumber(String text) {
-        iteracion.setText(text);
-    }
+
 
     public void setAppController(ApplicationController applicationController){
         this.appController = applicationController;

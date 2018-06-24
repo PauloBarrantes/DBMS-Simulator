@@ -28,8 +28,9 @@
     import java.util.ResourceBundle;
 
 public class ApplicationController implements Initializable {
-    private Simulator simulator;
 
+    private Simulator simulator;
+    private int numberOfSimulation;
 
     private Random rnd = new Random(System.currentTimeMillis());
     @FXML NormalModeController normalModeController;
@@ -46,6 +47,7 @@ public class ApplicationController implements Initializable {
     private int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
     private Service<Void> backgroundThread;
     private boolean validator;
+    private long modeSim;
 
     public void run(String[] args){
         Application.launch(Initializer.class,args);
@@ -72,7 +74,7 @@ public class ApplicationController implements Initializable {
         validate(p);
         validate(n);
         if(validator){
-
+            numberOfSimulation=1;
             //We store in the variables the values ​​that the user placed in the text-fields
             ntimes = Integer.parseInt(txt_ntimes.getText());
             time = Integer.parseInt(txt_time.getText());
@@ -85,9 +87,11 @@ public class ApplicationController implements Initializable {
 
             normalModeScene(event);
             if(!mode.isSelected()){
-                runASimulations(1,event);
+                modeSim=1;
+                runASimulations(event);
             }else{
-                runASimulations(1000,event);
+                modeSim=1000;
+                runASimulations(event);
             }
 
         }else{
@@ -101,7 +105,7 @@ public class ApplicationController implements Initializable {
             content.setBody(new Text("Missing Hace falta un espacio de llenar o escribió un paramétro \n"+
                     "al igual que Clarita inválido" +
                     " para así poder iniciar con la simulación." ));
-            JFXButton button = new JFXButton("Okay");
+            JFXButton button = new JFXButton("Okey");
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
@@ -117,33 +121,34 @@ public class ApplicationController implements Initializable {
     }
 
 
-    private void runASimulations(long mode, ActionEvent event) throws InterruptedException {
+    public void runASimulations( ActionEvent event) throws InterruptedException {
 
         simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
         simulator.setRunningTime((double)time);
         simulator.appendInitialEvent();
-
+        normalModeController.setNumberOfSimulation(numberOfSimulation);
         final Task<Void> task = new Task<Void>() {
-            final double runningTime = time;
             double previousClock;
             @Override
             protected Void call() throws Exception {
                 double data [] = new double[7];
                 data [0] = 0;
                 previousClock =0;
-                while(data[0] <= runningTime){
+                while(data[0] <= time){
                     data = simulator.iterateSimulation();
-                    updateProgress(data[0], runningTime);
+                    updateProgress(data[0], time);
                     normalModeController.refreshScreen(data[0],(int)data[1],(int)data[2],(int)data[3], (int)data[4],(int)data[5],(int)data[6]);
 
                     if(previousClock != data[0]){
-                        Thread.sleep(mode);
+                        Thread.sleep(modeSim);
                     }
 
                     previousClock = data[0];
 
                 }
+                simulator.getSimulationStatistics();
                 normalModeController.stats.setVisible(true);
+                numberOfSimulation++;
                 return null;
             }
         };
@@ -182,12 +187,12 @@ public class ApplicationController implements Initializable {
      *
      * @param event
      */
-    private void normalModeScene(ActionEvent event){
+    public void normalModeScene(ActionEvent event){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/simulationRunningNormalMode.fxml"));
             Parent root = (Parent) loader.load();
             normalModeController = loader.getController();
-
+            normalModeController.setAppController(this);
             Scene normalMode = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.hide();
@@ -198,17 +203,11 @@ public class ApplicationController implements Initializable {
         }
 
     }
-    /**
-     * Despliega el scene en pantalla del normal mode, además guardamos el controller de esa escena.
-     *
-     * @param event
-     */
-    private void statisticsScene(ActionEvent event){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/Stats.fxml"));
-            Parent root = (Parent) loader.load();
-            statisticController = loader.getController();
 
+    public void homeScene(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/home.fxml"));
+            Parent root = (Parent) loader.load();
             Scene normalMode = new Scene(root);
             Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             appStage.hide();
@@ -227,5 +226,11 @@ public class ApplicationController implements Initializable {
     @Override
     public void initialize(URL arg1, ResourceBundle arg2){}
 
+    public int getNumberOfIterations() {
+        return ntimes;
+    }
+    public int getNumberOfSimulation(){
+        return numberOfSimulation;
+    }
 }
 
