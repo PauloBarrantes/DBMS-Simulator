@@ -104,9 +104,8 @@ public class ApplicationController implements Initializable {
             header.setTextFill(Color.RED);
             header.setFont(Font.font(20));
             content.setHeading(header);
-            content.setBody(new Text("Missing Hace falta un espacio de llenar o escribió un paramétro \n"+
-                    "al igual que Clarita inválido" +
-                    " para así poder iniciar con la simulación." ));
+            content.setBody(new Text("Missing simulation parameter \n"+
+                    "Please fill all the blanks so we can begin the simulation."));
             JFXButton button = new JFXButton("Okey");
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override

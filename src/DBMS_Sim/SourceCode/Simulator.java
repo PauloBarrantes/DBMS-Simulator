@@ -110,7 +110,7 @@ public class Simulator {
             actualEvent = tableOfEvents.poll();
 
             checkQueues(actualEvent.getTime());
-            whereIgo(actualEvent);
+            checkEventType(actualEvent);
 
             assert tableOfEvents.peek() != null;
             clock = tableOfEvents.peek().getTime();
@@ -127,7 +127,7 @@ public class Simulator {
         Event actualEvent =  tableOfEvents.poll();
 
         checkQueues(actualEvent.getTime());
-        whereIgo(actualEvent);
+        checkEventType(actualEvent);
 
         assert tableOfEvents.peek() != null;
         clock = tableOfEvents.peek().getTime();
@@ -151,8 +151,7 @@ public class Simulator {
         executionModule.checkQueue(clock, clientAdminModule);
     }
 
-    ///CAMBIAR NOMBRE
-    private void whereIgo(Event actualEvent){
+    private void checkEventType(Event actualEvent){
         boolean queryTimeOut;
         switch (actualEvent.getType()) {
             case ArriveClientToModule:
