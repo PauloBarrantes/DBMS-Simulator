@@ -68,12 +68,6 @@ public class Query {
         return statementType;
     }
 
-    public String toString(){
-        String string = "Query's information: \n\t-Loaded blocks->" + loadedBlocks + "\n\t-Module entry time->" + moduleEntryTime +
-                "\n\t-Read only->" + readOnly + "\n\t-Submission time->" + submissionTime + "\n\t-Statement type->" +
-                statementType;
-        return string;
-    }
 
 
     // ---------------------------------------------------------------------------------------------

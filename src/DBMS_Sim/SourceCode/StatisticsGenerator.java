@@ -36,7 +36,6 @@ public class StatisticsGenerator {
         if(callsToQueueLength > 0){
             acumulatedModuleQueueLength[moduleType] += (double) acumulatedQueueLength/(double)callsToQueueLength;
             queueLenghtAverage = (double)acumulatedQueueLength/(double)callsToQueueLength;
-
         }
         return queueLenghtAverage;
     }

@@ -35,6 +35,7 @@ public class ExecutionModule extends Module{
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
         if(!timedOut) {
+            event.getQuery().setModuleEntryTime(event.getTime());
             if (occupiedFields < maxFields) {
                 occupiedFields++;
                 event.setType(EventType.ExecuteQuery);
