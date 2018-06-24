@@ -46,7 +46,7 @@ public class ApplicationController implements Initializable {
     @FXML JFXToggleButton mode;
     @FXML JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
 
-    private int ntimes, time, kCon, pProcess, nProcess, mProcess, timeout;
+    private int nTimes, runTime, kConnections, pProcesses, nProcesses, mProcesses, timeout;
     private Service<Void> backgroundThread;
     private boolean validator;
     private long modeSim;
@@ -78,13 +78,13 @@ public class ApplicationController implements Initializable {
         if(validator){
             numberOfSimulation=1;
             //We store in the variables the values ​​that the user placed in the text-fields
-            ntimes = Integer.parseInt(txt_ntimes.getText());
-            time = Integer.parseInt(txt_time.getText());
-            kCon = Integer.parseInt(k.getText());
+            nTimes = Integer.parseInt(txt_ntimes.getText());
+            runTime = Integer.parseInt(txt_time.getText());
+            kConnections = Integer.parseInt(k.getText());
             timeout = Integer.parseInt(t.getText());
-            mProcess = Integer.parseInt(m.getText());
-            pProcess = Integer.parseInt( p.getText());
-            nProcess = Integer.parseInt(n.getText());
+            mProcesses = Integer.parseInt(m.getText());
+            pProcesses = Integer.parseInt( p.getText());
+            nProcesses = Integer.parseInt(n.getText());
             //Cargamos la vista de normal mode
 
             normalModeScene(event);
@@ -125,20 +125,21 @@ public class ApplicationController implements Initializable {
 
     public void runASimulations( ActionEvent event) throws InterruptedException {
 
-        simulator = new Simulator(kCon, timeout, nProcess, pProcess, mProcess);
-        simulator.setRunningTime((double)time);
+        simulator = new Simulator(kConnections, timeout, nProcesses, pProcesses, mProcesses);
+        simulator.setRunningTime((double) runTime);
         simulator.appendInitialEvent();
         normalModeController.setNumberOfSimulation(numberOfSimulation);
         final Task<Void> task = new Task<Void>() {
+            final double runningTime = runTime;
             double previousClock;
             @Override
             protected Void call() throws Exception {
                 double data [] = new double[7];
                 data [0] = 0;
                 previousClock =0;
-                while(data[0] <= time){
+                while(data[0] <= runTime){
                     data = simulator.iterateSimulation();
-                    updateProgress(data[0], time);
+                    updateProgress(data[0], runTime);
                     normalModeController.refreshScreen(data[0],(int)data[1],(int)data[2],(int)data[3], (int)data[4],(int)data[5],(int)data[6]);
 
                     if(previousClock != data[0]){
@@ -229,7 +230,7 @@ public class ApplicationController implements Initializable {
     public void initialize(URL arg1, ResourceBundle arg2){}
 
     public int getNumberOfIterations() {
-        return ntimes;
+        return nTimes;
     }
     public int getNumberOfSimulation(){
         return numberOfSimulation;
