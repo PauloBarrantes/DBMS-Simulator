@@ -78,12 +78,15 @@ public class TransactionAndStorageModule extends Module{
                     event.setTime(event.getTime() + calculateDuration(event.getQuery()));
                     tableOfEvents.add(event);
                 }else{
+
                     //If there's occupied servers and the query arriving is a DDL statement, it waits in queue.
                     if (event.getQuery().getStatementType() == StatementType.DDL) {
+                        queueLength();
                         queriesInLine.add(event.getQuery());
                     } else {
                         //If there is a DDL statement being processed, no query can be served at the moment, so arriving query waits in queue.
                         if (isDdlStatementFlag()) {
+                            queueLength();
                             queriesInLine.add(event.getQuery());
                         } else {
                             //If there's no DDL statement being processed, arriving query is not a DDL, and there's enough servers, proceed to attend query.
@@ -95,6 +98,7 @@ public class TransactionAndStorageModule extends Module{
                     }
                 }
             }else{
+                queueLength();
                 queriesInLine.add(event.getQuery());
             }
         }
@@ -114,6 +118,7 @@ public class TransactionAndStorageModule extends Module{
         Query nextQuery;
         Event newEvent;
         if(queriesInLine.size() > 0 && occupiedFields < maxFields){
+            queueLength();
             nextQuery = queriesInLine.poll();
             newEvent = new Event(EventType.ExitTransactionModule,event.getTime() + calculateDuration(nextQuery), nextQuery);
             tableOfEvents.add(newEvent);

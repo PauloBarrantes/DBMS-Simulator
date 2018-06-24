@@ -33,15 +33,31 @@ public class SimulationStatistics {
         this.acumulatedArrivals = acumulatedArrivals;
     }
 
-    public int getAcumulatedDiscardedConnections() { return acumulatedDiscardedConnections; }
-    public void setAcumulatedDiscardedConnections(int acumulatedDiscardedConnections) { this.acumulatedDiscardedConnections = acumulatedDiscardedConnections; }
+    public int getAcumulatedDiscardedConnections() {
+        return acumulatedDiscardedConnections;
+    }
+    public void setAcumulatedDiscardedConnections(int acumulatedDiscardedConnections) {
+        this.acumulatedDiscardedConnections = acumulatedDiscardedConnections;
+    }
 
-    public double[] getAcumulatedModuleQueueLength() { return acumulatedModuleQueueLength; }
-    public void setAcumulatedModuleQueueLength(double[] acumulatedModuleQueueLength) { this.acumulatedModuleQueueLength = acumulatedModuleQueueLength; }
+    public double[] getAcumulatedModuleQueueLength() {
+        return acumulatedModuleQueueLength;
+    }
+    public void setAcumulatedModuleQueueLength(double[] acumulatedModuleQueueLength) {
+        this.acumulatedModuleQueueLength = acumulatedModuleQueueLength;
+    }
 
-    public double[][] getAcumulatedQueriesWaitTimeInModule() { return acumulatedQueriesWaitTimeInModule; }
-    public void setAcumulatedQueriesWaitTimeInModule(double[][] acumulatedQueriesWaitTimeInModule) { this.acumulatedQueriesWaitTimeInModule = acumulatedQueriesWaitTimeInModule; }
+    public double[][] getAcumulatedQueriesWaitTimeInModule() {
+        return acumulatedQueriesWaitTimeInModule;
+    }
+    public void setAcumulatedQueriesWaitTimeInModule(double[][] acumulatedQueriesWaitTimeInModule) {
+        this.acumulatedQueriesWaitTimeInModule = acumulatedQueriesWaitTimeInModule;
+    }
 
-    public double getAcumulatedConnectionTime() { return acumulatedConnectionTime; }
-    public void setAcumulatedConnectionTime(double acumulatedConnectionTime) { this.acumulatedConnectionTime = acumulatedConnectionTime; }
+    public double getAcumulatedConnectionTime() {
+        return acumulatedConnectionTime;
+    }
+    public void setAcumulatedConnectionTime(double acumulatedConnectionTime) {
+        this.acumulatedConnectionTime = acumulatedConnectionTime;
+    }
 }

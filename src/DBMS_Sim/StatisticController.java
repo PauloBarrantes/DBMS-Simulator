@@ -262,9 +262,11 @@ public class StatisticController implements Initializable {
         formattedLifetime = String.format("%.02f", ddl);
         lbl1DDL.setText(formattedLifetime);
         formattedLifetime = String.format("%.02f", select);
-        lbl1SELECT.setText("" + select);
-        lbl1JOIN.setText("" + join);
-        lbl1UPDATE.setText("" + update);
+        lbl1SELECT.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", join);
+        lbl1JOIN.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", update);
+        lbl1UPDATE.setText(formattedLifetime);
         ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
@@ -273,17 +275,23 @@ public class StatisticController implements Initializable {
         pcClientAdmin.setData(piechartData);
 
         //Process Admin Pane
+
         select = statistics.getAcumulatedQueriesWaitTimeInModule()[1][0];
         update = statistics.getAcumulatedQueriesWaitTimeInModule()[1][1];
         join = statistics.getAcumulatedQueriesWaitTimeInModule()[1][2];
         ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[1][3];
 
         double queue = statistics.getAcumulatedModuleQueueLength()[1];
-        lbl2DDL.setText("" + ddl);
-        lbl2SELECT.setText("" + select);
-        lbl2JOIN.setText("" + join);
-        lbl2UPDATE.setText("" + update);
+        formattedLifetime = String.format("%.02f", ddl);
+        lbl2DDL.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", select);
+        lbl2SELECT.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", join);
+        lbl2JOIN.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", update);
+        lbl2UPDATE.setText(formattedLifetime);
         lbl2QUEUE.setText(""+ queue);
+
         piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
@@ -298,10 +306,14 @@ public class StatisticController implements Initializable {
         ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[2][3];
 
         queue = statistics.getAcumulatedModuleQueueLength()[2];
-        lbl3DDL.setText("" + ddl);
-        lbl3SELECT.setText("" + select);
-        lbl3JOIN.setText("" + join);
-        lbl3UPDATE.setText("" + update);
+        formattedLifetime = String.format("%.02f", ddl);
+        lbl3DDL.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", select);
+        lbl3SELECT.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", join);
+        lbl3JOIN.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", update);
+        lbl3UPDATE.setText(formattedLifetime);
         lbl3QUEUE.setText(""+ queue);
 
         piechartData = FXCollections.observableArrayList(
@@ -318,11 +330,16 @@ public class StatisticController implements Initializable {
         ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[3][3];
 
         queue = statistics.getAcumulatedModuleQueueLength()[3];
-        lbl4DDL.setText("" + ddl);
-        lbl4SELECT.setText("" + select);
-        lbl4JOIN.setText("" + join);
-        lbl4UPDATE.setText("" + update);
+        formattedLifetime = String.format("%.02f", ddl);
+        lbl4DDL.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", select);
+        lbl4SELECT.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", join);
+        lbl4JOIN.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", update);
+        lbl4UPDATE.setText(formattedLifetime);
         lbl4QUEUE.setText(""+ queue);
+
         piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
@@ -336,10 +353,14 @@ public class StatisticController implements Initializable {
         ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[4][3];
 
         queue = statistics.getAcumulatedModuleQueueLength()[4];
-        lbl5DDL.setText("" + ddl);
-        lbl5SELECT.setText("" + select);
-        lbl5JOIN.setText("" + join);
-        lbl5UPDATE.setText("" + update);
+        formattedLifetime = String.format("%.02f", ddl);
+        lbl5DDL.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", select);
+        lbl5SELECT.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", join);
+        lbl5JOIN.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", update);
+        lbl5UPDATE.setText(formattedLifetime);
         lbl5QUEUE.setText(""+ queue);
 
         piechartData = FXCollections.observableArrayList(

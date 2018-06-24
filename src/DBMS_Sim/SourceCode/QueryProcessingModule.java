@@ -68,6 +68,7 @@ public class QueryProcessingModule extends Module{
                 event.setTime(event.getTime());
                 tableOfEvents.add(event);
             } else {
+                queueLength();
                 queriesInLine.add(event.getQuery());
             }
         }

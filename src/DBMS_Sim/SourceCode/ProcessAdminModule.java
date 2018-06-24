@@ -43,6 +43,7 @@ public class ProcessAdminModule extends Module {
                 event.setTime(event.getTime() + gg);
                 tableOfEvents.add(event);
             } else {
+                queueLength();
                 queriesInLine.add(event.getQuery());
             }
         }
@@ -61,6 +62,7 @@ public class ProcessAdminModule extends Module {
         Query nextQuery;
         Event newEvent;
         if(queriesInLine.size() > 0){
+            queueLength();
             nextQuery = queriesInLine.poll();
             newEvent = new Event(EventType.ExitProcessAdminModule,event.getTime() + distribution.generate(), nextQuery);
             tableOfEvents.add(newEvent);

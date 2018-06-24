@@ -98,7 +98,7 @@ public class Simulator {
     }
     public static void main(String args[]){
         Simulator simulator = new Simulator(15,15,3,2,1);
-        simulator.setRunningTime(1500);
+        simulator.setRunningTime(15000);
         simulator.simulate();
         simulator.getSimulationStatistics();
     }
@@ -277,7 +277,6 @@ public class Simulator {
         acumulatedModuleQueueLength[ModuleType.CLIENTADMIN] = 0;
 
         acumulatedModuleQueueLength[ModuleType.PROCESSADMIN] = statisticsGenerator.queueLengthAverage(processAdminModule.getAcumulatedQueueLength(),processAdminModule.getCallsToQueueLength(),ModuleType.PROCESSADMIN);
-
         acumulatedModuleQueueLength[ModuleType.QUERYPROCESSING] = statisticsGenerator.queueLengthAverage(queryProcessingModule.getAcumulatedQueueLength(),queryProcessingModule.getCallsToQueueLength(),ModuleType.QUERYPROCESSING);
         acumulatedModuleQueueLength[ModuleType.TRANSACTIONANDSTORAGE] = statisticsGenerator.queueLengthAverage(transactionAndStorageModule.getAcumulatedQueueLength(),transactionAndStorageModule.getCallsToQueueLength(),ModuleType.TRANSACTIONANDSTORAGE);
         acumulatedModuleQueueLength[ModuleType.EXECUTION] = statisticsGenerator.queueLengthAverage(executionModule.getAcumulatedQueueLength(),executionModule.getCallsToQueueLength(),ModuleType.EXECUTION);
@@ -301,7 +300,7 @@ public class Simulator {
 
     public SimulationStatistics finalStatistics(){
         SimulationStatistics simulationStatistics = new SimulationStatistics();
-        simulationStatistics.setAcumulatedConnectionTime(statisticsGenerator.getdAverageConnectionTime());
+        simulationStatistics.setAcumulatedConnectionTime(statisticsGenerator.getAverageConnectionTime());
         simulationStatistics.setAcumulatedQueriesWaitTimeInModule(statisticsGenerator.getAverageQueriesWaitedTimeInModule());
         simulationStatistics.setAcumulatedModuleQueueLength(statisticsGenerator.getAverageModuleQueueLength());
         simulationStatistics.setAcumulatedDiscardedConnections(statisticsGenerator.getAcumulatedDiscardedConnections());

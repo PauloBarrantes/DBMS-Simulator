@@ -69,16 +69,7 @@ public abstract class Module {
      * @param clock, current clock time.
      * @function checks if any query in the queue needs to be removed.
      */
-/*
-    public void checkQueue(double clock, ClientAdminModule clientAdminModule){
-        for(Query query : queriesInLine){
-            if(timedOut (clock,query)){
-                clientAdminModule.timedOutConnection(clock, query);
-                queriesInLine.remove(query);
-            }
-        }
-    }
-    */
+
 
     /**
      * @function: ...
@@ -171,6 +162,7 @@ public abstract class Module {
             nextQuery = queriesInLine.poll();
             newEvent = new Event(eventType,clock, nextQuery);
             tableOfEvents.add(newEvent);
+            queueLength();
         }else{
             --occupiedFields;
         }
