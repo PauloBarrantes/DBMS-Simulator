@@ -1,7 +1,6 @@
 
     package DBMS_Sim;
 
-    import DBMS_Sim.SourceCode.Event;
     import DBMS_Sim.SourceCode.Simulator;
     import com.jfoenix.controls.*;
     import javafx.application.Application;
@@ -36,8 +35,11 @@ public class ApplicationController implements Initializable {
     @FXML NormalModeController normalModeController;
     @FXML StatisticController statisticController;
 
+    public Simulator getSimulator() {
+        return simulator;
+    }
 
-    // UI Variables - Home
+// UI Variables - Home
 
     @FXML StackPane stackPane1;
     @FXML JFXButton btnIniciar;

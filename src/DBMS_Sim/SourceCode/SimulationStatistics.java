@@ -1,11 +1,11 @@
 package DBMS_Sim.SourceCode;
 
-import java.sql.Statement;
-
 public class SimulationStatistics {
 
 
     private int acumulatedDiscardedConnections;
+    private int timeoutConnections;
+    private int acumulatedArrivals;
     private double[] acumulatedModuleQueueLength;
     private double[][] acumulatedQueriesWaitTimeInModule;
     private double acumulatedConnectionTime;
@@ -15,6 +15,21 @@ public class SimulationStatistics {
         acumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         acumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
         acumulatedConnectionTime = 0.0;
+    }
+
+    public int getTimeoutConnections() { return timeoutConnections;}
+
+    public void setTimeoutConnections(int timeoutConnections) { this.timeoutConnections = timeoutConnections;
+    }
+
+
+
+    public int getAcumulatedArrivals() {
+        return acumulatedArrivals;
+    }
+
+    public void setAcumulatedArrivals(int acumulatedArrivals) {
+        this.acumulatedArrivals = acumulatedArrivals;
     }
 
     public int getAcumulatedDiscardedConnections() { return acumulatedDiscardedConnections; }

@@ -27,17 +27,12 @@ public class ClientAdminModule extends Module{
     // ------------------------------ End of the constructors section ------------------------------
     // ---------------------------------------------------------------------------------------------
 
-    ///ELIMINAR
-    public int getNumberOfArrivalToTheSystem(){return numberOfArrivalToTheSystem;}
+
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------- Beginning of the setters and getters section -----------------------
     // ---------------------------------------------------------------------------------------------
 
-    public void setDiscardedConnections(int discardedConnections) {
-        this.discardedConnections = discardedConnections;
-    }
-    public void setQueryGenerator(QueryGenerator queryGenerator) { this.queryGenerator = queryGenerator;}
 
     public int getDiscardedConnections() {
         return discardedConnections;
@@ -84,7 +79,9 @@ public class ClientAdminModule extends Module{
 
 
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
-        // Acá ya la consulta paso por to-do el dbms ahora llega del execution module una salida, donde simplemente liberamos la conexion que estamos usando.
+        addDurationInModule(event.getTime(),event.getQuery());
+        countNewQuery(event.getQuery());
+        addDurationInModule(event.getTime(),event.getQuery());
         --occupiedFields;
         finishedQueriesCounter++;
         accumulatedFinishedQueryTimes += (event.getTime() - event.getQuery().getSubmissionTime());
@@ -93,7 +90,6 @@ public class ClientAdminModule extends Module{
 
     public void timedOutConnection(double clock, Query query){
 
-        System.out.println("CONEXION TIMEOUT");
         --occupiedFields;
         ++timeOutConnections;
         //++discardedConnections;
@@ -110,6 +106,8 @@ public class ClientAdminModule extends Module{
             event.setType(EventType.ExitClientModule);
             tableOfEvents.add(event);
         }
+        countNewQuery(event.getQuery());
+        addDurationInModule(event.getTime(),event.getQuery());
         // No hace falta porque timedOutConnection va restar el occupiedField
         return timedOut;
     }
