@@ -20,6 +20,7 @@ public class ClientAdminModule extends Module{
         finishedQueriesCounter = 0;
         accumulatedFinishedQueryTimes = 0;
         numberOfArrivalToTheSystem = 0;
+        discardedConnections = 0;
     }
 
     // ---------------------------------------------------------------------------------------------

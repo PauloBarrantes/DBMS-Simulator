@@ -5,11 +5,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
+import java.awt.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Observable;
 import java.util.ResourceBundle;
@@ -40,27 +48,112 @@ public class StatisticController implements Initializable {
     private JFXButton btnTransaction;
     @FXML
     private JFXButton btnExecution;
+
+    //------------------Statistical Variables --------------------
     @FXML
     private PieChart pcClientAdmin;
+    @FXML
+    private PieChart pcExecution;
+    @FXML
+    private PieChart pcTransaction;
+    @FXML
+    private PieChart pcQueryModule;
+    @FXML
+    private PieChart pcProcessAdmin;
+    //-- General
+    @FXML
+    private Label lblgenerallifetime;
+    @FXML
+    private Label lblgeneralDiscarded;
+    @FXML
+    private Label lblTimeOut;
+
+
+    //-- Client Admin
+
+    @FXML
+    private Label lbl1DDL;
+    @FXML
+    private Label lbl1SELECT;
+    @FXML
+    private Label lbl1JOIN;
+    @FXML
+    private Label lbl1UPDATE;
+
+
+    //-- Process Admin
+
+    @FXML
+    private Label lbl2DDL;
+    @FXML
+    private Label lbl2SELECT;
+    @FXML
+    private Label lbl2JOIN;
+    @FXML
+    private Label lbl2UPDATE;
+    @FXML
+    private Label lbl2QUEUE;
+
+    //-- Query Module
+    @FXML
+    private Label lbl3DDL;
+    @FXML
+    private Label lbl3SELECT;
+    @FXML
+    private Label lbl3JOIN;
+    @FXML
+    private Label lbl3UPDATE;
+    @FXML
+    private Label lbl3QUEUE;
+
+    //-- Execution Module
+    @FXML
+    private Label lbl4DDL;
+    @FXML
+    private Label lbl4SELECT;
+    @FXML
+    private Label lbl4JOIN;
+    @FXML
+    private Label lbl4UPDATE;
+    @FXML
+    private Label lbl4QUEUE;
+
+
+    //-- Transaction Module
+    @FXML
+    private Label lbl5DDL;
+    @FXML
+    private Label lbl5SELECT;
+    @FXML
+    private Label lbl5JOIN;
+    @FXML
+    private Label lbl5UPDATE;
+    @FXML
+    private Label lbl5QUEUE;
+
+    //------------------End of Statistical Variables --------------
+
+    @FXML private Label iteracion;
+    @FXML
+    private ApplicationController appController;
+    @FXML
+    private FinalStatsController finalStats;
     @FXML
     void general(ActionEvent event){
         changeColorsAndPanes();
         btnGeneral.setStyle("-fx-background-color : #CC412A;");
         pnGeneral.setVisible(true);
-
     }
     @FXML
     void clientAdmin(ActionEvent event){
         changeColorsAndPanes();
-
         btnClientAdmin.setStyle("-fx-background-color : #CC412A;");
         pnClientAdmin.setVisible(true);
-
     }
     @FXML
     void processAdmin(ActionEvent event){
-        changeColorsAndPanes();
 
+        changeColorsAndPanes();
         btnProcessAdmin.setStyle("-fx-background-color : #CC412A;");
         pnProcessAdmin.setVisible(true);
 
@@ -90,7 +183,32 @@ public class StatisticController implements Initializable {
 
     }
     @FXML
-    void next(ActionEvent event){
+    void next(ActionEvent event) throws InterruptedException {
+        if( appController.getNumberOfSimulation() <= appController.getNumberOfIterations() ){
+            appController.normalModeScene(event);
+            appController.runASimulations(event);
+        }else{
+            finalStatsScene(event);
+            finalStats.setAppController(appController);
+
+            System.out.println("Acabaron");
+        }
+
+    }
+
+    public void finalStatsScene(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Views/FinalStats.fxml"));
+            Parent root = (Parent) loader.load();
+            finalStats = loader.getController();
+            Scene normalMode = new Scene(root);
+            Stage appStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            appStage.hide();
+            appStage.setScene(normalMode);
+            appStage.show();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -123,4 +241,41 @@ public class StatisticController implements Initializable {
         pcClientAdmin.setData(piecharData);
     }
 
+    public void setIterationNumber(String text) {
+        iteracion.setText(text);
+    }
+
+    public void setAppController(ApplicationController applicationController){
+        this.appController = applicationController;
+    }
+
+    // We know that the matrix is ​​6x5 size
+    /*
+        0                   1           2           3           4
+    0   Average lifetime    Discarded   Timeout     Total
+    1   avgDDL              avgSELECT   avgJOIN     avgUPDATE
+    2   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+    3   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+    4   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+    5   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
+
+     */
+    public void fillScreen(double [][] matriz){
+        //General Pane
+        lblgenerallifetime.setText(""+ matriz[0][0]);
+        lblgeneralDiscarded.setText(""+matriz[0][1]);
+        lblTimeOut.setText(""+ matriz[0][2]);
+
+        //Client Admin Pane
+
+
+        //Process Admin Pane
+
+        //Query Module Pane
+
+
+        //Transaction Module Pane
+
+        //Execution Module Pane
+    }
 }

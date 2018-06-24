@@ -1,14 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="DBMS_Sim.Controller"
-            prefHeight="400.0" prefWidth="600.0">
+<AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.StatisticController">
+    <AnchorPane id="General" layoutX="199.0" layoutY="-1.0" prefHeight="451.0" prefWidth="505.0">
+        <Pane fx:id="pnGeneral" prefHeight="452.0" prefWidth="506.0" visible="false">
+            <Label layoutX="24.0" layoutY="38.0" prefHeight="32.0" prefWidth="144.0" text="General Stats"/>
+            <Separator layoutX="23.0" layoutY="65.0" prefHeight="11.0" prefWidth="458.0"/>
+            <ImageView fitHeight="65.0" fitWidth="65.0" layoutX="34.0" layoutY="84.0">
+                <Image url="@../Resources/pulse.png"/>
+            </ImageView>
+            <Label alignment="CENTER_RIGHT" layoutX="109.0" layoutY="101.0" prefHeight="32.0" prefWidth="215.0"
+                   text="Tiempo Promedio de Vida"/>
+            <Label alignment="CENTER" layoutX="381.0" layoutY="101.0" prefHeight="32.0" prefWidth="98.0"
+                   text="0"/>
+            <Label alignment="CENTER_RIGHT" layoutX="107.0" layoutY="178.0" prefHeight="32.0" prefWidth="215.0"
+                   text="Discarded Connections"/>
+            <Label alignment="CENTER" layoutX="381.0" layoutY="178.0" prefHeight="32.0" prefWidth="98.0"
+                   text="0"/>
+            <Label alignment="CENTER_RIGHT" layoutX="111.0" layoutY="256.0" prefHeight="32.0" prefWidth="215.0"
+                   text="Timeout Connections"/>
+            <Label alignment="CENTER" layoutX="383.0" layoutY="256.0" prefHeight="32.0" prefWidth="98.0"
+                   text="0"/>
+            <ImageView fitHeight="46.0" fitWidth="46.0" layoutX="47.0" layoutY="249.0">
+                <Image url="@../Resources/hourglass.png"/>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="40.0" layoutY="164.0">
+                <Image url="@../Resources/trash.png"/>
+            </ImageView>
+        </Pane>
+        <Pane fx:id="pnProcessAdmin" prefHeight="452.0" prefWidth="506.0" visible="false">
+            <children>
+                <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Process Admin Module Statistics"/>
+                <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
+                <PieChart fx:id="pcProcessAdmin" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
+                          prefWidth="374.0"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
+                <Label layoutX="442.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="123.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="159.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="30.0" layoutY="228.0" prefHeight="32.0" prefWidth="228.0" text="Pie Chart"/>
+                <Label layoutX="60.0" layoutY="192.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Average Queue Length"/>
+                <Label layoutX="442.0" layoutY="193.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+            </children>
+        </Pane>
+        <Pane fx:id="pnQueryModule" prefHeight="452.0" prefWidth="506.0" visible="false">
+            <children>
+                <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Query Module Statistics"/>
+                <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
+                <PieChart fx:id="pcQueryModule" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
+                          prefWidth="374.0"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
+                <Label layoutX="442.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="123.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="159.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="30.0" layoutY="228.0" prefHeight="32.0" prefWidth="228.0" text="Pie Chart"/>
+                <Label layoutX="60.0" layoutY="192.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Average Queue Length"/>
+                <Label layoutX="442.0" layoutY="193.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+            </children>
+        </Pane>
+        <Pane fx:id="pnTransaction" prefHeight="452.0" prefWidth="506.0">
+            <children>
+                <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Transaction Module Statistics"/>
+                <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
+                <PieChart fx:id="pcTransaction" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
+                          prefWidth="374.0"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
+                <Label layoutX="442.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="123.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="159.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="30.0" layoutY="228.0" prefHeight="32.0" prefWidth="228.0" text="Pie Chart"/>
+                <Label layoutX="60.0" layoutY="192.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Average Queue Length"/>
+                <Label layoutX="442.0" layoutY="193.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+            </children>
+        </Pane>
+        <Pane fx:id="pnExecution" prefHeight="452.0" prefWidth="506.0">
+            <children>
+                <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Transaction Module Statistics"/>
+                <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
+                <PieChart fx:id="pcExecution" layoutX="22.0" layoutY="217.0" prefHeight="214.0" prefWidth="374.0"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Separator layoutX="29.0" layoutY="250.0" prefHeight="11.0" prefWidth="458.0"/>
+                <Label layoutX="442.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="123.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="159.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="30.0" layoutY="228.0" prefHeight="32.0" prefWidth="228.0" text="Pie Chart"/>
+                <Label layoutX="60.0" layoutY="192.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Average Queue Length"/>
+                <Label layoutX="442.0" layoutY="193.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+            </children>
+        </Pane>
+        <Pane fx:id="pnClientAdmin" prefHeight="452.0" prefWidth="506.0" visible="false">
+            <children>
+                <Label layoutX="30.0" layoutY="15.0" prefHeight="32.0" prefWidth="228.0"
+                       text="Cliend Admin Module Statistics"/>
+                <Separator layoutX="29.0" layoutY="42.0" prefHeight="11.0" prefWidth="458.0"/>
+                <PieChart fx:id="pcClientAdmin" layoutX="22.0" layoutY="217.0" prefHeight="214.0"
+                          prefWidth="374.0"/>
+                <Label layoutX="60.0" layoutY="52.0" prefHeight="32.0" prefWidth="228.0" text="DDL"/>
+                <Label layoutX="60.0" layoutY="84.0" prefHeight="32.0" prefWidth="228.0" text="SELECT"/>
+                <Label layoutX="60.0" layoutY="121.0" prefHeight="32.0" prefWidth="228.0" text="JOIN"/>
+                <Label layoutX="60.0" layoutY="157.0" prefHeight="32.0" prefWidth="228.0" text="UPDATE"/>
+                <Separator layoutX="29.0" layoutY="209.0" prefHeight="11.0" prefWidth="458.0"/>
+                <Label layoutX="442.0" layoutY="54.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="86.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="123.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="442.0" layoutY="159.0" prefHeight="32.0" prefWidth="228.0" text="0"/>
+                <Label layoutX="30.0" layoutY="187.0" prefHeight="32.0" prefWidth="228.0" text="Pie Chart"/>
+            </children>
+        </Pane>
 
+    </AnchorPane>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f46542" height="502.0" layoutX="-1.0" layoutY="-3.0"
+               stroke="TRANSPARENT" strokeType="INSIDE" width="200.0"/>
+    <Label alignment="CENTER" layoutX="43.0" layoutY="24.0" prefHeight="17.0" prefWidth="106.0" text="Statistics"
+           textFill="WHITE"/>
+    <JFXButton id="btnGeneral" fx:id="btnGeneral" layoutX="-1.0" layoutY="129.0" onAction="#general" prefHeight="58.0"
+               prefWidth="200.0" text="General" textFill="WHITE"/>
+    <JFXButton id="btnClientAdminModule" fx:id="btnClientAdmin" layoutX="-1.0" layoutY="186.0" onAction="#clientAdmin"
+               prefHeight="58.0" prefWidth="200.0" text="Client Admin Module" textFill="WHITE"/>
+    <JFXButton id="btnProcessAdminModule" fx:id="btnProcessAdmin" layoutX="-1.0" layoutY="244.0"
+               onAction="#processAdmin" prefHeight="58.0" prefWidth="200.0" text="Process Admin Module"
+               textFill="WHITE"/>
+    <JFXButton id="btnTransactionModule" fx:id="btnTransaction" layoutX="-1.0" layoutY="360.0" onAction="#transaction"
+               prefHeight="58.0" prefWidth="200.0" text="Transaction Module" textFill="WHITE"/>
+    <JFXButton id="btnExecutionModule" fx:id="btnExecution" layoutX="-1.0" layoutY="418.0" onAction="#execution"
+               prefHeight="58.0" prefWidth="200.0" text="Execution Module" textFill="WHITE"/>
+    <JFXButton id="btnNext" layoutX="398.0" layoutY="455.0" onAction="#next" prefHeight="35.0" prefWidth="106.0"
+               style="-fx-background-color: #cc412a;" text="Next" textFill="WHITE"/>
+    <JFXButton id="btnQueryModule" fx:id="btnQueryModule" layoutX="-1.0" layoutY="302.0" onAction="#queryModule"
+               prefHeight="58.0" prefWidth="200.0" text="Query Module" textFill="WHITE"/>
+    <Label alignment="CENTER" layoutX="47.0" layoutY="53.0" prefHeight="17.0" prefWidth="106.0" text="Iteration:"
+           textFill="WHITE"/>
+    <Label fx:id="iteracion" alignment="CENTER" layoutX="47.0" layoutY="87.0" prefHeight="17.0" prefWidth="106.0" text="0"
+           textFill="WHITE"/>
 </AnchorPane>

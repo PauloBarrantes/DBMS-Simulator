@@ -53,6 +53,7 @@ public class Simulator {
         transactionAndStorageModule = new TransactionAndStorageModule(p,t);
         executionModule = new ExecutionModule(m,t);
         queryGenerator = new QueryGenerator();
+        statisticsGenerator = new StatisticsGenerator();
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -104,6 +105,7 @@ public class Simulator {
         Simulator simulator = new Simulator(15,15,3,2,1);
         simulator.setRunningTime(1500);
         simulator.simulate();
+        simulator.getSimulationStatistics();
     }
     public void simulate(){
         appendInitialEvent();
@@ -119,14 +121,7 @@ public class Simulator {
             clock = tableOfEvents.peek().getTime();
 
         }
-        System.out.println("Clock: " + clock);
 
-        System.out.println("QueuLegnths: " + processAdminModule.queueSize());
-        System.out.println("QueuLegnths: " + queryProcessingModule.queueSize());
-        System.out.println("QueuLegnths: " + transactionAndStorageModule.queueSize());
-        System.out.println("QueuLegnths: " + executionModule.queueSize());
-        System.out.println("Discarded: " + clientAdminModule.getDiscardedConnections());
-        System.out.println("TimeOut: " + clientAdminModule.getTimeOutConnections());
     }
 
 
@@ -149,7 +144,6 @@ public class Simulator {
         data[4] = (double) executionModule.queueSize();
         data[5] = (double) clientAdminModule.getDiscardedConnections();
         data[6] = (double) clientAdminModule.getTimeOutConnections();
-        System.out.println("Retorno los datos");
 
         return data;
     }
@@ -284,7 +278,9 @@ public class Simulator {
 
         double[] acumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         acumulatedModuleQueueLength[ModuleType.CLIENTADMIN] = 0;
+
         acumulatedModuleQueueLength[ModuleType.PROCESSADMIN] = statisticsGenerator.queueLengthAverage(processAdminModule.getAcumulatedQueueLength(),processAdminModule.getCallsToQueueLength(),ModuleType.PROCESSADMIN);
+
         acumulatedModuleQueueLength[ModuleType.QUERYPROCESSING] = statisticsGenerator.queueLengthAverage(queryProcessingModule.getAcumulatedQueueLength(),queryProcessingModule.getCallsToQueueLength(),ModuleType.QUERYPROCESSING);
         acumulatedModuleQueueLength[ModuleType.TRANSACTIONANDSTORAGE] = statisticsGenerator.queueLengthAverage(transactionAndStorageModule.getAcumulatedQueueLength(),transactionAndStorageModule.getCallsToQueueLength(),ModuleType.TRANSACTIONANDSTORAGE);
         acumulatedModuleQueueLength[ModuleType.EXECUTION] = statisticsGenerator.queueLengthAverage(executionModule.getAcumulatedQueueLength(),executionModule.getCallsToQueueLength(),ModuleType.EXECUTION);
