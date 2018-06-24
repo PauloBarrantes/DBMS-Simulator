@@ -13,8 +13,6 @@ import java.util.*;
  * @author  Fabián Álvarez
  */
 public class Simulator {
-    private ModuleType moduleTypes;
-    private StatementType statementType;
 
     private ClientAdminModule clientAdminModule;
     private double clock;
@@ -22,12 +20,9 @@ public class Simulator {
     private ProcessAdminModule processAdminModule;
     private QueryGenerator queryGenerator;
     private QueryProcessingModule queryProcessingModule;
-    private int[] queueLengths;
-    private int[] queueLengthsCounted;
     private double runningTime;
     private StatisticsGenerator statisticsGenerator;
     private PriorityQueue<Event> tableOfEvents;
-    private double timeInTheSystem;
     private TransactionAndStorageModule transactionAndStorageModule;
 
     // ---------------------------------------------------------------------------------------------

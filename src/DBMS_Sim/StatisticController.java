@@ -13,13 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Observable;
 import java.util.ResourceBundle;
 
 public class StatisticController implements Initializable {
@@ -186,7 +183,7 @@ public class StatisticController implements Initializable {
     void next(ActionEvent event) throws InterruptedException {
         if( appController.getNumberOfSimulation() <= appController.getNumberOfIterations() ){
             appController.normalModeScene(event);
-            appController.runASimulations(event);
+            appController.runASimulation(event);
         }else{
             finalStatsScene(event);
             finalStats.setAppController(appController);

@@ -87,10 +87,10 @@ public class ApplicationController implements Initializable {
             normalModeScene(event);
             if(!mode.isSelected()){
                 modeSim=1;
-                runASimulations(event);
+                runASimulation(event);
             }else{
                 modeSim=1000;
-                runASimulations(event);
+                runASimulation(event);
             }
 
         }else{
@@ -120,7 +120,7 @@ public class ApplicationController implements Initializable {
     }
 
 
-    public void runASimulations( ActionEvent event) throws InterruptedException {
+    public void runASimulation(ActionEvent event) throws InterruptedException {
 
         simulator = new Simulator(kConnections, timeout, nProcesses, pProcesses, mProcesses);
         simulator.setRunningTime((double) runTime);

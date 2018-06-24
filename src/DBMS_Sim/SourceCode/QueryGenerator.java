@@ -17,7 +17,6 @@ public class QueryGenerator {
 
     private ExpDistributionGenerator distribution;
     private Random rnd = new Random(System.currentTimeMillis());
-    private StatementType statementType;
 
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
