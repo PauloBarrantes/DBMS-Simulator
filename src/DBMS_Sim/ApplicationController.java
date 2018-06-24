@@ -86,10 +86,12 @@ public class ApplicationController implements Initializable {
             pProcesses = Integer.parseInt( p.getText());
             nProcesses = Integer.parseInt(n.getText());
             //Cargamos la vista de normal mode
+            simulator = new Simulator(kConnections, timeout, nProcesses, pProcesses, mProcesses);
+            simulator.setRunningTime((double) runTime);
 
             normalModeScene(event);
             if(!mode.isSelected()){
-                modeSim=1;
+                modeSim=0;
                 runASimulation(event);
             }else{
                 modeSim=1000;
@@ -124,9 +126,7 @@ public class ApplicationController implements Initializable {
 
 
     public void runASimulation(ActionEvent event) throws InterruptedException {
-
-        simulator = new Simulator(kConnections, timeout, nProcesses, pProcesses, mProcesses);
-        simulator.setRunningTime((double) runTime);
+        simulator.reset();
         simulator.appendInitialEvent();
         normalModeController.setNumberOfSimulation(numberOfSimulation);
         final Task<Void> task = new Task<Void>() {

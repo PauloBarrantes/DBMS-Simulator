@@ -189,7 +189,8 @@ public class StatisticController implements Initializable {
             finalStatsScene(event);
             finalStats.setAppController(appController);
 
-            System.out.println("Acabaron");
+            SimulationStatistics finalStatistics = appController.getSimulator().finalStatistics();
+            finalStats.fillScreen();
         }
 
     }
@@ -258,17 +259,18 @@ public class StatisticController implements Initializable {
         join = statistics.getAcumulatedQueriesWaitTimeInModule()[0][2];
         ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[0][3];
 
-
-        lbl1DDL.setText("" + ddl);
+        formattedLifetime = String.format("%.02f", ddl);
+        lbl1DDL.setText(formattedLifetime);
+        formattedLifetime = String.format("%.02f", select);
         lbl1SELECT.setText("" + select);
         lbl1JOIN.setText("" + join);
         lbl1UPDATE.setText("" + update);
-        ObservableList<PieChart.Data> piecharData = FXCollections.observableArrayList(
+        ObservableList<PieChart.Data> piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
                 new PieChart.Data("JOIN",join),
                 new PieChart.Data("UPDATE",update));
-        pcClientAdmin.setData(piecharData);
+        pcClientAdmin.setData(piechartData);
 
         //Process Admin Pane
         select = statistics.getAcumulatedQueriesWaitTimeInModule()[1][0];
@@ -282,12 +284,12 @@ public class StatisticController implements Initializable {
         lbl2JOIN.setText("" + join);
         lbl2UPDATE.setText("" + update);
         lbl2QUEUE.setText(""+ queue);
-        piecharData = FXCollections.observableArrayList(
+        piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
                 new PieChart.Data("JOIN",join),
                 new PieChart.Data("UPDATE",update));
-        pcProcessAdmin.setData(piecharData);
+        pcProcessAdmin.setData(piechartData);
 
         //Query Module Pane
         select = statistics.getAcumulatedQueriesWaitTimeInModule()[2][0];
@@ -302,12 +304,12 @@ public class StatisticController implements Initializable {
         lbl3UPDATE.setText("" + update);
         lbl3QUEUE.setText(""+ queue);
 
-        piecharData = FXCollections.observableArrayList(
+        piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
                 new PieChart.Data("JOIN",join),
                 new PieChart.Data("UPDATE",update));
-        pcQueryModule.setData(piecharData);
+        pcQueryModule.setData(piechartData);
 
         //Transaction Module Pane
         select = statistics.getAcumulatedQueriesWaitTimeInModule()[3][0];
@@ -321,12 +323,12 @@ public class StatisticController implements Initializable {
         lbl4JOIN.setText("" + join);
         lbl4UPDATE.setText("" + update);
         lbl4QUEUE.setText(""+ queue);
-        piecharData = FXCollections.observableArrayList(
+        piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
                 new PieChart.Data("JOIN",join),
                 new PieChart.Data("UPDATE",update));
-        pcClientAdmin.setData(piecharData);
+        pcTransaction.setData(piechartData);
         //Execution Module Pane
         select = statistics.getAcumulatedQueriesWaitTimeInModule()[4][0];
         update = statistics.getAcumulatedQueriesWaitTimeInModule()[4][1];
@@ -340,11 +342,11 @@ public class StatisticController implements Initializable {
         lbl5UPDATE.setText("" + update);
         lbl5QUEUE.setText(""+ queue);
 
-        piecharData = FXCollections.observableArrayList(
+        piechartData = FXCollections.observableArrayList(
                 new PieChart.Data("DDL",ddl),
                 new PieChart.Data("SELECT",select),
                 new PieChart.Data("JOIN",join),
                 new PieChart.Data("UPDATE",update));
-        pcClientAdmin.setData(piecharData);
+        pcExecution.setData(piechartData);
     }
 }

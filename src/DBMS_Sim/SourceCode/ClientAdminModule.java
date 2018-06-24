@@ -102,7 +102,7 @@ public class ClientAdminModule extends Module{
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
         if(!timedOut){
             event.getQuery().setModuleEntryTime(event.getTime());
-            event.setTime(event.getTime() + event.getQuery().getLoadedBlocks());
+            event.setTime(event.getTime() +( event.getQuery().getLoadedBlocks()));
             event.setType(EventType.ExitClientModule);
             tableOfEvents.add(event);
         }
@@ -118,7 +118,12 @@ public class ClientAdminModule extends Module{
     }
     @Override
     public void resetVariables(){
-
+        super.resetVariables();
+        finishedQueriesCounter = 0;
+        accumulatedFinishedQueryTimes = 0;
+        numberOfArrivalToTheSystem = 0;
+        discardedConnections = 0;
+        timeOutConnections = 0;
     }
 
 

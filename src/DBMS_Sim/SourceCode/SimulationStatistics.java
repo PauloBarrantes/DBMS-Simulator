@@ -19,7 +19,8 @@ public class SimulationStatistics {
 
     public int getTimeoutConnections() { return timeoutConnections;}
 
-    public void setTimeoutConnections(int timeoutConnections) { this.timeoutConnections = timeoutConnections;
+    public void setTimeoutConnections(int timeoutConnections) {
+        this.timeoutConnections = timeoutConnections;
     }
 
 

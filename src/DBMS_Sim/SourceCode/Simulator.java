@@ -309,6 +309,17 @@ public class Simulator {
 
         return simulationStatistics;
     }
+
+    public void reset() {
+        tableOfEvents.clear();
+        clock=0;
+        runningTime = 0;
+        clientAdminModule.resetVariables();
+        processAdminModule.resetVariables();
+        queryProcessingModule.resetVariables();
+        transactionAndStorageModule.resetVariables();
+        executionModule.resetVariables();
+    }
     // ---------------------------------------------------------------------------------------------
     // -------------------------------- End of the methods section --------------------------------
     // ---------------------------------------------------------------------------------------------
