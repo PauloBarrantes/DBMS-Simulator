@@ -69,6 +69,7 @@ public class TransactionAndStorageModule extends Module{
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
         //We ask if the query that is arriving has timed out.
         if(!timedOut){
+            event.getQuery().setModuleEntryTime(event.getTime());
             //We ask if there's enough space to serve the event.
             if(occupiedFields < maxFields) {
                 //If no servers are occupied, proceed to be attended.

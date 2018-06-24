@@ -139,7 +139,7 @@ public class Simulator {
         data[3] = (double) transactionAndStorageModule.queueSize();
         data[4] = (double) executionModule.queueSize();
         data[5] = (double) clientAdminModule.getDiscardedConnections();
-        data[6] = (double) clientAdminModule.getTimeOutConnections();
+        data[6] = (double) clientAdminModule.getTimedOutConnections();
 
         return data;
     }
@@ -269,7 +269,7 @@ public class Simulator {
         SimulationStatistics simulationStatistics = new SimulationStatistics();
 
         simulationStatistics.setAcumulatedDiscardedConnections(clientAdminModule.getDiscardedConnections());
-        simulationStatistics.setTimeoutConnections(clientAdminModule.getTimeOutConnections());
+        simulationStatistics.setTimeoutConnections(clientAdminModule.getTimedOutConnections());
 
         statisticsGenerator.addDiscardedConnections(simulationStatistics.getAcumulatedDiscardedConnections());
         statisticsGenerator.setTimeoutConnections(simulationStatistics.getTimeoutConnections());
