@@ -26,6 +26,12 @@ public class ProcessAdminModule extends Module {
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * @function Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
+     */
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
 
@@ -43,6 +49,13 @@ public class ProcessAdminModule extends Module {
         return timedOut;
     }
 
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * @function Creates an arrival event for next module if query hasn't timed out and if there's someone in line, creates en exit event from this module.
+     * If not, decrements occupiedFields. Calls another method for statistic purposes.
+     */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(), event.getQuery());
         Query nextQuery;
@@ -67,7 +80,8 @@ public class ProcessAdminModule extends Module {
 
     /**
      * @param clock, current clock time.
-     * @function checks if any query in the queue needs to be removed.
+     * @param clientAdminModule, module where timeouts will be handled.
+     * @function checks if a query in queue has timed out, if so, removes this query from queue and updates statistic variables.
      */
 
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){

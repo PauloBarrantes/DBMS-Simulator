@@ -4,23 +4,12 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
+
+
 public class TransactionAndStorageModule extends Module{
     private boolean ddlStatementFlag;
     private UniformDistributionGenerator uniformDistributionGenerator;
-/*    private Comparator<Query> comparator = new Comparator<Query>() {
-        public int compare(Query arriving, Query queueHead) {
-            int cmp = 0;
-            if(arriving.getStatementType() > queueHead.getStatementType()){
-                cmp = 1;
-            }else{
-                if(arriving.getStatementType() < queueHead.getStatementType()){
-                    cmp = -1;
-                }
-            }
-            return cmp;
-        }
-    };
-*/
+
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
@@ -69,23 +58,35 @@ public class TransactionAndStorageModule extends Module{
     // ------------------------------- Beginning of methods section -------------------------------
     // ---------------------------------------------------------------------------------------------
 
+
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * @function Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
+     */
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
-
+        //We ask if the query that is arriving has timed out.
         if(!timedOut){
+            //We ask if there's enough space to serve the event.
             if(occupiedFields < maxFields) {
+                //If no servers are occupied, proceed to be attended.
                 if(occupiedFields == 0) {
                     occupiedFields++;
                     event.setType(EventType.ExitTransactionModule);
                     event.setTime(event.getTime() + calculateDuration(event.getQuery()));
                     tableOfEvents.add(event);
                 }else{
+                    //If there's occupied servers and the query arriving is a DDL statement, it waits in queue.
                     if (event.getQuery().getStatementType() == StatementType.DDL) {
                         queriesInLine.add(event.getQuery());
                     } else {
+                        //If there is a DDL statement being processed, no query can be served at the moment, so arriving query waits in queue.
                         if (isDdlStatementFlag()) {
                             queriesInLine.add(event.getQuery());
                         } else {
+                            //If there's no DDL statement being processed, arriving query is not a DDL, and there's enough servers, proceed to attend query.
                             occupiedFields++;
                             event.setType(EventType.ExitTransactionModule);
                             event.setTime(event.getTime() + calculateDuration(event.getQuery()));
@@ -101,6 +102,13 @@ public class TransactionAndStorageModule extends Module{
         return timedOut;
     }
 
+    /**
+     * @param event, object that contains the information and the object needed to execute each of the simulation events.
+     * @param tableOfEvents, queue with a list of events to be executed.
+     * @return  boolean that says if a query was removed as a result of a timeout, so other modules can also update their stats.
+     * @function Creates an arrival event for next module if query hasn't timed out and if there's someone in line, creates en exit event from this module.
+     * If not, decrements occupiedFields. Calls another method for statistic purposes.
+     */
     public boolean processDeparture(Event event, PriorityQueue<Event> tableOfEvents) {
         boolean timedOut = timedOut(event.getTime(),event.getQuery());
         Query nextQuery;
@@ -123,6 +131,11 @@ public class TransactionAndStorageModule extends Module{
         return timedOut;
     }
 
+    /**
+     * @param clock, current clock time.
+     * @param clientAdminModule, module where timeouts will be handled.
+     * @function checks if a query in queue has timed out, if so, removes this query from queue and updates statistic variables.
+     */
     @Override
     public void checkQueue(double clock, ClientAdminModule clientAdminModule){
         ArrayList<Query> queriesToRemove = new ArrayList<Query>();
@@ -132,14 +145,17 @@ public class TransactionAndStorageModule extends Module{
                 queriesToRemove.add(query);
             }
         }
-
         for (Query query: queriesToRemove){
 
             queriesInLine.remove(query);
         }
     }
 
-
+    /**
+     * @param beingProcessed, query that is currently being processed.
+     * @return  The duration of the query being processed within this module.
+     * @function Defines how long will this query last being attended and how many blocks are loaded from disk.
+     */
     private double calculateDuration(Query beingProcessed){
         double duration = maxFields * 0.03;
         int blocksLoaded = 1;
