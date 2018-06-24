@@ -15,6 +15,7 @@ public class StatisticsGenerator {
     private int amountOfDoneSimulations;
 
     private int acumulatedDiscardedConnections;
+    private int acumulatedTimeoutsConnections;
     private double[] acumulatedModuleQueueLength;
     private double[][] acumulatedQueriesWaitTimeInModule;
     private double acumulatedConnectionTime;
@@ -27,15 +28,15 @@ public class StatisticsGenerator {
     }
 
     public double averageConnectionTime(int finishedQueriesCounter, double accumulatedFinishedQueryTimes){
-        acumulatedConnectionTime += finishedQueriesCounter/accumulatedFinishedQueryTimes;
-        return finishedQueriesCounter/accumulatedFinishedQueryTimes;
+        acumulatedConnectionTime += (double)finishedQueriesCounter/accumulatedFinishedQueryTimes;
+        return (double)finishedQueriesCounter/accumulatedFinishedQueryTimes;
     }
 
     public double queueLengthAverage(int acumulatedQueueLength, int callsToQueueLength, int moduleType){
         double queueLenghtAverage = 0;
         if(callsToQueueLength > 0){
-            acumulatedModuleQueueLength[moduleType] += acumulatedQueueLength/callsToQueueLength;
-            queueLenghtAverage = acumulatedQueueLength/callsToQueueLength;
+            acumulatedModuleQueueLength[moduleType] += (double) acumulatedQueueLength/(double)callsToQueueLength;
+            queueLenghtAverage = (double)acumulatedQueueLength/(double)callsToQueueLength;
 
         }
         return queueLenghtAverage;
@@ -46,7 +47,7 @@ public class StatisticsGenerator {
 
         for(int i = 0; i < statementType.NUMSTATEMENTS; ++i){
             if(totalConnectionsByQueryType[i] > 0){
-                averagePassedTime[i] = timeByQueryType[i]/totalConnectionsByQueryType[i];
+                averagePassedTime[i] = timeByQueryType[i]/(double)totalConnectionsByQueryType[i];
             }
         }
         acumulatedQueriesWaitTimeInModule[moduleType] = averagePassedTime;
@@ -62,7 +63,7 @@ public class StatisticsGenerator {
     }
 
     public double getdAverageConnectionTime() {
-        return acumulatedConnectionTime/amountOfDoneSimulations;
+        return acumulatedConnectionTime/(double)amountOfDoneSimulations;
     }
 
     public double[] getAverageModuleQueueLength(){
@@ -85,4 +86,8 @@ public class StatisticsGenerator {
     }
 
     public int getAcumulatedDiscardedConnections() { return acumulatedDiscardedConnections; }
+
+    public void setTimeoutConnections(int timeoutConnections) {
+        acumulatedTimeoutsConnections += timeoutConnections;
+    }
 }

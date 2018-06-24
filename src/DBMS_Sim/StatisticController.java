@@ -1,5 +1,6 @@
 package DBMS_Sim;
 
+import DBMS_Sim.SourceCode.SimulationStatistics;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -230,12 +231,7 @@ public class StatisticController implements Initializable {
         changeColorsAndPanes();
         btnGeneral.setStyle("-fx-background-color : #CC412A;");
         pnGeneral.setVisible(true);
-        ObservableList<PieChart.Data> piecharData = FXCollections.observableArrayList(
-                new PieChart.Data("DDL",10),
-                new PieChart.Data("SELECT",29),
-                new PieChart.Data("JOIN",30),
-                new PieChart.Data("UPDATE",100));
-        pcClientAdmin.setData(piecharData);
+
     }
 
     public void setIterationNumber(String text) {
@@ -246,33 +242,109 @@ public class StatisticController implements Initializable {
         this.appController = applicationController;
     }
 
-    // We know that the matrix is ​​6x5 size
-    /*
-        0                   1           2           3           4
-    0   Average lifetime    Discarded   Timeout     Total
-    1   avgDDL              avgSELECT   avgJOIN     avgUPDATE
-    2   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
-    3   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
-    4   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
-    5   avgDDL              avgSELECT   avgJOIN     avgUPDATE   avgQueueLength
 
-     */
-    public void fillScreen(double [][] matriz){
+    public void fillScreen(SimulationStatistics statistics){
         //General Pane
-        lblgenerallifetime.setText(""+ matriz[0][0]);
-        lblgeneralDiscarded.setText(""+matriz[0][1]);
-        lblTimeOut.setText(""+ matriz[0][2]);
+        String formattedLifetime = String.format("%.02f", statistics.getAcumulatedConnectionTime());
+
+        lblgenerallifetime.setText(formattedLifetime);
+        lblgeneralDiscarded.setText(""+statistics.getAcumulatedDiscardedConnections());
+        lblTimeOut.setText(""+ statistics.getTimeoutConnections());
 
         //Client Admin Pane
+        double ddl, select, join, update;
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[0][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[0][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[0][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[0][3];
 
+
+        lbl1DDL.setText("" + ddl);
+        lbl1SELECT.setText("" + select);
+        lbl1JOIN.setText("" + join);
+        lbl1UPDATE.setText("" + update);
+        ObservableList<PieChart.Data> piecharData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcClientAdmin.setData(piecharData);
 
         //Process Admin Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[1][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[1][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[1][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[1][3];
+
+        double queue = statistics.getAcumulatedModuleQueueLength()[1];
+        lbl2DDL.setText("" + ddl);
+        lbl2SELECT.setText("" + select);
+        lbl2JOIN.setText("" + join);
+        lbl2UPDATE.setText("" + update);
+        lbl2QUEUE.setText(""+ queue);
+        piecharData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcProcessAdmin.setData(piecharData);
 
         //Query Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[2][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[2][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[2][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[2][3];
 
+        queue = statistics.getAcumulatedModuleQueueLength()[2];
+        lbl3DDL.setText("" + ddl);
+        lbl3SELECT.setText("" + select);
+        lbl3JOIN.setText("" + join);
+        lbl3UPDATE.setText("" + update);
+        lbl3QUEUE.setText(""+ queue);
+
+        piecharData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcQueryModule.setData(piecharData);
 
         //Transaction Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[3][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[3][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[3][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[3][3];
 
+        queue = statistics.getAcumulatedModuleQueueLength()[3];
+        lbl4DDL.setText("" + ddl);
+        lbl4SELECT.setText("" + select);
+        lbl4JOIN.setText("" + join);
+        lbl4UPDATE.setText("" + update);
+        lbl4QUEUE.setText(""+ queue);
+        piecharData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcClientAdmin.setData(piecharData);
         //Execution Module Pane
+        select = statistics.getAcumulatedQueriesWaitTimeInModule()[4][0];
+        update = statistics.getAcumulatedQueriesWaitTimeInModule()[4][1];
+        join = statistics.getAcumulatedQueriesWaitTimeInModule()[4][2];
+        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[4][3];
+
+        queue = statistics.getAcumulatedModuleQueueLength()[4];
+        lbl5DDL.setText("" + ddl);
+        lbl5SELECT.setText("" + select);
+        lbl5JOIN.setText("" + join);
+        lbl5UPDATE.setText("" + update);
+        lbl5QUEUE.setText(""+ queue);
+
+        piecharData = FXCollections.observableArrayList(
+                new PieChart.Data("DDL",ddl),
+                new PieChart.Data("SELECT",select),
+                new PieChart.Data("JOIN",join),
+                new PieChart.Data("UPDATE",update));
+        pcClientAdmin.setData(piecharData);
     }
 }

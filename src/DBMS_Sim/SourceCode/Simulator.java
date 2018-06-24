@@ -116,6 +116,7 @@ public class Simulator {
             clock = tableOfEvents.peek().getTime();
 
         }
+        getSimulationStatistics();
 
     }
 
@@ -155,7 +156,6 @@ public class Simulator {
         boolean queryTimeOut;
         switch (actualEvent.getType()) {
             case ArriveClientToModule:
-                System.out.println("Hace una llegada");
                 clientAdminModule.processArrival(actualEvent, tableOfEvents);
                 break;
             case ArriveToProcessAdminModule:
@@ -266,11 +266,14 @@ public class Simulator {
 
 
     public SimulationStatistics getSimulationStatistics(){
+
         SimulationStatistics simulationStatistics = new SimulationStatistics();
 
         simulationStatistics.setAcumulatedDiscardedConnections(clientAdminModule.getDiscardedConnections());
-        statisticsGenerator.addDiscardedConnections(simulationStatistics.getAcumulatedDiscardedConnections());
+        simulationStatistics.setTimeoutConnections(clientAdminModule.getTimeOutConnections());
 
+        statisticsGenerator.addDiscardedConnections(simulationStatistics.getAcumulatedDiscardedConnections());
+        statisticsGenerator.setTimeoutConnections(simulationStatistics.getTimeoutConnections());
         double[] acumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         acumulatedModuleQueueLength[ModuleType.CLIENTADMIN] = 0;
 
@@ -292,6 +295,8 @@ public class Simulator {
         simulationStatistics.setAcumulatedConnectionTime(statisticsGenerator.averageConnectionTime(clientAdminModule.getFinishedQueriesCounter(),clientAdminModule.getAccumulatedFinishedQueryTimes()));
 
         statisticsGenerator.increaseDoneSimulations();
+
+
         return simulationStatistics;
     }
 

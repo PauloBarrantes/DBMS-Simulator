@@ -1,5 +1,6 @@
 package DBMS_Sim;
 
+import DBMS_Sim.SourceCode.SimulationStatistics;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXProgressBar;
 import javafx.application.Platform;
@@ -51,7 +52,9 @@ public class NormalModeController  implements Initializable {
             e.printStackTrace();
         }
 
-        //statisticController.fillScreen();
+        SimulationStatistics statistics = controller.getSimulator().getSimulationStatistics();
+        statisticController.fillScreen(statistics);
+
     }
 
 

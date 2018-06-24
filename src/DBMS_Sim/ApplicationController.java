@@ -35,8 +35,11 @@ public class ApplicationController implements Initializable {
     @FXML NormalModeController normalModeController;
     @FXML StatisticController statisticController;
 
+    public Simulator getSimulator() {
+        return simulator;
+    }
 
-    // UI Variables - Home
+// UI Variables - Home
 
     @FXML StackPane stackPane1;
     @FXML JFXButton btnIniciar;
