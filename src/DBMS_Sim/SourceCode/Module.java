@@ -1,6 +1,5 @@
 package DBMS_Sim.SourceCode;
 
-import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
@@ -23,7 +22,7 @@ public abstract class Module {
     //Statistical Variables
     protected double[] timeByQueryType;
     protected int[] totalConnectionsByQueryType;
-    protected int acumulatedQueueLength;
+    protected int accumulatedQueueLength;
     protected int callsToQueueLength;
 
 
@@ -38,7 +37,7 @@ public abstract class Module {
         this.timeout = timeout;
         this.timeByQueryType = new double[StatementType.NUMSTATEMENTS];
         this.totalConnectionsByQueryType = new int[StatementType.NUMSTATEMENTS];
-        this.acumulatedQueueLength = 0;
+        this.accumulatedQueueLength = 0;
         this.callsToQueueLength = 0;
     }
 
@@ -58,7 +57,7 @@ public abstract class Module {
     public abstract void checkQueue(double clock, ClientAdminModule clientAdminModule);
 
     public int getOccupiedFields(){return occupiedFields;}
-    public int getAcumulatedQueueLength() { return acumulatedQueueLength; }
+    public int getAccumulatedQueueLength() { return accumulatedQueueLength; }
     public int getCallsToQueueLength() { return callsToQueueLength; }
     public double[] getTimeByQueryType() { return timeByQueryType; }
     public int[] getTotalConnectionsByQueryType() { return totalConnectionsByQueryType; }
@@ -74,7 +73,7 @@ public abstract class Module {
      */
     public void queueLength(){
         ++callsToQueueLength;
-        acumulatedQueueLength += queriesInLine.size();
+        accumulatedQueueLength += queriesInLine.size();
     }
 
     /**

@@ -11,10 +11,8 @@ package DBMS_Sim;
         import javafx.scene.chart.PieChart;
         import javafx.scene.control.Label;
         import javafx.scene.layout.Pane;
-        import javafx.scene.paint.Color;
 
         import java.net.URL;
-        import java.util.Observable;
         import java.util.ResourceBundle;
 
 public class FinalStatsController implements Initializable {
@@ -217,20 +215,20 @@ public class FinalStatsController implements Initializable {
     }
     public void fillScreen(SimulationStatistics statistics){
         //General Pane
-        String formattedDouble = String.format("%.02f", statistics.getAcumulatedConnectionTime());
+        String formattedDouble = String.format("%.02f", statistics.getAccumulatedConnectionTime());
 
         lblgenerallifetime.setText(formattedDouble);
-        double avgDiscardedConnections = statistics.getAcumulatedDiscardedConnections()/(double)appController.getNumberOfIterations();
+        double avgDiscardedConnections = statistics.getAccumulatedDiscardedConnections()/(double)appController.getNumberOfIterations();
         lblgeneralDiscarded.setText(""+avgDiscardedConnections);
         double avgTimeOutConnection = statistics.getTimeoutConnections()/(double)appController.getNumberOfIterations();
         lblTimeOut.setText(""+ avgTimeOutConnection);
 
         //Client Admin Pane
         double ddl, select, join, update;
-        select = statistics.getAcumulatedQueriesWaitTimeInModule()[0][0];
-        update = statistics.getAcumulatedQueriesWaitTimeInModule()[0][1];
-        join = statistics.getAcumulatedQueriesWaitTimeInModule()[0][2];
-        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[0][3];
+        select = statistics.getAccumulatedQueriesWaitTimeInModule()[0][0];
+        update = statistics.getAccumulatedQueriesWaitTimeInModule()[0][1];
+        join = statistics.getAccumulatedQueriesWaitTimeInModule()[0][2];
+        ddl = statistics.getAccumulatedQueriesWaitTimeInModule()[0][3];
 
         formattedDouble = String.format("%.02f", ddl);
         lbl1DDL.setText(formattedDouble);
@@ -249,12 +247,12 @@ public class FinalStatsController implements Initializable {
 
         //Process Admin Pane
 
-        select = statistics.getAcumulatedQueriesWaitTimeInModule()[1][0];
-        update = statistics.getAcumulatedQueriesWaitTimeInModule()[1][1];
-        join = statistics.getAcumulatedQueriesWaitTimeInModule()[1][2];
-        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[1][3];
+        select = statistics.getAccumulatedQueriesWaitTimeInModule()[1][0];
+        update = statistics.getAccumulatedQueriesWaitTimeInModule()[1][1];
+        join = statistics.getAccumulatedQueriesWaitTimeInModule()[1][2];
+        ddl = statistics.getAccumulatedQueriesWaitTimeInModule()[1][3];
 
-        double queue = statistics.getAcumulatedModuleQueueLength()[1];
+        double queue = statistics.getAccumulatedModuleQueueLength()[1];
         formattedDouble = String.format("%.02f", ddl);
         lbl2DDL.setText(formattedDouble);
         formattedDouble = String.format("%.02f", select);
@@ -275,12 +273,12 @@ public class FinalStatsController implements Initializable {
         pcProcessAdmin.setData(piechartData);
 
         //Query Module Pane
-        select = statistics.getAcumulatedQueriesWaitTimeInModule()[2][0];
-        update = statistics.getAcumulatedQueriesWaitTimeInModule()[2][1];
-        join = statistics.getAcumulatedQueriesWaitTimeInModule()[2][2];
-        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[2][3];
+        select = statistics.getAccumulatedQueriesWaitTimeInModule()[2][0];
+        update = statistics.getAccumulatedQueriesWaitTimeInModule()[2][1];
+        join = statistics.getAccumulatedQueriesWaitTimeInModule()[2][2];
+        ddl = statistics.getAccumulatedQueriesWaitTimeInModule()[2][3];
 
-        queue = statistics.getAcumulatedModuleQueueLength()[2];
+        queue = statistics.getAccumulatedModuleQueueLength()[2];
         formattedDouble = String.format("%.02f", ddl);
         lbl3DDL.setText(formattedDouble);
         formattedDouble = String.format("%.02f", select);
@@ -301,12 +299,12 @@ public class FinalStatsController implements Initializable {
         pcQueryModule.setData(piechartData);
 
         //Transaction Module Pane
-        select = statistics.getAcumulatedQueriesWaitTimeInModule()[3][0];
-        update = statistics.getAcumulatedQueriesWaitTimeInModule()[3][1];
-        join = statistics.getAcumulatedQueriesWaitTimeInModule()[3][2];
-        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[3][3];
+        select = statistics.getAccumulatedQueriesWaitTimeInModule()[3][0];
+        update = statistics.getAccumulatedQueriesWaitTimeInModule()[3][1];
+        join = statistics.getAccumulatedQueriesWaitTimeInModule()[3][2];
+        ddl = statistics.getAccumulatedQueriesWaitTimeInModule()[3][3];
 
-        queue = statistics.getAcumulatedModuleQueueLength()[3];
+        queue = statistics.getAccumulatedModuleQueueLength()[3];
         formattedDouble = String.format("%.02f", ddl);
         lbl4DDL.setText(formattedDouble);
         formattedDouble = String.format("%.02f", select);
@@ -326,12 +324,12 @@ public class FinalStatsController implements Initializable {
                 new PieChart.Data("UPDATE",update));
         pcTransaction.setData(piechartData);
         //Execution Module Pane
-        select = statistics.getAcumulatedQueriesWaitTimeInModule()[4][0];
-        update = statistics.getAcumulatedQueriesWaitTimeInModule()[4][1];
-        join = statistics.getAcumulatedQueriesWaitTimeInModule()[4][2];
-        ddl = statistics.getAcumulatedQueriesWaitTimeInModule()[4][3];
+        select = statistics.getAccumulatedQueriesWaitTimeInModule()[4][0];
+        update = statistics.getAccumulatedQueriesWaitTimeInModule()[4][1];
+        join = statistics.getAccumulatedQueriesWaitTimeInModule()[4][2];
+        ddl = statistics.getAccumulatedQueriesWaitTimeInModule()[4][3];
 
-        queue = statistics.getAcumulatedModuleQueueLength()[4];
+        queue = statistics.getAccumulatedModuleQueueLength()[4];
         formattedDouble = String.format("%.02f", ddl);
         lbl5DDL.setText(formattedDouble);
         formattedDouble = String.format("%.02f", select);

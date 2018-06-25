@@ -1,5 +1,6 @@
 package DBMS_Sim.SourceCode;
 
+import java.util.ArrayList;
 import java.util.PriorityQueue;
 
 /**
@@ -16,6 +17,7 @@ public class ClientAdminModule extends Module{
     private QueryGenerator queryGenerator;
     private int finishedQueriesCounter;
     private double accumulatedFinishedQueryTimes;
+    private ArrayList<Double> finishedQueryTimes;
     private int numberOfArrivalToTheSystem;
     private int timedOutConnections;
 
@@ -28,6 +30,7 @@ public class ClientAdminModule extends Module{
         queryGenerator = new QueryGenerator();
         finishedQueriesCounter = 0;
         accumulatedFinishedQueryTimes = 0;
+        finishedQueryTimes = new ArrayList<>();
         numberOfArrivalToTheSystem = 0;
         discardedConnections = 0;
     }
@@ -49,6 +52,8 @@ public class ClientAdminModule extends Module{
     public int getTimedOutConnections() {
         return timedOutConnections;
     }
+    public ArrayList<Double> getFinishedQueryTimes() { return finishedQueryTimes; }
+
 
     public int getNumberOfArrivalToTheSystem() {
         return numberOfArrivalToTheSystem;
@@ -109,6 +114,7 @@ public class ClientAdminModule extends Module{
         --occupiedFields;
         finishedQueriesCounter++;
         accumulatedFinishedQueryTimes += (event.getTime() - event.getQuery().getSubmissionTime());
+        finishedQueryTimes.add(event.getTime() - event.getQuery().getSubmissionTime());
         return false;
     }
 
@@ -123,6 +129,7 @@ public class ClientAdminModule extends Module{
         ++timedOutConnections;
         finishedQueriesCounter++;
         accumulatedFinishedQueryTimes += (clock - query.getSubmissionTime());
+        finishedQueryTimes.add(clock - query.getSubmissionTime());
 
     }
 
