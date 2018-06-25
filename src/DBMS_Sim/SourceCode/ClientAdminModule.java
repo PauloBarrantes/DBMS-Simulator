@@ -50,6 +50,10 @@ public class ClientAdminModule extends Module{
         return timedOutConnections;
     }
 
+    public int getNumberOfArrivalToTheSystem() {
+        return numberOfArrivalToTheSystem;
+    }
+
     public QueryGenerator getQueryGenerator() { return queryGenerator;}
     public int getFinishedQueriesCounter() { return finishedQueriesCounter; }
     public double getAccumulatedFinishedQueryTimes() { return accumulatedFinishedQueryTimes; }

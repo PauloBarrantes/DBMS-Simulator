@@ -15,7 +15,7 @@
    <JFXTextField fx:id="txt_ntimes" alignment="CENTER" layoutX="600.0" layoutY="29.0" prefHeight="27.0"
                  prefWidth="66.0"/>
    <JFXToggleButton fx:id="mode" layoutX="279.0" layoutY="141.0" text="Slow Mode"/>
-   <Rectangle id="number" arcHeight="5.0" arcWidth="5.0" fill="#ff7f56" height="561.0" layoutX="-17.0" layoutY="-28.0"
+   <Rectangle id="number" arcHeight="5.0" arcWidth="5.0" fill="#f46542" height="561.0" layoutX="-17.0" layoutY="-28.0"
               stroke="#ffffff00" strokeType="INSIDE" width="238.0"/>
    <JFXButton fx:id="btnIniciar" defaultButton="true" layoutX="422.0" layoutY="449.0" onAction="#start"
               prefHeight="27.0" prefWidth="77.0" ripplerFill="WHITE" style="-fx-background-color: #f46542;" text="Start"

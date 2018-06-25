@@ -152,6 +152,7 @@ public class ApplicationController implements Initializable {
                 }
                 //simulator.getSimulationStatistics();
                 normalModeController.stats.setVisible(true);
+                System.out.println(simulator.getClientAdminModule().getNumberOfArrivalToTheSystem());
                 numberOfSimulation++;
                 return null;
             }
