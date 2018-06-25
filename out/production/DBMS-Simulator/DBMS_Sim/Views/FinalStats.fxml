@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Rectangle?>
 
 <AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.StatisticController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.FinalStatsController">
     <AnchorPane id="General" layoutX="199.0" layoutY="-1.0" prefHeight="451.0" prefWidth="505.0">
         <Pane fx:id="pnGeneral" prefHeight="452.0" prefWidth="506.0" visible="false">
             <Label layoutX="24.0" layoutY="38.0" prefHeight="32.0" prefWidth="144.0" text="General Stats"/>
@@ -165,8 +165,5 @@
                style="-fx-background-color: #cc412a;" text="Next" textFill="WHITE"/>
     <JFXButton id="btnQueryModule" fx:id="btnQueryModule" layoutX="-1.0" layoutY="302.0" onAction="#queryModule"
                prefHeight="58.0" prefWidth="200.0" text="Query Module" textFill="WHITE"/>
-    <Label alignment="CENTER" layoutX="47.0" layoutY="53.0" prefHeight="17.0" prefWidth="106.0" text="Iteration:"
-           textFill="WHITE"/>
-    <Label fx:id="iteracion" alignment="CENTER" layoutX="47.0" layoutY="87.0" prefHeight="17.0" prefWidth="106.0" text="0"
-           textFill="WHITE"/>
+
 </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXProgressBar?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -12,66 +13,80 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<?import com.jfoenix.controls.JFXTextField?>
-<AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.NormalModeController">
-    <children>
-        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffbc1f" height="44.0" layoutX="-3.0" layoutY="-1.0" stroke="BLACK" strokeType="INSIDE" width="698.0" />
-      <JFXProgressBar fx:id="pbProgress"  layoutX="108.0" layoutY="442.0" prefHeight="8.0" prefWidth="514.0" progress="0.0" />
-      <Label layoutX="193.0" layoutY="79.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Clock" />
-      <Label fx:id="lblClock1" layoutX="557.0" layoutY="82.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-        <Label layoutX="110.0" layoutY="131.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Queue Lenght" />
-      <Label layoutX="111.0" layoutY="170.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="ClientAdminModule" />
-      <Label layoutX="111.0" layoutY="203.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="ProcessAdminModule" />
-      <Label layoutX="111.0" layoutY="239.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="QueryProcessingModule " />
-      <Label layoutX="110.0" layoutY="278.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="TransactionAndStorageModule" />
-      <Label layoutX="109.0" layoutY="313.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="ExecutionModule" />
-      <ImageView fitHeight="41.0" fitWidth="50.0" layoutX="251.0" layoutY="115.0">
-         <image>
-            <Image url="@../Resources/tube-queue.png" />
-         </image>
-      </ImageView>
-      <Line endX="100.0" layoutX="210.0" layoutY="156.0" nodeOrientation="LEFT_TO_RIGHT" startX="-100.0">
-         <cursor>
-            <Cursor fx:constant="NONE" />
-         </cursor>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
+<AnchorPane prefHeight="499.0" prefWidth="694.0" xmlns="http://javafx.com/javafx/9.0.4"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="DBMS_Sim.NormalModeController">
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f46542" height="44.0" layoutX="-3.0" layoutY="-1.0"
+               stroke="#ffffff00" strokeType="INSIDE" width="698.0"/>
+    <JFXProgressBar fx:id="pbProgress" layoutX="108.0" layoutY="441.0" prefHeight="9.0" prefWidth="435.0"
+                    progress="0.0"/>
+    <Label layoutX="166.0" layoutY="78.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Clock"/>
+    <Label fx:id="lblClock1" layoutX="528.0" layoutY="85.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="0"/>
+    <Label layoutX="110.0" layoutY="131.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Queue Lenght"/>
+    <Label layoutX="109.0" layoutY="171.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="ProcessAdminModule"/>
+    <Label layoutX="109.0" layoutY="207.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="QueryProcessingModule "/>
+    <Label layoutX="108.0" layoutY="246.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="TransactionAndStorageModule"/>
+    <Label layoutX="109.0" layoutY="281.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="ExecutionModule"/>
+    <Line endX="100.0" layoutX="210.0" layoutY="156.0" nodeOrientation="LEFT_TO_RIGHT" startX="-100.0">
+        <cursor>
+          <Cursor fx:constant="NONE"/>
+        </cursor>
+        <effect>
+          <Lighting>
+              <bumpInput>
+                  <Shadow/>
+              </bumpInput>
 
-            </Lighting>
-         </effect>
-      </Line>
-      <Label layoutX="332.0" layoutY="452.0" opacity="0.41" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="Progress" />
-      <Label fx:id="lblMac" layoutX="557.0" layoutY="167.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-      <Label fx:id="lblPAM" layoutX="557.0" layoutY="199.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-      <Label fx:id="lblQPM" layoutX="557.0" layoutY="235.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-      <Label fx:id="lblTASM" layoutX="557.0" layoutY="274.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-      <Label fx:id="lblEM" layoutX="557.0" layoutY="309.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-      <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="114.0" layoutY="59.0">
-         <image>
-            <Image url="@../Resources/clock1.png" />
-         </image>
-      </ImageView>
-      <Label layoutX="16.0" layoutY="4.0" style="-fx-font-size: 20; -fx-font-family: Avenir;" text="Normal Mode" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="621.0" layoutY="9.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="#" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="21.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblNcorrida" layoutX="650.0" layoutY="7.0" prefHeight="28.0" prefWidth="13.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="1" textFill="WHITE">
-         <font>
-            <Font name="Dosis Regular" size="21.0" />
-         </font>
-      </Label>
-      <Label layoutX="109.0" layoutY="354.0" prefHeight="17.0" prefWidth="176.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Discarded Connections" />
-      <Label fx:id="lblDiscarded" layoutX="558.0" layoutY="349.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0" />
-      <Line endX="100.0" layoutX="213.0" layoutY="346.0" startX="-100.0" />
-      <Label fx:id="lblClockN" layoutX="608.0" layoutY="82.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Segundos" />
-    </children>
+          </Lighting>
+        </effect>
+    </Line>
+    <Label layoutX="295.0" layoutY="453.0" opacity="0.41" style="-fx-font-size: 16; -fx-font-family: Avenir;"
+           text="Progress"/>
+    <Label fx:id="lblPAM" layoutX="529.0" layoutY="170.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0"/>
+    <Label fx:id="lblQPM" layoutX="529.0" layoutY="206.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0"/>
+    <Label fx:id="lblTASM" layoutX="529.0" layoutY="245.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="0"/>
+    <Label fx:id="lblEM" layoutX="528.0" layoutY="280.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="0"/>
+    <Label layoutX="18.0" layoutY="7.0" style="-fx-font-size: 20; -fx-font-family: Dosis;" text="Normal Mode"
+           textFill="WHITE">
+        <font>
+          <Font name="Dosis Regular" size="21.0"/>
+        </font>
+    </Label>
+    <Label layoutX="532.0" layoutY="8.0" style="-fx-font-size: 16; -fx-font-family: Avenir;" text="Iteration"
+           textFill="WHITE">
+        <font>
+          <Font name="Dosis Regular" size="21.0"/>
+        </font>
+    </Label>
+    <Label fx:id="lblNcorrida" layoutX="644.0" layoutY="5.0" prefHeight="28.0" prefWidth="13.0"
+           style="-fx-font-size: 16; -fx-font-family: Avenir;" text="1" textFill="WHITE">
+        <font>
+          <Font name="Dosis Regular" size="21.0"/>
+        </font>
+    </Label>
+    <Label layoutX="166.0" layoutY="333.0" prefHeight="17.0" prefWidth="176.0"
+           style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Discarded Connections"/>
+    <Label fx:id="lblDiscarded" layoutX="529.0" layoutY="332.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="0"/>
+    <Line endX="100.0" layoutX="212.0" layoutY="320.0" startX="-100.0"/>
+    <Label layoutX="608.0" layoutY="82.0" style="-fx-font-family: Avenir; -fx-font-size: 16;" text="Seconds"/>
+    <Label layoutX="163.0" layoutY="384.0" prefHeight="17.0" prefWidth="176.0"
+           style="-fx-font-family: Avenir; -fx-font-size: 16;" text="TimeOut Connections"/>
+    <Label fx:id="lblTimeout" layoutX="529.0" layoutY="385.0" style="-fx-font-family: Avenir; -fx-font-size: 16;"
+           text="0"/>
+    <ImageView fitHeight="31.0" fitWidth="31.0" layoutX="104.0" layoutY="381.0">
+        <Image url="@../Resources/hourglass.png"/>
+    </ImageView>
+    <ImageView fitHeight="51.0" fitWidth="53.0" layoutX="106.0" layoutY="63.0">
+        <Image url="@../Resources/alarm-clock.png"/>
+    </ImageView>
+    <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="102.0" layoutY="326.0">
+        <Image url="@../Resources/trash.png"/>
+    </ImageView>
+    <JFXButton fx:id="stats" layoutX="590.0" layoutY="440.0" onAction="#statistics" prefHeight="33.0" prefWidth="80.0"
+               style="-fx-background-color: #f46542;" text="Statistics" visible="false"/>
 </AnchorPane>

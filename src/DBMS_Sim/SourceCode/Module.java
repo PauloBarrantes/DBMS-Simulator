@@ -23,8 +23,8 @@ public abstract class Module {
     //Statistical Variables
     protected double[] timeByQueryType;
     protected int[] totalConnectionsByQueryType;
-    int acumulatedQueueLength;
-    int callsToQueueLength;
+    protected int acumulatedQueueLength;
+    protected int callsToQueueLength;
 
 
     // ---------------------------------------------------------------------------------------------
