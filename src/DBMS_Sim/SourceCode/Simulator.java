@@ -25,6 +25,7 @@ public class Simulator {
     private PriorityQueue<Event> tableOfEvents;
     private TransactionAndStorageModule transactionAndStorageModule;
 
+
     // ---------------------------------------------------------------------------------------------
     // ----------------------------- Beginning of constructors section -----------------------------
     // ---------------------------------------------------------------------------------------------
@@ -269,10 +270,10 @@ public class Simulator {
         SimulationStatistics simulationStatistics = new SimulationStatistics();
 
         simulationStatistics.setAccumulatedDiscardedConnections(clientAdminModule.getDiscardedConnections());
-        simulationStatistics.setTimeoutConnections(clientAdminModule.getTimedOutConnections());
+        simulationStatistics.setAccumulatedTimeoutConnections(clientAdminModule.getTimedOutConnections());
 
         statisticsGenerator.addDiscardedConnections(simulationStatistics.getAccumulatedDiscardedConnections());
-        statisticsGenerator.setTimeoutConnections(simulationStatistics.getTimeoutConnections());
+        statisticsGenerator.setTimeoutConnections(simulationStatistics.getAccumulatedTimeoutConnections());
         double[] accumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         accumulatedModuleQueueLength[ModuleType.CLIENTADMIN] = 0;
 
@@ -304,8 +305,9 @@ public class Simulator {
         simulationStatistics.setAccumulatedQueriesWaitTimeInModule(statisticsGenerator.getAverageQueriesWaitedTimeInModule());
         simulationStatistics.setAccumulatedModuleQueueLength(statisticsGenerator.getAverageModuleQueueLength());
         simulationStatistics.setAccumulatedDiscardedConnections(statisticsGenerator.getAccumulatedDiscardedConnections());
-        simulationStatistics.setTimeoutConnections(statisticsGenerator.getAccumulatedTimeoutsConnections());
+        simulationStatistics.setAccumulatedTimeoutConnections(statisticsGenerator.getAccumulatedTimeoutsConnections());
         simulationStatistics.calculateConfidenceInterval(clientAdminModule.getFinishedQueryTimes());
+        simulationStatistics.setDiscardedConnectionsPercentage(clientAdminModule.getAmountOfArrivalsToSystem());
 
         return simulationStatistics;
     }

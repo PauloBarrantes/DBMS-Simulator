@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e34ef5e0-925c-48d1-886a-52e7461670ef" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/FinalStatsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/FinalStatsController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/SimulationStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/SimulationStatistics.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java" afterDir="false" />
@@ -26,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="307" column="100" selection-start-line="307" selection-start-column="100" selection-end-line="307" selection-end-column="100" />
+            <state relative-caret-position="4485">
+              <caret line="309" column="108" selection-start-line="309" selection-start-column="81" selection-end-line="309" selection-end-column="108" />
             </state>
           </provider>
         </entry>
@@ -47,12 +45,8 @@
       <file leaf-file-name="StatisticsGenerator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-              <folding>
-                <element signature="e#3702#3703#0" expanded="true" />
-                <element signature="e#3754#3755#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-382">
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -60,25 +54,40 @@
       <file leaf-file-name="SimulationStatistics.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/SimulationStatistics.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+            <state relative-caret-position="1185">
+              <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FinalStatsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/FinalStatsController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="344">
+              <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
               <folding>
-                <element signature="e#789#790#0" expanded="true" />
-                <element signature="e#849#850#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientAdminModule.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StatisticController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/StatisticController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-772">
+              <caret line="288" column="57" lean-forward="true" selection-start-line="288" selection-start-column="57" selection-end-line="288" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientAdminModule.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
+            <state relative-caret-position="-1207">
+              <caret line="57" column="81" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2042#2043#0" expanded="true" />
-                <element signature="e#2091#2092#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,7 +105,7 @@
       <file leaf-file-name="ApplicationController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/ApplicationController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1600">
+            <state relative-caret-position="1875">
               <caret line="154" column="99" selection-start-line="154" selection-start-column="99" selection-end-line="154" selection-end-column="99" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -105,15 +114,6 @@
                 <element signature="e#1608#1609#0" expanded="true" />
                 <element signature="e#1666#1667#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QueryGenerator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/QueryGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="32" selection-start-line="24" selection-start-column="32" selection-end-line="24" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -190,11 +190,11 @@
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ExpDistributionGenerator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/ApplicationController.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/Views/home.fxml" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Module.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/SimulationStatistics.java" />
-        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java" />
         <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/DBMS_Sim/SourceCode/SimulationStatistics.java" />
       </list>
     </option>
   </component>
@@ -232,30 +232,13 @@
             </path>
             <path>
               <item name="DBMS-Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DBMS-Simulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DBMS-Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DBMS-Simulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="DBMS_Sim" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DBMS-Simulator" type="b2602c69:ProjectViewProjectNode" />
-              <item name="DBMS-Simulator" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="DBMS_Sim" type="462c0819:PsiDirectoryNode" />
-              <item name="SourceCode" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="DBMS-Simulator" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
       <pane id="PackagesPane">
         <subPane>
           <expand>
@@ -273,7 +256,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,6 +398,7 @@
       <workItem from="1529787094135" duration="7438000" />
       <workItem from="1529958361432" duration="3048000" />
       <workItem from="1529968946895" duration="560000" />
+      <workItem from="1529969741540" duration="1644000" />
     </task>
     <task id="LOCAL-00001" summary="Change in the views (Simulation Normal Mode)">
       <created>1529126122112</created>
@@ -434,11 +417,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50583000" />
+    <option name="totallyTimeSpent" value="52227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="777" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -455,20 +437,20 @@
       <window_info id="Designer" order="2" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25234374" />
       <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32859176" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3997833" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.3296875" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="3" side_tool="true" weight="0.3296875" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32903227" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Messages" order="7" weight="0.32903227" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -617,23 +599,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/StatisticController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="288" column="57" lean-forward="true" selection-start-line="288" selection-start-column="57" selection-end-line="288" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/FinalStatsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="344">
-          <caret line="224" column="72" selection-start-line="224" selection-start-column="72" selection-end-line="224" selection-end-column="72" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Event.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -707,7 +672,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/ApplicationController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1600">
+        <state relative-caret-position="1875">
           <caret line="154" column="99" selection-start-line="154" selection-start-column="99" selection-end-line="154" selection-end-column="99" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -726,44 +691,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1207">
+          <caret line="57" column="81" selection-start-line="57" selection-start-column="81" selection-end-line="57" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-382">
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/SimulationStatistics.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
+        <state relative-caret-position="1185">
+          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/StatisticController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-772">
+          <caret line="288" column="57" lean-forward="true" selection-start-line="288" selection-start-column="57" selection-end-line="288" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/FinalStatsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="344">
+          <caret line="224" lean-forward="true" selection-start-line="224" selection-end-line="224" />
           <folding>
-            <element signature="e#789#790#0" expanded="true" />
-            <element signature="e#849#850#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/Simulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="307" column="100" selection-start-line="307" selection-start-column="100" selection-end-line="307" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/StatisticsGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="34" column="30" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
-          <folding>
-            <element signature="e#3702#3703#0" expanded="true" />
-            <element signature="e#3754#3755#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DBMS_Sim/SourceCode/ClientAdminModule.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="55" lean-forward="true" selection-start-line="55" selection-end-line="55" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2042#2043#0" expanded="true" />
-            <element signature="e#2091#2092#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="4485">
+          <caret line="309" column="108" selection-start-line="309" selection-start-column="81" selection-end-line="309" selection-end-column="108" />
         </state>
       </provider>
     </entry>
