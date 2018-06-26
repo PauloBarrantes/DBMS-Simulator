@@ -227,7 +227,7 @@ public class FinalStatsController implements Initializable {
         double avgTimeOutConnection = statistics.getAccumulatedTimeoutConnections()/(double)appController.getNumberOfIterations();
         lblTimeOut.setText(""+ avgTimeOutConnection);
 
-        lblporcentaje.setText(""+ statistics.);
+        lblporcentaje.setText(""+ statistics.getDiscardedPercentage());
         lblconfidence.setText("[ "+ statistics.getLowerLimit() + ", " + statistics.getUpperLimit()+" ]");
 
         //Client Admin Pane
