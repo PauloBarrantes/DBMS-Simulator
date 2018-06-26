@@ -18,17 +18,20 @@ public class StatisticsGenerator {
     private double[] accumulatedModuleQueueLength;
     private double[][] accumulatedQueriesWaitTimeInModule;
     private double accumulatedConnectionTime;
+    private double accumulatedFinishedQueryTimes;
 
     public StatisticsGenerator() {
         accumulatedDiscardedConnections = 0;
         accumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         accumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
         accumulatedConnectionTime = 0.0;
+        accumulatedFinishedQueryTimes = 0.0;
         accumulatedTimeoutsConnections = 0;
     }
 
     public double averageConnectionTime(int finishedQueriesCounter, double accumulatedFinishedQueryTimes){
         accumulatedConnectionTime += accumulatedFinishedQueryTimes/(double)finishedQueriesCounter;
+        this.accumulatedFinishedQueryTimes += accumulatedFinishedQueryTimes;
         return accumulatedFinishedQueryTimes/(double)finishedQueriesCounter;
     }
 
@@ -66,6 +69,10 @@ public class StatisticsGenerator {
         return accumulatedConnectionTime /(double)amountOfDoneSimulations;
     }
 
+    public double getAccumulatedConnectionTime() {
+        return accumulatedConnectionTime;
+    }
+
     public double[] getAverageModuleQueueLength(){
         double[] average = new double[ModuleType.NUMMODULETYPES];
         for(int i = 0; i < ModuleType.NUMMODULETYPES; ++i){
@@ -81,11 +88,12 @@ public class StatisticsGenerator {
                 average[f][c] = accumulatedQueriesWaitTimeInModule[f][c]/amountOfDoneSimulations;
             }
         }
-
         return average;
     }
 
     public int getAccumulatedDiscardedConnections() { return accumulatedDiscardedConnections; }
+
+    public double getAccumulatedFinishedQueryTimes() { return accumulatedFinishedQueryTimes; }
 
     public void setTimeoutConnections(int timeoutConnections) {
         accumulatedTimeoutsConnections += timeoutConnections;
@@ -94,4 +102,5 @@ public class StatisticsGenerator {
     public int getAccumulatedTimeoutsConnections() {
         return accumulatedTimeoutsConnections;
     }
+
 }

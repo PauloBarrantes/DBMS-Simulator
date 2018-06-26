@@ -291,7 +291,7 @@ public class Simulator {
         accumulatedQueriesWaitTimeInModule[ModuleType.EXECUTION] = statisticsGenerator.averagePassedTimeByStatementInModule(executionModule.getTotalConnectionsByQueryType(),executionModule.getTimeByQueryType(),ModuleType.EXECUTION);
         simulationStatistics.setAccumulatedQueriesWaitTimeInModule(accumulatedQueriesWaitTimeInModule);
 
-        simulationStatistics.setAccumulatedConnectionTime(statisticsGenerator.averageConnectionTime(clientAdminModule.getFinishedQueriesCounter(),clientAdminModule.getAccumulatedFinishedQueryTimes()));
+        simulationStatistics.setAverageConnectionTime(statisticsGenerator.averageConnectionTime(clientAdminModule.getFinishedQueriesCounter(),clientAdminModule.getAccumulatedFinishedQueryTimes()));
 
         statisticsGenerator.increaseDoneSimulations();
 
@@ -301,12 +301,12 @@ public class Simulator {
 
     public SimulationStatistics finalStatistics(){
         SimulationStatistics simulationStatistics = new SimulationStatistics();
-        simulationStatistics.setAccumulatedConnectionTime(statisticsGenerator.getAverageConnectionTime());
+        simulationStatistics.setAverageConnectionTime(statisticsGenerator.getAverageConnectionTime());
         simulationStatistics.setAccumulatedQueriesWaitTimeInModule(statisticsGenerator.getAverageQueriesWaitedTimeInModule());
         simulationStatistics.setAccumulatedModuleQueueLength(statisticsGenerator.getAverageModuleQueueLength());
         simulationStatistics.setAccumulatedDiscardedConnections(statisticsGenerator.getAccumulatedDiscardedConnections());
         simulationStatistics.setAccumulatedTimeoutConnections(statisticsGenerator.getAccumulatedTimeoutsConnections());
-        simulationStatistics.calculateConfidenceInterval(clientAdminModule.getFinishedQueryTimes());
+        simulationStatistics.calculateConfidenceInterval(clientAdminModule.getFinishedQueryTimes(),statisticsGenerator.getAccumulatedFinishedQueryTimes());
         simulationStatistics.setDiscardedConnectionsPercentage(clientAdminModule.getAmountOfArrivalsToSystem());
 
         return simulationStatistics;

@@ -219,7 +219,7 @@ public class FinalStatsController implements Initializable {
     }
     public void fillScreen(SimulationStatistics statistics){
         //General Pane
-        String formattedDouble = String.format("%.02f", statistics.getAccumulatedConnectionTime());
+        String formattedDouble = String.format("%.02f", statistics.getAverageConnectionTime());
         String lower = String.format("%.02f", statistics.getLowerLimit());
         String upper = String.format("%.02f", statistics.getUpperLimit());
         lblgenerallifetime.setText(formattedDouble);

@@ -246,7 +246,7 @@ public class StatisticController implements Initializable {
 
     public void fillScreen(SimulationStatistics statistics){
         //General Pane
-        String formattedLifetime = String.format("%.02f", statistics.getAccumulatedConnectionTime());
+        String formattedLifetime = String.format("%.02f", statistics.getAverageConnectionTime());
 
         lblgenerallifetime.setText(formattedLifetime);
         lblgeneralDiscarded.setText(""+statistics.getAccumulatedDiscardedConnections());

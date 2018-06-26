@@ -10,7 +10,7 @@ public class SimulationStatistics {
     private int accumulatedArrivals;
     private double[] accumulatedModuleQueueLength;
     private double[][] accumulatedQueriesWaitTimeInModule;
-    private double accumulatedConnectionTime;
+    private double averageConnectionTime;
     private int discardedPercentage;
     private double upperLimit;
     private double lowerLimit;
@@ -19,7 +19,7 @@ public class SimulationStatistics {
         accumulatedDiscardedConnections = 0;
         accumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         accumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
-        accumulatedConnectionTime = 0.0;
+        averageConnectionTime = 0.0;
         discardedPercentage = 0;
         upperLimit = 0.0;
         lowerLimit = 0.0;
@@ -31,8 +31,9 @@ public class SimulationStatistics {
         this.accumulatedTimeoutConnections = accumulatedTimeoutConnections;
     }
 
-    public void calculateConfidenceInterval(ArrayList<Double> stats){
+    public void calculateConfidenceInterval(ArrayList<Double> stats, double accumulatedConnectionTime){
         double avg = accumulatedConnectionTime / stats.size();
+        System.out.println(avg);
         double variance = 0.0;
         double standardDeviation;
 
@@ -42,11 +43,11 @@ public class SimulationStatistics {
         }
 
         variance = variance / (stats.size());
-
+        System.out.println(variance);
         standardDeviation= Math.sqrt(variance);
         //We use 1.96 for 95% confidence interval
-        upperLimit = avg + ((1.96 * standardDeviation) / Math.sqrt(stats.size()));
-        lowerLimit = avg - ((1.96 * standardDeviation) / Math.sqrt(stats.size()));
+        upperLimit = avg + (1.96 * (standardDeviation / Math.sqrt(stats.size())));
+        lowerLimit = avg - (1.96 * (standardDeviation / Math.sqrt(stats.size())));
     }
 
     public double getLowerLimit() { return lowerLimit; }
@@ -82,11 +83,11 @@ public class SimulationStatistics {
         this.accumulatedQueriesWaitTimeInModule = accumulatedQueriesWaitTimeInModule;
     }
 
-    public double getAccumulatedConnectionTime() {
-        return accumulatedConnectionTime;
+    public double getAverageConnectionTime() {
+        return averageConnectionTime;
     }
-    public void setAccumulatedConnectionTime(double accumulatedConnectionTime) {
-        this.accumulatedConnectionTime = accumulatedConnectionTime;
+    public void setAverageConnectionTime(double averageConnectionTime) {
+        this.averageConnectionTime = averageConnectionTime;
     }
 
     public int getDiscardedPercentage() { return discardedPercentage; }
