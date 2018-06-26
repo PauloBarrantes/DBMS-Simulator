@@ -60,6 +60,10 @@ public class FinalStatsController implements Initializable {
     private Label lblgeneralDiscarded;
     @FXML
     private Label lblTimeOut;
+    @FXML
+    private Label lblporcentaje;
+    @FXML
+    private Label lblconfidence;
 
 
     //-- Client Admin
@@ -222,6 +226,9 @@ public class FinalStatsController implements Initializable {
         lblgeneralDiscarded.setText(""+avgDiscardedConnections);
         double avgTimeOutConnection = statistics.getTimeoutConnections()/(double)appController.getNumberOfIterations();
         lblTimeOut.setText(""+ avgTimeOutConnection);
+
+        lblporcentaje.setText(""+ statistics.);
+        lblconfidence.setText("[ "+ statistics.getLowerLimit() + ", " + statistics.getUpperLimit()+" ]");
 
         //Client Admin Pane
         double ddl, select, join, update;
