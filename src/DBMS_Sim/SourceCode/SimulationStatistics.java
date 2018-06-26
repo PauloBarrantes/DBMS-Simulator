@@ -45,8 +45,8 @@ public class SimulationStatistics {
 
         standardDeviation= Math.sqrt(variance);
         //We use 1.96 for 95% confidence interval
-        upperLimit = avg + (1.96 * standardDeviation) / Math.sqrt(stats.size());
-        lowerLimit = avg - (1.96 * standardDeviation) / Math.sqrt(stats.size());
+        upperLimit = avg + ((1.96 * standardDeviation) / Math.sqrt(stats.size()));
+        lowerLimit = avg - ((1.96 * standardDeviation) / Math.sqrt(stats.size()));
     }
 
     public double getLowerLimit() { return lowerLimit; }
