@@ -34,19 +34,19 @@ public class SimulationStatistics {
     public void calculateConfidenceInterval(ArrayList<Double> stats){
         double avg = accumulatedConnectionTime / stats.size();
         double variance = 0.0;
-        double standardDeviation = 0.0;
+        double standardDeviation;
 
 
         for (int i = 0; i < stats.size(); ++i) {
             variance += (stats.get(i) - avg) * (stats.get(i) - avg);
         }
 
-        variance = variance / (stats.size() - 1);
+        variance = variance / (stats.size());
 
         standardDeviation= Math.sqrt(variance);
         //We use 1.96 for 95% confidence interval
-        upperLimit = (avg + 1.96 * standardDeviation) / Math.sqrt(stats.size());
-        lowerLimit = (avg - 1.96 * standardDeviation) / Math.sqrt(stats.size());
+        upperLimit = avg + (1.96 * standardDeviation) / Math.sqrt(stats.size());
+        lowerLimit = avg - (1.96 * standardDeviation) / Math.sqrt(stats.size());
     }
 
     public double getLowerLimit() { return lowerLimit; }
