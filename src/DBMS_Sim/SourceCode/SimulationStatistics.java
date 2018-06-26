@@ -6,11 +6,12 @@ public class SimulationStatistics {
 
 
     private int accumulatedDiscardedConnections;
-    private int timeoutConnections;
+    private int accumulatedTimeoutConnections;
     private int accumulatedArrivals;
     private double[] accumulatedModuleQueueLength;
     private double[][] accumulatedQueriesWaitTimeInModule;
     private double accumulatedConnectionTime;
+    private int discardedPercentage;
     private double upperLimit;
     private double lowerLimit;
 
@@ -19,14 +20,15 @@ public class SimulationStatistics {
         accumulatedModuleQueueLength = new double[ModuleType.NUMMODULETYPES];
         accumulatedQueriesWaitTimeInModule = new double[ModuleType.NUMMODULETYPES][StatementType.NUMSTATEMENTS];
         accumulatedConnectionTime = 0.0;
+        discardedPercentage = 0;
         upperLimit = 0.0;
         lowerLimit = 0.0;
     }
 
-    public int getTimeoutConnections() { return timeoutConnections;}
+    public int getAccumulatedTimeoutConnections() { return accumulatedTimeoutConnections;}
 
-    public void setTimeoutConnections(int timeoutConnections) {
-        this.timeoutConnections = timeoutConnections;
+    public void setAccumulatedTimeoutConnections(int accumulatedTimeoutConnections) {
+        this.accumulatedTimeoutConnections = accumulatedTimeoutConnections;
     }
 
     public void calculateConfidenceInterval(ArrayList<Double> stats){
@@ -85,5 +87,10 @@ public class SimulationStatistics {
     }
     public void setAccumulatedConnectionTime(double accumulatedConnectionTime) {
         this.accumulatedConnectionTime = accumulatedConnectionTime;
+    }
+
+    public int getDiscardedPercentage() { return discardedPercentage; }
+    public void setDiscardedConnectionsPercentage(int accumulatedArrivalsToSystem){
+        this.discardedPercentage = ((accumulatedDiscardedConnections+accumulatedTimeoutConnections)*100) / accumulatedArrivalsToSystem;
     }
 }

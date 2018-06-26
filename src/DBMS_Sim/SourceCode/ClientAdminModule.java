@@ -13,6 +13,7 @@ import java.util.PriorityQueue;
 
 
 public class ClientAdminModule extends Module{
+    private int amountOfArrivalsToSystem;
     private int discardedConnections;
     private QueryGenerator queryGenerator;
     private int finishedQueriesCounter;
@@ -33,6 +34,8 @@ public class ClientAdminModule extends Module{
         finishedQueryTimes = new ArrayList<>();
         numberOfArrivalToTheSystem = 0;
         discardedConnections = 0;
+        amountOfArrivalsToSystem = 0;
+
     }
 
     // ---------------------------------------------------------------------------------------------
@@ -52,6 +55,7 @@ public class ClientAdminModule extends Module{
     public int getTimedOutConnections() {
         return timedOutConnections;
     }
+    public int getAmountOfArrivalsToSystem() { return amountOfArrivalsToSystem; }
     public ArrayList<Double> getFinishedQueryTimes() { return finishedQueryTimes; }
 
 
@@ -80,7 +84,7 @@ public class ClientAdminModule extends Module{
      * Creates an exit event from this module or adds a query to the queue, depending on specified module restrictions.
      */
     public boolean processArrival(Event event, PriorityQueue<Event> tableOfEvents){
-
+        amountOfArrivalsToSystem++;
         if(occupiedFields < maxFields){
             //Generate a new arrival to next module
 

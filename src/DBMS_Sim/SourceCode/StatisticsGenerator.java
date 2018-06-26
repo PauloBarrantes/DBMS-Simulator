@@ -33,12 +33,12 @@ public class StatisticsGenerator {
     }
 
     public double queueLengthAverage(int accumulatedQueueLength, int callsToQueueLength, int moduleType){
-        double queueLenghtAverage = 0;
+        double queueLengthAverage = 0;
         if(callsToQueueLength > 0){
             accumulatedModuleQueueLength[moduleType] += (double) accumulatedQueueLength/(double)callsToQueueLength;
-            queueLenghtAverage = (double)accumulatedQueueLength/(double)callsToQueueLength;
+            queueLengthAverage = (double)accumulatedQueueLength/(double)callsToQueueLength;
         }
-        return queueLenghtAverage;
+        return queueLengthAverage;
     }
 
     public double[] averagePassedTimeByStatementInModule(int[] totalConnectionsByQueryType, double[] timeByQueryType, int moduleType){

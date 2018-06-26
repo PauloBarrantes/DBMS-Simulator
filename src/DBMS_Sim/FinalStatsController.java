@@ -220,7 +220,7 @@ public class FinalStatsController implements Initializable {
         lblgenerallifetime.setText(formattedDouble);
         double avgDiscardedConnections = statistics.getAccumulatedDiscardedConnections()/(double)appController.getNumberOfIterations();
         lblgeneralDiscarded.setText(""+avgDiscardedConnections);
-        double avgTimeOutConnection = statistics.getTimeoutConnections()/(double)appController.getNumberOfIterations();
+        double avgTimeOutConnection = statistics.getAccumulatedTimeoutConnections()/(double)appController.getNumberOfIterations();
         lblTimeOut.setText(""+ avgTimeOutConnection);
 
         //Client Admin Pane

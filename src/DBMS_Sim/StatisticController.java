@@ -250,7 +250,7 @@ public class StatisticController implements Initializable {
 
         lblgenerallifetime.setText(formattedLifetime);
         lblgeneralDiscarded.setText(""+statistics.getAccumulatedDiscardedConnections());
-        lblTimeOut.setText(""+ statistics.getTimeoutConnections());
+        lblTimeOut.setText(""+ statistics.getAccumulatedTimeoutConnections());
 
         //Client Admin Pane
         double ddl, select, join, update;
