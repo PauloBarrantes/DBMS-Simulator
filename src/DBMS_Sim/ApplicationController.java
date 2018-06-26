@@ -47,7 +47,6 @@ public class ApplicationController implements Initializable {
     @FXML JFXTextField txt_ntimes,txt_time,k,p,n,m,t;
 
     private int nTimes, runTime, kConnections, pProcesses, nProcesses, mProcesses, timeout;
-    private Service<Void> backgroundThread;
     private boolean validator;
     private long modeSim;
 
@@ -57,8 +56,7 @@ public class ApplicationController implements Initializable {
 
     /**
      * Controlador del butón start, hacemos validaciones
-     * Al ser el título obligatorio, si es nulo o vacío se lanzará
-     * una excepción.
+     * de los parámetros y iniciamos la primera simulación.
      *
      * @param event
      */
@@ -129,7 +127,6 @@ public class ApplicationController implements Initializable {
         simulator.appendInitialEvent();
         normalModeController.setNumberOfSimulation(numberOfSimulation);
         final Task<Void> task = new Task<Void>() {
-            final double runningTime = runTime;
             double previousClock;
             @Override
             protected Void call() throws Exception {

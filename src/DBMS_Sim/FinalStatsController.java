@@ -220,15 +220,20 @@ public class FinalStatsController implements Initializable {
     public void fillScreen(SimulationStatistics statistics){
         //General Pane
         String formattedDouble = String.format("%.02f", statistics.getAccumulatedConnectionTime());
-
+        String lower = String.format("%.02f", statistics.getLowerLimit());
+        String upper = String.format("%.02f", statistics.getUpperLimit());
         lblgenerallifetime.setText(formattedDouble);
         double avgDiscardedConnections = statistics.getAccumulatedDiscardedConnections()/(double)appController.getNumberOfIterations();
-        lblgeneralDiscarded.setText(""+avgDiscardedConnections);
+        String discarded = String.format("%.02f", avgDiscardedConnections);
+
+        lblgeneralDiscarded.setText(discarded);
         double avgTimeOutConnection = statistics.getAccumulatedTimeoutConnections()/(double)appController.getNumberOfIterations();
-        lblTimeOut.setText(""+ avgTimeOutConnection);
+        String timeout = String.format("%.02f", avgTimeOutConnection);
+
+        lblTimeOut.setText(timeout);
 
         lblporcentaje.setText(""+ statistics.getDiscardedPercentage());
-        lblconfidence.setText("[ "+ statistics.getLowerLimit() + ", " + statistics.getUpperLimit()+" ]");
+        lblconfidence.setText("[ "+ lower + ", " + upper+" ]");
 
         //Client Admin Pane
         double ddl, select, join, update;

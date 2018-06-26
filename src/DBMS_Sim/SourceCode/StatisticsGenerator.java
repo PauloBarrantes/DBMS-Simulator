@@ -47,9 +47,10 @@ public class StatisticsGenerator {
         for(int i = 0; i < StatementType.NUMSTATEMENTS; ++i){
             if(totalConnectionsByQueryType[i] > 0){
                 averagePassedTime[i] = timeByQueryType[i]/(double)totalConnectionsByQueryType[i];
+                accumulatedQueriesWaitTimeInModule[moduleType][i] += averagePassedTime[i];
             }
         }
-        accumulatedQueriesWaitTimeInModule[moduleType] = averagePassedTime;
+
         return averagePassedTime;
     }
 
